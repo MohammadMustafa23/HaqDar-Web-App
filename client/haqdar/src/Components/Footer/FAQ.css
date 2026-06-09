@@ -1,0 +1,101 @@
+.FAQ-head {
+  padding: 100px 80px;
+}
+
+.FAQ-head h1 {
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 50px;
+}
+
+.question-div {
+  max-width: 1000px;
+  margin: auto;
+}
+
+.faq-card {
+  border: 1px solid #dbe1ea;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.faq-header {
+  padding: 25px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.faq-header h2 {
+  font-size: 1.5rem;
+}
+
+.faq-header span {
+  font-size: 2rem;
+  color: #0a3299;
+}
+
+.faq-answer {
+  padding: 0 30px 25px;
+  color: #4b5563;
+  line-height: 1.8;
+}
+
+.still-question-head {
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.still-question-head h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 20px;
+}
+
+.still-question-btns {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.support-btn {
+    width: 190px;
+    height: 60px;
+    border: 2px solid #0a3299;
+    background: transparent;
+    color: #0a3299;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.support-btn:hover {
+    background: #0a3299;
+    color: white;
+}
+
+.eligibility-btn {
+    width: 190px;
+    height: 60px;
+    border: 2px solid #0a3299;
+    background: #0a3299;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.eligibility-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(10, 50, 153, 0.25);
+}

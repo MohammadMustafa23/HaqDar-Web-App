@@ -1,0 +1,123 @@
+/* === Hero Section === */
+
+.hero-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 150px 150px;
+  background: #f3f4f6;       /* surface-container-low */
+  gap: 80px;
+  min-height: 480px;
+}
+
+.hero-about {
+  flex: 1;
+  max-width: 580px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Atkinson Hyperlegible for headline (per your typography spec) */
+.head-head {
+  font-family: 'Atkinson Hyperlegible Next', sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #00288e;            /* primary */
+  line-height: 1.15;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+
+.hero-para {
+  font-family: 'Inter', sans-serif;
+  font-size: 17px;
+  color: #444653;            /* on-surface-variant */
+  line-height: 1.65;
+  margin: 0;
+  max-width: 520px;
+}
+
+/* Trust badges row */
+.hero-trust {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #191c1e;            /* on-surface */
+}
+
+.trust-item .icon {
+  color: #00288e;            /* primary */
+  font-size: 16px;
+}
+
+/* Buttons */
+.hero-btns {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.hero-btn-01 {
+  background: #00288e;       /* primary */
+  color: #ffffff;            /* on-primary */
+  border: none;
+  padding: 0 28px;
+  height: 52px;              /* > 48px min touch target */
+  border-radius: 4px;        /* rounded-sm */
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.hero-btn-01:hover {
+  background: #1e40af;       /* primary-container */
+}
+
+.hero-btn-02 {
+  background: transparent;
+  color: #00288e;            /* primary */
+  border: 2px solid #00288e;
+  padding: 0 28px;
+  height: 52px;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.hero-btn-02:hover {
+  background: #00288e;
+  color: #ffffff;
+}
+
+
+.hero-image {
+  position: relative;
+  width: 100%;
+  max-width: 450px;
+}
+
+.hero-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  border: 10px solid white;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
