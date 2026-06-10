@@ -1,0 +1,169 @@
+
+
+.center-right {
+  width: 500px;
+  background: #fff;
+  border: 1px solid #d8dde6;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Tabs */
+.center-right > div:first-child {
+  display: flex;
+  border-bottom: 1px solid #d8dde6;
+}
+
+.center-right > div:first-child h4 {
+  width: 50%;
+  text-align: center;
+  padding: 18px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+
+
+/* Form Area */
+.center-right {
+  padding-bottom: 25px;
+}
+
+.center-right p:first-of-type {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 30px 35px 10px;
+}
+
+.center-right span {
+  display: block;
+  margin: 0 35px 25px;
+  color: #6b7280;
+  font-size: 15px;
+}
+
+/* Labels */
+.center-right label:not(.terms label) {
+  display: block;
+  margin: 0 35px 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* Inputs */
+.center-right input[type="email"],
+.center-right input[type="password"] {
+  width: calc(100% - 70px);
+  height: 46px;
+  margin: 0 35px 18px;
+  padding: 0 14px;
+  border: 1px solid #cfd5df;
+  border-radius: 6px;
+  outline: none;
+  font-size: 15px;
+}
+
+.center-right input:focus {
+  border-color: #1238b3;
+}
+
+
+/* Main Button */
+.center-right button:not(.google-btn) {
+  width: calc(100% - 70px);
+  height: 46px;
+  margin: 0 35px;
+  border: none;
+  border-radius: 6px;
+  background: #1238b3;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Divider */
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 28px 35px;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #d8dde6;
+}
+
+.divider span {
+  margin: 0 15px;
+  color: #4b5563;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Google Button */
+.google-btn {
+  width: calc(100% - 70px);
+  height: 48px;
+  margin: 0 35px;
+  background: white;
+  border: 1px solid #cfd5df;
+  border-radius: 8px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.google-btn img {
+  width: 22px;
+  height: 22px;
+}
+
+/* Bottom Text */
+.secure-text {
+  text-align: center;
+  margin: 18px 35px 0 !important;
+  font-size: 13px !important;
+  color: #6b7280 !important;
+  line-height: 1.6;
+}
+
+.check-terms {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+
+  margin: 18px 35px 20px;
+}
+
+.check-terms input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin: 3px 0 0 0;
+  flex-shrink: 0;
+}
+
+.check-terms label {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #374151;
+}
+
+.check-terms a {
+  color: #1238b3;
+  text-decoration: underline;
+}

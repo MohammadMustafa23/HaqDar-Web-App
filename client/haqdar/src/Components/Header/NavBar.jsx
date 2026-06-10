@@ -1,8 +1,9 @@
 import './NavBar.css'
+import { useNavigate } from 'react-router-dom'
 export default function NavBar() {
+    const navigate = useNavigate();
     return (
         <div className="nav-head">
-
             <h2 className="nav-logo">HaqDar</h2>
 
             <div className="nav-links" >
@@ -12,7 +13,7 @@ export default function NavBar() {
                 <a>FAQ</a>
             </div>
 
-            <button className="sign-up-btn" >Check Eliglibility</button>
+            <button className="sign-up-btn"  onClick={()=>{navigate('/login')}} >Check Eliglibility</button>
 
         </div>
     )

@@ -1,23 +1,16 @@
-import './App.css'
-import NavBar from './Components/Header/NavBar'
-import HeroSection from './Components/Header/HeroSection'
-import HowWork from './Components/Header/HowWork'
-import TopSchemes from './Components/Main/TopSchemes'
-import Review from './Components/Footer/Review'
-import FAQ from './Components/Footer/FAQ'
-import Footer from './Components/Footer/Footer'
+// App.jsx
+import { Routes, Route } from "react-router-dom";
+import HomePage from './Pages/HomePage'
+import { AuthLogin,AuthRegister } from "./Pages/AuthPage";
+
 function App() {
   return (
-    <>
-      <NavBar/>
-      <HeroSection/>
-      <HowWork/>
-      <TopSchemes/>
-      <Review/>
-      <FAQ/>
-      <Footer/>
-    </>
-  )
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/login" element={<AuthLogin />} />
+      <Route path="/register" element={<AuthRegister />} />
+    </Routes>
+  );
 }
 
-export default App
+export default App;
