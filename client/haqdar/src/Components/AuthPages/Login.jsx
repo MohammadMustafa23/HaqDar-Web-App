@@ -19,34 +19,31 @@ export default function Login() {
     password: "",
   });
 
- const googleLogin = useGoogleLogin({
-  onSuccess: async (tokenResponse) => {
-    console.log("Google Success");
-    console.log(tokenResponse);
+  const googleLogin = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      console.log("Google Success");
+      console.log(tokenResponse);
 
-    try {
-      const response = await GoogleLoginUser(tokenResponse.access_token);
+      try {
+        const response = await GoogleLoginUser(tokenResponse.access_token);
 
-      console.log("Backend Response");
-      console.log(response.data);
+        console.log("Backend Response");
+        console.log(response.data);
 
-      localStorage.setItem(
-        "token",
-        response.data.token
-      );
+        localStorage.setItem("token", response.data.token);
 
-      navigate("/dashboard");
-    } catch (error) {
-      console.log("API Error");
+        navigate("/dashboard");
+      } catch (error) {
+        console.log("API Error");
+        console.log(error);
+      }
+    },
+
+    onError: (error) => {
+      console.log("Login Failed");
       console.log(error);
-    }
-  },
-
-  onError: (error) => {
-    console.log("Login Failed");
-    console.log(error);
-  },
-});
+    },
+  });
   function handleChange(e) {
     const { name, value } = e.target;
     setFormData((prev) => ({
