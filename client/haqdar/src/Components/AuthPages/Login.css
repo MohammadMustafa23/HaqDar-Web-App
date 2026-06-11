@@ -144,9 +144,11 @@
   cursor: pointer;
 }
 
+
 .center-right button:hover {
   background: #18389f;
 }
+
 
 /* RESPONSIVE */
 
@@ -231,3 +233,35 @@
   margin: 20px 35px 35px !important;
   line-height: 1.6;
 }
+
+.auth-tabs {
+  display: flex;
+}
+
+.tab {
+  flex: 1;
+  padding: 20px;
+  border: none;
+  background: white;
+  font-size: 18px;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+}
+
+.tab.active {
+  color: #0a43d6;
+  border-bottom: 3px solid #0a43d6;
+  font-weight: 600;
+}
+
+
+
+.error-message {
+  color: #ef4444;
+  font-size: 5px;
+}
+
+.error {
+  border-color: #ef4444 !important;
+}
+

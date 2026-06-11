@@ -22,6 +22,23 @@
   font-size: 16px;
   font-weight: 600;
 }
+.auth-tabs {
+  display: flex;
+}
+
+.tab {
+  flex: 1;
+  text-align: center;
+  padding: 20px;
+  text-decoration: none;
+  color: black;
+  border-bottom: 3px solid transparent;
+}
+
+.tab.active {
+  color: #0a43d6;
+  border-bottom: 3px solid #0a43d6;
+}
 
 
 
@@ -68,7 +85,6 @@
 .center-right input:focus {
   border-color: #1238b3;
 }
-
 
 /* Main Button */
 .center-right button:not(.google-btn) {
