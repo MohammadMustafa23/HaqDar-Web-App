@@ -13,3 +13,13 @@ Work Show Day by Day :
 #Day - 02
 -Working On Home Page Complete at Day 2 in 4-5 Hours
 -Use React Divid Page In Components With There Name and Needs
+
+#Day -03
+-Work Authantication Page Frontend 
+-Add Validation Security For Middleware on Auth Api's
+- Complete All REST Authantication Api's
+
+#Day -04
+-Work on Frontend Authanitication Validation
+-Connect Frontend With Backend
+-Also Add O-Auth Feature On Web
