@@ -5,6 +5,9 @@ import { useState } from "react";
 import { RegisterUser } from "../../Services/Auth.User";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { useGoogleLogin } from "@react-oauth/google";
+import { GoogleLoginUser } from "../../Services/Auth.User";
+
 
 export default function Register() {
   const navigate = useNavigate();
@@ -31,6 +34,31 @@ export default function Register() {
       [name]: "",
     }));
   }
+  const googleLogin = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      console.log("Google Success");
+      console.log(tokenResponse);
+
+      try {
+        const response = await GoogleLoginUser(tokenResponse.access_token);
+
+        console.log("Backend Response");
+        console.log(response.data);
+
+        localStorage.setItem("token", response.data.token);
+
+        navigate("/home-page");
+      } catch (error) {
+        console.log("API Error");
+        console.log(error);
+      }
+    },
+
+    onError: (error) => {
+      console.log("Login Failed");
+      console.log(error);
+    },
+  });
   function validate() {
     const newErrors = {};
     // userName
@@ -187,7 +215,7 @@ export default function Register() {
               <span>OR CONTINUE WITH</span>
             </div>
 
-            <button className="google-btn">
+            <button className="google-btn" onClick={() => googleLogin()}>
               <img
                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg"
                 alt="Google"

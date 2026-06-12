@@ -32,7 +32,7 @@ export default function Login() {
 
         localStorage.setItem("token", response.data.token);
 
-        navigate("/dashboard");
+        navigate("/home-page");
       } catch (error) {
         console.log("API Error");
         console.log(error);
@@ -72,7 +72,7 @@ export default function Login() {
         text: response.data.message,
         confirmButtonText: "Continue",
       }).then(() => {
-        navigate("/dashboard"); // or home page
+        navigate("/home-page"); // or home page
       });
 
       setFormData({
