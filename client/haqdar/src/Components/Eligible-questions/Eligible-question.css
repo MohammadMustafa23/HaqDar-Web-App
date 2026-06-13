@@ -1,0 +1,800 @@
+.navbar-01 {
+  width: 100%;
+  height: 80px;
+  background: white;
+  border: 1px solid #d1d5db;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 100px;
+  box-sizing: border-box;
+}
+
+.navbar-01-logo {
+  font-size: 30px;
+  font-weight: 700;
+  color: #ff015e;
+  margin: 0;
+}
+
+.navbar-01-profile-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-01-profile-icon {
+  width: 28px;
+  height: 28px;
+  color: #1e40af;
+}
+
+/* <-----------------Progress.jsx ---------------->*/
+.progress-container {
+  width: 1000px;
+  margin: 20px auto;
+  margin-top: 100px;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+
+  font-size: 14px;
+  font-weight: 600;
+  color: #0b2e8a;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #e5e7eb;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  width: 0%;
+  height: 100%;
+  background: #0b2e8a;
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+/* <-----------------Age.jsx ---------------->*/
+.age-container {
+  width: 1000px;
+  margin: 20px auto;
+}
+
+.age-card {
+  background: #fff;
+  border: 1px solid #d9dce8;
+  border-radius: 10px;
+  padding: 24px;
+}
+
+.age-title {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.age-option {
+  height: 60px;
+  border: 1px solid #d9dce8;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  cursor: pointer;
+  gap: 12px;
+}
+
+.option input {
+  width: 20px;
+  height: 20px;
+}
+
+.info-box {
+  margin-top: 24px;
+  background: #f3f6fd;
+  border-left: 4px solid #163ea5;
+  padding: 16px;
+  display: flex;
+  gap: 12px;
+}
+
+.info-icon {
+  font-size: 22px;
+}
+
+.info-box h4 {
+  margin: 0 0 8px;
+}
+
+.info-box p {
+  margin: 0;
+  color: #555;
+  line-height: 1.5;
+}
+
+.button-group {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+}
+
+.back-btn {
+  padding: 12px 24px;
+  border: 1px solid #163ea5;
+  background: white;
+  color: #163ea5;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.next-btn {
+  padding: 12px 24px;
+  border: none;
+  background: #0d3ba8;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+
+
+
+/* <-----------------Gender.jsx ---------------->*/
+.gender-container {
+  width: 800px;
+  margin: 20px auto;
+}
+
+.gender-card {
+  background: #fff;
+  border: 1px solid #d9dce8;
+  border-radius: 10px;
+  padding: 24px;
+}
+
+.gender-title {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.gender-subtitle {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.gender-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.gender-option {
+  border: 1px solid #d9dce8;
+  border-radius: 8px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  min-height: 90px;
+}
+
+.gender-option input {
+  display: none;
+}
+
+.gender-option:hover {
+  border-color: #0d3ba8;
+}
+.selected {
+  background: #eef4ff;
+  border: 2px solid #0b3aa4;
+  color: #0b3aa4;
+}
+
+.gender-icon {
+  width: 40px;
+  height: 40px;
+  background: #f3f4f6;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0d3ba8;
+}
+
+.gender-option span {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.gender-buttons {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.back-btn {
+  padding: 12px 24px;
+  border: 1px solid #0d3ba8;
+  background: white;
+  color: #0d3ba8;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.next-btn {
+  padding: 12px 24px;
+  border: none;
+  background: #0d3ba8;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* <-----------------Education.jsx ---------------->*/
+.education-container {
+  width: 800px;
+  margin: 20px auto;
+}
+
+.education-card {
+  background: #fff;
+  border: 1px solid #d9dce8;
+  border-radius: 10px;
+  padding: 24px;
+}
+
+.education-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.education-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.education-option {
+  height: 54px;
+  border: 1px solid #d9dce8;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  cursor: pointer;
+}
+
+.education-option:hover {
+  border-color: #0b3aa4;
+}
+
+.education-option input {
+  display: none;
+}
+
+.education-option span {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.education-buttons {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+}
+
+.back-btn {
+  padding: 12px 24px;
+  border: 1px solid #0b3aa4;
+  background: white;
+  color: #0b3aa4;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.next-btn {
+  padding: 12px 24px;
+  border: none;
+  background: #0b3aa4;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+
+
+/* <-----------------CateGory.jsx ---------------->*/
+.category-container {
+  width: 800px;
+  margin: 20px auto;
+}
+
+.category-card {
+  background: #fff;
+  border: 1px solid #d9dce8;
+  border-radius: 10px;
+  padding: 24px;
+}
+
+.category-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.category-subtitle {
+  color: #475569;
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.category-info {
+  background: #eef3ff;
+  border-left: 4px solid #0b3aa4;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.category-info .info-heading {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0b3aa4;
+  margin-bottom: 8px;
+}
+
+.category-info p {
+  margin: 0;
+  color: #334155;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.category-option {
+  border: 1px solid #d9dce8;
+  border-radius: 8px;
+  min-height: 80px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.category-option:hover {
+  border-color: #0b3aa4;
+}
+
+.category-option input {
+  width: 20px;
+  height: 20px;
+}
+
+.category-option span {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.full-width {
+  grid-column: 1 / span 2;
+}
+
+.full-width p {
+  margin: 4px 0 0;
+  color: #475569;
+  font-size: 14px;
+}
+
+.category-buttons {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+}
+
+.back-btn {
+  padding: 12px 24px;
+  border: 1px solid #0b3aa4;
+  background: white;
+  color: #0b3aa4;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.next-btn {
+  padding: 12px 24px;
+  border: none;
+  background: #0b3aa4;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+
+
+/* <-----------------Income.jsx ---------------->*/
+.income-container {
+  width: 800px;
+  margin: 20px auto;
+}
+
+.income-card {
+  background: white;
+  border: 1px solid #d9dce8;
+  border-radius: 10px;
+  padding: 24px;
+}
+
+.income-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.income-subtitle {
+  color: #475569;
+  margin-bottom: 24px;
+}
+
+.income-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.income-option {
+  border: 1px solid #d9dce8;
+  border-radius: 8px;
+  height: 56px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.income-option input {
+  display: none;
+}
+
+.income-option:hover {
+  border-color: #0b3aa4;
+}
+
+.income-check {
+  color: #64748b;
+  font-size: 18px;
+}
+
+.full-width {
+  grid-column: 1 / span 2;
+}
+
+.income-info {
+  margin-top: 22px;
+  background: #f8fafc;
+  border: 1px solid #d9dce8;
+  border-radius: 6px;
+  padding: 16px;
+}
+
+.income-info h4 {
+  margin: 0 0 8px;
+  color: #0b3aa4;
+}
+
+.income-info p {
+  margin: 0;
+  color: #475569;
+}
+
+.income-buttons {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+}
+
+.back-btn {
+  padding: 12px 24px;
+  border: 1px solid #0b3aa4;
+  background: white;
+  color: #0b3aa4;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.next-btn {
+  padding: 12px 24px;
+  border: none;
+  background: #0b3aa4;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+
+
+/* <-----------------District.jsx ---------------->*/
+.district-container {
+  width: 800px;
+  margin: 20px auto;
+}
+
+.district-card {
+  background: white;
+  border: 1px solid #d9dce8;
+  border-radius: 10px;
+  padding: 24px;
+}
+
+.district-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.district-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.district-search {
+  width: 100%;
+  height: 50px;
+  border: 1px solid #d9dce8;
+  border-radius: 6px;
+  padding: 0 14px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+}
+
+.district-list {
+  border: 1px solid #d9dce8;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.district-item {
+  padding: 14px 16px;
+  border-bottom: 1px solid #ececec;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.district-item:last-child {
+  border-bottom: none;
+}
+
+.district-item:hover {
+  background: #f8faff;
+}
+
+.district-selected {
+  background: #0b3aa4;
+  color: white;
+}
+
+.district-buttons {
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.next-btn:disabled {
+  background: #bfc8e8;
+  cursor: not-allowed;
+}
+
+/* <-----------------Occupation.jsx ---------------->*/
+.occupation-container {
+  width: 800px;
+  margin: 20px auto;
+}
+
+.occupation-card {
+  background: white;
+  border: 1px solid #d9dce8;
+  border-radius: 10px;
+  padding: 24px;
+}
+
+.occupation-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.occupation-subtitle {
+  color: #475569;
+  margin-bottom: 24px;
+}
+
+.occupation-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.occupation-option {
+  border: 1px solid #d9dce8;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  gap: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.occupation-option:hover {
+  border-color: #0b3aa4;
+}
+
+.occupation-selected {
+  border: 2px solid #0b3aa4;
+  background: #eef4ff;
+}
+
+.occupation-icon {
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  background: #f1f5f9;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0b3aa4;
+}
+
+.occupation-option h4 {
+  margin: 0 0 6px;
+  font-size: 15px;
+}
+
+.occupation-option p {
+  margin: 0;
+  font-size: 13px;
+  color: #475569;
+  line-height: 1.4;
+}
+
+.occupation-full-width {
+  grid-column: 1 / span 2;
+}
+
+.occupation-info {
+  margin-top: 20px;
+  background: #eef4ff;
+  border: 1px solid #c7d2fe;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.occupation-info h4 {
+  margin: 0 0 8px;
+  color: #0b3aa4;
+}
+
+.occupation-info p {
+  margin: 0;
+  color: #475569;
+}
+
+.occupation-buttons {
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.next-btn:disabled {
+  background: #bfc8e8;
+  cursor: not-allowed;
+}
+
+/*<------------------- PWD.jsx------------------------> */
+.pwd-container {
+  width: 800px;
+  margin: 20px auto;
+}
+
+.pwd-card {
+  background: white;
+  border: 1px solid #d9dce8;
+  border-radius: 10px;
+  padding: 24px;
+}
+
+.pwd-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.pwd-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.pwd-option {
+  height: 140px;
+  border: 1px solid #d9dce8;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pwd-option:hover {
+  border-color: #0b3aa4;
+}
+
+.pwd-selected {
+  background: #eef4ff;
+  border: 2px solid #0b3aa4;
+  color: #0b3aa4;
+}
+
+.pwd-option h3 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.pwd-buttons {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+}
+
+.next-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.next-btn:disabled {
+  background: #bfc8e8;
+  cursor: not-allowed;
+}
+

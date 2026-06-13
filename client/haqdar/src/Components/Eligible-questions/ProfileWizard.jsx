@@ -35,10 +35,10 @@ export default function ProfileWizard() {
       return <District next={next} prev={prev} />;
 
     case 7:
-      return <Occupation prev={prev} />;
+      return <Occupation next={next} prev={prev} />;
 
     case 8:
-      return <Pwd prev={prev} />;
+      return <Pwd next={next} prev={prev} />;
 
     default:
       return <h2>Profile Completed 🎉</h2>;

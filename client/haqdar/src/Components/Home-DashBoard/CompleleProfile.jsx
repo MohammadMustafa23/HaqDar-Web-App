@@ -1,8 +1,7 @@
 import "./HomeDashBoard.css";
-import { useState } from "react";
-import ProfileWizard from "../Eligible-questions/ProfileWizard";
+import { useNavigate } from "react-router-dom";
 export default function CompleteProfile() {
-  const [showWizard, setShowWizard] = useState(false);
+   const navigate = useNavigate();
   return (
     <section className="complete-profile">
       <div className="profile-left">
@@ -21,7 +20,10 @@ export default function CompleteProfile() {
         </p>
 
         <div className="profile-footer">
-          <button className="profile-btn" onClick={() => setShowWizard(true)}>
+          <button
+            className="profile-btn"
+            onClick={() => navigate("/complete-profile")}
+          >
             Complete Profile →
           </button>
 
@@ -32,7 +34,6 @@ export default function CompleteProfile() {
           </div>
 
           <p>Joined by thousands today</p>
-          {showWizard && <ProfileWizard />}
         </div>
       </div>
 
