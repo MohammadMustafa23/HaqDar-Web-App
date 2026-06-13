@@ -72,13 +72,7 @@ export async function LoginUser(req,res) {
 }
 export const GoogleLogin = async (req, res) => {
   try {
-   console.log(req.body);
-
-  const { accessToken } = req.body;
-
-  console.log(accessToken);
-    
-    
+    const { accessToken } = req.body;
     const googleResponse = await fetch(
       "https://www.googleapis.com/oauth2/v1/userinfo",
       {
@@ -100,8 +94,8 @@ export const GoogleLogin = async (req, res) => {
 
     if (!user) {
       user = await UserModel.create({
-        name,
-        email,
+        userName : name,
+        email : email,
         password : id 
       });
     }
