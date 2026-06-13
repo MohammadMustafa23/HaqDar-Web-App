@@ -4,7 +4,10 @@ export default function NavBar() {
     const navigate = useNavigate();
     return (
         <div className="nav-head">
-            <h2 className="nav-logo">HaqDar</h2>
+           <div className="logo-section">
+            <div className="logo-box">H</div>
+            <h1 className="logo-text">HaqDar</h1>
+            </div>
 
             <div className="nav-links" >
                 <a>Home</a>

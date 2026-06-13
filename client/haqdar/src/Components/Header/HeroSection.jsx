@@ -32,11 +32,6 @@ export default function HeroSection() {
 
       <div className="hero-image">
         <img src={People} alt="People" />
-
-        <div className="scheme-card">
-          <h3>500+</h3>
-          <p>Active Schemes</p>
-        </div>
       </div>
     </div>
   );

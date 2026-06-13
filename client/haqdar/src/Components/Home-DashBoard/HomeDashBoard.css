@@ -306,10 +306,10 @@
   font-size: 16px;
 }
 
-/* <- Count Schemes Comp -> */
+/* <---------------- Count Schemes Comp ----------------> */
 
 .count-schemes {
-  max-width: 1400px;
+  max-width: 1250px;
   margin: 40px auto;
 
   display: grid;
@@ -323,7 +323,8 @@
   border-radius: 14px;
 
   padding: 30px;
-  min-height: 220px;
+  height: 200px;
+  font-size: 16px;
 
   transition: all 0.3s ease;
 }
@@ -334,10 +335,10 @@
 }
 
 .icon-box {
-  width: 62px;
-  height: 62px;
+  width: 30px;
+  height: 30px;
 
-  border-radius: 12px;
+  border-radius: 3px;
   background: #dfe4ff;
   color: #0039a6;
 
@@ -346,25 +347,17 @@
   justify-content: center;
 }
 
-.scheme-card h3 {
-  margin-top: 25px;
-
-  color: #6b7280;
-  font-size: 18px;
-  font-weight: 500;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-}
 
 .scheme-card h2 {
   margin-top: 12px;
 
   color: #0039a6;
-  font-size: 48px;
+  font-size: 40px;
   font-weight: 500;
 }
 
-/* <- Recommended Schemes Comp -> */
+
+/* <--------------- Recommended Schemes Comp --------------> */
 .recommended {
   max-width: 1400px;
   margin: 40px auto;
@@ -381,10 +374,12 @@
   display: flex;
   align-items: center;
   gap: 15px;
+  padding-bottom: 30px;
+  padding-left: 10px;
 }
 
 .recommended-title h2 {
-  font-size: 42px;
+  font-size: 30px;
   font-weight: 500;
   color: #111827;
 }
@@ -394,18 +389,21 @@
   color: white;
   padding: 6px 14px;
   border-radius: 999px;
-  font-size: 14px;
+  font-size: 10px;
   font-weight: 600;
 }
 
 .see-all {
   display: flex;
   align-items: center;
+  align-self: center;
   gap: 8px;
   color: #0b3db8;
   text-decoration: none;
   font-size: 18px;
   font-weight: 500;
+  padding-left: 3px;
+  
 }
 
 .scheme-card {
@@ -418,14 +416,14 @@
 }
 
 .scheme-card h3 {
-  font-size: 38px;
+  font-size: 20px;
   font-weight: 700;
   margin-bottom: 18px;
   color: #111827;
 }
 
 .scheme-card p {
-  font-size: 22px;
+  font-size: 15px;
   color: #4b5563;
   line-height: 1.6;
 }
@@ -460,7 +458,7 @@
   border: none;
   border-radius: 12px;
 
-  padding: 18px;
+  padding: 10px;
   font-size: 24px;
   font-weight: 600;
 
@@ -472,19 +470,21 @@
   cursor: pointer;
 }
 
-/* <- Ask TO HAqDAR Ai Comp -> */
+/* <-------------- Ask TO HAqDAR Ai Comp ---------------> */
 
 .recommended-layout {
+  
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 30px;
   align-items: start;
+  padding: 40px 40px;
 }
 
 .ask-ai-card {
   border: 2px dashed #d3d9e8;
   border-radius: 24px;
-  padding: 40px 30px;
+  padding: 30px 20px;
   background: white;
 
   display: flex;
@@ -494,9 +494,9 @@
 }
 
 .ask-ai-icon {
-  width: 72px;
-  height: 72px;
-  border-radius: 18px;
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
   background: #f5f7ff;
   color: #3554b7;
 
@@ -508,7 +508,7 @@
 }
 
 .ask-ai-card h3 {
-  font-size: 34px;
+  font-size: 25px;
   font-weight: 500;
   color: #374151;
   margin-bottom: 16px;

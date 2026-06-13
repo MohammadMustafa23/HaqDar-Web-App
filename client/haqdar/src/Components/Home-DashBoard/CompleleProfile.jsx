@@ -1,11 +1,12 @@
 import "./HomeDashBoard.css";
+import { useState } from "react";
+import ProfileWizard from "../Eligible-questions/ProfileWizard";
 export default function CompleteProfile() {
+  const [showWizard, setShowWizard] = useState(false);
   return (
     <section className="complete-profile">
       <div className="profile-left">
-        <span className="badge">
-          ✨ SMART ELIGIBILITY ENGINE
-        </span>
+        <span className="badge">✨ SMART ELIGIBILITY ENGINE</span>
 
         <h1 className="profile-title">
           Unlock Your Full Eligibility
@@ -14,13 +15,13 @@ export default function CompleteProfile() {
         </h1>
 
         <p className="profile-desc">
-          Tell us a bit about yourself—like your occupation, annual income,
-          and category. Our AI engine will instantly scan thousands of
-          government benefits to find exactly what you're eligible for.
+          Tell us a bit about yourself—like your occupation, annual income, and
+          category. Our AI engine will instantly scan thousands of government
+          benefits to find exactly what you're eligible for.
         </p>
 
         <div className="profile-footer">
-          <button className="profile-btn">
+          <button className="profile-btn" onClick={() => setShowWizard(true)}>
             Complete Profile →
           </button>
 
@@ -31,6 +32,7 @@ export default function CompleteProfile() {
           </div>
 
           <p>Joined by thousands today</p>
+          {showWizard && <ProfileWizard />}
         </div>
       </div>
 
