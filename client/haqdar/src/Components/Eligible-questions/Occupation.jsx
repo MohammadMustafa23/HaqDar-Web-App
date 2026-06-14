@@ -11,9 +11,16 @@ import Nav from "./Nav";
 import Progress from "./Progress";
 import "./Eligible-question.css";
 
-export default function Occupation({ next, prev }) {
+export default function Occupation({ next, prev, setFormData }) {
   const [selectedOccupation, setSelectedOccupation] = useState("");
+  const handleNext = () => {
+    setFormData((prevData) => ({
+      ...prevData,
+     occupation : selectedOccupation,
+    }));
 
+    next();
+  };
   const occupations = [
     {
       title: "Farmer",
@@ -45,13 +52,11 @@ export default function Occupation({ next, prev }) {
   return (
     <div>
       <Nav />
-      <Progress percent={75}/>
+      <Progress percent={75} />
 
       <div className="occupation-container">
         <div className="occupation-card">
-          <h1 className="occupation-title">
-            What is your current occupation?
-          </h1>
+          <h1 className="occupation-title">What is your current occupation?</h1>
 
           <p className="occupation-subtitle">
             Select the option that best describes your primary source of
@@ -63,19 +68,13 @@ export default function Occupation({ next, prev }) {
               <div
                 key={item.title}
                 className={`occupation-option ${
-                  selectedOccupation === item.title
-                    ? "occupation-selected"
-                    : ""
+                  selectedOccupation === item.title ? "occupation-selected" : ""
                 } ${
-                  item.title === "Unemployed"
-                    ? "occupation-full-width"
-                    : ""
+                  item.title === "Unemployed" ? "occupation-full-width" : ""
                 }`}
                 onClick={() => setSelectedOccupation(item.title)}
               >
-                <div className="occupation-icon">
-                  {item.icon}
-                </div>
+                <div className="occupation-icon">{item.icon}</div>
 
                 <div>
                   <h4>{item.title}</h4>
@@ -100,7 +99,7 @@ export default function Occupation({ next, prev }) {
 
             <button
               className="next-btn"
-              onClick={next}
+              onClick={handleNext}
               disabled={!selectedOccupation}
             >
               Next Step →

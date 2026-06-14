@@ -405,36 +405,47 @@
   padding-left: 3px;
   
 }
-
-.scheme-card {
+.rec-scheme-card {
   background: white;
   border-radius: 22px;
   border-left: 6px solid #0b3db8;
   padding: 35px;
 
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
-.scheme-card h3 {
+.rec-scheme-card:hover {
+  transform: translateY(-8px);
+
+  box-shadow:
+    0 20px 35px rgba(11, 61, 184, 0.12),
+    0 10px 15px rgba(0, 0, 0, 0.08);
+
+  border-left-color: #2563eb;
+}
+.rec-scheme-title {
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 18px;
   color: #111827;
 }
 
-.scheme-card p {
+.rec-scheme-desc {
   font-size: 15px;
   color: #4b5563;
   line-height: 1.6;
 }
 
-.scheme-tags {
+.rec-scheme-tags {
   display: flex;
   gap: 16px;
   margin-top: 25px;
 }
 
-.tag {
+.rec-scheme-tag {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -444,11 +455,12 @@
 
   padding: 12px 18px;
   border-radius: 10px;
+
   font-size: 18px;
   font-weight: 600;
 }
 
-.details-btn {
+.rec-details-btn {
   width: 100%;
   margin-top: 35px;
 
@@ -459,6 +471,7 @@
   border-radius: 12px;
 
   padding: 10px;
+
   font-size: 24px;
   font-weight: 600;
 
@@ -468,35 +481,93 @@
   gap: 10px;
 
   cursor: pointer;
+
+  transition: all 0.3s ease;
+}
+
+.rec-details-btn:hover {
+  background: #2851bb;
+
+  transform: translateY(-3px);
+
+  box-shadow: 0 12px 25px rgba(48, 53, 63, 0.886);
+}
+
+.rec-scheme-card {
+  position: relative;
+}
+
+.save-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  width: 42px;
+  height: 42px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: #f3f4f6;
+  color: #0b3db8;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.save-btn:hover {
+  background: #0b3db8;
+  color: white;
+
+  transform: scale(1.08);
 }
 
 /* <-------------- Ask TO HAqDAR Ai Comp ---------------> */
-
 .recommended-layout {
-  
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 30px;
+  grid-template-columns: 4fr 1fr;
+  gap: 24px;
   align-items: start;
-  padding: 40px 40px;
+  padding: 20px 40px;
 }
 
+/* AI Card */
 .ask-ai-card {
+  background: #fff;
   border: 2px dashed #d3d9e8;
-  border-radius: 24px;
-  padding: 30px 20px;
-  background: white;
+  border-radius: 20px;
+
+  height: 100%;
+  min-height: 260px;
+
+  padding: 60px 20px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
   text-align: center;
 }
+.ask-ai-card:hover {
+  transform: translateY(-8px);
+
+  box-shadow:
+    0 20px 35px rgba(11, 61, 184, 0.12),
+    0 10px 15px rgba(0, 0, 0, 0.08);
+
+  border-left-color: #2563eb;
+}
+
 
 .ask-ai-icon {
-  width: 50px;
-  height: 50px;
-  border-radius: 10px;
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
   background: #f5f7ff;
   color: #3554b7;
 
@@ -504,40 +575,50 @@
   align-items: center;
   justify-content: center;
 
-  margin-bottom: 24px;
+  margin-bottom: 18px;
 }
 
 .ask-ai-card h3 {
-  font-size: 25px;
-  font-weight: 500;
-  color: #374151;
-  margin-bottom: 16px;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 12px;
 }
 
 .ask-ai-card p {
+  max-width: 260px;
+
+  font-size: 16px;
+  line-height: 1.7;
+
   color: #6b7280;
-  font-size: 20px;
-  line-height: 1.6;
-  max-width: 320px;
-  margin-bottom: 30px;
+
+  margin-bottom: 24px;
 }
 
 .chat-btn {
+  width: 220px;
+  height: 56px;
+
   border: none;
+  border-radius: 14px;
+
   background: #3554b7;
   color: white;
 
-  padding: 16px 28px;
-  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 600;
 
   display: flex;
   align-items: center;
-  gap: 10px;
-
-  font-size: 22px;
-  font-weight: 600;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s ease;
   cursor: pointer;
 }
+.chat-btn:hover {
+  background: #2851bb;
 
-/* <- Count Schemes Comp -> */
+  transform: translateY(-3px);
 
+  box-shadow: 0 5px 10px rgba(48, 53, 63, 0.886);
+}

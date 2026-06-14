@@ -18,6 +18,7 @@ export default function Login() {
     email: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
@@ -59,10 +60,10 @@ export default function Login() {
   }
   async function handleSubmit(e) {
     e.preventDefault();
-
     const isValid = validate();
     if (!isValid) return;
-
+    setLoading(true);
+    // await new Promise((resolve) => setTimeout(resolve, 20000));
     try {
       const response = await LoginUser(formData);
 
@@ -86,6 +87,8 @@ export default function Login() {
         text: error.response?.data?.message || "Invalid email or password",
         confirmButtonText: "Try Again",
       });
+    } finally {
+      setLoading(false);
     }
   }
   function validate() {
@@ -176,9 +179,21 @@ export default function Login() {
               <p className="error-message">{errors.password}</p>
             )}
 
-            <button className="sing-in" onClick={handleSubmit}>
-              Sign In
+            <button
+              className="sign-in"
+              onClick={handleSubmit}
+              disabled={loading}
+            >
+              {loading ? (
+                <div className="loading-wrapper">
+                  <div className="btn-spinner"></div>
+                  <span className="loading-text">Signing In...</span>
+                </div>
+              ) : (
+                "Sign In"
+              )}
             </button>
+
             <div className="divider">
               <span>OR CONTINUE WITH</span>
             </div>

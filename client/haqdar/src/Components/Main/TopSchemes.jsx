@@ -4,82 +4,91 @@ import {
   MdHealthAndSafety,
   MdApartment,
   MdCheckCircle,
-  MdArrowForward
+  MdArrowForward,
 } from "react-icons/md";
 export default function TopSchemes() {
   return (
-    <div className="Top_Schemes-head">
-      <div className="Top_Sehemes-about">
+    <div className="top-scheme-container">
+      <div className="top-scheme-header">
         <h1>Top Government Schemes</h1>
-        <div className="Top-Sehemes-description">
+
+        <div className="top-scheme-description">
           <p>Handpicked popular schemes based on community needs.</p>
-          <span>View All Schemes <MdArrowForward /></span>
+          <span>
+            View All Schemes <MdArrowForward />
+          </span>
         </div>
       </div>
 
-      <div className="cards-row">
-        <div className="card-head">
-          <div className="card-icon">
+      <div className="top-scheme-cards">
+        <div className="top-scheme-card">
+          <div className="top-scheme-icon">
             <MdSchool />
           </div>
-          <h2 className="card-heading">National Merit Scholarship</h2>
-          <p className="card-about">
+
+          <h2 className="top-scheme-title">National Merit Scholarship</h2>
+
+          <p className="top-scheme-text">
             Financial assistance for high-performing students from economically
             disadvantaged backgrounds to pursue higher education.
           </p>
 
-          <div className="card-eligible">
+          <div className="top-scheme-eligible">
             <strong>Eligible For:</strong>
             <MdCheckCircle />
             <span>Students</span>
           </div>
 
-          <div className="card-bottom">
-            <span className="card-icon-02"></span>
+          <div className="top-scheme-footer">
+            <span className="top-scheme-dot"></span>
             <button>Check Eligibility</button>
           </div>
         </div>
 
-        <div className="card-head">
-          <div className="card-icon">
-            <MdApartment/>
+        <div className="top-scheme-card">
+          <div className="top-scheme-icon">
+            <MdApartment />
           </div>
-          <h2 className="card-heading">Affordable Housing Mission</h2>
-          <p className="card-about">
+
+          <h2 className="top-scheme-title">Affordable Housing Mission</h2>
+
+          <p className="top-scheme-text">
             Financial assistance for high-performing students from economically
             disadvantaged backgrounds to pursue higher education.
           </p>
 
-          <div className="card-eligible">
+          <div className="top-scheme-eligible">
             <strong>Eligible For:</strong>
             <MdCheckCircle />
             <span>Students</span>
           </div>
 
-          <div className="card-bottom">
-            <span className="card-icon-02"></span>
+          <div className="top-scheme-footer">
+            <span className="top-scheme-dot"></span>
             <button>Check Eligibility</button>
           </div>
         </div>
 
-        <div className="card-head">
-          <div className="card-icon">
-            <MdHealthAndSafety/>
+        <div className="top-scheme-card">
+          <div className="top-scheme-icon">
+            <MdHealthAndSafety />
           </div>
-          <h2 className="card-heading">Universal Health Insurance</h2>
-          <p className="card-about">
+
+          <h2 className="top-scheme-title">Universal Health Insurance</h2>
+
+          <p className="top-scheme-text">
             Providing subsidized housing loans and financial support for
             first-time urban and rural home buyers.
           </p>
 
-          <div className="card-eligible">
+          <div className="top-scheme-eligible">
             <strong>Eligible For:</strong>
             <MdCheckCircle />
             <span>Students</span>
           </div>
 
-          <div className="card-bottom">
-            <span className="card-icon-02"></span>
+          <div className="top-scheme-footer">
+            <span className="top-scheme-dot"></span>
             <button>Check Eligibility</button>
           </div>
         </div>

@@ -4,8 +4,16 @@ import Nav from "./Nav";
 import Progress from "./Progress";
 import { useState } from "react";
 
-export default function Gender({ next, prev }) {
+export default function Gender({ next, prev ,setFormData }) {
   const [gender, setGender] = useState("");
+  const handleNext = () => {
+  setFormData((prevData) => ({
+    ...prevData,
+    gender: gender,
+  }));
+
+  next();
+};
   return (
     <div>
       <Nav />
@@ -73,7 +81,7 @@ export default function Gender({ next, prev }) {
               ← Back
             </button>
 
-            <button className="next-btn" onClick={next} disabled={!gender}> Next Step → </button>
+            <button className="next-btn" onClick={handleNext} disabled={!gender}> Next Step → </button>
           </div>
         </div>
       </div>

@@ -1,7 +1,35 @@
 import "./HomeDashBoard.css";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import CompleteProfileSkeleton from './Effect/CompleteProfileSkeleton'
+
 export default function CompleteProfile() {
-   const navigate = useNavigate();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
+  //   useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const res = await axios.get("/api/profile");
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
+  if (loading) {
+    return(
+      <>
+       <CompleteProfileSkeleton/> 
+      </>
+    )
+  }
   return (
     <section className="complete-profile">
       <div className="profile-left">

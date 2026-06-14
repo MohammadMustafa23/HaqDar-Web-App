@@ -69,6 +69,7 @@
 
 .center-right {
   width: 500px;
+  max-width: 100%;
   background: white;
   border: 1px solid #ddd;
   border-radius: 12px;
@@ -142,16 +143,17 @@
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
+  /* FIX 1: Added flex so .sign-in spinner layout works */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
 
 .center-right button:hover {
   background: #18389f;
 }
 
-
 /* RESPONSIVE */
-
 @media (max-width: 1000px) {
   .center-part {
     flex-direction: column;
@@ -174,6 +176,23 @@
     margin: 30px 0;
   }
 }
+
+.loading-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.loading-text {
+  margin: 0 !important;
+  padding: 0 !important;
+  color: white !important;
+  font-size: 16px !important;
+  line-height: 1 !important;
+}
+
+
 
 .divider {
   display: flex;
@@ -207,12 +226,10 @@
   color: #222;
   font-size: 16px;
   font-weight: 600;
-
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
-
   cursor: pointer;
   transition: 0.3s;
 }
@@ -254,14 +271,27 @@
   font-weight: 600;
 }
 
-
-
 .error-message {
   color: #ef4444;
-  font-size: 5px;
+  font-size: 13px; /* was 5px — way too small */
+  margin: -12px 35px 12px; /* pull it up closer to the input */
+  display: block;
 }
 
 .error {
   border-color: #ef4444 !important;
 }
 
+@media (max-width: 480px) {
+  .left-side {
+    display: none;
+  }
+
+  .center-right {
+    width: 100%;
+  }
+
+  .right-side {
+    padding: 15px;
+  }
+}

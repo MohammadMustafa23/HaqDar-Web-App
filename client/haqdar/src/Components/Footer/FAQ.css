@@ -1,16 +1,21 @@
-.FAQ-head {
+/* ================= FAQ SECTION ================= */
+
+.faq-container {
   padding: 100px 80px;
+  background: #fff;
 }
 
-.FAQ-head h1 {
+.faq-title {
   text-align: center;
   font-size: 3rem;
+  font-weight: 700;
+  color: #111827;
   margin-bottom: 50px;
 }
 
-.question-div {
+.faq-wrapper {
   max-width: 1000px;
-  margin: auto;
+  margin: 0 auto;
 }
 
 .faq-card {
@@ -18,9 +23,15 @@
   border-radius: 12px;
   margin-bottom: 20px;
   overflow: hidden;
+  background: white;
+  transition: all 0.3s ease;
 }
 
-.faq-header {
+.faq-card:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.faq-card-header {
   padding: 25px 30px;
   display: flex;
   justify-content: space-between;
@@ -28,74 +39,157 @@
   cursor: pointer;
 }
 
-.faq-header h2 {
-  font-size: 1.5rem;
+.faq-card-header h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #111827;
 }
 
-.faq-header span {
+.faq-card-icon {
   font-size: 2rem;
   color: #0a3299;
 }
 
-.faq-answer {
+.faq-card-answer {
   padding: 0 30px 25px;
   color: #4b5563;
   line-height: 1.8;
+  font-size: 1rem;
 }
 
-.still-question-head {
-    margin-top: 80px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
+/* ================= STILL QUESTIONS ================= */
+
+.faq-support-section {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.still-question-head h1 {
+.faq-support-section h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.faq-support-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.faq-support-btn,
+.faq-eligibility-btn {
+  width: 190px;
+  height: 60px;
+
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.faq-support-btn {
+  border: 2px solid #0a3299;
+  background: transparent;
+  color: #0a3299;
+}
+
+.faq-support-btn:hover {
+  background: #0a3299;
+  color: white;
+}
+
+.faq-eligibility-btn {
+  border: 2px solid #0a3299;
+  background: #0a3299;
+  color: white;
+}
+
+.faq-eligibility-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(10, 50, 153, 0.25);
+}
+
+/* ================= TABLET ================= */
+
+@media (max-width: 768px) {
+  .faq-container {
+    padding: 70px 24px;
+  }
+
+  .faq-title {
+    font-size: 2.2rem;
+    margin-bottom: 35px;
+  }
+
+  .faq-card-header {
+    padding: 20px;
+  }
+
+  .faq-card-header h2 {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    padding-right: 10px;
+  }
+
+  .faq-card-answer {
+    padding: 0 20px 20px;
+    font-size: 0.95rem;
+  }
+
+  .faq-support-section {
+    margin-top: 35px;
+  }
+
+  .faq-support-section h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 480px) {
+  .faq-container {
+    padding: 50px 16px;
+  }
+
+  .faq-title {
     font-size: 1.8rem;
-    font-weight: 700;
-    color: #111827;
-    margin-bottom: 20px;
-}
+    margin-bottom: 30px;
+  }
 
-.still-question-btns {
-    display: flex;
-    gap: 25px;
-    flex-wrap: wrap;
-}
+  .faq-card-header h2 {
+    font-size: 1rem;
+  }
 
-.support-btn {
-    width: 190px;
-    height: 60px;
-    border: 2px solid #0a3299;
-    background: transparent;
-    color: #0a3299;
-    font-size: 0.9rem;
-    font-weight: 600;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
+  .faq-card-icon {
+    font-size: 1.5rem;
+  }
 
-.support-btn:hover {
-    background: #0a3299;
-    color: white;
-}
+  .faq-support-section {
+    margin-top: 25px;
+  }
 
-.eligibility-btn {
-    width: 190px;
-    height: 60px;
-    border: 2px solid #0a3299;
-    background: #0a3299;
-    color: white;
-    font-size: 0.9rem;
-    font-weight: 600;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
+  .faq-support-section h2 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+  }
 
-.eligibility-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(10, 50, 153, 0.25);
+  .faq-support-buttons {
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    align-items: center;
+  }
+
+  .faq-support-btn,
+  .faq-eligibility-btn {
+    width: 100%;
+    max-width: 300px;
+  }
 }

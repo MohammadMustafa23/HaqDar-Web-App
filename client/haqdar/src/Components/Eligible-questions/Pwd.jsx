@@ -1,18 +1,24 @@
 import { useState } from "react";
 import { Accessibility, User, CheckCircle } from "lucide-react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import Nav from "./Nav";
 import Progress from "./Progress";
 import "./Eligible-question.css";
 
-export default function Pwd({ prev }) {
+export default function Pwd({ prev, setFormData }) {
   const [pwd, setPwd] = useState("");
   const navigate = useNavigate();
-
+  const handleNext = () => {
+    setFormData((prevData) => ({
+      ...prevData,
+      pwd : pwd,
+    }));
+    navigate("/home-page")
+  };
   return (
     <div>
       <Nav />
-      <Progress  percent={87}/>
+      <Progress percent={87} />
 
       <div className="pwd-container">
         <div className="pwd-card">
@@ -22,9 +28,7 @@ export default function Pwd({ prev }) {
 
           <div className="pwd-options">
             <div
-              className={`pwd-option ${
-                pwd === "Yes" ? "pwd-selected" : ""
-              }`}
+              className={`pwd-option ${pwd === "Yes" ? "pwd-selected" : ""}`}
               onClick={() => setPwd("Yes")}
             >
               <Accessibility size={40} />
@@ -32,9 +36,7 @@ export default function Pwd({ prev }) {
             </div>
 
             <div
-              className={`pwd-option ${
-                pwd === "No" ? "pwd-selected" : ""
-              }`}
+              className={`pwd-option ${pwd === "No" ? "pwd-selected" : ""}`}
               onClick={() => setPwd("No")}
             >
               <User size={40} />
@@ -50,7 +52,7 @@ export default function Pwd({ prev }) {
             <button
               className="next-btn"
               disabled={!pwd}
-              onClick={() => navigate('/home-page')}
+              onClick={handleNext}
             >
               Finish <CheckCircle size={18} />
             </button>

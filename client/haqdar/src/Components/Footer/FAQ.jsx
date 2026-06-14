@@ -22,19 +22,19 @@ export default function FAQ() {
   ];
   const [openIndex, setOpenIndex] = useState(null);
   return (
-    <div className="FAQ-head">
-      <h1>Frequently Asked Questions</h1>
+    <div className="faq-container">
+      <h1 className="faq-title">Frequently Asked Questions</h1>
 
-      <div className="question-div">
+      <div className="faq-wrapper">
         {faqs.map((data, index) => (
           <div className="faq-card" key={index}>
             <div
-              className="faq-header"
+              className="faq-card-header"
               onClick={() => setOpenIndex(openIndex === index ? null : index)}
             >
               <h2>{data.question}</h2>
 
-              <span className="faq-icon">
+              <span className="faq-card-icon">
                 {openIndex === index ? (
                   <MdKeyboardArrowUp />
                 ) : (
@@ -43,16 +43,20 @@ export default function FAQ() {
               </span>
             </div>
 
-            {openIndex === index && <p className="faq-answer">{data.answer}</p>}
+            {openIndex === index && (
+              <p className="faq-card-answer">{data.answer}</p>
+            )}
           </div>
         ))}
       </div>
 
-      <div className="still-question-head">
-        <h1>Still have questions?</h1>
-        <div className="still-question-btns">
-          <button className="support-btn">Contact Support</button>
-          <button className="eligibility-btn">Check Eligibility</button>
+      <div className="faq-support-section">
+        <h2>Still have questions?</h2>
+
+        <div className="faq-support-buttons">
+          <button className="faq-support-btn">Contact Support</button>
+
+          <button className="faq-eligibility-btn">Check Eligibility</button>
         </div>
       </div>
     </div>

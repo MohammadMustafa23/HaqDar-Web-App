@@ -3,10 +3,17 @@ import Nav from "./Nav";
 import Progress from "./Progress";
 import "./Eligible-question.css";
 
-export default function District({ next, prev }) {
+export default function District({ next, prev,setFormData }) {
   const [search, setSearch] = useState("");
   const [selectedDistrict, setSelectedDistrict] = useState("");
+  const handleNext = () => {
+  setFormData((prevData) => ({
+    ...prevData,
+    district : selectedDistrict,
+  }));
 
+  next();
+};
   const districts = [
     "Jaipur",
     "Jodhpur",
@@ -81,7 +88,7 @@ export default function District({ next, prev }) {
 
             <button
               className="next-btn"
-              onClick={next}
+              onClick={handleNext}
               disabled={!selectedDistrict}
             >
               Next Step →

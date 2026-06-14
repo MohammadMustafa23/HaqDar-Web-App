@@ -2,8 +2,16 @@ import Nav from "./Nav";
 import Progress from "./Progress";
 import "./Eligible-question.css";
 import { useState } from "react";
-export default function Income({ next, prev }) {
+export default function Income({ next, prev,setFormData }) {
   const[income,setIncome] = useState("");
+  const handleNext = () => {
+  setFormData((prevData) => ({
+    ...prevData,
+    income: income,
+  }));
+
+  next();
+};
   return (
     <div>
       <Nav />
@@ -79,7 +87,7 @@ export default function Income({ next, prev }) {
               ← Back
             </button>
 
-            <button className="next-btn" onClick={next} disabled={!income} >Next →</button>
+            <button className="next-btn" onClick={handleNext} disabled={!income} >Next →</button>
           </div>
         </div>
       </div>

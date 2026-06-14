@@ -1,7 +1,22 @@
 import { ClipboardCheck, Bookmark, Database } from "lucide-react";
 import "./HomeDashBoard.css";
-
+import { useState,useEffect } from "react";
+import { CountSchemesSkeleton } from "./Effect/CompleteProfileSkeleton";
 export default function CountSchemes() {
+  const [loading, setLoading] = useState(true);
+   useEffect(() => {
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
+    }, []);
+
+     if (loading) {
+        return(
+          <>
+           <CountSchemesSkeleton/> 
+          </>
+        )
+      }
   return (
     <section className="count-schemes">
       <div className="scheme-card">

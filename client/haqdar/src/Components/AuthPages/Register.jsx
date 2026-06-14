@@ -8,9 +8,9 @@ import { useNavigate } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
 import { GoogleLoginUser } from "../../Services/Auth.User";
 
-
 export default function Register() {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     userName: "",
     email: "",
@@ -90,11 +90,10 @@ export default function Register() {
 
     const isValid = validate();
     if (!isValid) return;
-
-    console.log(formData);
+    setLoading(true);
+    // await new Promise((resolve) => setTimeout(resolve, 10000));
     try {
       const Response = await RegisterUser(formData);
-      console.log(Response);
       Swal.fire({
         icon: "success",
         title: "Registration Successful!",
@@ -111,6 +110,8 @@ export default function Register() {
           error.response?.data?.message ||
           "Something went wrong. Please try again.",
       });
+    } finally {
+      setLoading(false);
     }
 
     setFormData({
@@ -208,8 +209,19 @@ export default function Register() {
               )}
             </div>
 
-            <button className="sing-up" onClick={handleSubmit}>
-              Create Account
+            <button
+              className="sign-in"
+              onClick={handleSubmit}
+              disabled={loading}
+            >
+              {loading ? (
+                <div className="loading-wrapper">
+                  <span className="btn-spinner"></span>
+                  <span>Creating...</span>
+                </div>
+              ) : (
+                "Create Account"
+              )}
             </button>
             <div className="divider">
               <span>OR CONTINUE WITH</span>

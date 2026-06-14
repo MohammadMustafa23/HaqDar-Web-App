@@ -2,19 +2,28 @@ import "./Eligible-question.css";
 import Nav from "./Nav";
 import Progress from "./Progress";
 import { useState } from "react";
-export default function Age({ next, prev }) {
-  const[age,setAge] = useState("");
+export default function Age({ next, prev, setFormData }) {
+  const handleNext = () => {
+    setFormData((prevData) => ({
+      ...prevData,
+      age: age,
+    }));
+    next();
+  };
+  const [age, setAge] = useState("");
   return (
     <div>
       <Nav />
-      <Progress percent={0}/>
+      <Progress percent={0} />
       <div className="age-container">
         <div className="age-card">
           <h1 className="age-title">What is your age?</h1>
 
           <div className="options">
-            <label className={`age-option ${age === "Below 18" ? "selected" : ""}`}>
-               <input
+            <label
+              className={`age-option ${age === "Below 18" ? "selected" : ""}`}
+            >
+              <input
                 type="radio"
                 name="age"
                 onChange={() => setAge("Below 18")}
@@ -22,35 +31,31 @@ export default function Age({ next, prev }) {
               <span>Below 18</span>
             </label>
 
-           <label className={`age-option ${age === "18-35" ? "selected" : ""}`}>
-               <input
-                type="radio"
-                name="age"
-                onChange={() => setAge("18-35")}
-              />
+            <label
+              className={`age-option ${age === "18-35" ? "selected" : ""}`}
+            >
+              <input type="radio" name="age" onChange={() => setAge("18-35")} />
               <span>18-35</span>
             </label>
 
-            <label className={`age-option ${age === "36-50" ? "selected" : ""}`}>
-              <input
-                type="radio"
-                name="age"
-                onChange={() => setAge("36-50")}
-              />
+            <label
+              className={`age-option ${age === "36-50" ? "selected" : ""}`}
+            >
+              <input type="radio" name="age" onChange={() => setAge("36-50")} />
               <span>36-50</span>
             </label>
 
-            <label className={`age-option ${age === "51-60" ? "selected" : ""}`}>
-               <input
-                type="radio"
-                name="age"
-                onChange={() => setAge("51-60")}
-              />
+            <label
+              className={`age-option ${age === "51-60" ? "selected" : ""}`}
+            >
+              <input type="radio" name="age" onChange={() => setAge("51-60")} />
               <span>51-60</span>
             </label>
 
-           <label className={`age-option ${age === "Above 60" ? "selected" : ""}`}>
-               <input
+            <label
+              className={`age-option ${age === "Above 60" ? "selected" : ""}`}
+            >
+              <input
                 type="radio"
                 name="age"
                 onChange={() => setAge("Above 60")}
@@ -76,7 +81,7 @@ export default function Age({ next, prev }) {
               ← Back
             </button>
 
-            <button className="next-btn" onClick={next} disabled={!age} >
+            <button className="next-btn" onClick={handleNext} disabled={!age}>
               Next →
             </button>
           </div>

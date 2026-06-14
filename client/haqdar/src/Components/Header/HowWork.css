@@ -1,189 +1,191 @@
-/* Main Section */
+/* ================= HOW IT WORKS ================= */
 
-.Work-head {
-    padding: 100px 80px;
-    background-color: #f8f9fb;
+.howworks-section {
+  padding: 100px 60px;
+  background: #f8f9fb;
 }
 
-.work-heading {
-    text-align: center;
-    font-size: 3rem;
-    font-weight: 700;
-    color: #111827;
+.howworks-title {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #111827;
 }
 
-.work-about {
-    text-align: center;
-    margin-top: 15px;
-    font-size: 1.2rem;
-    color: #6b7280;
+.howworks-subtitle {
+  text-align: center;
+  margin-top: 15px;
+
+  max-width: 700px;
+  margin-inline: auto;
+
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: #6b7280;
 }
 
-/* Cards Row */
+/* Cards */
 
-.cards-row {
-    margin-top: 70px;
+.howworks-cards {
+  margin-top: 70px;
 
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
 }
 
 /* Card */
 
-.card-head {
-    width: 310px;
-    min-height: 340px;
+.howworks-card {
+  background: #fff;
 
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
 
-    padding: 35px 25px;
+  padding: 35px 25px;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-    position: relative;
-    overflow: hidden;
+  text-align: center;
 
-    cursor: pointer;
-    transition: all 0.35s ease;
+  transition: all 0.35s ease;
+  cursor: pointer;
 }
 
-/* Top Border Animation */
+.howworks-card:hover {
+  transform: translateY(-8px);
 
-.card-head::before {
-    content: "";
-    position: absolute;
-
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 4px;
-
-    background: #0a3299;
-
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
-}
-
-/* Hover */
-
-.card-head:hover {
-    transform: translateY(-12px);
-
-    border-color: #0a3299;
-
-    box-shadow:
-        0 10px 20px rgba(0,0,0,0.08),
-        0 20px 40px rgba(0,0,0,0.08);
-}
-
-.card-head:hover::before {
-    transform: scaleX(1);
+  box-shadow:
+    0 12px 24px rgba(0, 0, 0, 0.06),
+    0 24px 48px rgba(0, 0, 0, 0.08);
 }
 
 /* Number */
 
-.card-num {
-    font-size: 3rem;
-    font-weight: 700;
-    color: #d1d5db;
+.howworks-number {
+  font-size: 2.8rem;
+  font-weight: 700;
 
-    margin-bottom: 25px;
+  color: #d1d5db;
+  margin-bottom: 22px;
 
-    transition: 0.3s;
+  transition: 0.3s;
 }
 
-.card-head:hover .card-num {
-    color: #0a3299;
+.howworks-card:hover .howworks-number {
+  color: #0a3299;
 }
 
 /* Icon */
 
-.card-icon {
-    width: 70px;
-    height: 70px;
+.howworks-icon {
+  width: 60px;
+  height: 60px;
 
-    background: #eef2ff;
-    border-radius: 14px;
+  border-radius: 14px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  background: #eef2ff;
+  color: #0a3299;
 
-    font-size: 2rem;
-    color: #0a3299;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    margin-bottom: 25px;
+  font-size: 1.3rem;
 
-    transition: all 0.3s ease;
+  margin-bottom: 24px;
+
+  transition: all 0.3s ease;
 }
 
-.card-head:hover .card-icon {
-    background: #0a3299;
-    color: white;
-    transform: scale(1.08);
+.howworks-card:hover .howworks-icon {
+  background: #0a3299;
+  color: #fff;
+
+  transform: scale(1.08);
 }
 
 /* Heading */
 
-.card-heading {
-    font-size: 2rem;
-    font-weight: 600;
-    color: #111827;
+.howworks-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
 
-    text-align: center;
-    margin-bottom: 18px;
+  color: #111827;
 
-    transition: 0.3s;
+  margin-bottom: 14px;
+
+  transition: 0.3s;
 }
 
-.card-head:hover .card-heading {
-    color: #0a3299;
+.howworks-card:hover .howworks-card-title {
+  color: #0a3299;
 }
 
 /* Description */
 
-.card-about {
-    text-align: center;
-    color: #6b7280;
+.howworks-card-text {
+  color: #6b7280;
 
-    font-size: 1.1rem;
-    line-height: 1.8;
+  font-size: 1rem;
+  line-height: 1.8;
 }
 
-/* Responsive */
+/* ================= RESPONSIVE ================= */
 
+/* Laptop */
 @media (max-width: 1200px) {
-    .cards-row {
-        gap: 20px;
-    }
-
-    .card-head {
-        width: 280px;
-    }
+  .howworks-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
+/* Tablet */
 @media (max-width: 768px) {
-    .Work-head {
-        padding: 70px 20px;
-    }
+  .howworks-section {
+    padding: 80px 24px;
+  }
 
-    .work-heading {
-        font-size: 2.3rem;
-    }
+  .howworks-title {
+    font-size: 2.2rem;
+  }
 
-    .work-about {
-        font-size: 1rem;
-    }
+  .howworks-subtitle {
+    font-size: 1rem;
+  }
 
-    .card-head {
-        width: 100%;
-        max-width: 350px;
-    }
+  .howworks-cards {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .howworks-card {
+    padding: 30px 20px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .howworks-title {
+    font-size: 1.9rem;
+  }
+
+  .howworks-number {
+    font-size: 2.2rem;
+  }
+
+  .howworks-icon {
+    width: 52px;
+    height: 52px;
+  }
+
+  .howworks-card-title {
+    font-size: 1.1rem;
+  }
+
+  .howworks-card-text {
+    font-size: 0.95rem;
+  }
 }
