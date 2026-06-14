@@ -23,3 +23,12 @@ Work Show Day by Day :
 -Work on Frontend Authanitication Validation
 -Connect Frontend With Backend
 -Also Add O-Auth Feature On Web
+
+#Day -05
+-Adding Main DashBoard Page After Login
+-Desing UI And Data Releted Parts That Could Come From Frontend or Backend
+
+#Day -06
+-Add Complete Verification Form 
+-Add Route /home-page,/commlete-profile etc..
+-First Understand The What Need Then Start Building Form
