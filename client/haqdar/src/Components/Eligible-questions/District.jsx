@@ -37,16 +37,18 @@ export default function District({ next, prev,setFormData }) {
     "Sri Ganganagar",
   ];
 
-  const filteredDistricts = districts.filter((district) =>
+  const filteredDistricts = districts
+  .filter((district) =>
     district.toLowerCase().includes(search.toLowerCase())
-  );
+  )
+  .slice(0, 5);
 
   return (
     <div>
       <Nav />
       <Progress percent={62}/>
 
-      <div className="district-container">
+      <div className="district-container form-page">
         <div className="district-card">
           <h1 className="district-title">
             Which district do you reside in?

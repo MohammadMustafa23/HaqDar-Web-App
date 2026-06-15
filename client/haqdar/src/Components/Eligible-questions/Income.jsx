@@ -16,7 +16,7 @@ export default function Income({ next, prev,setFormData }) {
     <div>
       <Nav />
      <Progress percent={50}/>
-      <div className="income-container">
+      <div className="income-container form-page">
         <div className="income-card">
           <h1 className="income-title">What is your annual family income?</h1>
 

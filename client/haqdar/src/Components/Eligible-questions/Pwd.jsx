@@ -20,7 +20,7 @@ export default function Pwd({ prev, setFormData }) {
       <Nav />
       <Progress percent={87} />
 
-      <div className="pwd-container">
+      <div className="pwd-container form-page">
         <div className="pwd-card">
           <h1 className="pwd-title">
             Do you have a physical disability (PWD)?

@@ -31,10 +31,11 @@ export default function Recommended() {
             <div className="h-7 w-36 bg-gray-200 rounded-lg"></div>
           </div>
         ) : (
-          <div className="recommended-title">
-            <h2>Recommended for You</h2>
-
-            <span className="top-match">TOP MATCHES</span>
+          <div className="recommended-header">
+            <div className="recommended-title">
+              <h2>Recommended for You</h2>
+              <span className="top-match">TOP MATCHES</span>
+            </div>
 
             <a href="/top-matched-Schemes" className="see-all">
               See all matches

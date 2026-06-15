@@ -15,7 +15,7 @@ export default function Category({ next, prev, setFormData }) {
     <div>
       <Nav />
       <Progress percent={37} />
-      <div className="category-container">
+      <div className="category-container form-page">
         <div className="category-card">
           <h1 className="category-title">What is your social category?</h1>
 

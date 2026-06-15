@@ -1,79 +1,83 @@
-import { Bell, User } from "lucide-react";
-import "./HomeDashBoard.css";
-import { ProfileSkeleton } from "./Effect/CompleteProfileSkeleton";
-import { useState, useEffect } from "react";
+import { Bell, User, Menu, X } from "lucide-react";
+import { useState } from "react";
 
-export default function NavBar() {
-  const [loading, setLoading] = useState(true);
+export default function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (loading) {
-    return (
-      <nav className="navbar">
-        <div className="navbar-container">
-          {/* Left side instantly visible */}
-          <div className="navbar-left">
-            <div className="logo-section">
-              <div className="logo-box">H</div>
-              <h1 className="logo-text">HaqDar</h1>
+  return (
+    <>
+      <nav className="home-nav-navbar">
+        <div className="home-nav-container">
+          <div className="home-nav-left">
+            <div className="home-nav-logo-section">
+              <div className="home-nav-logo-box">H</div>
+              <h1 className="home-nav-logo-text">HaqDar</h1>
             </div>
 
-            <div className="nav-links">
+            <div className="home-nav-links">
               <a href="#">Schemes</a>
               <a href="#">Eligibility</a>
             </div>
           </div>
 
-          {/* Right side skeleton */}
-          <ProfileSkeleton />
-        </div>
-      </nav>
-    );
-  }
-
-  return (
-    <nav className="navbar">
-      <div className="navbar-container">
-        <div className="navbar-left">
-          <div className="logo-section">
-            <div className="logo-box">H</div>
-            <h1 className="logo-text">HaqDar</h1>
-          </div>
-
-          <div className="nav-links">
-            <a href="#">Schemes</a>
-            <a href="#">Eligibility</a>
-          </div>
-        </div>
-
-        {/* Fade-in Effect */}
-        <div className="navbar-right profile-fade-in">
-          <button className="notification-btn">
-            <Bell size={22} />
-            <span className="notification-dot"></span>
+          {/* Mobile Menu Button */}
+          <button
+            className="home-nav-menu-btn"
+            onClick={() => setMenuOpen(true)}
+          >
+            <Menu size={28} />
           </button>
 
-          <div className="divider"></div>
+          {/* Desktop Right Side */}
+          <div className="home-nav-right home-nav-profile-fade-in">
+            <button className="home-nav-notification-btn">
+              <Bell size={22} />
+              <span className="home-nav-notification-dot"></span>
+            </button>
 
-          <div className="profile-section">
-            <div className="profile-info">
-              <h3>Arjun Sharma</h3>
-              <p>Beneficiary</p>
-            </div>
+            <div className="home-nav-divider"></div>
 
-            <div className="profile-icon">
-              <User size={22} />
+            <div className="home-nav-profile-section">
+              <div className="home-nav-profile-info">
+                <h3>Arjun Sharma</h3>
+                <p>Beneficiary</p>
+              </div>
+
+              <div className="home-nav-profile-icon">
+                <User size={22} />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+
+      {/* Mobile Sidebar */}
+      {menuOpen && (
+        <>
+          <div
+            className="home-nav-overlay"
+            onClick={() => setMenuOpen(false)}
+          ></div>
+
+          <div className="home-nav-mobile-menu">
+            <div className="home-nav-mobile-header">
+              <h3>Menu</h3>
+
+              <button
+                className="home-nav-close-btn"
+                onClick={() => setMenuOpen(false)}
+              >
+                <X size={24} />
+              </button>
+            </div>
+
+            <a href="#">Schemes</a>
+            <a href="#">Eligibility</a>
+            <a href="#">Notifications</a>
+            <a href="#">Profile</a>
+          </div>
+        </>
+      )}
+    </>
   );
 }

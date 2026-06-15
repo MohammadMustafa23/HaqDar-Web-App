@@ -18,7 +18,7 @@ export default function Gender({ next, prev ,setFormData }) {
     <div>
       <Nav />
       <Progress percent={12}/>
-      <div className="gender-container">
+      <div className="gender-container form-page">
         <div className="gender-card">
           <h1 className="gender-title">What is your gender?</h1>
 

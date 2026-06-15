@@ -18,7 +18,7 @@ export default function Education({ next, prev,setFormData}) {
     <div>
       <Nav />
       <Progress percent={25} />
-      <div className="education-container">
+      <div className="education-container form-page">
         <div className="education-card">
           <h1 className="education-title">
             What is your highest education level?

@@ -54,7 +54,7 @@ export default function Occupation({ next, prev, setFormData }) {
       <Nav />
       <Progress percent={75} />
 
-      <div className="occupation-container">
+      <div className="occupation-container form-page">
         <div className="occupation-card">
           <h1 className="occupation-title">What is your current occupation?</h1>
 

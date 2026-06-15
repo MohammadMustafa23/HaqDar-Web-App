@@ -15,7 +15,7 @@ export default function Age({ next, prev, setFormData }) {
     <div>
       <Nav />
       <Progress percent={0} />
-      <div className="age-container">
+      <div className="age-container form-page">
         <div className="age-card">
           <h1 className="age-title">What is your age?</h1>
 
