@@ -32,3 +32,7 @@ Work Show Day by Day :
 -Add Complete Verification Form 
 -Add Route /home-page,/commlete-profile etc..
 -First Understand The What Need Then Start Building Form
+
+#Day -07
+-Convert in Responsive Web -> For Mobile Tablet etc
+-Add UI Effect Sktelleton Loder etc
