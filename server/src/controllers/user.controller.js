@@ -49,7 +49,7 @@ export async function LoginUser(req,res) {
     const isMatch = await bcrypt.compare(password,IfUserExist.password);
     if(!isMatch) {
         return res.status(400).json({
-            message : 'InValid Password'
+            message : 'In-valid Password'
         })
     }
 
@@ -70,6 +70,7 @@ export async function LoginUser(req,res) {
      message: "Login Successful"
     });
 }
+
 export const GoogleLogin = async (req, res) => {
   try {
     const { accessToken } = req.body;
@@ -110,14 +111,16 @@ export const GoogleLogin = async (req, res) => {
       }
     );
 
+     res.cookie("token", token, {
+       httpOnly: true,
+       maxAge: 7 * 24 * 60 * 60 * 1000
+    });
+
     return res.status(200).json({
       success: true,
-      token,
-      user,
+      message : "Login Sucessfull"
     });
   } catch (error) {
-    console.log(error);
-
     return res.status(500).json({
       success: false,
       message: "Google Login Failed",
