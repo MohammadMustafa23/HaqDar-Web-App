@@ -36,3 +36,8 @@ Work Show Day by Day :
 #Day -07
 -Convert in Responsive Web -> For Mobile Tablet etc
 -Add UI Effect Sktelleton Loder etc
+
+#Day -08 
+-Adding Profile Submit Api 
+-Work On Raw Data insert into RAG
+-Test The Api With Postmen also Generete Sort Qury On User Profile
