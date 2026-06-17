@@ -41,3 +41,7 @@ Work Show Day by Day :
 -Adding Profile Submit Api 
 -Work On Raw Data insert into RAG
 -Test The Api With Postmen also Generete Sort Qury On User Profile
+
+#Day -09
+-Adding Security on Frontend Route 
+-Also Insert User Profile Section And Connect With Backend
