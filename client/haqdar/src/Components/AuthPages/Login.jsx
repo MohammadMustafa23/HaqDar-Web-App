@@ -3,10 +3,10 @@ import "./Login.css";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import Swal from "sweetalert2";
-import { LoginUser } from "../../Services/Auth.User";
+import { LoginUser } from "../../Services/auttantication.service";
 import { useNavigate } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
-import { GoogleLoginUser } from "../../Services/Auth.User";
+import { GoogleLoginUser } from "../../Services/auttantication.service";
 
 export default function Login() {
   const navigate = useNavigate();

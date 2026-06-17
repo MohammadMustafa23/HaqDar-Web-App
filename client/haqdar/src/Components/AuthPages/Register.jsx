@@ -2,11 +2,11 @@ import LoginPage from "../../assets/Login-Page-Logo.png";
 import "./Register.css";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
-import { RegisterUser } from "../../Services/Auth.User";
+import { RegisterUser } from "../../Services/auttantication.service";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
-import { GoogleLoginUser } from "../../Services/Auth.User";
+import { GoogleLoginUser } from "../../Services/auttantication.service";
 
 export default function Register() {
   const navigate = useNavigate();

@@ -3,10 +3,7 @@ import "./HomeDashBoard.css";
 import Rec_SchemesCard from "./Rec_SchemesCard";
 import AskHaqdarAI from "./AskHaqdarAI";
 
-import {
-  Rec_SchemesCardSkeleton,
-  AskHaqdarAISkeleton,
-} from "./Effect/CompleteProfileSkeleton";
+import {Rec_SchemesCardSkeleton,AskHaqdarAISkeleton,} from "./Effect/CompleteProfileSkeleton";
 
 import { useState, useEffect } from "react";
 

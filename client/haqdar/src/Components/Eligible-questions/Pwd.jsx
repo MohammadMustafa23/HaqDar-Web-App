@@ -1,20 +1,11 @@
 import { useState } from "react";
 import { Accessibility, User, CheckCircle } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 import Nav from "./Nav";
 import Progress from "./Progress";
 import "./Eligible-question.css";
 
-export default function Pwd({ prev, setFormData }) {
+export default function Pwd({ prev, setFormData, loading, handleSubmit }) {
   const [pwd, setPwd] = useState("");
-  const navigate = useNavigate();
-  const handleNext = () => {
-    setFormData((prevData) => ({
-      ...prevData,
-      pwd : pwd,
-    }));
-    navigate("/home-page")
-  };
   return (
     <div>
       <Nav />
@@ -29,7 +20,14 @@ export default function Pwd({ prev, setFormData }) {
           <div className="pwd-options">
             <div
               className={`pwd-option ${pwd === "Yes" ? "pwd-selected" : ""}`}
-              onClick={() => setPwd("Yes")}
+              onClick={() => {
+                setPwd("Yes");
+
+                setFormData((prev) => ({
+                  ...prev,
+                  pwd: "Yes",
+                }));
+              }}
             >
               <Accessibility size={40} />
               <h3>Yes</h3>
@@ -37,7 +35,14 @@ export default function Pwd({ prev, setFormData }) {
 
             <div
               className={`pwd-option ${pwd === "No" ? "pwd-selected" : ""}`}
-              onClick={() => setPwd("No")}
+              onClick={() => {
+                setPwd("No");
+
+                setFormData((prev) => ({
+                  ...prev,
+                  pwd: "Yes",
+                }));
+              }}
             >
               <User size={40} />
               <h3>No</h3>
@@ -45,16 +50,17 @@ export default function Pwd({ prev, setFormData }) {
           </div>
 
           <div className="pwd-buttons">
-            <button className="back-btn" onClick={prev}>
+            <button className="back-btn" onClick={prev} disabled={loading}>
               ← Back
             </button>
 
             <button
               className="next-btn"
-              disabled={!pwd}
-              onClick={handleNext}
+              disabled={!pwd || loading}
+              onClick={handleSubmit}
             >
-              Finish <CheckCircle size={18} />
+              {loading ? "Finding Schemes..." : "Finish"}
+              <CheckCircle size={18} />
             </button>
           </div>
         </div>

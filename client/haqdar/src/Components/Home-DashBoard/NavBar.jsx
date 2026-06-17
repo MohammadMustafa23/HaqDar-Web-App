@@ -1,9 +1,17 @@
 import { Bell, User, Menu, X } from "lucide-react";
 import { useState } from "react";
+import { useNavigate,useLocation } from "react-router-dom";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-
+  const navigate = useNavigate();
+  const location = useLocation(); // <-- Missing
+  const handleProfileClick = () => {
+  if (location.pathname !== "/user-profile") {
+    navigate("/user-profile", {
+    });
+  }
+};
   return (
     <>
       <nav className="home-nav-navbar">
@@ -39,11 +47,11 @@ export default function Navbar() {
 
             <div className="home-nav-profile-section">
               <div className="home-nav-profile-info">
-                <h3>Arjun Sharma</h3>
+                <h3>Temp</h3>
                 <p>Beneficiary</p>
               </div>
 
-              <div className="home-nav-profile-icon">
+              <div className="home-nav-profile-icon" onClick={handleProfileClick}>
                 <User size={22} />
               </div>
             </div>
