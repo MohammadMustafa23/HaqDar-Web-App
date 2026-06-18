@@ -45,3 +45,8 @@ Work Show Day by Day :
 #Day -09
 -Adding Security on Frontend Route 
 -Also Insert User Profile Section And Connect With Backend
+
+#Day -10
+-Configure and use Pinecone / Gemini model.
+-Add Route on Backend For User Profile Submit By User.
+-Find Raw Verified Sechems Data for Test (35 Schemes)
