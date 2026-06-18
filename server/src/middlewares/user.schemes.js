@@ -14,8 +14,13 @@ export const verifyJWT = async (req, res, next) => {
     }
 
     const decoded = jwt.verify(token,process.env.JWT_SECRET);
+    console.log(decoded);
+    const Id = decoded.id || decoded.userId;
 
-    const user = await userModel.findById(decoded.userId)
+    
+    const user = await userModel.findById(Id)
+    console.log(user);
+    
     
     if (!user) {
       return res.status(401).json({

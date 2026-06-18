@@ -1,8 +1,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import { GEMINI_API_KEY } from "../config/env.js";
 
-const genAI = new GoogleGenerativeAI(
-  process.env.GEMINI_API_KEY
-);
+const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
 
 const model = genAI.getGenerativeModel({
   model: "gemini-3-flash-preview",
@@ -10,7 +9,6 @@ const model = genAI.getGenerativeModel({
 
 export async function generateSearchQuery(profile) {
   try {
-    console.log("See APi ------>",process.env.GEMINI_API_KEY.length);
     const prompt = `
 You are a government scheme recommendation assistant.
 
@@ -35,19 +33,13 @@ Example Output:
     const result = await model.generateContent(prompt);
 
     console.log(result);
-    
-    const query =
-      result.response.text().trim();
+
+    const query = result.response.text().trim();
 
     return query;
   } catch (error) {
-    console.error(
-      "Gemini Query Generation Error:",
-      error
-    );
+    console.error("Gemini Query Generation Error:", error);
 
-    throw new Error(
-      "Failed to generate search query"
-    );
+    throw new Error("Failed to generate search query");
   }
 }

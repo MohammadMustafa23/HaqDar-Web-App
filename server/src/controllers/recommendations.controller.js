@@ -1,6 +1,7 @@
 import UserProfileModel from "../models/userProfile.model.js";
 import { generateSearchQuery } from "../services/gemini.service.js";
 import { generateEmbedding } from "../services/embedding.service.js";
+import { searchSchemes } from "../services/pinecone.service.js";
 
 export async function FindSchemes(req, res) {
   try {
@@ -21,23 +22,21 @@ export async function FindSchemes(req, res) {
       },
     );
 
-    console.log(profile);
 
     // Gemini Query Generation
     const searchQuery = await generateSearchQuery(req.profile);
 
-    console.log("Generated Query:");
-    console.log(searchQuery);
-
     const embedding = await generateEmbedding(searchQuery);
 
-    console.log("Embedding Length:", embedding.length);
+    const matches = await searchSchemes(embedding);
+    console.log(matches);
 
     return res.status(200).json({
       success: true,
       message: "Profile saved successfully",
       profile,
       searchQuery,
+      SchemsMatch : matches
     });
   } catch (error) {
     console.error("FindSchemes Error:", error);

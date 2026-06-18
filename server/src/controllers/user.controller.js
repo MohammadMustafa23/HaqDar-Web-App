@@ -2,10 +2,11 @@ import UserModel from '../models/user.model.js'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { OAuth2Client } from "google-auth-library";
+import UserProfileModel from '../models/userProfile.model.js';
 
 const client = new OAuth2Client(
   process.env.GOOGLE_CLIENT_ID
-);
+);8
 
 export async function RegisterUser(req,res) {
     const { userName , email , password } = req.body;
@@ -127,3 +128,26 @@ export const GoogleLogin = async (req, res) => {
     });
   }
 };
+
+export function VerifyUser(req, res) {
+    res.status(200).json({
+    success: true,
+    user: req.user,
+    });
+}
+
+export async function VerifyProfile(req, res) {
+    try {
+      const profile = await UserProfileModel.findOne({userId: req.user.id});
+      res.status(200).json({
+        success: true,
+        profileCompleted: !!profile,
+        profile,
+        user : req.user
+      });
+    } catch (error) {
+      res.status(500).json({
+        success: false,
+      });
+    }
+}

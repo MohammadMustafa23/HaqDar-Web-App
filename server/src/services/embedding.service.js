@@ -1,8 +1,7 @@
+import { GEMINI_API_KEY } from "../config/env.js";
 import { GoogleGenAI } from "@google/genai";
 
-const ai = new GoogleGenAI({
-  apiKey: process.env.GEMINI_API_KEY,
-});
+const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
 
 export async function generateEmbedding(text) {
   try {
