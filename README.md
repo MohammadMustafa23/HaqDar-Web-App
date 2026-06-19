@@ -50,3 +50,8 @@ Work Show Day by Day :
 -Configure and use Pinecone / Gemini model.
 -Add Route on Backend For User Profile Submit By User.
 -Find Raw Verified Sechems Data for Test (35 Schemes)
+
+#Day -11
+-Add Route For Fetch Schemes From Backend.
+-User Complete Profile --> PineCone (Get Top Match) --> Save In MongoDb
+-Add Scheme Models Route Middleware Controller.
