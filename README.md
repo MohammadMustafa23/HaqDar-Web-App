@@ -55,3 +55,8 @@ Work Show Day by Day :
 -Add Route For Fetch Schemes From Backend.
 -User Complete Profile --> PineCone (Get Top Match) --> Save In MongoDb
 -Add Scheme Models Route Middleware Controller.
+
+#Day -12
+-Fixing Reload Problem --> Before I Use Window.Reload But Now I Have Pass States And Fix It
+-Server Down Error Hanlde By Sonar(UI) or Axios
+-Fixing allow Only One Time Complete-Profile Work
