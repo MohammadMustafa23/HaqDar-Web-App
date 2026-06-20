@@ -1,6 +1,24 @@
 import { RefreshCcw } from "lucide-react";
 
-export default function EligibilityDetails({profile}) {
+export default function EligibilityDetails({profile}){
+  if (!profile) {
+    return (
+      <div className="hd-profile-card">
+        <div className="hd-profile-card-header">
+          <h3>Eligibility Details</h3>
+          <RefreshCcw size={16} />
+        </div>
+
+        <div className="profile-incomplete">
+          <h4>Profile Incomplete</h4>
+          <p>
+            Complete your profile to view eligibility details
+            and receive personalized scheme recommendations.
+          </p>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="hd-profile-card">
 

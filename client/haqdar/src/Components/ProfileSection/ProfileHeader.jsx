@@ -1,22 +1,25 @@
-import { Calendar, ShieldCheck } from "lucide-react";
+import { Calendar, ShieldCheck, User } from "lucide-react";
 
-export default function ProfileHeader({user}) {
+export default function ProfileHeader({ user, profile }) {
+  const memberSince = profile?.createdAt
+    ? new Date(profile.createdAt).toLocaleDateString("en-US", {
+        month: "long",
+        year: "numeric",
+      })
+    : "Complete Profile";
   return (
     <div className="hd-profile-header">
-
       <div className="hd-profile-header-left">
-        <img
-          src="https://randomuser.me/api/portraits/men/32.jpg"
-          alt=""
-          className="hd-profile-image"
-        />
+        <div className="hd-profile-image">
+          <User size={28} />
+        </div>
 
         <div>
           <h1>{user.userName}</h1>
 
           <p>
             <Calendar size={15} />
-            Member since March 2024
+            Member since {memberSince}
           </p>
 
           <div className="hd-profile-badge-container">
@@ -30,10 +33,7 @@ export default function ProfileHeader({user}) {
         </div>
       </div>
 
-      <button className="hd-profile-edit-btn">
-        Edit Profile
-      </button>
-
+      <button className="hd-profile-edit-btn">Edit Profile</button>
     </div>
   );
 }

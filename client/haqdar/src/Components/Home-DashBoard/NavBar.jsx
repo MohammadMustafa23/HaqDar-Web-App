@@ -2,7 +2,7 @@ import { Bell, User, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { useNavigate,useLocation } from "react-router-dom";
 
-export default function Navbar() {
+export default function Navbar({profileData}) {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation(); // <-- Missing
@@ -12,6 +12,7 @@ export default function Navbar() {
     });
   }
 };
+console.log("NavBar props:", profileData);
   return (
     <>
       <nav className="home-nav-navbar">
@@ -47,7 +48,7 @@ export default function Navbar() {
 
             <div className="home-nav-profile-section">
               <div className="home-nav-profile-info">
-                <h3>Temp</h3>
+                <h3>{profileData?.userName}</h3>
                 <p>Beneficiary</p>
               </div>
 

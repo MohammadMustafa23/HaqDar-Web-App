@@ -6,10 +6,11 @@ const API = axios.create({
 });
 
 export const generateRecommendations = async (profileData) => {
-  const response = await API.post(
-    "/recommendations/generate",
-    profileData
-  );
-
+  const response = await API.post("/recommendations/generate",profileData);
   return response.data;
 };
+
+export async function getMatchedSchemes() {
+  const response = await API.get("/my-schemes");
+  return response.data;
+}

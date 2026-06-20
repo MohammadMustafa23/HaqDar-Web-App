@@ -8,9 +8,10 @@ import District from "./District";
 import Occupation from "./Occupation";
 import Pwd from "./Pwd";
 import { generateRecommendations } from "../../Services/recommendation.service";
-import { useNavigate } from "react-router-dom";
+import { getCurrentUser } from "../../Services/auttantication.service";
+import { useNavigate, Navigate } from "react-router-dom";
 
-export default function ProfileWizard() {
+export default function ProfileWizard({ setProfileData,profileData }) {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [step, setStep] = useState(1);
@@ -24,6 +25,9 @@ export default function ProfileWizard() {
     occupation: "",
     pwd: "",
   });
+  if (profileData?.profileCompleted) {
+    return <Navigate to="/home-page" replace />;
+  }
 
   console.log(formData);
   const handleSubmit = async () => {
@@ -31,12 +35,17 @@ export default function ProfileWizard() {
       setLoading(true);
 
       const data = await generateRecommendations(formData);
+      console.log(data);
+
+      const userData = await getCurrentUser();
+
+      if (userData?.success) {
+        setProfileData(userData);
+      }
 
       navigate("/home-page", {
-        state: {
-          recommendations: data.result,
-          profileCompleted: true,
-        },
+        replace: true,
+        recommendations: data.SchemsMatch,
       });
     } catch (error) {
       console.log(error);

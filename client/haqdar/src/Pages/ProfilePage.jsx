@@ -39,7 +39,7 @@ export default function ProfilePage() {
   return (
     <div className="hd-profile-page">
       <div className="hd-profile-container">
-        <Navbar user={profileData.user} />
+        <Navbar profileData={profileData.user} />
         {/* LEFT */}
         <div className="hd-profile-left-section">
           <Sidebar />

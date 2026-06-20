@@ -10,19 +10,8 @@ export default function CompleteProfile() {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    },3000);
   }, []);
-  //   useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const res = await axios.get("/api/profile");
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
   if (loading) {
     return(
       <>

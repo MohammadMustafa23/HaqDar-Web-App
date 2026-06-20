@@ -1,11 +1,11 @@
 import Login from '../Components/AuthPages/Login'
 import Nav from '../Components/AuthPages/Nav'
 import Register from '../Components/AuthPages/Register'
-export function AuthLogin() {
+export function AuthLogin({setProfileData}) {
     return (
         <div>
             <Nav/>
-            <Login/>
+            <Login setProfileData={setProfileData}n/>
         </div>
     )
 }

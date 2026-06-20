@@ -6,9 +6,9 @@ import Swal from "sweetalert2";
 import { LoginUser } from "../../Services/auttantication.service";
 import { useNavigate } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
-import { GoogleLoginUser } from "../../Services/auttantication.service";
+import { GoogleLoginUser,getCurrentUser } from "../../Services/auttantication.service";
 
-export default function Login() {
+export default function Login({setProfileData }) {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
@@ -26,14 +26,20 @@ export default function Login() {
       console.log(tokenResponse);
 
       try {
+        setLoading(true);
         const response = await GoogleLoginUser(tokenResponse.access_token);
-
-        console.log("Backend Response");
-        console.log(response.data);
-
-        localStorage.setItem("token", response.data.token);
-
-        navigate("/home-page");
+        Swal.fire({
+          icon: "success",
+          title: "Login Successful!",
+          text: response.data.message,
+          confirmButtonText: "Continue",
+        }).then( async () => {
+          const userData = await getCurrentUser();
+          if (userData?.success) {
+          setProfileData(userData);
+          }
+          navigate("/home-page"); // or home page
+        });
       } catch (error) {
         console.log("API Error");
         console.log(error);
@@ -45,6 +51,7 @@ export default function Login() {
       console.log(error);
     },
   });
+
   function handleChange(e) {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -63,16 +70,18 @@ export default function Login() {
     const isValid = validate();
     if (!isValid) return;
     setLoading(true);
-    // await new Promise((resolve) => setTimeout(resolve, 20000));
     try {
       const response = await LoginUser(formData);
-
       Swal.fire({
         icon: "success",
         title: "Login Successful!",
         text: response.data.message,
         confirmButtonText: "Continue",
-      }).then(() => {
+      }).then(async () => {
+          const userData = await getCurrentUser();
+          if (userData?.success) {
+          setProfileData(userData);
+        }
         navigate("/home-page"); // or home page
       });
 

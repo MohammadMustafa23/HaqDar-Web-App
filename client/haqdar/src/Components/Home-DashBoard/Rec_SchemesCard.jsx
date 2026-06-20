@@ -6,36 +6,39 @@ import {
   Bookmark,
 } from "lucide-react";
 
-export default function Rec_SchemesCard() {
+export default function Rec_SchemesCard({scheme,onViewDetails}) {
+  if (!scheme) return null;
+
   return (
     <div className="rec-scheme-card">
-
       <button className="save-btn">
         <Bookmark size={18} />
       </button>
 
       <h3 className="rec-scheme-title">
-        PM-Kisan Samman Nidhi
+        {scheme.name || "Scheme Name"}
       </h3>
 
       <p className="rec-scheme-desc">
-        Financial benefit of ₹6,000 per year in three equal installments to all
-        landholding farmer families.
+        {scheme.benefit || "No benefit information available"}
       </p>
 
       <div className="rec-scheme-tags">
         <span className="rec-scheme-tag">
           <IndianRupee size={18} />
-          ₹6,000 / year
+          {scheme.income || "N/A"}
         </span>
 
         <span className="rec-scheme-tag">
           <Users size={18} />
-          Farmers
+          {scheme.category || "General"}
         </span>
       </div>
 
-      <button className="rec-details-btn">
+      <button
+        className="rec-details-btn"
+        onClick={() => onViewDetails(scheme)}
+      >
         Check Details
         <ArrowRight size={20} />
       </button>

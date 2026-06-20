@@ -40,14 +40,19 @@ export default function Register() {
       console.log(tokenResponse);
 
       try {
+        setLoading(true);
         const response = await GoogleLoginUser(tokenResponse.access_token);
-
-        console.log("Backend Response");
-        console.log(response.data);
-
-        localStorage.setItem("token", response.data.token);
-
-        navigate("/home-page");
+        Swal.fire({
+          icon: "success",
+          title: "Login Successful!",
+          text: response.data.message,
+          confirmButtonText: "Continue",
+        }).then(() => {
+          navigate("/home-page"); // or home page
+          setTimeout(() => {
+            window.location.reload();
+          }, 50);
+        });
       } catch (error) {
         console.log("API Error");
         console.log(error);

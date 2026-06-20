@@ -1,9 +1,27 @@
 import axios from "axios";
+import { toast } from "sonner";
 
 const API = axios.create({
   baseURL: "http://localhost:3000/api",
   withCredentials: true,
+  timeout: 10000,
 });
+
+API.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.code === "ECONNABORTED") {
+      toast.error("Request Timeout");
+    } else if (!error.response) {
+      toast.error("Server Unavailable");
+    } else if (error.response.status === 401) {
+      toast.error("Please Login Again");
+    } else if (error.response.status === 500) {
+      toast.error("Internal Server Error");
+    }
+    return Promise.reject(error);
+  }
+);
 
 export const RegisterUser = (userData) => {
   return API.post("/auth/register", userData);

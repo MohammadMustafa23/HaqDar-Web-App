@@ -1027,7 +1027,7 @@ body {
   border-radius: 22px;
   border-left: 6px solid #0b3db8;
   padding: 35px;
-
+  margin-top: 20px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
 
   transition: all 0.3s ease;
@@ -1157,7 +1157,7 @@ body {
   background: #fff;
   border: 2px dashed #d3d9e8;
   border-radius: 20px;
-
+  margin-top: 80px;
   height: 100%;
   min-height: 260px;
 
@@ -1433,5 +1433,175 @@ body {
   .chat-btn {
     height: 46px;
     font-size: 15px;
+  }
+}
+
+/* Slide From Left Any Scheme  */
+.drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.4);
+  z-index: 999;
+}
+
+.scheme-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 500px;
+  max-width: 100%;
+  height: 100vh;
+  background: white;
+  z-index: 1000;
+  padding: 24px;
+  overflow-y: auto;
+
+  animation: slideIn .3s ease;
+}
+
+.drawer-close {
+  border: none;
+  background: none;
+  cursor: pointer;
+  float: right;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* No Scheme Matched */
+.nsf-wrapper {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.nsf-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 70px 30px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  text-align: center;
+}
+
+.nsf-icon-box {
+  width: 90px;
+  height: 90px;
+  background: #f3f5fa;
+  border-radius: 18px;
+  margin: 0 auto 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nsf-icon {
+  font-size: 40px;
+}
+
+.nsf-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 18px;
+}
+
+.nsf-description {
+  max-width: 650px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #6b7280;
+}
+
+.nsf-actions {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.nsf-primary-btn {
+  padding: 14px 32px;
+  border: none;
+  border-radius: 10px;
+  background: #0a2e8a;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.nsf-primary-btn:hover {
+  transform: translateY(-2px);
+}
+
+.nsf-secondary-btn {
+  padding: 14px 32px;
+  border: 2px solid #0a2e8a;
+  border-radius: 10px;
+  background: white;
+  color: #0a2e8a;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.nsf-secondary-btn:hover {
+  background: #f5f8ff;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .nsf-card {
+    padding: 50px 20px;
+  }
+
+  .nsf-title {
+    font-size: 1.6rem;
+  }
+
+  .nsf-description {
+    font-size: 1rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .nsf-card {
+    padding: 40px 15px;
+  }
+
+  .nsf-icon-box {
+    width: 75px;
+    height: 75px;
+  }
+
+  .nsf-title {
+    font-size: 1.3rem;
+  }
+
+  .nsf-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .nsf-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nsf-primary-btn,
+  .nsf-secondary-btn {
+    width: 100%;
+    max-width: 280px;
   }
 }
