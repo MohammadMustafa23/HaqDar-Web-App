@@ -18,13 +18,13 @@ export default function OpenSchemes({ scheme, onClose }) {
 
         <div className="os-top">
           <div className="os-left">
-            <SchemeAbout />
+            <SchemeAbout  scheme={scheme} />
 
-            <SchemeEligibility />
+            <SchemeEligibility scheme={scheme} />
 
             <div className="os-bottom-grid">
-              <SchemeDocuments />
-              <SchemeSteps />
+              <SchemeDocuments scheme={scheme} />
+              <SchemeSteps scheme={scheme} />
             </div>
           </div>
 

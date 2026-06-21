@@ -1,7 +1,9 @@
 import "./Open.css";
 import { Briefcase, Home, Wallet } from "lucide-react";
 
-export default function SchemeEligibility() {
+export default function SchemeEligibility({ scheme }) {
+  if (!scheme) return null;
+
   return (
     <div className="eligibility-section">
       <div className="eligibility-header">
@@ -18,23 +20,7 @@ export default function SchemeEligibility() {
           <h3>Age Requirement</h3>
 
           <p>
-            18 - 60 Years. Usually applies
-            to the head of the family as
-            defined by the land records.
-          </p>
-        </div>
-
-        <div className="eligibility-card">
-          <div className="eligibility-icon">
-            <Home size={22} />
-          </div>
-
-          <h3>Land Ownership</h3>
-
-          <p>
-            Families must own cultivable
-            land as per the specific
-            state/UT land records.
+            {scheme.age || "Not Specified"}
           </p>
         </div>
 
@@ -43,12 +29,22 @@ export default function SchemeEligibility() {
             <Wallet size={22} />
           </div>
 
-          <h3>Category</h3>
+          <h3>Income Requirement</h3>
 
           <p>
-            Open to all landholding
-            families regardless of
-            caste or social category.
+            {scheme.income || "Not Specified"}
+          </p>
+        </div>
+
+        <div className="eligibility-card">
+          <div className="eligibility-icon">
+            <Home size={22} />
+          </div>
+
+          <h3>Eligible Category</h3>
+
+          <p>
+            {scheme.caste || "All Categories"}
           </p>
         </div>
 

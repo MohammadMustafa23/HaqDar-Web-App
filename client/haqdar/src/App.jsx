@@ -9,6 +9,7 @@ import ProfilePage from "./Pages/ProfilePage";
 import { getCurrentUser } from "./Services/auttantication.service.js";
 import { useState, useEffect } from "react";
 import { Toaster } from "sonner";
+import SavedSchemesPage from "./Components/SavedScheme/SavedSchemesPage.jsx";
 function App() {
   const [profileData, setProfileData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -46,7 +47,10 @@ function App() {
       />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<AuthLogin setProfileData={setProfileData} />} />
+        <Route
+          path="/login"
+          element={<AuthLogin setProfileData={setProfileData} />}
+        />
         <Route path="/register" element={<AuthRegister />} />
         <Route
           path="/home-page"
@@ -63,7 +67,10 @@ function App() {
               {profileData?.profileCompleted ? (
                 <Navigate to="/home-page" replace />
               ) : (
-                <ProfileWizard profileData={profileData} setProfileData={setProfileData}  />
+                <ProfileWizard
+                  profileData={profileData}
+                  setProfileData={setProfileData}
+                />
               )}
             </ProtectedRoute>
           }
@@ -77,6 +84,8 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        <Route path="/saved-schemes" element={<SavedSchemesPage />} />
       </Routes>
     </>
   );

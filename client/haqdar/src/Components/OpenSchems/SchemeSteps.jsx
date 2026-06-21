@@ -1,7 +1,7 @@
 import "./Open.css";
 import { CircleCheck } from "lucide-react";
 
-export default function SchemeSteps() {
+export default function SchemeSteps({ scheme }) {
   const steps = [
     {
       title: "Check Eligibility",
@@ -11,12 +11,13 @@ export default function SchemeSteps() {
     {
       title: "Gather Documents",
       description:
-        "Keep all required documents ready, including identity, address, and supporting certificates.",
+        "Keep all required documents ready, including identity, address, income, caste, and supporting certificates.",
     },
     {
       title: "Submit Application",
-      description:
-        "Apply through the official portal, mobile app, Common Service Centre (CSC), or concerned department.",
+      description: scheme?.apply
+        ? `Apply through: ${scheme.apply}`
+        : "Apply through the official portal, CSC centre, or concerned department.",
     },
     {
       title: "Track & Receive Benefits",

@@ -1,23 +1,39 @@
 import "./HomeDashBoard.css";
-import {
-  ArrowRight,
-  IndianRupee,
-  Users,
-  Bookmark,
-} from "lucide-react";
+import { ArrowRight, IndianRupee, Users, Bookmark } from "lucide-react";
+import { useState, useEffect } from "react";
+import { saveScheme, removeScheme, isSaved } from "../../utils/bookmark.js";
 
-export default function Rec_SchemesCard({scheme,onViewDetails}) {
+export default function Rec_SchemesCard({ scheme, onViewDetails }) {
+  const [saved, setSaved] = useState(false);
+
+  useEffect(() => {
+    if (scheme?.id) {
+      setSaved(isSaved(scheme.id));
+    }
+  }, [scheme]);
+
+  const handleBookmark = () => {
+    if (saved) {
+      removeScheme(scheme.id);
+      setSaved(false);
+    } else {
+      saveScheme(scheme);
+      setSaved(true);
+    }
+  };
+
   if (!scheme) return null;
 
   return (
     <div className="rec-scheme-card">
-      <button className="save-btn">
-        <Bookmark size={18} />
+      <button
+        className={`save-btn ${saved ? "saved" : ""}`}
+        onClick={handleBookmark}
+      >
+        <Bookmark size={18} fill={saved ? "currentColor" : "none"} />
       </button>
 
-      <h3 className="rec-scheme-title">
-        {scheme.name || "Scheme Name"}
-      </h3>
+      <h3 className="rec-scheme-title">{scheme.name}</h3>
 
       <p className="rec-scheme-desc">
         {scheme.benefit || "No benefit information available"}
@@ -35,10 +51,7 @@ export default function Rec_SchemesCard({scheme,onViewDetails}) {
         </span>
       </div>
 
-      <button
-        className="rec-details-btn"
-        onClick={() => onViewDetails(scheme)}
-      >
+      <button className="rec-details-btn" onClick={() => onViewDetails(scheme)}>
         Check Details
         <ArrowRight size={20} />
       </button>

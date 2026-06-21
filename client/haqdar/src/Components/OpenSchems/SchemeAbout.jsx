@@ -1,25 +1,23 @@
 import "./Open.css";
 import { Bookmark, Wallet, Users } from "lucide-react";
 
-export default function SchemeAbout() {
+export default function SchemeAbout({ scheme }) {
+  if (!scheme) return null;
+
   return (
     <div className="scheme-about-card">
       <div className="scheme-about-top">
         <div>
           <span className="scheme-badge">
-            CENTRAL SECTOR SCHEME
+            {scheme.schemeType?.toUpperCase()}
           </span>
 
           <h2 className="scheme-title">
-            Pradhan Mantri Kisan
-            <br />
-            Samman Nidhi (PM-KISAN)
+            {scheme.name}
           </h2>
 
           <p className="scheme-desc">
-            A government initiative providing financial stability to all
-            landholding farmer families across the country with a guaranteed
-            annual income support.
+            {scheme.apply}
           </p>
         </div>
 
@@ -35,8 +33,8 @@ export default function SchemeAbout() {
           </div>
 
           <div>
-            <span>Direct Financial Benefit</span>
-            <h3>₹6,000 / Year</h3>
+            <span>Benefits</span>
+            <h3>{scheme.benefit}</h3>
           </div>
         </div>
 
@@ -46,8 +44,8 @@ export default function SchemeAbout() {
           </div>
 
           <div>
-            <span>Target Beneficiaries</span>
-            <h3>Farmer Families</h3>
+            <span>Beneficiaries</span>
+            <h3>{scheme.beneficiary}</h3>
           </div>
         </div>
       </div>

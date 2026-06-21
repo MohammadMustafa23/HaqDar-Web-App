@@ -6,7 +6,20 @@ import {
   Smartphone,
 } from "lucide-react";
 
-export default function SchemeDocuments() {
+export default function SchemeDocuments({ scheme }) {
+  if (!scheme) return null;
+
+  const documents = scheme.documents
+    ? scheme.documents.split(",").map((doc) => doc.trim())
+    : [];
+
+  const icons = [
+    Fingerprint,
+    Landmark,
+    Mountain,
+    Smartphone,
+  ];
+
   return (
     <div className="documents-section">
       <div className="documents-header">
@@ -14,67 +27,22 @@ export default function SchemeDocuments() {
       </div>
 
       <div className="documents-grid">
+        {documents.map((doc, index) => {
+          const Icon = icons[index % icons.length];
 
-        <div className="document-card">
-          <div className="document-icon">
-            <Fingerprint size={22} />
-          </div>
+          return (
+            <div className="document-card" key={index}>
+              <div className="document-icon">
+                <Icon size={22} />
+              </div>
 
-          <div>
-            <h3>Aadhaar Card</h3>
-            <p>
-              Mandatory for identity
-              verification and linking
-              with bank account.
-            </p>
-          </div>
-        </div>
-
-        <div className="document-card">
-          <div className="document-icon">
-            <Landmark size={22} />
-          </div>
-
-          <div>
-            <h3>Bank Passbook</h3>
-            <p>
-              Needed for direct
-              benefit transfer (DBT)
-              of funds.
-            </p>
-          </div>
-        </div>
-
-        <div className="document-card">
-          <div className="document-icon">
-            <Mountain size={22} />
-          </div>
-
-          <div>
-            <h3>Land Holding Papers</h3>
-            <p>
-              Official registry
-              documents proving
-              ownership of cultivable land.
-            </p>
-          </div>
-        </div>
-
-        <div className="document-card">
-          <div className="document-icon">
-            <Smartphone size={22} />
-          </div>
-
-          <div>
-            <h3>Mobile Number</h3>
-            <p>
-              Active number linked to
-              Aadhaar for OTP
-              verification.
-            </p>
-          </div>
-        </div>
-
+              <div>
+                <h3>{doc}</h3>
+                <p>Required for scheme verification and application.</p>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
