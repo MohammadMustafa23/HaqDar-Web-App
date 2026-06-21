@@ -60,3 +60,8 @@ Work Show Day by Day :
 -Fixing Reload Problem --> Before I Use Window.Reload But Now I Have Pass States And Fix It
 -Server Down Error Hanlde By Sonar(UI) or Axios
 -Fixing allow Only One Time Complete-Profile Work
+
+#Day -13
+-Adding Save Scheme Feature
+-desing Chat Bot UI 
+-Use The LocalStorge System of Browser
