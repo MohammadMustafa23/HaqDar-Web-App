@@ -131,9 +131,9 @@ export const GoogleLogin = async (req, res) => {
 
 export function VerifyUser(req, res) {
     res.status(200).json({
-    success: true,
-    user: req.user,
-    });
+      success: true,
+      user: req.user,
+  });
 }
 
 export async function VerifyProfile(req, res) {
