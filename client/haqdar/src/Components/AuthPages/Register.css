@@ -2,7 +2,7 @@
 
 .center-right {
   width: 500px;
-  background: #fff;
+  background: var(--bg-secondary);
   border: 1px solid #d8dde6;
   border-radius: 10px;
   overflow: hidden;
@@ -56,7 +56,7 @@
 .center-right span {
   display: block;
   margin: 0 35px 25px;
-  color: #6b7280;
+  color: var(--text-secondary);
   font-size: 15px;
 }
 
@@ -66,7 +66,7 @@
   margin: 0 35px 8px;
   font-size: 14px;
   font-weight: 600;
-  color: #111827;
+  color: var(--text-primary);
 }
 
 /* Inputs */
@@ -94,7 +94,7 @@
   border: none;
   border-radius: 6px;
   background: #1238b3;
-  color: white;
+  color: var(--card-bg);
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
@@ -117,10 +117,9 @@
 
 .divider span {
   margin: 0 15px;
-  color: #4b5563;
+  color: var(--text-secondary);
   font-size: 13px;
   font-weight: 600;
-  white-space: nowrap;
 }
 
 /* Google Button */
@@ -128,7 +127,7 @@
   width: calc(100% - 70px);
   height: 48px;
   margin: 0 35px;
-  background: white;
+  background: var(--card-bg);
   border: 1px solid #cfd5df;
   border-radius: 8px;
   cursor: pointer;
@@ -152,7 +151,7 @@
   text-align: center;
   margin: 18px 35px 0 !important;
   font-size: 13px !important;
-  color: #6b7280 !important;
+  color: var(--text-secondary) !important;
   line-height: 1.6;
 }
 
@@ -176,7 +175,7 @@
   font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
-  color: #374151;
+  color: var(--border-color);
 }
 
 .check-terms a {

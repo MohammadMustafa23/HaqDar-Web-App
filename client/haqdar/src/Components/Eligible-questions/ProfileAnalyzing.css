@@ -1,0 +1,231 @@
+/* ==========================
+   HAQDAR ANALYSIS SCREEN
+========================== */
+
+.hd-analysis-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background:
+    radial-gradient(circle at top, #eef4ff 0%, #f8fbff 40%, var(--bg-secondary)fff 100%);
+}
+
+.hd-analysis-container {
+  width: 100%;
+  max-width: 700px;
+  padding: 40px 24px;
+  text-align: center;
+}
+
+/* ==========================
+   ANIMATION VISUAL
+========================== */
+
+.hd-analysis-visual {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  margin: auto;
+}
+
+.hd-core-card {
+  width: 100px;
+  height: 100px;
+  background: #0f4bd9;
+
+  border-radius: 24px;
+
+  position: absolute;
+  inset: 0;
+  margin: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow:
+    0 15px 40px rgba(15, 75, 217, 0.35),
+    0 0 0 10px rgba(15, 75, 217, 0.08);
+
+  animation: hdPulse 2s infinite;
+}
+
+.hd-core-icon {
+  font-size: 42px;
+  color: var(--card-bg);
+}
+
+.hd-orbit {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+
+  border-radius: 50%;
+  border: 2px dashed rgba(15, 75, 217, 0.15);
+}
+
+.hd-orbit-1 {
+  width: 170px;
+  height: 170px;
+  animation: hdRotate 12s linear infinite;
+}
+
+.hd-orbit-2 {
+  width: 220px;
+  height: 220px;
+  animation: hdRotateReverse 18s linear infinite;
+}
+
+/* ==========================
+   CONTENT
+========================== */
+
+.hd-analysis-content h1 {
+  margin-top: 30px;
+  margin-bottom: 14px;
+
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #082f8a;
+}
+
+.hd-analysis-content p {
+  max-width: 520px;
+  margin: auto;
+
+  color: #566273;
+  line-height: 1.8;
+  font-size: 1rem;
+}
+
+/* ==========================
+   PROGRESS
+========================== */
+
+.hd-progress-wrapper {
+  margin-top: 35px;
+}
+
+.hd-progress-bar {
+  height: 12px;
+  background: #e8edf8;
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+.hd-progress-fill {
+  height: 100%;
+  border-radius: 50px;
+
+  background: linear-gradient(
+    90deg,
+    #0f4bd9,
+    #2968ff
+  );
+
+  transition: width 0.4s ease;
+}
+
+.hd-progress-meta {
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 12px;
+
+  font-size: 14px;
+  color: #3355a3;
+}
+
+/* ==========================
+   TAGS
+========================== */
+
+.hd-analysis-tags {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+
+  margin-top: 40px;
+}
+
+.hd-analysis-tag {
+  background: var(--card-bg);
+  padding: 12px 18px;
+
+  border-radius: 14px;
+
+  border: 1px solid #e6ecfa;
+
+  box-shadow:
+    0 8px 20px rgba(0,0,0,0.04);
+
+  font-size: 14px;
+  color: #45556a;
+}
+
+/* ==========================
+   ANIMATIONS
+========================== */
+
+@keyframes hdRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes hdRotateReverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes hdPulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.08);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media (max-width: 768px) {
+
+  .hd-analysis-content h1 {
+    font-size: 1.7rem;
+  }
+
+  .hd-analysis-visual {
+    width: 180px;
+    height: 180px;
+  }
+
+  .hd-core-card {
+    width: 85px;
+    height: 85px;
+  }
+
+  .hd-core-icon {
+    font-size: 34px;
+  }
+}

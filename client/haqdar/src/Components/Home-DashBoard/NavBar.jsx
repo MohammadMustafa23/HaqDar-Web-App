@@ -1,18 +1,18 @@
-import { Bell, User, Menu, X } from "lucide-react";
+import { User, Menu, X, Sun, Moon,} from "lucide-react";
 import { useState } from "react";
-import { useNavigate,useLocation } from "react-router-dom";
-
-export default function Navbar({profileData}) {
+import { useNavigate, useLocation } from "react-router-dom";
+export default function Navbar({ profileData, theme, setTheme,scrollToSection,RefObj}) {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation(); // <-- Missing
   const handleProfileClick = () => {
-  if (location.pathname !== "/user-profile") {
-    navigate("/user-profile", {
-    });
-  }
-};
-console.log("NavBar props:", profileData);
+    if (location.pathname !== "/user-profile") {
+      navigate("/user-profile", {});
+    }
+  };
+  console.log("NavBar props:", profileData);
+  console.log(RefObj);
+  
   return (
     <>
       <nav className="home-nav-navbar">
@@ -24,8 +24,10 @@ console.log("NavBar props:", profileData);
             </div>
 
             <div className="home-nav-links">
-              <a href="#">Schemes</a>
-              <a href="#">Eligibility</a>
+              <a onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Home</a>
+              <a onClick={() => scrollToSection(RefObj.schemesRef)}>Schemes</a>
+              <a onClick={() => scrollToSection(RefObj.howWorkRef)}>How its Work</a>
+              <a onClick={() => scrollToSection(RefObj.faqRef)} >FAQ</a>
             </div>
           </div>
 
@@ -39,9 +41,10 @@ console.log("NavBar props:", profileData);
 
           {/* Desktop Right Side */}
           <div className="home-nav-right home-nav-profile-fade-in">
-            <button className="home-nav-notification-btn">
-              <Bell size={22} />
-              <span className="home-nav-notification-dot"></span>
+            <button
+              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+            >
+              {theme === "light" ? <Sun size={22} /> : <Moon size={22} />}
             </button>
 
             <div className="home-nav-divider"></div>
@@ -52,7 +55,10 @@ console.log("NavBar props:", profileData);
                 <p>Beneficiary</p>
               </div>
 
-              <div className="home-nav-profile-icon" onClick={handleProfileClick}>
+              <div
+                className="home-nav-profile-icon"
+                onClick={handleProfileClick}
+              >
                 <User size={22} />
               </div>
             </div>
@@ -70,8 +76,12 @@ console.log("NavBar props:", profileData);
 
           <div className="home-nav-mobile-menu">
             <div className="home-nav-mobile-header">
+              <button
+                onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+              >
+                {theme === "light" ? <Sun size={22} /> : <Moon size={22} />}
+              </button>
               <h3>Menu</h3>
-
               <button
                 className="home-nav-close-btn"
                 onClick={() => setMenuOpen(false)}

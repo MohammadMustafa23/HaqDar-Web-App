@@ -1,9 +1,9 @@
 import "./NavBar.css";
 import { useNavigate } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X,Sun,Moon } from "lucide-react";
 import { useState } from "react";
 
-export default function NavBar() {
+export default function NavBar({theme,setTheme}) {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
 
@@ -22,17 +22,13 @@ export default function NavBar() {
           <a>FAQ</a>
         </div>
 
-        <button
-          className="sign-up-btn"
-          onClick={() => navigate("/login")}
-        >
+        <button className="sign-up-btn" onClick={() => navigate("/login")}>
           Check Eligibility
         </button>
-
-        <button
-          className="menu-btn"
-          onClick={() => setOpen(!open)}
-        >
+        <button onClick={() => setTheme(theme === "light" ? "dark" : "light")}>
+          {theme === "light" ? <Sun size={22} /> : <Moon size={22} />}
+        </button>
+        <button className="menu-btn" onClick={() => setOpen(!open)}>
           {open ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
@@ -44,10 +40,7 @@ export default function NavBar() {
           <a>How its Work</a>
           <a>FAQ</a>
 
-          <button
-            className="mobile-signup"
-            onClick={() => navigate("/login")}
-          >
+          <button className="mobile-signup" onClick={() => navigate("/login")}>
             Check Eligibility
           </button>
         </div>

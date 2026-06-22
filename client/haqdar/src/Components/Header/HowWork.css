@@ -2,14 +2,14 @@
 
 .howworks-section {
   padding: 100px 60px;
-  background: #f8f9fb;
+  background: var(--bg-secondary);
 }
 
 .howworks-title {
   text-align: center;
   font-size: 3rem;
   font-weight: 700;
-  color: #111827;
+  color: var(--text-primary);
 }
 
 .howworks-subtitle {
@@ -21,7 +21,7 @@
 
   font-size: 1.15rem;
   line-height: 1.8;
-  color: #6b7280;
+  color: var(--text-secondary);
 }
 
 /* Cards */
@@ -37,9 +37,9 @@
 /* Card */
 
 .howworks-card {
-  background: #fff;
+  background: var(--card-bg);
 
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--border-color);
   border-radius: 18px;
 
   padding: 35px 25px;
@@ -68,7 +68,7 @@
   font-size: 2.8rem;
   font-weight: 700;
 
-  color: #d1d5db;
+  color: var(--border-color);
   margin-bottom: 22px;
 
   transition: 0.3s;
@@ -102,7 +102,7 @@
 
 .howworks-card:hover .howworks-icon {
   background: #0a3299;
-  color: #fff;
+  color: var(--bg-secondary);
 
   transform: scale(1.08);
 }
@@ -113,7 +113,7 @@
   font-size: 1.25rem;
   font-weight: 600;
 
-  color: #111827;
+  color: var(--text-primary);
 
   margin-bottom: 14px;
 
@@ -127,7 +127,7 @@
 /* Description */
 
 .howworks-card-text {
-  color: #6b7280;
+  color: var(--text-secondary);
 
   font-size: 1rem;
   line-height: 1.8;

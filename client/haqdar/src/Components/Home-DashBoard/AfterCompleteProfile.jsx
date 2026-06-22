@@ -1,11 +1,13 @@
 import { CheckCircle, BadgeCheck } from "lucide-react";
 import "./HomeDashBoard.css";
 
-export default function AfterCompleteProfile() {
+export default function AfterCompleteProfile({ total, profileData }) {
+  console.log(profileData);
+  console.log(total);
+  
   return (
     <section className="profile-success-section">
       <div className="profile-success-card">
-
         <div className="success-badge">
           <CheckCircle size={16} />
           <span>Profile Completed Successfully!</span>
@@ -13,15 +15,15 @@ export default function AfterCompleteProfile() {
 
         <div className="profile-content">
           <h1>
-            We found 12 schemes matching
+            We found {total.length || 0} schemes matching with
             <br />
             your profile.
           </h1>
 
           <p>
-            Based on your identity as a{" "}
-            <strong>Farmer in Bhopal</strong>, these government initiatives are
-            available for you to apply right now.
+            Based on your identity as a {" "}
+            <strong>{profileData.profile.occupation + " in " + profileData.profile.district}</strong>, these government
+            initiatives are available for you to apply right now.
           </p>
         </div>
 

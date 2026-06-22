@@ -6,10 +6,10 @@ import TopSchemes from '../Components/Main/TopSchemes'
 import Review from '../Components/Footer/Review'
 import FAQ from '../Components/Footer/FAQ'
 import Footer from '../Components/Footer/Footer'
-function HomePage() {
+function HomePage({theme,setTheme}) {
   return (
     <>
-      <NavBar/>
+      <NavBar theme={theme} setTheme={setTheme}/>
       <HeroSection/>
       <HowWork/>
       <TopSchemes/>

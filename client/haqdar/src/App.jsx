@@ -11,8 +11,19 @@ import { useState, useEffect } from "react";
 import { Toaster } from "sonner";
 import SavedSchemesPage from "./Components/SavedScheme/SavedSchemesPage.jsx";
 function App() {
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const [profileData, setProfileData] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (theme === "dark") {
+      document.body.classList.add("dark");
+    } else {
+      document.body.classList.remove("dark");
+    }
+
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -46,7 +57,16 @@ function App() {
         }}
       />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route
+          path="/"
+          element={
+            profileData ? (
+              <Navigate to="/home-page" replace />
+            ) : (
+              <HomePage theme={theme} setTheme={setTheme} />
+            )
+          }
+        />
         <Route
           path="/login"
           element={<AuthLogin setProfileData={setProfileData} />}
@@ -56,7 +76,12 @@ function App() {
           path="/home-page"
           element={
             <ProtectedRoute>
-              <HomeDash profileData={profileData} loading={loading} />
+              <HomeDash
+                profileData={profileData}
+                loading={loading}
+                theme={theme}
+                setTheme={setTheme}
+              />
             </ProtectedRoute>
           }
         />
@@ -85,7 +110,10 @@ function App() {
           }
         />
 
-        <Route path="/saved-schemes" element={<SavedSchemesPage />} />
+        <Route
+          path="/saved-schemes"
+          element={<SavedSchemesPage profileData={profileData} />}
+        />
       </Routes>
     </>
   );

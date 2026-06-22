@@ -1,22 +1,28 @@
 import { ClipboardCheck, Bookmark, Database } from "lucide-react";
 import "./HomeDashBoard.css";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { CountSchemesSkeleton } from "./Effect/CompleteProfileSkeleton";
-export default function CountSchemes() {
+export default function CountSchemes({ total }) {
   const [loading, setLoading] = useState(true);
-   useEffect(() => {
-      setTimeout(() => {
-        setLoading(false);
-      }, 2000);
-    }, []);
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
+  function TotalSaveScheme() {
+    const savedSchemes =
+      JSON.parse(localStorage.getItem("haqdar_saved_schemes")) || [];
+    const totalSavedSchemes = savedSchemes.length;
+    return totalSavedSchemes;
+  }
 
-     if (loading) {
-        return(
-          <>
-           <CountSchemesSkeleton/> 
-          </>
-        )
-      }
+  if (loading) {
+    return (
+      <>
+        <CountSchemesSkeleton />
+      </>
+    );
+  }
   return (
     <section className="count-schemes">
       <div className="scheme-card">
@@ -25,7 +31,7 @@ export default function CountSchemes() {
         </div>
 
         <h3>TOTAL ELIGIBLE SCHEMES</h3>
-        <h2>12</h2>
+        <h2>{total.length || 0}</h2>
       </div>
 
       <div className="scheme-card">
@@ -34,7 +40,7 @@ export default function CountSchemes() {
         </div>
 
         <h3>SAVED SCHEMES</h3>
-        <h2>07</h2>
+        <h2>{TotalSaveScheme()}</h2>
       </div>
 
       <div className="scheme-card">

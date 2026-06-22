@@ -2,14 +2,14 @@
 
 .faq-container {
   padding: 100px 80px;
-  background: #fff;
+  background: var(--bg-secondary);
 }
 
 .faq-title {
   text-align: center;
   font-size: 3rem;
   font-weight: 700;
-  color: #111827;
+  color: var(--text-primary);
   margin-bottom: 50px;
 }
 
@@ -19,11 +19,11 @@
 }
 
 .faq-card {
-  border: 1px solid #dbe1ea;
+  border: 1px solid var(--border-color);
   border-radius: 12px;
   margin-bottom: 20px;
   overflow: hidden;
-  background: white;
+  background: var(--card-bg);
   transition: all 0.3s ease;
 }
 
@@ -42,7 +42,7 @@
 .faq-card-header h2 {
   font-size: 1.4rem;
   font-weight: 600;
-  color: #111827;
+  color: var(--text-primary);
 }
 
 .faq-card-icon {
@@ -52,7 +52,7 @@
 
 .faq-card-answer {
   padding: 0 30px 25px;
-  color: #4b5563;
+  color: var(--text-secondary);
   line-height: 1.8;
   font-size: 1rem;
 }
@@ -69,7 +69,7 @@
 .faq-support-section h2 {
   font-size: 1.8rem;
   font-weight: 700;
-  color: #111827;
+  color: var(--text-primary);
   margin-bottom: 20px;
   text-align: center;
 }
@@ -101,13 +101,13 @@
 
 .faq-support-btn:hover {
   background: #0a3299;
-  color: white;
+  color: var(--card-bg);
 }
 
 .faq-eligibility-btn {
   border: 2px solid #0a3299;
   background: #0a3299;
-  color: white;
+  color: var(--card-bg);
 }
 
 .faq-eligibility-btn:hover {
@@ -192,4 +192,88 @@
     width: 100%;
     max-width: 300px;
   }
+}
+
+/* ================= REVIEW SECTION ================= */
+
+.review-head {
+  padding: 100px 80px;
+  background: var(--bg-secondary);
+}
+
+.review-heading {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.review-about {
+  text-align: center;
+  margin-top: 15px;
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+}
+
+.review-cards-row {
+  margin-top: 70px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.review-card {
+  width: 420px;
+
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 18px;
+
+  padding: 35px;
+  transition: all 0.3s ease;
+}
+
+.review-card:hover {
+  transform: translateY(-8px);
+
+  box-shadow:
+    0 10px 20px rgba(0, 0, 0, 0.05),
+    0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.review-stars {
+  display: flex;
+  gap: 6px;
+  color: #facc15;
+  font-size: 1.3rem;
+}
+
+.review-quote-icon {
+  font-size: 3.5rem;
+  color: var(--border-color);
+}
+
+.review-card-text {
+  margin-top: 20px;
+
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  font-style: italic;
+}
+
+.review-user-about p {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.review-user-about span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  margin-top: 4px;
+  color: var(--text-secondary);
 }

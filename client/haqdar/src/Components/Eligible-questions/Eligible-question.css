@@ -1,8 +1,8 @@
 .navbar-01 {
   width: 100%;
   height: 80px;
-  background: white;
-  border: 1px solid #d1d5db;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -52,7 +52,7 @@
 .progress-bar {
   width: 100%;
   height: 8px;
-  background: #e5e7eb;
+  background: var(--border-color);
   border-radius: 999px;
   overflow: hidden;
 }
@@ -72,7 +72,7 @@
 }
 
 .age-card {
-  background: #fff;
+  background: var(--bg-secondary);
   border: 1px solid #d9dce8;
   border-radius: 10px;
   padding: 24px;
@@ -132,7 +132,7 @@
 .button-group {
   margin-top: 24px;
   padding-top: 24px;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid var(--border-color);
   display: flex;
   justify-content: space-between;
 }
@@ -140,7 +140,7 @@
 .back-btn {
   padding: 12px 24px;
   border: 1px solid #163ea5;
-  background: white;
+  background: var(--card-bg);
   color: #163ea5;
   border-radius: 8px;
   cursor: pointer;
@@ -150,7 +150,7 @@
   padding: 12px 24px;
   border: none;
   background: #0d3ba8;
-  color: white;
+  color: var(--card-bg);
   border-radius: 10px;
   cursor: pointer;
 }
@@ -165,7 +165,7 @@
 }
 
 .gender-card {
-  background: #fff;
+  background: var(--bg-secondary);
   border: 1px solid #d9dce8;
   border-radius: 10px;
   padding: 24px;
@@ -238,7 +238,7 @@
 .back-btn {
   padding: 12px 24px;
   border: 1px solid #0d3ba8;
-  background: white;
+  background: var(--card-bg);
   color: #0d3ba8;
   border-radius: 10px;
   cursor: pointer;
@@ -248,7 +248,7 @@
   padding: 12px 24px;
   border: none;
   background: #0d3ba8;
-  color: white;
+  color: var(--card-bg);
   border-radius: 10px;
   cursor: pointer;
 }
@@ -260,7 +260,7 @@
 }
 
 .education-card {
-  background: #fff;
+  background: var(--bg-secondary);
   border: 1px solid #d9dce8;
   border-radius: 10px;
   padding: 24px;
@@ -304,7 +304,7 @@
 .education-buttons {
   margin-top: 40px;
   padding-top: 24px;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid var(--border-color);
   display: flex;
   justify-content: space-between;
 }
@@ -312,7 +312,7 @@
 .back-btn {
   padding: 12px 24px;
   border: 1px solid #0b3aa4;
-  background: white;
+  background: var(--card-bg);
   color: #0b3aa4;
   border-radius: 8px;
   cursor: pointer;
@@ -322,7 +322,7 @@
   padding: 12px 24px;
   border: none;
   background: #0b3aa4;
-  color: white;
+  color: var(--card-bg);
   border-radius: 8px;
   cursor: pointer;
 }
@@ -336,7 +336,7 @@
 }
 
 .category-card {
-  background: #fff;
+  background: var(--bg-secondary);
   border: 1px solid #d9dce8;
   border-radius: 10px;
   padding: 24px;
@@ -417,7 +417,7 @@
 .category-buttons {
   margin-top: 40px;
   padding-top: 24px;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid var(--border-color);
   display: flex;
   justify-content: space-between;
 }
@@ -425,7 +425,7 @@
 .back-btn {
   padding: 12px 24px;
   border: 1px solid #0b3aa4;
-  background: white;
+  background: var(--card-bg);
   color: #0b3aa4;
   border-radius: 8px;
   cursor: pointer;
@@ -435,7 +435,7 @@
   padding: 12px 24px;
   border: none;
   background: #0b3aa4;
-  color: white;
+  color: var(--card-bg);
   border-radius: 8px;
   cursor: pointer;
 }
@@ -449,7 +449,7 @@
 }
 
 .income-card {
-  background: white;
+  background: var(--card-bg);
   border: 1px solid #d9dce8;
   border-radius: 10px;
   padding: 24px;
@@ -521,7 +521,7 @@
 .income-buttons {
   margin-top: 24px;
   padding-top: 24px;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid var(--border-color);
   display: flex;
   justify-content: space-between;
 }
@@ -529,7 +529,7 @@
 .back-btn {
   padding: 12px 24px;
   border: 1px solid #0b3aa4;
-  background: white;
+  background: var(--card-bg);
   color: #0b3aa4;
   border-radius: 8px;
   cursor: pointer;
@@ -539,7 +539,7 @@
   padding: 12px 24px;
   border: none;
   background: #0b3aa4;
-  color: white;
+  color: var(--card-bg);
   border-radius: 8px;
   cursor: pointer;
 }
@@ -553,7 +553,7 @@
 }
 
 .district-card {
-  background: white;
+  background: var(--card-bg);
   border: 1px solid #d9dce8;
   border-radius: 10px;
   padding: 24px;
@@ -606,7 +606,7 @@
 
 .district-selected {
   background: #0b3aa4;
-  color: white;
+  color: var(--card-bg);
 }
 
 .district-buttons {
@@ -627,7 +627,7 @@
 }
 
 .occupation-card {
-  background: white;
+  background: var(--card-bg);
   border: 1px solid #d9dce8;
   border-radius: 10px;
   padding: 24px;
@@ -733,7 +733,7 @@
 }
 
 .pwd-card {
-  background: white;
+  background: var(--card-bg);
   border: 1px solid #d9dce8;
   border-radius: 10px;
   padding: 24px;
@@ -782,7 +782,7 @@
 .pwd-buttons {
   margin-top: 24px;
   padding-top: 24px;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid var(--border-color);
   display: flex;
   justify-content: space-between;
 }

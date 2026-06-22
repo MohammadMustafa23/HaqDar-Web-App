@@ -20,7 +20,9 @@ export default function ChatMessage({ message }) {
           isBot ? "bot-bubble" : "user-bubble"
         }`}
       >
-        {message.text}
+        <div className="message-content">
+          {message?.text || ""}
+        </div>
       </div>
     </div>
   );

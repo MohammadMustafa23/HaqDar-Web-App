@@ -4,8 +4,8 @@ import ChatArea from "../Components/AiChatBot/ChatArea";
 import QuickActions from "../Components/AiChatBot/QuickActions";
 import MessageInput from "../Components/AiChatBot/MessageInput";
 import { useState } from "react";
-
-export default function AiSidebar({ isOpen , onClose }) {
+import { askAI } from "../Services/ai.Service.js";
+export default function AiSidebar({ isOpen, onClose }) {
   const [messages, setMessages] = useState([
     {
       id: 1,
@@ -14,29 +14,36 @@ export default function AiSidebar({ isOpen , onClose }) {
       time: "Now",
     },
   ]);
+  const [loading, setLoading] = useState(false);
 
   const handleSend = async (text) => {
     if (!text.trim()) return;
 
-    const userMessage = {
-      id: Date.now(),
-      sender: "user",
-      text,
-      time: "Now",
-    };
+    const userMessage = {role: "user",content: text};
+    console.log(userMessage);
+    
 
+    
     setMessages((prev) => [...prev, userMessage]);
 
-    // AI API CALL HERE
+    setLoading(true);
 
-    const botReply = {
-      id: Date.now() + 1,
-      sender: "bot",
-      text: "AI response will come here.",
-      time: "Now",
-    };
+    try {
+      const response = await askAI({ message: text, history: messages });
 
-    setMessages((prev) => [...prev, botReply]);
+      console.log(response.response);
+      
+      const botMessage = {
+        role: "assistant",
+        content: response.response.answer,
+      };
+
+      setMessages((prev) => [...prev, botMessage]);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (!isOpen) return null;
@@ -45,7 +52,7 @@ export default function AiSidebar({ isOpen , onClose }) {
     <div className="ai-sidebar">
       <AiHeader onClose={onClose} />
 
-      <ChatArea messages={messages} />
+      <ChatArea messages={messages} loading={loading} />
 
       <QuickActions onSelect={handleSend} />
 

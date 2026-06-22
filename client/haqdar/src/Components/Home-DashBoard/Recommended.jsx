@@ -9,7 +9,7 @@ import {
 import NoSchemesFound from "./NoSchemesFound";
 import { useState, useEffect } from "react";
 import AiSidebar from "../../Pages/AiSidebar";
-export default function Recommended({ onViewDetails, recommendations = [] }) {
+export default function Recommended({ onViewDetails, recommendations = [] ,schemesRef}) {
   const [loading, setLoading] = useState(true);
   const [isAiOpen, setIsAiOpen] = useState(false);
 
@@ -27,10 +27,9 @@ export default function Recommended({ onViewDetails, recommendations = [] }) {
     ...scheme.metadata,
   }));
 
-  console.log(schemes);
 
   return (
-    <section className="recommended-layout">
+    <section className="recommended-layout" ref={schemesRef}>
       <div className="recommended-left">
         {loading ? (
           <div className="recommended-title animate-pulse">

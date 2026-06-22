@@ -10,7 +10,7 @@
   align-items: center;
   justify-content: space-between;
 
-  background: #f7f7f9;
+  background: var(--card-bg);
   border-bottom: 1px solid #d9d9d9;
 }
 
@@ -28,8 +28,8 @@
 
   border-radius: 10px;
 
-  background: #0a3299;
-  color: white;
+  background: var(--primary-hover);
+  color: var(--card-bg);
 
   display: flex;
   align-items: center;
@@ -42,7 +42,7 @@
 .logo-text {
   font-size: 1.4rem;
   font-weight: 700;
-  color: #0a3299;
+  color: var(--primary-hover);
 }
 
 /* Links */
@@ -56,7 +56,7 @@
 .nav-links a {
   text-decoration: none;
   font-size: 1rem;
-  color: #2b2b2b;
+  color: var(--text-primary);
   cursor: pointer;
 
   transition: 0.2s;
@@ -75,8 +75,8 @@
 
   border-radius: 8px;
 
-  background: #0a3299;
-  color: white;
+ background: var(--primary-hover);
+  color: var(--card-bg);
 
   font-size: 0.95rem;
   font-weight: 600;
@@ -177,15 +177,15 @@
 
     padding: 20px;
 
-    background: white;
-    border-top: 1px solid #e5e7eb;
+    background: var(--card-bg);
+    border-top: 1px solid var(--border-color);
 
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   }
 
   .mobile-menu a {
     text-decoration: none;
-    color: #111827;
+    color: var(--text-primary);
     font-size: 16px;
     font-weight: 500;
   }
@@ -194,8 +194,8 @@
     border: none;
     border-radius: 8px;
 
-    background: #0a3299;
-    color: white;
+    background: var(--primary-hover);
+    color: var(--card-bg);
 
     padding: 12px;
     font-weight: 600;

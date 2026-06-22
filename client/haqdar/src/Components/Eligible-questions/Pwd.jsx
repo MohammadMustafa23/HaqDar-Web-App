@@ -3,9 +3,13 @@ import { Accessibility, User, CheckCircle } from "lucide-react";
 import Nav from "./Nav";
 import Progress from "./Progress";
 import "./Eligible-question.css";
+import ProfileAnalyzing from "./ProfileAnalyzing";
 
 export default function Pwd({ prev, setFormData, loading, handleSubmit }) {
   const [pwd, setPwd] = useState("");
+  if (loading) {
+    return <ProfileAnalyzing />;
+  }
   return (
     <div>
       <Nav />
@@ -37,7 +41,6 @@ export default function Pwd({ prev, setFormData, loading, handleSubmit }) {
               className={`pwd-option ${pwd === "No" ? "pwd-selected" : ""}`}
               onClick={() => {
                 setPwd("No");
-
                 setFormData((prev) => ({
                   ...prev,
                   pwd: "Yes",

@@ -21,8 +21,8 @@ body {
   z-index: 1000;
 
   height: 90px;
-  background: #fff;
-  border-bottom: 1px solid #e5e7eb;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .home-nav-container {
@@ -56,8 +56,8 @@ body {
   width: 42px;
   height: 42px;
 
-  background: #0a2e8a;
-  color: #fff;
+  background: var(--primary);
+  color: var(--bg-secondary);
 
   display: flex;
   align-items: center;
@@ -71,7 +71,7 @@ body {
 .home-nav-logo-text {
   font-size: 28px;
   font-weight: 700;
-  color: #0a2e8a;
+  color: var(--primary);
 }
 
 /* ========================= */
@@ -86,14 +86,14 @@ body {
 
 .home-nav-links a {
   text-decoration: none;
-  color: #374151;
+  color: var(--border-color);
   font-size: 17px;
   font-weight: 500;
   transition: 0.3s;
 }
 
 .home-nav-links a:hover {
-  color: #0a2e8a;
+  color: var(--primary);
 }
 
 /* ========================= */
@@ -127,7 +127,7 @@ body {
 .home-nav-divider {
   width: 1px;
   height: 40px;
-  background: #d1d5db;
+  background: var(--border-color);
 }
 
 .home-nav-profile-section {
@@ -143,13 +143,13 @@ body {
 .home-nav-profile-info h3 {
   font-size: 17px;
   font-weight: 600;
-  color: #111827;
+  color: var(--text-primary);
 }
 
 .home-nav-profile-info p {
   font-size: 11px;
   text-transform: uppercase;
-  color: #6b7280;
+  color: var(--text-secondary);
   font-weight: 600;
 }
 
@@ -158,7 +158,7 @@ body {
   height: 46px;
 
   background: #e0e7ff;
-  color: #0a2e8a;
+  color: var(--primary);
 
   display: flex;
   align-items: center;
@@ -167,8 +167,8 @@ body {
   border-radius: 12px;
 }
 .home-nav-profile-icon:hover {
-  background: #0A2E8A;
-  color: white;
+  background: var(--primary);
+  color: var(--card-bg);
 }
 
 /* ========================= */
@@ -180,7 +180,7 @@ body {
   border: none;
   background: transparent;
   cursor: pointer;
-  color: #0a2e8a;
+  color: var(--primary);
 }
 
 /* ========================= */
@@ -313,7 +313,7 @@ body {
   max-width: 80%;
   height: 100vh;
 
-  background: #fff;
+  background: var(--bg-secondary);
   z-index: 1002;
 
   padding: 20px;
@@ -335,7 +335,7 @@ body {
 }
 
 .home-nav-mobile-header h3 {
-  color: #0a2e8a;
+  color: var(--primary);
   font-size: 22px;
   font-weight: 700;
 }
@@ -344,24 +344,24 @@ body {
   border: none;
   background: transparent;
   cursor: pointer;
-  color: #0a2e8a;
+  color: var(--primary);
 }
 
 .home-nav-mobile-menu a {
   text-decoration: none;
-  color: #374151;
+  color: var(--border-color);
 
   font-size: 17px;
   font-weight: 500;
 
   padding: 15px 0;
 
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--border-color);
   transition: 0.3s;
 }
 
 .home-nav-mobile-menu a:hover {
-  color: #0a2e8a;
+  color: var(--primary);
   padding-left: 8px;
 }
 
@@ -391,7 +391,7 @@ body {
   padding: 70px;
   border-radius: 24px;
   background: linear-gradient(135deg, #0b2e99, #123db7);
-  color: white;
+  color: var(--card-bg);
 
   display: flex;
   justify-content: space-between;
@@ -443,7 +443,7 @@ body {
   padding: 20px 40px;
   border-radius: 12px;
 
-  background: white;
+  background: var(--card-bg);
   color: #0b2e99;
   font-size: 20px;
   font-weight: 500;
@@ -459,9 +459,9 @@ body {
   width: 42px;
   height: 42px;
   border-radius: 10px;
-  color: white;
+  color: var(--card-bg);
   background: #0b2e99;
-  border-left: white;
+  border-left: var(--card-bg);
 
   display: flex;
   align-items: center;
@@ -514,7 +514,7 @@ body {
   width: 33%;
   height: 100%;
   border-radius: 50px;
-  background: white;
+  background: var(--card-bg);
 }
 
 .steps {
@@ -708,7 +708,7 @@ body {
 
 .profile-success-card {
   position: relative;
-  background: #ffffff;
+  background: var(--bg-secondary)fff;
   border: 1px solid #d9d9d9;
   border-radius: 16px;
   padding: 32px;
@@ -745,11 +745,11 @@ body {
   margin-top: 20px;
   font-size: 18px;
   line-height: 1.6;
-  color: #4b5563;
+  color: var(--text-secondary);
 }
 
 .profile-content strong {
-  color: #111827;
+  color: var(--text-primary);
   font-weight: 700;
 }
 
@@ -849,7 +849,7 @@ body {
 }
 
 .scheme-card {
-  background: white;
+  background: var(--card-bg);
   border: 1px solid #d8dce8;
   border-radius: 14px;
 
@@ -999,12 +999,12 @@ body {
 .recommended-title h2 {
   font-size: 30px;
   font-weight: 600;
-  color: #111827;
+  color: var(--text-primary);
 }
 
 .top-match {
   background: #1e40af;
-  color: white;
+  color: var(--card-bg);
   padding: 6px 12px;
   border-radius: 999px;
   font-size: 11px;
@@ -1016,16 +1016,16 @@ body {
   align-items: center;
   gap: 6px;
 
-  color: #0b3db8;
+  color: var(--primary);
   text-decoration: none;
   font-size: 16px;
   font-weight: 600;
 }
 
 .rec-scheme-card {
-  background: white;
+  background: var(--card-bg);
   border-radius: 22px;
-  border-left: 6px solid #0b3db8;
+  border-left: 6px solid var(--primary);
   padding: 35px;
   margin-top: 20px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
@@ -1047,12 +1047,12 @@ body {
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 18px;
-  color: #111827;
+  color: var(--text-primary);
 }
 
 .rec-scheme-desc {
   font-size: 15px;
-  color: #4b5563;
+  color: var(--text-secondary);
   line-height: 1.6;
 }
 
@@ -1068,7 +1068,7 @@ body {
   gap: 8px;
 
   background: #f3f4f6;
-  color: #0b3db8;
+  color: var(--primary);
 
   padding: 12px 18px;
   border-radius: 10px;
@@ -1081,8 +1081,8 @@ body {
   width: 100%;
   margin-top: 35px;
 
-  background: #0b3db8;
-  color: white;
+  background: var(--primary);
+  color: var(--card-bg);
 
   border: none;
   border-radius: 12px;
@@ -1126,7 +1126,7 @@ body {
   border-radius: 12px;
 
   background: #f3f4f6;
-  color: #0b3db8;
+  color: var(--primary);
 
   display: flex;
   align-items: center;
@@ -1137,8 +1137,8 @@ body {
 }
 
 .save-btn:hover {
-  background: #0b3db8;
-  color: white;
+  background: var(--primary);
+  color: var(--card-bg);
 
   transform: scale(1.08);
 }
@@ -1154,7 +1154,7 @@ body {
 
 /* AI Card */
 .ask-ai-card {
-  background: #fff;
+  background: var(--bg-secondary);
   border: 2px dashed #d3d9e8;
   border-radius: 20px;
   margin-top: 80px;
@@ -1207,7 +1207,7 @@ body {
   font-size: 16px;
   line-height: 1.7;
 
-  color: #6b7280;
+  color: var(--text-secondary);
 
   margin-bottom: 24px;
 }
@@ -1220,7 +1220,7 @@ body {
   border-radius: 14px;
 
   background: #3554b7;
-  color: white;
+  color: var(--card-bg);
 
   font-size: 18px;
   font-weight: 600;
@@ -1451,7 +1451,7 @@ body {
   width: 500px;
   max-width: 100%;
   height: 100vh;
-  background: white;
+  background: var(--card-bg);
   z-index: 1000;
   padding: 24px;
   overflow-y: auto;
@@ -1482,7 +1482,7 @@ body {
 }
 
 .nsf-card {
-  background: #fff;
+  background: var(--bg-secondary);
   border-radius: 20px;
   padding: 70px 30px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
@@ -1507,7 +1507,7 @@ body {
 .nsf-title {
   font-size: 2rem;
   font-weight: 600;
-  color: #111827;
+  color: var(--text-primary);
   margin-bottom: 18px;
 }
 
@@ -1516,7 +1516,7 @@ body {
   margin: 0 auto;
   font-size: 1.1rem;
   line-height: 1.8;
-  color: #6b7280;
+  color: var(--text-secondary);
 }
 
 .nsf-actions {
@@ -1531,8 +1531,8 @@ body {
   padding: 14px 32px;
   border: none;
   border-radius: 10px;
-  background: #0a2e8a;
-  color: white;
+  background: var(--primary);
+  color: var(--card-bg);
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -1545,10 +1545,10 @@ body {
 
 .nsf-secondary-btn {
   padding: 14px 32px;
-  border: 2px solid #0a2e8a;
+  border: 2px solid var(--primary);
   border-radius: 10px;
-  background: white;
-  color: #0a2e8a;
+  background: var(--card-bg);
+  color: var(--primary);
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;

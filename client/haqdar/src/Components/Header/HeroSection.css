@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 150px 150px;
-  background: #f3f4f6;       /* surface-container-low */
+  background: var(--card-bg);       /* surface-container-low */
   gap: 80px;
   min-height: 480px;
 }
@@ -23,7 +23,7 @@
   font-family: 'Atkinson Hyperlegible Next', sans-serif;
   font-size: 3rem;
   font-weight: 700;
-  color: #00288e;            /* primary */
+  color: var(--primary);            /* primary */
   line-height: 1.15;
   margin: 0;
   letter-spacing: -0.04em;
@@ -32,7 +32,7 @@
 .hero-para {
   font-family: 'Inter', sans-serif;
   font-size: 17px;
-  color: #444653;            /* on-surface-variant */
+  color: var(--text-secondary);            /* on-surface-variant */
   line-height: 1.65;
   margin: 0;
   max-width: 520px;
@@ -55,7 +55,7 @@
   gap: 6px;
   font-size: 14px;
   font-weight: 600;
-  color: #191c1e;            /* on-surface */
+ color: var(--text-secondary);         /* on-surface */
 }
 
 .trust-item .icon {
@@ -72,8 +72,8 @@
 }
 
 .hero-btn-01 {
-  background: #00288e;       /* primary */
-  color: #ffffff;            /* on-primary */
+  background: var(--primary-hover);       /* primary */
+  color: var(--text-primary);           /* on-primary */
   border: none;
   padding: 0 28px;
   height: 52px;              /* > 48px min touch target */
@@ -90,7 +90,7 @@
 
 .hero-btn-02 {
   background: transparent;
-  color: #00288e;            /* primary */
+  color: var(--text-primary);         /* primary */
   border: 2px solid #00288e;
   padding: 0 28px;
   height: 52px;
@@ -102,8 +102,8 @@
 }
 
 .hero-btn-02:hover {
-  background: #00288e;
-  color: #ffffff;
+  background: var(--primary-hover);
+  color: var(--bg-secondary)fff;
 }
 
 
@@ -118,7 +118,7 @@
   height: auto;
   display: block;
   border-radius: 12px;
-  border: 10px solid white;
+  border: 10px solid var(--card-bg);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
 }
 

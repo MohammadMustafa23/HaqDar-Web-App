@@ -10,7 +10,7 @@
   align-items: center;
   justify-content: space-between;
 
-  background: #f7f7f9;
+  background: var(--bg-secondary);
   border-bottom: 1px solid #d9d9d9;
 }
 
@@ -23,13 +23,13 @@
 .auth-nav-logo {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #0a3299;
+  color: var(--primary);
   cursor: pointer;
 }
 
 .auth-nav-links a {
   text-decoration: none;
-  color: #2b2b2b;
+  color: var(--text-primary);
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
@@ -44,9 +44,9 @@
 .auth-nav-signup {
   font-size: 1rem;
   font-weight: 600;
-  color: #0a3299;
+ color: var(--primary);
 
-  border-bottom: 2px solid #0a3299;
+  border-bottom: 2px solid var(--primary);;
   padding-bottom: 4px;
 
   cursor: pointer;

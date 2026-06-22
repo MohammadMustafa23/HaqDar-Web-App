@@ -2,13 +2,13 @@
 
 .top-scheme-container {
   padding: 100px 80px;
-  background: #f8f9fb;
+  background: var(--bg-secondary);
 }
 
 .top-scheme-header h1 {
   font-size: 2rem;
   font-weight: 700;
-  color: #111827;
+  color: var(--text-primary);
   padding-left: 45px;
 }
 
@@ -21,7 +21,7 @@
 
 .top-scheme-description p {
   font-size: 1.2rem;
-  color: #6b7280;
+  color: var(--text-secondary);
   padding-left: 45px;
 }
 
@@ -50,8 +50,8 @@
   width: 400px;
   height: 400px;
 
-  background: white;
-  border: 1px solid #dbe1ea;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
   border-radius: 14px;
 
   padding: 25px;
@@ -90,14 +90,14 @@
 .top-scheme-title {
   font-size: 1.2rem;
   font-weight: 700;
-  color: #111827;
+  color: var(--text-primary);
   line-height: 1.4;
 }
 
 .top-scheme-text {
   margin-top: 12px;
 
-  color: #4b5563;
+  color: var(--text-secondary);
   font-size: 0.95rem;
   line-height: 1.6;
 
@@ -123,7 +123,7 @@
   margin-top: 15px;
   padding-top: 15px;
 
-  border-top: 1px solid #dbe1ea;
+  border-top: 1px solid var(--border-color);
 
   display: flex;
   justify-content: center;
@@ -147,7 +147,7 @@
 
 .top-scheme-footer button:hover {
   background: #0a3299;
-  color: white;
+  color: var(--card-bg);
 }
 
 /* ================= RESPONSIVE ================= */

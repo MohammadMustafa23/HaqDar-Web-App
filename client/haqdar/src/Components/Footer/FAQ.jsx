@@ -2,7 +2,9 @@ import "./FAQ.css";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { MdKeyboardArrowUp } from "react-icons/md";
 import { useState } from "react";
-export default function FAQ() {
+import AiSidebar from "../../Pages/AiSidebar";
+export default function FAQ({faqRef}) {
+  const [isAiOpen, setIsAiOpen] = useState(false);
   const faqs = [
     {
       question: "What is HaqDar?",
@@ -23,7 +25,7 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(null);
   return (
     <div className="faq-container">
-      <h1 className="faq-title">Frequently Asked Questions</h1>
+      <h1 className="faq-title" ref={faqRef}>Frequently Asked Questions</h1>
 
       <div className="faq-wrapper">
         {faqs.map((data, index) => (
@@ -54,11 +56,14 @@ export default function FAQ() {
         <h2>Still have questions?</h2>
 
         <div className="faq-support-buttons">
-          <button className="faq-support-btn">Contact Support</button>
+          <button className="faq-support-btn" onClick={() => setIsAiOpen(true)}>
+            Contact Support
+          </button>
 
-          <button className="faq-eligibility-btn">Check Eligibility</button>
+          
         </div>
       </div>
+      <AiSidebar isOpen={isAiOpen} onClose={() => setIsAiOpen(false)} />
     </div>
   );
 }

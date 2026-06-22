@@ -1,4 +1,59 @@
 @import "tailwindcss";
+
+:root {
+/* LIGHT MODE */
+
+--primary: #1e40af;
+--primary-hover: #2563eb;
+
+--bg-primary: #f8f9fb;
+--bg-secondary: #f3f4f6;
+
+--card-bg: #ffffff;
+
+--text-primary: #191c1e;
+--text-secondary: #444653;
+
+--border-color: var(--border-color);
+
+--success: #22c55e;
+--warning: #f59e0b;
+--danger: #ef4444;
+
+--shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+--shadow-md: 0 10px 25px rgba(0, 0, 0, 0.08);
+--chat-bg: linear-gradient(to bottom,#f8f9fb,#eef4ff);
+  --surface-bg: #f1f5f9;
+  --input-bg: #f8fafc;
+
+}
+
+body.dark {
+/* DARK MODE */
+
+--primary: #3b82f6;
+--primary-hover: #60a5fa;
+
+--bg-primary: #0b1220;
+--bg-secondary: #111827;
+
+--card-bg: #1e293b;
+
+--text-primary: #f8fafc;
+--text-secondary: #cbd5e1;
+
+--border-color: #334155;
+
+--shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.25);
+--shadow-md: 0 12px 30px rgba(0, 0, 0, 0.35);
+ --chat-bg: linear-gradient(to bottom,#0b1220,#111827);
+  --surface-bg: #1e293b;
+  --input-bg: #0f172a;
+}
+
 body {
-  font-family: "Poppins", sans-serif;
+font-family: "Poppins", sans-serif;
+background: var(--bg-primary);
+color: var(--text-primary);
+transition: all 0.3s ease;
 }

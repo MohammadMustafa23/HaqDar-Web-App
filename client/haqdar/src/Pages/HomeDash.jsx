@@ -6,11 +6,13 @@ import Recommended from "../Components/Home-DashBoard/Recommended";
 import "../Components/Home-DashBoard/HomeDashBoard.css";
 import AfterCompleteProfile from "../Components/Home-DashBoard/AfterCompleteProfile";
 import OpenSchemes from "./OpenSchemes.jsx";
-
-import { useState, useEffect } from "react";
+import Review from "../Components/Footer/Review.jsx";
+import FAQ from "../Components/Footer/FAQ.jsx";
+import { useState, useEffect,useRef } from "react";
+import HowWork from "../Components/Header/HowWork.jsx";
 import { getMatchedSchemes } from "../Services/recommendation.service.js";
 
-export default function HomeDash({ profileData,loading }) {
+export default function HomeDash({ profileData, loading, theme, setTheme }) {
   const [selectedScheme, setSelectedScheme] = useState(null);
   const [open, setOpen] = useState(false);
 
@@ -19,6 +21,21 @@ export default function HomeDash({ profileData,loading }) {
 
   const profileCompleted = profileData?.profileCompleted;
   const user = profileData?.user;
+  const schemesRef = useRef(null);
+  const howWorkRef = useRef(null);
+  const faqRef = useRef(null);
+  const RefObj = {
+    schemesRef,
+    howWorkRef,
+    faqRef
+  }
+
+  const scrollToSection = (ref) => {
+    ref.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
 
   const handleOpenScheme = (scheme) => {
     setSelectedScheme(scheme);
@@ -43,33 +60,42 @@ export default function HomeDash({ profileData,loading }) {
     fetchSchemes();
   }, [profileCompleted]);
   if (loading) {
-  return (
-    <div className="auth-loading">
-      <div className="auth-spinner"></div>
-      <p>Loading...</p>
-    </div>
-  );
-}
+    return (
+      <div className="auth-loading">
+        <div className="auth-spinner"></div>
+        <p>Loading...</p>
+      </div>
+    );
+  }
 
   return (
     <>
-      <NavBar profileData={user} />
+      <NavBar profileData={user} theme={theme} setTheme={setTheme}  scrollToSection={scrollToSection}  RefObj={RefObj} />
 
       <div className="center">
-        {profileCompleted ? <AfterCompleteProfile /> : <CompleteProfile />}
+        {profileCompleted ? (
+          <AfterCompleteProfile profileData={profileData} total={schemes} />
+        ) : (
+          <CompleteProfile />
+        )}
 
-        <CountSchemes />
+        <CountSchemes total={schemes} />
 
         <Recommended
           recommendations={schemes}
           loading={schemeLoading}
           onViewDetails={handleOpenScheme}
+          schemesRef={schemesRef}
         />
       </div>
 
       {open && (
         <OpenSchemes scheme={selectedScheme} onClose={() => setOpen(false)} />
       )}
+      <HowWork howWorkRef={howWorkRef}/>
+      <Review />
+      <FAQ faqRef={faqRef} />
+
       <Footer />
     </>
   );

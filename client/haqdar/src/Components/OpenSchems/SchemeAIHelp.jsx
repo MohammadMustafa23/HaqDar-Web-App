@@ -1,7 +1,7 @@
 import "./Open.css";
 import { Bot, ExternalLink } from "lucide-react";
 
-export default function SchemeAIHelp() {
+export default function SchemeAIHelp({onOpen}) {
   return (
     <div className="ai-help-card">
       <div className="ai-help-header">
@@ -21,7 +21,8 @@ export default function SchemeAIHelp() {
         personalized check-up.
       </p>
 
-      <button className="chat-btn">
+      <button className="chat-btn"
+         onClick={onOpen}>
         Start Chatting
         <ExternalLink size={16} />
       </button>
