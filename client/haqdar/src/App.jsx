@@ -105,7 +105,7 @@ function App() {
           path="/user-profile"
           element={
             <ProtectedRoute>
-              <ProfilePage />
+              <ProfilePage  theme={theme} setTheme={setTheme} />
             </ProtectedRoute>
           }
         />

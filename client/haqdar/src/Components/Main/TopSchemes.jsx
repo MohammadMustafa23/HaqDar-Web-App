@@ -6,9 +6,9 @@ import {
   MdCheckCircle,
   MdArrowForward,
 } from "react-icons/md";
-export default function TopSchemes() {
+export default function TopSchemes({schemesRef}) {
   return (
-    <div className="top-scheme-container">
+    <div className="top-scheme-container" ref={schemesRef}>
       <div className="top-scheme-header">
         <h1>Top Government Schemes</h1>
 

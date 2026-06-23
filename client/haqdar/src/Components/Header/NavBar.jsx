@@ -1,9 +1,9 @@
 import "./NavBar.css";
 import { useNavigate } from "react-router-dom";
-import { Menu, X,Sun,Moon } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 import { useState } from "react";
 
-export default function NavBar({theme,setTheme}) {
+export default function NavBar({ theme, setTheme,scrollToSection,RefObj }) {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
 
@@ -16,10 +16,10 @@ export default function NavBar({theme,setTheme}) {
         </div>
 
         <div className="nav-links">
-          <a>Home</a>
-          <a>Schemes</a>
-          <a>How its Work</a>
-          <a>FAQ</a>
+          <a onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Home</a>
+          <a onClick={() => scrollToSection(RefObj.schemesRef)}>Schemes</a>
+          <a onClick={() => scrollToSection(RefObj.howWorkRef)}>How its Work</a>
+          <a onClick={() => scrollToSection(RefObj.faqRef)}>FAQ</a>
         </div>
 
         <button className="sign-up-btn" onClick={() => navigate("/login")}>

@@ -10,8 +10,6 @@ export default function Navbar({ profileData, theme, setTheme,scrollToSection,Re
       navigate("/user-profile", {});
     }
   };
-  console.log("NavBar props:", profileData);
-  console.log(RefObj);
   
   return (
     <>
@@ -90,10 +88,10 @@ export default function Navbar({ profileData, theme, setTheme,scrollToSection,Re
               </button>
             </div>
 
-            <a href="#">Schemes</a>
-            <a href="#">Eligibility</a>
-            <a href="#">Notifications</a>
-            <a href="#">Profile</a>
+              <a onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Home</a>
+              <a onClick={() => scrollToSection(RefObj.schemesRef)}>Schemes</a>
+              <a onClick={() => scrollToSection(RefObj.howWorkRef)}>How its Work</a>
+              <a onClick={() => scrollToSection(RefObj.faqRef)} >FAQ</a>
           </div>
         </>
       )}

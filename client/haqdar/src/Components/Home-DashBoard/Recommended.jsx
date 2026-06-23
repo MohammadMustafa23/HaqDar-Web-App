@@ -29,7 +29,7 @@ export default function Recommended({ onViewDetails, recommendations = [] ,schem
 
 
   return (
-    <section className="recommended-layout" ref={schemesRef}>
+    <section className="recommended-layout"  ref={schemesRef}>
       <div className="recommended-left">
         {loading ? (
           <div className="recommended-title animate-pulse">
@@ -64,7 +64,7 @@ export default function Recommended({ onViewDetails, recommendations = [] ,schem
               />
             ))
         ) : (
-          <NoSchemesFound />
+          <NoSchemesFound/>
         )}
       </div>
       <div className="recommended-right">

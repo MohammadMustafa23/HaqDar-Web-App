@@ -60,7 +60,7 @@ export default function CompleteProfile() {
           <span>33%</span>
         </div>
 
-        <div className="progress-bar">
+        <div className="progress-bar-01">
           <div className="progress-fill"></div>
         </div>
 
@@ -77,7 +77,7 @@ export default function CompleteProfile() {
 
           <div className="step">
             <span className="circle"></span>
-            <p>Occupation Details</p>
+            <p>Age & Caste</p>
           </div>
         </div>
       </div>

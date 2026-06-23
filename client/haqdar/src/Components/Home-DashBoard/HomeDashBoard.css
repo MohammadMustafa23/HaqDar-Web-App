@@ -86,7 +86,7 @@ body {
 
 .home-nav-links a {
   text-decoration: none;
-  color: var(--border-color);
+ color: var(--text-primary);
   font-size: 17px;
   font-weight: 500;
   transition: 0.3s;
@@ -113,16 +113,6 @@ body {
   position: relative;
 }
 
-.home-nav-notification-dot {
-  position: absolute;
-  top: -2px;
-  right: -2px;
-
-  width: 8px;
-  height: 8px;
-  background: red;
-  border-radius: 50%;
-}
 
 .home-nav-divider {
   width: 1px;
@@ -158,7 +148,7 @@ body {
   height: 46px;
 
   background: #e0e7ff;
-  color: var(--primary);
+  color: var(--text-primary);
 
   display: flex;
   align-items: center;
@@ -180,7 +170,7 @@ body {
   border: none;
   background: transparent;
   cursor: pointer;
-  color: var(--primary);
+  color: var(--text-primary);
 }
 
 /* ========================= */
@@ -390,8 +380,8 @@ body {
   width: calc(100% - 40px);
   padding: 70px;
   border-radius: 24px;
-  background: linear-gradient(135deg, #0b2e99, #123db7);
-  color: var(--card-bg);
+  background: var(--primary);
+  color: var(--text-primary);
 
   display: flex;
   justify-content: space-between;
@@ -407,8 +397,8 @@ body {
   display: inline-block;
   padding: 10px 20px;
   border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-color);
+  background: var(--card-bg);
 
   font-size: 10px;
   font-weight: 500;
@@ -420,6 +410,7 @@ body {
   font-size: 50px;
   font-weight: 500;
   line-height: 1.1;
+  color: var(--card-bg);
 }
 
 .profile-desc {
@@ -428,7 +419,7 @@ body {
 
   font-size: 18px;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--card-bg);
 }
 
 .profile-footer {
@@ -444,7 +435,7 @@ body {
   border-radius: 12px;
 
   background: var(--card-bg);
-  color: #0b2e99;
+  color: var(--text-primary);
   font-size: 20px;
   font-weight: 500;
   cursor: pointer;
@@ -459,8 +450,8 @@ body {
   width: 42px;
   height: 42px;
   border-radius: 10px;
-  color: var(--card-bg);
-  background: #0b2e99;
+  color: var(--text-primary);
+  background: var(--card-bg);
   border-left: var(--card-bg);
 
   display: flex;
@@ -474,6 +465,7 @@ body {
 
 .profile-footer p {
   font-size: 15px;
+  color: var(--card-bg);
   font-weight: 500;
 }
 
@@ -482,7 +474,7 @@ body {
   padding: 40px;
   border-radius: 30px;
 
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--card-bg);
   border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
@@ -502,19 +494,18 @@ body {
   font-weight: bold;
 }
 
-.progress-bar {
+.progress-bar-01 {
   width: 100%;
   height: 16px;
   margin: 30px 0;
   border-radius: 50px;
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--text-primary);
 }
 
 .progress-fill {
   width: 33%;
   height: 100%;
   border-radius: 50px;
-  background: var(--card-bg);
 }
 
 .steps {
@@ -533,7 +524,7 @@ body {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  border: 3px solid rgba(255, 255, 255, 0.4);
+  border: 3px solid var(--success);
 
   display: flex;
   align-items: center;
@@ -541,8 +532,8 @@ body {
 }
 
 .completed .circle {
-  border-color: #22c55e;
-  color: #22c55e;
+  border-color: var(--success);
+  color: var(--success);
 }
 
 .step p {

@@ -24,8 +24,8 @@ export default function FAQ({faqRef}) {
   ];
   const [openIndex, setOpenIndex] = useState(null);
   return (
-    <div className="faq-container">
-      <h1 className="faq-title" ref={faqRef}>Frequently Asked Questions</h1>
+    <div className="faq-container" ref={faqRef}>
+      <h1 className="faq-title" >Frequently Asked Questions</h1>
 
       <div className="faq-wrapper">
         {faqs.map((data, index) => (

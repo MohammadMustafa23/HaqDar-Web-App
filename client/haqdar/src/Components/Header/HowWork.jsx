@@ -2,8 +2,8 @@ import "./HowWork.css";
 import { FaUser, FaSearch, FaCompass, FaGlobe } from "react-icons/fa";
 export default function HowWork({howWorkRef}) {
   return (
-    <div className="howworks-section">
-      <h1 className="howworks-title" ref={howWorkRef}>How it Works</h1>
+    <div className="howworks-section" ref={howWorkRef}>
+      <h1 className="howworks-title">How it Works</h1>
 
       <p className="howworks-subtitle">
         Follow these simple steps to access the government support you deserve.

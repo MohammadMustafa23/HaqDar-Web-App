@@ -1,6 +1,8 @@
 import "./HeroSection.css";
 import People from "../../assets/Hero-Logo.png";
+import { useNavigate } from "react-router-dom";
 export default function HeroSection() {
+  const navigate = useNavigate();
   return (
     <div className="hero-main">
       <div className="hero-about">
@@ -25,8 +27,8 @@ export default function HeroSection() {
           ))}
         </div>
         <div className="hero-btns">
-          <button className="hero-btn-01">Find My Scheme</button>
-          <button className="hero-btn-02">Browse All Schemes</button>
+          <button className="hero-btn-01" onClick={() => navigate("/login")}>Find My Scheme</button>
+          <button className="hero-btn-02" onClick={() => navigate("/login")}>Browse All Schemes</button>
         </div>
       </div>
 

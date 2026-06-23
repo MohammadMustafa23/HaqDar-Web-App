@@ -8,7 +8,7 @@ import "../Components/ProfileSection/Profile.css";
 import { useState, useEffect } from "react";
 import { getCurrentUser } from "../Services/auttantication.service";
 
-export default function ProfilePage() {
+export default function ProfilePage({theme,setTheme}) {
   const [profileData, setProfileData] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -39,7 +39,7 @@ export default function ProfilePage() {
   return (
     <div className="hd-profile-page">
       <div className="hd-profile-container">
-        <Navbar profileData={profileData.user} />
+        <Navbar profileData={profileData.user} theme={theme} setTheme={setTheme} />
         {/* LEFT */}
         <div className="hd-profile-left-section">
           <Sidebar />
