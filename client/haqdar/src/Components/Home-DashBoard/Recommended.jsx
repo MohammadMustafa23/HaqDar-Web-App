@@ -44,10 +44,7 @@ export default function Recommended({ onViewDetails, recommendations = [] ,schem
               <span className="top-match">TOP MATCHES</span>
             </div>
 
-            <a href="/top-matched-Schemes" className="see-all">
-              See all matches
-              <ArrowRight size={18} />
-            </a>
+            <a href="/top-matched-Schemes" className="see-all"> See all matches <ArrowRight size={18} /></a>
           </div>
         )}
 

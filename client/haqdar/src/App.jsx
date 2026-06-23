@@ -10,11 +10,12 @@ import { getCurrentUser } from "./Services/auttantication.service.js";
 import { useState, useEffect } from "react";
 import { Toaster } from "sonner";
 import SavedSchemesPage from "./Components/SavedScheme/SavedSchemesPage.jsx";
+import MatchedSchemes from "./Pages/MatchedSchemes.jsx";
 function App() {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const [profileData, setProfileData] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  
   useEffect(() => {
     if (theme === "dark") {
       document.body.classList.add("dark");
@@ -105,9 +106,14 @@ function App() {
           path="/user-profile"
           element={
             <ProtectedRoute>
-              <ProfilePage  theme={theme} setTheme={setTheme} />
+              <ProfilePage theme={theme} setTheme={setTheme} />
             </ProtectedRoute>
           }
+        />
+
+        <Route
+          path="/top-matched-Schemes"
+          element={<MatchedSchemes theme={theme} setTheme={setTheme}  profileData={profileData} />}
         />
 
         <Route

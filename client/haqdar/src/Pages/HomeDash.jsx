@@ -13,6 +13,7 @@ import HowWork from "../Components/Header/HowWork.jsx";
 import { getMatchedSchemes } from "../Services/recommendation.service.js";
 
 export default function HomeDash({ profileData, loading, theme, setTheme }) {
+  console.log("Home Dash Loaded");
   const [selectedScheme, setSelectedScheme] = useState(null);
   const [open, setOpen] = useState(false);
 

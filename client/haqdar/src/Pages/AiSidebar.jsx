@@ -19,20 +19,20 @@ export default function AiSidebar({ isOpen, onClose }) {
   const handleSend = async (text) => {
     if (!text.trim()) return;
 
-    const userMessage = {role: "user",content: text};
-    console.log(userMessage);
-    
+    const userMessage = {
+      role: "user",
+      content: text,
+    };
 
-    
     setMessages((prev) => [...prev, userMessage]);
-
     setLoading(true);
 
     try {
-      const response = await askAI({ message: text, history: messages });
+      const response = await askAI({
+        message: text,
+        history: messages,
+      });
 
-      console.log(response.response);
-      
       const botMessage = {
         role: "assistant",
         content: response.response.answer,
@@ -40,7 +40,19 @@ export default function AiSidebar({ isOpen, onClose }) {
 
       setMessages((prev) => [...prev, botMessage]);
     } catch (error) {
-      console.log(error);
+
+      let errorMessage = "Something went wrong. Please try again.";
+
+      if (error.response?.status === 429) {
+        errorMessage = "🚫 AI request limit exceeded. Please try again later.";
+      }
+
+      const botError = {
+        role: "assistant",
+        content: errorMessage,
+      };
+
+      setMessages((prev) => [...prev, botError]);
     } finally {
       setLoading(false);
     }

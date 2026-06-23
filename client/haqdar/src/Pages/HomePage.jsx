@@ -8,6 +8,8 @@ import FAQ from "../Components/Footer/FAQ";
 import Footer from "../Components/Footer/Footer";
 import { useRef } from "react";
 function HomePage({ theme, setTheme }) {
+  console.log("Home Page Loaded");
+  
   const schemesRef = useRef(null);
   const howWorkRef = useRef(null);
   const faqRef = useRef(null);

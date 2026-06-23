@@ -10,6 +10,11 @@ export const generateRecommendations = async (profileData) => {
   return response.data;
 };
 
+export async function getAllMatchedSchemes() {
+  const response = await API.get("/all/schemes");
+  return response.data;
+}
+
 export async function getMatchedSchemes() {
   const response = await API.get("/my-schemes");
   return response.data;
