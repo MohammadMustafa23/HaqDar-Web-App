@@ -147,7 +147,6 @@ export const validateProfile = (req, res, next) => {
       occupation: occupation.trim(),
       pwd: pwd.trim(),
     };
-
     next();
   } catch (error) {
     return res.status(500).json({

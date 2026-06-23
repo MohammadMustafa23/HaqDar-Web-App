@@ -6,6 +6,8 @@ import { getMatchedSchemes,GetSpecifiScheme } from "../controllers/matchedScheme
 const GetSchems = express.Router();
 
 GetSchems.get("/my-schemes", verifyJWT, getMatchedSchemes);
+GetSchems.get("/all/schemes", verifyJWT, getMatchedSchemes);
 GetSchems.get('/scheme/:id',verifyJWT,GetSpecifiScheme);
+
 
 export default GetSchems;
