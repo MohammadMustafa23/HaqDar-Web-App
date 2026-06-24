@@ -5,6 +5,7 @@ import cors from "cors";
 import GenerateRoute from "./routes/recommendations.route.js";
 import matchedSchemeRoutes from "./routes/matchedScheme.route.js";
 import Airouter from "./routes/ai.routes.js";
+import FeedbackRoutes from "./routes/Feedback.Routes.js";
 const app = express();
 app.use(cookieParser());
 app.use(express.json());
@@ -19,5 +20,6 @@ app.use("/api/auth", UserRoute);
 app.use("/api/schemes", GenerateRoute);
 app.use("/api/schemes", matchedSchemeRoutes);
 app.use('/api/bot',Airouter)
+app.use('/api/feedback',FeedbackRoutes)
 
 export default app;

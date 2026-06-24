@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
 
 const UserSchema = new mongoose.Schema(
   {
@@ -20,14 +20,16 @@ const UserSchema = new mongoose.Schema(
       required: [true, "Password is required"],
       minlength: 6,
     },
+    allowProfileEditUntil: {
+      type: Date,
+      default: null,
+    },
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 const userModel = mongoose.model("Users", UserSchema);
 
 export default userModel;
-
-
