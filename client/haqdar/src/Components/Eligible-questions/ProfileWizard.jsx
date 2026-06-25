@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Age from "./Age";
 import Gender from "./Gender";
 import Education from "./Education";
@@ -7,11 +7,16 @@ import Income from "./Income";
 import District from "./District";
 import Occupation from "./Occupation";
 import Pwd from "./Pwd";
-import { generateRecommendations } from "../../Services/recommendation.service";
+import {
+  generateRecommendations,
+  canEditProfile,
+} from "../../Services/recommendation.service";
 import { getCurrentUser } from "../../Services/auttantication.service";
-import { useNavigate, Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-export default function ProfileWizard({ setProfileData,profileData }) {
+export default function ProfileWizard({ setProfileData }) {
+  const [checkingAccess, setCheckingAccess] = useState(true);
+  const [canAccess, setCanAccess] = useState(false);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [step, setStep] = useState(1);
@@ -25,10 +30,52 @@ export default function ProfileWizard({ setProfileData,profileData }) {
     occupation: "",
     pwd: "",
   });
-  if (profileData?.profileCompleted) {
-    return <Navigate to="/home-page" replace />;
+
+  useEffect(() => {
+    const verifyAccess = async () => {
+      try {
+        const response = await canEditProfile();
+
+        if (response.profileCompleted && !response.allowEdit) {
+          navigate("/home-page", {
+            replace: true,
+          });
+
+          return;
+        }
+        setCanAccess(true);
+      } catch (error) {
+        navigate("/home-page", {
+          replace: true,
+        });
+        console.log(error);
+      } finally {
+        setCheckingAccess(false);
+      }
+    };
+
+    verifyAccess();
+  }, []);
+
+  if (checkingAccess) {
+    return (
+      <div className="fixed inset-0 flex flex-col items-center justify-center bg-white z-50">
+        <div className="w-14 h-14 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin"></div>
+
+        <h3 className="mt-6 text-lg font-semibold text-gray-800">
+          Verifying Access
+        </h3>
+
+        <p className="mt-2 text-sm text-gray-500">
+          Preparing your profile editor...
+        </p>
+      </div>
+    );
   }
 
+  if (!canAccess) {
+    return null;
+  }
   console.log(formData);
   const handleSubmit = async () => {
     try {

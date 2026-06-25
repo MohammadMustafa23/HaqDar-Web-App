@@ -5,7 +5,6 @@ import { saveScheme, removeScheme, isSaved } from "../../utils/bookmark.js";
 
 export default function Rec_SchemesCard({ scheme, onViewDetails }) {
   const [saved, setSaved] = useState(false);
-
   useEffect(() => {
     if (scheme?.id) {
       setSaved(isSaved(scheme.id));
@@ -51,8 +50,7 @@ export default function Rec_SchemesCard({ scheme, onViewDetails }) {
         </span>
       </div>
 
-      <button className="rec-details-btn" onClick={() => onViewDetails(scheme)}>
-        Check Details
+      <button className="rec-details-btn" onClick={() => onViewDetails(scheme)}>Check Details
         <ArrowRight size={20} />
       </button>
     </div>

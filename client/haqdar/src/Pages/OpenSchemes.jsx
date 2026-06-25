@@ -10,13 +10,10 @@ import { useState } from "react";
 
 import AiSidebar from './AiSidebar';
 
-export default function OpenSchemes({
-  scheme,
-  onClose,
-}) {
-  const [isAiOpen, setIsAiOpen] =
-    useState(false);
+export default function OpenSchemes({scheme,onClose}) {
+  const [isAiOpen, setIsAiOpen] = useState(false);
 
+    
   if (!scheme) return null;
 
   return (
@@ -28,7 +25,6 @@ export default function OpenSchemes({
 
       <div className="os-container">
         <SchemeHeader
-          scheme={scheme}
           onClose={onClose}
         />
 
@@ -58,7 +54,7 @@ export default function OpenSchemes({
               }
             />
 
-            <SchemeResources />
+            <SchemeResources scheme={scheme} />
           </div>
         </div>
       </div>

@@ -1,0 +1,252 @@
+
+/* =========================
+   PAGE
+========================= */
+
+.feedback-page {
+  min-height: 100vh;
+  padding: 40px 20px;
+  background: var(--bg-primary);
+  transition: 0.3s;
+}
+
+.feedback-container {
+  max-width: 900px;
+  margin: auto;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 32px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.feedback-header h1 {
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+.feedback-header p {
+  color: var(--text-secondary);
+  margin-bottom: 30px;
+}
+
+/* =========================
+   GRID
+========================= */
+
+.feedback-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-bottom: 20px;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  border: 1px solid var(--input-border);
+  background: var(--input-bg);
+  color: var(--text-primary);
+  padding: 14px;
+  border-radius: 10px;
+  outline: none;
+  transition: 0.3s;
+  font-size: 15px;
+}
+
+.form-group textarea {
+  resize: none;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+/* =========================
+   RATING CARD
+========================= */
+
+.rating-card {
+  background: var(--rating-bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px;
+  text-align: center;
+  margin-top: 25px;
+}
+
+.rating-card h4 {
+  color: var(--text-primary);
+  margin-bottom: 20px;
+}
+
+.stars {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.star {
+  font-size: 34px;
+  cursor: pointer;
+  color: #94a3b8;
+  transition: 0.25s;
+}
+
+.star:hover {
+  transform: scale(1.15);
+}
+
+.star.active {
+  color: #fbbf24;
+}
+
+.rating-labels {
+  display: flex;
+  justify-content: center;
+  gap: 260px;
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.button-group {
+  margin-top: 25px;
+  display: flex;
+  gap: 12px;
+}
+
+.submit-btn {
+  flex: 1;
+  height: 52px;
+  border: none;
+  border-radius: 10px;
+  background: var(--primary);
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.submit-btn:hover {
+  background: var(--primary-hover);
+}
+
+.clear-btn {
+  width: 140px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-primary);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.clear-btn:hover {
+  background: rgba(148, 163, 184, 0.08);
+}
+
+/* =========================
+   FOOTER TEXT
+========================= */
+
+.privacy-text {
+  text-align: center;
+  margin-top: 18px;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+  .feedback-container {
+    padding: 20px;
+  }
+
+  .feedback-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feedback-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+
+  .clear-btn {
+    width: 100%;
+    height: 52px;
+  }
+
+  .rating-labels {
+    gap: 120px;
+  }
+
+  .star {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .feedback-page {
+    padding: 15px;
+  }
+
+  .feedback-container {
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  .feedback-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .rating-card {
+    padding: 20px 12px;
+  }
+
+  .rating-labels {
+    justify-content: space-between;
+    gap: 0;
+  }
+
+  .star {
+    font-size: 26px;
+  }
+}

@@ -7,29 +7,37 @@ import SchemeCard from "../Components/MatchedScheme/SchemeCard";
 import UnlockMoreSchemes from "../Components/MatchedScheme/UnlockMoreSchemes";
 import { getAllMatchedSchemes } from "../Services/recommendation.service";
 import SchemeCardSkeleton from "../Components/Home-DashBoard/Effect/SchemeCardSkeleton";
+import OpenSchemes from "./OpenSchemes";
 export default function MatchedSchemes({ theme, setTheme, profileData }) {
   console.log("Matched Page Loaded");
   const user = profileData?.user;
   const [schemes, setSchemes] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [open, setOpen] = useState(false);
+  const [selectedScheme, setSelectedScheme] = useState(null);
+  const handleOpenScheme = (scheme) => {
+    setSelectedScheme(scheme);
+    console.log(scheme);
 
+    setOpen(true);
+  };
   useEffect(() => {
     const fetchSchemes = async () => {
       try {
         const response = await getAllMatchedSchemes();
         console.log("Matched Schemes:", response);
-
-        const formattedSchemes = response.schemes.map((item) => ({
-          id: item._id,
-          title: item.metadata.name,
-          desc: item.metadata.benefit,
-          match: Math.round(item.score * 100),
+        const formattedSchemes = response.schemes.map((scheme) => ({
+          id: scheme._id,
+          score: scheme.score,
+          title: scheme.metadata.name,
+          desc: scheme.metadata.benefit,
+          match: Math.round(scheme.score * 100),
           tags: [
-            item.metadata.category,
-            item.metadata.schemeType,
-            item.metadata.beneficiary,
+            scheme.metadata.category,
+            scheme.metadata.schemeType,
+            scheme.metadata.beneficiary,
           ],
-          metadata: item.metadata,
+          ...scheme.metadata,
         }));
         setSchemes(formattedSchemes || []);
       } catch (error) {
@@ -75,7 +83,11 @@ export default function MatchedSchemes({ theme, setTheme, profileData }) {
 
               <div className="ms-grid">
                 {schemes.map((scheme, index) => (
-                  <SchemeCard key={index} scheme={scheme} />
+                  <SchemeCard
+                    key={index}
+                    scheme={scheme}
+                    onViewDetails={handleOpenScheme}
+                  />
                 ))}
               </div>
 
@@ -92,6 +104,9 @@ export default function MatchedSchemes({ theme, setTheme, profileData }) {
             </>
           )}
         </div>
+        {open && (
+          <OpenSchemes scheme={selectedScheme} onClose={() => setOpen(false)} />
+        )}
       </main>
 
       <Footer />

@@ -11,18 +11,18 @@ import { useState, useEffect } from "react";
 import { Toaster } from "sonner";
 import SavedSchemesPage from "./Components/SavedScheme/SavedSchemesPage.jsx";
 import MatchedSchemes from "./Pages/MatchedSchemes.jsx";
+import FeedbackForm from "./Components/FeedBackForm/FeedbackForm.jsx";
 function App() {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const [profileData, setProfileData] = useState(null);
   const [loading, setLoading] = useState(true);
-  
+
   useEffect(() => {
     if (theme === "dark") {
       document.body.classList.add("dark");
     } else {
       document.body.classList.remove("dark");
     }
-
     localStorage.setItem("theme", theme);
   }, [theme]);
 
@@ -90,14 +90,10 @@ function App() {
           path="/complete-profile"
           element={
             <ProtectedRoute>
-              {profileData?.profileCompleted ? (
-                <Navigate to="/home-page" replace />
-              ) : (
-                <ProfileWizard
-                  profileData={profileData}
-                  setProfileData={setProfileData}
-                />
-              )}
+              <ProfileWizard
+                profileData={profileData}
+                setProfileData={setProfileData}
+              />
             </ProtectedRoute>
           }
         />
@@ -113,12 +109,23 @@ function App() {
 
         <Route
           path="/top-matched-Schemes"
-          element={<MatchedSchemes theme={theme} setTheme={setTheme}  profileData={profileData} />}
+          element={
+            <MatchedSchemes
+              theme={theme}
+              setTheme={setTheme}
+              profileData={profileData}
+            />
+          }
         />
 
         <Route
           path="/saved-schemes"
           element={<SavedSchemesPage profileData={profileData} />}
+        />
+
+        <Route
+          path="/submit-feedBack"
+          element={<FeedbackForm/>}
         />
       </Routes>
     </>

@@ -1,12 +1,23 @@
 import { UserRoundCheck } from "lucide-react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { requestProfileEdit } from "../../Services/recommendation.service";
+import { toast } from "sonner";
 
 export default function UnlockMoreSchemes() {
-  // const navigate = useNavigate();
-  const handleUpdateProfile = () => {
-   console.log("Update pRofile");
+  const navigate = useNavigate();
+  const handleUpdateProfile = async () => {
+    try {
+      const response = await requestProfileEdit();
+      if (response.success) {
+        toast.success(response.message);
+        setTimeout(() => {
+          navigate("/complete-profile");
+        }, 1000);
+      }
+    } catch (err) {
+      toast.error(err?.response?.data?.message || "Something went wrong");
+    }
   };
-  
 
   return (
     <section className="ums-container">
@@ -18,7 +29,9 @@ export default function UnlockMoreSchemes() {
           Pension categories. It only takes 2 minutes.
         </p>
 
-        <button className="ums-btn" onClick={handleUpdateProfile} >Update Profile</button>
+        <button className="ums-btn" onClick={handleUpdateProfile}>
+          Update Profile
+        </button>
       </div>
 
       <div className="ums-icon-wrapper">
