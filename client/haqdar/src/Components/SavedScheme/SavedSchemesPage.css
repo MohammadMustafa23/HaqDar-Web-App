@@ -1,6 +1,6 @@
 .saved-page {
   min-height: calc(100vh - 140px);
-  background: #f8fafc;
+  background: var(--bg-primary);
   padding: 40px 20px;
   margin-top: 90px;
 }

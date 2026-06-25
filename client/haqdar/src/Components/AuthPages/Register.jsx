@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
 import { GoogleLoginUser } from "../../Services/auttantication.service";
-
+import PageLoader from "../Common/PageLoader";
 export default function Register() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -56,6 +56,8 @@ export default function Register() {
       } catch (error) {
         console.log("API Error");
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     },
 
@@ -96,7 +98,6 @@ export default function Register() {
     const isValid = validate();
     if (!isValid) return;
     setLoading(true);
-    // await new Promise((resolve) => setTimeout(resolve, 10000));
     try {
       const Response = await RegisterUser(formData);
       Swal.fire({
@@ -127,6 +128,8 @@ export default function Register() {
   }
 
   return (
+    <>   
+    {loading && <PageLoader text="Creating your account..." />}
     <div className="login-head">
       <div className="center-part">
         <div className="left-side">
@@ -218,16 +221,7 @@ export default function Register() {
               className="sign-in"
               onClick={handleSubmit}
               disabled={loading}
-            >
-              {loading ? (
-                <div className="loading-wrapper">
-                  <span className="btn-spinner"></span>
-                  <span>Creating...</span>
-                </div>
-              ) : (
-                "Create Account"
-              )}
-            </button>
+            >Create Account</button>
             <div className="divider">
               <span>OR CONTINUE WITH</span>
             </div>
@@ -248,5 +242,6 @@ export default function Register() {
         </div>
       </div>
     </div>
+    </>
   );
 }

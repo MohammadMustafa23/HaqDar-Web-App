@@ -1,6 +1,5 @@
-import { User, Bookmark,ArrowRight } from "lucide-react";
+import { User, Bookmark, ArrowRight} from "lucide-react";
 import { useNavigate } from "react-router-dom";
-
 export default function Sidebar() {
   const navigate = useNavigate();
   return (
@@ -11,16 +10,19 @@ export default function Sidebar() {
         <User size={18} />
         Profile
       </button>
-      
 
-      <button className="hd-profile-menu-btn" 
-       onClick={() => navigate("/saved-schemes")}>
+      <button
+        className="hd-profile-menu-btn"
+        onClick={() => navigate("/saved-schemes")}
+      >
         <Bookmark size={18} />
         Saved Schemes
       </button>
 
-      <button className="hd-profile-menu-btn" 
-       onClick={() => navigate("/submit-feedBack")}>
+      <button
+        className="hd-profile-menu-btn"
+        onClick={() => navigate("/submit-feedBack")}
+      >
         <ArrowRight size={18} />
         Give FeedBack
       </button>

@@ -10,7 +10,6 @@ export default function Navbar({ profileData, theme, setTheme,scrollToSection,Re
       navigate("/user-profile", {});
     }
   };
-  
   return (
     <>
       <nav className="home-nav-navbar">
@@ -87,8 +86,9 @@ export default function Navbar({ profileData, theme, setTheme,scrollToSection,Re
                 <X size={24} />
               </button>
             </div>
-
               <a onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Home</a>
+              <a href="/user-profile">Profile</a>
+              <a href="/saved-schemes">Saved Scheme</a>
               <a onClick={() => scrollToSection(RefObj.schemesRef)}>Schemes</a>
               <a onClick={() => scrollToSection(RefObj.howWorkRef)}>How its Work</a>
               <a onClick={() => scrollToSection(RefObj.faqRef)} >FAQ</a>

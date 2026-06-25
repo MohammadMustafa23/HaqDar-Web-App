@@ -831,8 +831,8 @@ body {
 
 /* <---------------- Count Schemes Comp ----------------> */
 .count-schemes {
-  max-width: 1250px;
-  width: calc(100% - 40px);
+  
+  width: 90%;
   margin: 40px auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -843,8 +843,7 @@ body {
   background: var(--card-bg);
   border: 1px solid #d8dce8;
   border-radius: 14px;
-
-  padding: 30px;
+  padding: 40px;
   height: 200px;
   font-size: 16px;
 
@@ -857,8 +856,8 @@ body {
 }
 
 .icon-box {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
 
   border-radius: 3px;
   background: #dfe4ff;
@@ -869,10 +868,13 @@ body {
   justify-content: center;
 }
 
+.scheme-card h3 {
+  font-size: 20px;
+  padding-top: 10px;
+}
+
 
 .scheme-card h2 {
-  margin-top: 12px;
-
   color: #0039a6;
   font-size: 40px;
   font-weight: 500;
@@ -1058,7 +1060,7 @@ body {
   align-items: center;
   gap: 8px;
 
-  background: #f3f4f6;
+  background: var(--bg-secondary);
   color: var(--primary);
 
   padding: 12px 18px;

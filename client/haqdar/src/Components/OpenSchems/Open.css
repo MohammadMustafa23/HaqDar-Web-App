@@ -9,7 +9,7 @@
 
   overflow-y: auto;
 
-  background: #f8f9fc;
+  background: var(--bg-primary);
   z-index: 1000;
 
   padding: 0;
@@ -100,7 +100,7 @@
 /* Header Container */
 .scheme-header {
   width: 100%;
-  background: #f5f5f5;
+  background: var(--bg-primary);
   border-bottom: 1px solid var(--border-color);
   padding: 22px 30px;
   display: flex;
@@ -230,7 +230,7 @@
 }
 
 .info-card {
-  background: #f5f7fb;
+  background: var(--card-bg);
   padding: 22px;
   border-radius: 10px;
   display: flex;
@@ -261,7 +261,7 @@
 
 .info-card h3 {
   font-size: 1.8rem;
-  color: #1f2937;
+  color: var(--primary);
   font-weight: 700;
   line-height: 1.3;
 }

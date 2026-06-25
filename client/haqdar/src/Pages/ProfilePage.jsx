@@ -5,10 +5,10 @@ import EligibilityDetails from "../Components/ProfileSection/EligibilityDetails"
 import AIHelpCard from "../Components/ProfileSection/AIHelpCard";
 import Navbar from "../Components/Home-DashBoard/NavBar";
 import "../Components/ProfileSection/Profile.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect} from "react";
 import { getCurrentUser } from "../Services/auttantication.service";
 
-export default function ProfilePage({theme,setTheme}) {
+export default function ProfilePage({ theme, setTheme }) {
   const [profileData, setProfileData] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -20,7 +20,6 @@ export default function ProfilePage({theme,setTheme}) {
           setProfileData(data);
         }
         console.log(data);
-        
       } catch (error) {
         console.log(error);
       } finally {
@@ -39,19 +38,30 @@ export default function ProfilePage({theme,setTheme}) {
   return (
     <div className="hd-profile-page">
       <div className="hd-profile-container">
-        <Navbar profileData={profileData.user} theme={theme} setTheme={setTheme} />
+        <Navbar
+          profileData={profileData.user}
+          theme={theme}
+          setTheme={setTheme}
+        />
         {/* LEFT */}
         <div className="hd-profile-left-section">
-          <Sidebar />
+          <Sidebar theme={theme}
+          setTheme={setTheme} />
           <AIHelpCard />
         </div>
 
         {/* RIGHT */}
         <div className="hd-profile-right-section">
-          <ProfileHeader user={profileData.user} profile={profileData.profile} />
+          <ProfileHeader
+            user={profileData.user}
+            profile={profileData.profile}
+          />
 
           <div className="hd-profile-info-grid">
-            <PersonalInfo user={profileData.user} profile={profileData.profile}/>
+            <PersonalInfo
+              user={profileData.user}
+              profile={profileData.profile}
+            />
             <EligibilityDetails profile={profileData.profile} />
           </div>
         </div>

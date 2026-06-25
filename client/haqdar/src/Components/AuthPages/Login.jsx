@@ -6,9 +6,13 @@ import Swal from "sweetalert2";
 import { LoginUser } from "../../Services/auttantication.service";
 import { useNavigate } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
-import { GoogleLoginUser,getCurrentUser } from "../../Services/auttantication.service";
+import {
+  GoogleLoginUser,
+  getCurrentUser,
+} from "../../Services/auttantication.service";
+import PageLoader from "../Common/PageLoader";
 
-export default function Login({setProfileData }) {
+export default function Login({ setProfileData }) {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
@@ -33,16 +37,18 @@ export default function Login({setProfileData }) {
           title: "Login Successful!",
           text: response.data.message,
           confirmButtonText: "Continue",
-        }).then( async () => {
+        }).then(async () => {
           const userData = await getCurrentUser();
           if (userData?.success) {
-          setProfileData(userData);
+            setProfileData(userData);
           }
           navigate("/home-page"); // or home page
         });
       } catch (error) {
         console.log("API Error");
         console.log(error);
+      } finally {
+         setLoading(false);
       }
     },
 
@@ -78,8 +84,8 @@ export default function Login({setProfileData }) {
         text: response.data.message,
         confirmButtonText: "Continue",
       }).then(async () => {
-          const userData = await getCurrentUser();
-          if (userData?.success) {
+        const userData = await getCurrentUser();
+        if (userData?.success) {
           setProfileData(userData);
         }
         navigate("/home-page"); // or home page
@@ -121,6 +127,8 @@ export default function Login({setProfileData }) {
   }
 
   return (
+    <>
+    {loading && <PageLoader text="Signing you in..." />}
     <div className="login-head">
       <div className="center-part">
         <div className="left-side">
@@ -193,14 +201,7 @@ export default function Login({setProfileData }) {
               onClick={handleSubmit}
               disabled={loading}
             >
-              {loading ? (
-                <div className="loading-wrapper">
-                  <div className="btn-spinner"></div>
-                  <span className="loading-text">Signing In...</span>
-                </div>
-              ) : (
-                "Sign In"
-              )}
+              Sign In
             </button>
 
             <div className="divider">
@@ -223,5 +224,6 @@ export default function Login({setProfileData }) {
         </div>
       </div>
     </div>
+  </>
   );
 }
