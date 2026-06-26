@@ -1,32 +1,43 @@
 import jwt from "jsonwebtoken";
 import userModel from "../models/user.model.js";
+import {redisClient} from "../config/redis.js";
 
 export const verifyJWT = async (req, res, next) => {
   try {
     const token = req.cookies?.token;
-    console.log("token : ",token);
-    
-    if(!token) {
+
+    if (!token) {
       return res.status(401).json({
         success: false,
         message: "Authentication required",
       });
     }
 
-    const decoded = jwt.verify(token,process.env.JWT_SECRET);
-    console.log(decoded);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const Id = decoded.id || decoded.userId;
 
-    
-    const user = await userModel.findById(Id)
-    console.log(user);
-    
-    
-    if (!user) {
-      return res.status(401).json({
-        success: false,
-        message: "User not found",
-      });
+    const cacheKey = `user:${Id}`;
+
+    // Check Redis first
+    const cachedUser = await redisClient.get(cacheKey);
+
+    let user;
+
+    if (cachedUser) {
+      console.log("✅ User from Redis");
+      user = JSON.parse(cachedUser);
+    } else {
+      console.log("📦 User from MongoDB");
+      user = await userModel.findById(Id);
+      if (!user) {
+        return res.status(401).json({
+          success: false,
+          message: "User not found",
+        });
+      }
+
+      // Cache user for 10 min
+      await redisClient.setEx(cacheKey, 60 * 10, JSON.stringify(user));
     }
 
     req.user = {
@@ -37,13 +48,14 @@ export const verifyJWT = async (req, res, next) => {
 
     next();
   } catch (error) {
+    console.log(error);
+
     return res.status(401).json({
       success: false,
       message: "Invalid or expired token",
     });
   }
 };
-
 export const validateProfile = (req, res, next) => {
   try {
     const {
@@ -75,25 +87,11 @@ export const validateProfile = (req, res, next) => {
     }
 
     // Allowed values
-    const validCategories = [
-      "General",
-      "OBC",
-      "SC",
-      "ST",
-      "EWS",
-      "Minority",
-    ];
+    const validCategories = ["General", "OBC", "SC", "ST", "EWS", "Minority"];
 
-    const validGenders = [
-      "male",
-      "female",
-      "other",
-    ];
+    const validGenders = ["male", "female", "other"];
 
-    const validPwd = [
-      "Yes",
-      "No",
-    ];
+    const validPwd = ["Yes", "No"];
 
     const validOccupations = [
       "Student",

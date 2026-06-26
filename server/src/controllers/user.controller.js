@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { OAuth2Client } from "google-auth-library";
 import UserProfileModel from '../models/userProfile.model.js';
+import { redisClient } from '../config/redis.js'
 
 const client = new OAuth2Client(
   process.env.GOOGLE_CLIENT_ID
@@ -137,17 +138,41 @@ export function VerifyUser(req, res) {
 }
 
 export async function VerifyProfile(req, res) {
-    try {
-      const profile = await UserProfileModel.findOne({userId: req.user.id});
-      res.status(200).json({
-        success: true,
-        profileCompleted: !!profile,
-        profile,
-        user : req.user
-      });
-    } catch (error) {
-      res.status(500).json({
-        success: false,
-      });
+  try {
+    const userId = req.user.id;
+    const cacheKey = `profile:${userId}`;
+
+    // Check Redis
+    const cachedProfile = await redisClient.get(cacheKey);
+
+    if (cachedProfile) {
+      console.log("✅ Profile from Redis");
+      return res.status(200).json(JSON.parse(cachedProfile));
     }
+
+    // Fetch from MongoDB
+    const profile = await UserProfileModel.findOne({
+      userId,
+    });
+
+    const response = {
+      success: true,
+      profileCompleted: !!profile,
+      profile,
+      user: req.user,
+    };
+
+    // Save to Redis for 5 minutes
+    await redisClient.setEx(cacheKey,600,JSON.stringify(response));
+
+    console.log("📦 Profile saved to Redis");
+
+    return res.status(200).json(response);
+  } catch (error) {
+    console.log(error);
+
+    return res.status(500).json({
+      success: false,
+    });
+  }
 }

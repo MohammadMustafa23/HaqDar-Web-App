@@ -1,17 +1,38 @@
 import MatchedSchemeModel from "../models/matchedScheme.model.js";
+import { redisClient } from "../config/redis.js";
 
 export async function getMatchedSchemes(req, res) {
   try {
     const userId = req.user.id;
+    const cacheKey = `matchedSchemes:${userId}`;
 
-    const matchedSchemes = await MatchedSchemeModel.findOne({
-       userId,
-    });
+    // Check Redis
+    const cachedSchemes = await redisClient.get(cacheKey);
 
-    
+    if (cachedSchemes) {
+      console.log("✅ Matched Schemes from Redis");
+      return res.status(200).json({
+        success: true,
+        schemes: JSON.parse(cachedSchemes),
+      });
+    }
+
+    console.log("📦 Matched Schemes from MongoDB");
+
+    const matchedSchemes = await MatchedSchemeModel.findOne({ userId });
+
+    const schemes = matchedSchemes?.schemes || [];
+
+    // Store in Redis for 1 hour
+    await redisClient.setEx(
+      cacheKey,
+      30 * 60,
+      JSON.stringify(schemes)
+    );
+
     return res.status(200).json({
       success: true,
-      schemes: matchedSchemes?.schemes || [],
+      schemes,
     });
   } catch (error) {
     return res.status(500).json({
