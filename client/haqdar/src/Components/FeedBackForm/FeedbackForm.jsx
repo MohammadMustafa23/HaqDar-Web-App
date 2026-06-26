@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./FeedbackForm.css";
 import { toast } from "sonner";
 import { submitFeedback } from "../../Services/feedback.service.js";
+import PageLoader from '../Common/PageLoader.jsx'
 export default function FeedbackForm() {
   const [formData, setFormData] = useState({
     category: "Scheme Issue",
@@ -19,10 +20,8 @@ export default function FeedbackForm() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       setLoading(true);
-      console.log(formData);
       const response = await submitFeedback(formData);
       toast.success(response.message);
       setFormData({
@@ -39,7 +38,9 @@ export default function FeedbackForm() {
       setLoading(false);
     }
   };
-
+  if (loading) {
+    return <PageLoader text="Submitting your feedback..." />;
+  }
   return (
     <div className="feedback-page">
       <div className="feedback-container">

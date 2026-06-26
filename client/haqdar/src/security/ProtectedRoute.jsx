@@ -1,17 +1,24 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { isValidUser } from "../Services/auttantication.service.js";
-import './ProtectedRoute.css'
+import PageLoader from "../Components/Common/PageLoader.jsx";
+import "./ProtectedRoute.css";
+
 export default function ProtectedRoute({ children }) {
   const [loading, setLoading] = useState(true);
   const [authenticated, setAuthenticated] = useState(false);
 
   useEffect(() => {
     const verifyUser = async () => {
-      const isValid = await isValidUser();
-
-      setAuthenticated(isValid);
-      setLoading(false);
+      try {
+        const isValid = await isValidUser();
+        setAuthenticated(isValid);
+      } catch (error) {
+        console.error(error);
+        setAuthenticated(false);
+      } finally {
+        setLoading(false);
+      }
     };
 
     verifyUser();
@@ -19,10 +26,7 @@ export default function ProtectedRoute({ children }) {
 
   if (loading) {
     return (
-      <div className="auth-loading">
-        <div className="auth-spinner"></div>
-        <p>Checking Authentication...</p>
-      </div>
+      <PageLoader text="Verifying your account..." />
     );
   }
 

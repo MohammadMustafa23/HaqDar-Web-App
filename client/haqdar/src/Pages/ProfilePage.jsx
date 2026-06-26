@@ -1,12 +1,13 @@
+import { useState, useEffect } from "react";
 import Sidebar from "../Components/ProfileSection/Sidebar";
 import ProfileHeader from "../Components/ProfileSection/ProfileHeader";
 import PersonalInfo from "../Components/ProfileSection/PersonalInfo";
 import EligibilityDetails from "../Components/ProfileSection/EligibilityDetails";
 import AIHelpCard from "../Components/ProfileSection/AIHelpCard";
 import Navbar from "../Components/Home-DashBoard/NavBar";
-import "../Components/ProfileSection/Profile.css";
-import { useState, useEffect} from "react";
+import PageLoader from "../Components/Common/PageLoader";
 import { getCurrentUser } from "../Services/auttantication.service";
+import "../Components/ProfileSection/Profile.css";
 
 export default function ProfilePage({ theme, setTheme }) {
   const [profileData, setProfileData] = useState(null);
@@ -19,22 +20,19 @@ export default function ProfilePage({ theme, setTheme }) {
         if (data?.success) {
           setProfileData(data);
         }
-        console.log(data);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       } finally {
         setLoading(false);
       }
     };
     fetchUser();
   }, []);
+
   if (loading) {
-    return (
-      <div className="profile-loading">
-        <div className="loader"></div>
-      </div>
-    );
+    return <PageLoader text="Loading your profile..." />;
   }
+
   return (
     <div className="hd-profile-page">
       <div className="hd-profile-container">
@@ -43,14 +41,15 @@ export default function ProfilePage({ theme, setTheme }) {
           theme={theme}
           setTheme={setTheme}
         />
-        {/* LEFT */}
+
         <div className="hd-profile-left-section">
-          <Sidebar theme={theme}
-          setTheme={setTheme} />
+          <Sidebar
+            theme={theme}
+            setTheme={setTheme}
+          />
           <AIHelpCard />
         </div>
 
-        {/* RIGHT */}
         <div className="hd-profile-right-section">
           <ProfileHeader
             user={profileData.user}
@@ -62,7 +61,10 @@ export default function ProfilePage({ theme, setTheme }) {
               user={profileData.user}
               profile={profileData.profile}
             />
-            <EligibilityDetails profile={profileData.profile} />
+
+            <EligibilityDetails
+              profile={profileData.profile}
+            />
           </div>
         </div>
       </div>

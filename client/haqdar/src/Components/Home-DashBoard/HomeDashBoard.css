@@ -439,6 +439,11 @@ body {
   font-size: 20px;
   font-weight: 500;
   cursor: pointer;
+  transition: all 0.3s;
+}
+
+.profile-btn:hover {
+  transform: translateY(-2px);
 }
 
 .users {
@@ -695,6 +700,9 @@ body {
   padding: 20px;
   box-sizing: border-box;
   margin-top: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .profile-success-card {
@@ -702,8 +710,9 @@ body {
   background: var(--bg-secondary)fff;
   border: 1px solid #d9d9d9;
   border-radius: 16px;
-  padding: 32px;
+  padding: 40px;
   overflow: hidden;
+  width: 90%;
   min-height: 260px;
 }
 
@@ -754,7 +763,7 @@ body {
 .watermark-icon svg {
   width: 140px;
   height: 140px;
-  color: #000;
+  color: var(--primary);
 }
 
 /* Tablet */
@@ -831,7 +840,6 @@ body {
 
 /* <---------------- Count Schemes Comp ----------------> */
 .count-schemes {
-  
   width: 90%;
   margin: 40px auto;
   display: grid;

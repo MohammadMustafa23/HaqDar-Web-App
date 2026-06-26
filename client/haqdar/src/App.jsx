@@ -120,7 +120,7 @@ function App() {
 
         <Route
           path="/saved-schemes"
-          element={<SavedSchemesPage profileData={profileData} />}
+          element={<SavedSchemesPage profileData={profileData}  theme={theme} setTheme={setTheme} />}
         />
 
         <Route

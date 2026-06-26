@@ -1,29 +1,49 @@
-import { getSavedSchemes } from "../../utils/bookmark.js";
 import { useEffect, useState } from "react";
+import { getSavedSchemes } from "../../utils/bookmark.js";
+
 import Rec_SchemesCard from "../Home-DashBoard/Rec_SchemesCard.jsx";
 import OpenSchemes from "../../Pages/OpenSchemes.jsx";
 import NavBar from "../Home-DashBoard/NavBar.jsx";
 import Footer from "../Footer/Footer.jsx";
+import PageLoader from "../Common/PageLoader.jsx";
 
 import "./SavedSchemesPage.css";
 
-export default function SavedSchemesPage({ profileData }) {
+export default function SavedSchemesPage({ profileData,theme, setTheme }) {
   const [selectedScheme, setSelectedScheme] = useState(null);
   const [open, setOpen] = useState(false);
   const [savedSchemes, setSavedSchemes] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   const user = profileData?.user;
+
   useEffect(() => {
-    const data = getSavedSchemes();
-    setSavedSchemes(data);
+    const loadSavedSchemes = async () => {
+      try {
+        const data = getSavedSchemes();
+        setSavedSchemes(data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadSavedSchemes();
   }, []);
 
   const handleOpenScheme = (scheme) => {
     setSelectedScheme(scheme);
     setOpen(true);
   };
+
+  if (loading) {
+    return <PageLoader text="Loading your saved schemes..." />;
+  }
+
   return (
     <>
-      <NavBar profileData={user} />
+      <NavBar profileData={user}  theme={theme} setTheme={setTheme} />
 
       <main className="saved-page">
         <div className="saved-container">
@@ -49,10 +69,15 @@ export default function SavedSchemesPage({ profileData }) {
             </div>
           )}
         </div>
+
         {open && (
-          <OpenSchemes scheme={selectedScheme} onClose={() => setOpen(false)} />
+          <OpenSchemes
+            scheme={selectedScheme}
+            onClose={() => setOpen(false)}
+          />
         )}
       </main>
+
       <Footer />
     </>
   );
