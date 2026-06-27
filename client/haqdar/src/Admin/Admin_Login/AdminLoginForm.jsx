@@ -13,7 +13,7 @@ export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
 
   const [formData, setFormData] = useState({
-    username: "",
+    AdminIdr: "",
     password: "",
     remember: false,
   });
@@ -57,7 +57,7 @@ export default function LoginForm() {
 
           <div className="input-group">
 
-            <label>Username</label>
+            <label>Admin Identifier</label>
 
             <div className="input-box">
               <User size={18} />
@@ -65,7 +65,7 @@ export default function LoginForm() {
               <input
                 type="text"
                 name="username"
-                placeholder="Enter username"
+                placeholder="Enter Admin Id"
                 value={formData.username}
                 onChange={handleChange}
                 required

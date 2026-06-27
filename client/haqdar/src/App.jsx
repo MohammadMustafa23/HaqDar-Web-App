@@ -13,8 +13,9 @@ import SavedSchemesPage from "./Components/SavedScheme/SavedSchemesPage.jsx";
 import MatchedSchemes from "./Pages/MatchedSchemes.jsx";
 import FeedbackForm from "./Components/FeedBackForm/FeedbackForm.jsx";
 import TermsOfService from "./Components/Footer/TermsOfService.jsx";
-import AdminLogin from "./Pages/AdminLogin.jsx";
+import AdminLogin from "./Pages/AdminPage/AdminLogin.jsx";
 import PrivacyPolicy from "./Components/Footer/PrivacyPolicy.jsx";
+import AdminDash from './Pages/AdminPage/AdminDashboard.jsx'
 function App() {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const [profileData, setProfileData] = useState(null);
@@ -138,6 +139,7 @@ function App() {
 
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/admin-login" element={<AdminLogin />} />
+        <Route path="/admin-dashboard" element={<AdminDash />} />
       </Routes>
     </>
   );

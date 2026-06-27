@@ -97,6 +97,8 @@
   color:  var(--text-primary);
 }
 
+
+
 /* FORM */
 
 .center-right p {
@@ -127,6 +129,10 @@
   border-radius: 6px;
   font-size: 16px;
   outline: none;
+}
+
+.center-right input::placeholder {
+  color: #51555b;
 }
 
 .center-right input:focus {
