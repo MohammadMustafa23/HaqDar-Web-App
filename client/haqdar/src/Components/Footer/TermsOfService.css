@@ -1,0 +1,202 @@
+:root {
+  --primary: #2563eb;
+
+  --bg: #f5f7fb;
+  --card: #ffffff;
+
+  --text: #111827;
+  --sub: #6b7280;
+
+  --border: #dbe3ef;
+
+  --shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* DARK MODE */
+
+body.dark {
+  --bg: #0f172a;
+  --card: #1e293b;
+
+  --text: #f8fafc;
+  --sub: #cbd5e1;
+
+  --border: #334155;
+
+  --shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+}
+
+.tos-page {
+  background: var(--bg);
+  min-height: 100vh;
+
+  padding: 60px 18px;
+}
+
+.tos-header {
+  max-width: 1000px;
+  margin: auto;
+  text-align: center;
+}
+
+.tos-header h1 {
+  font-size: 42px;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.updated {
+  color: var(--sub);
+  font-size: 14px;
+  margin-bottom: 28px;
+}
+
+.intro-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+
+  color: var(--sub);
+
+  padding: 20px;
+
+  border-radius: 14px;
+
+  line-height: 1.8;
+
+  box-shadow: var(--shadow);
+}
+
+.tos-list {
+  max-width: 1000px;
+  margin: 35px auto 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.tos-card {
+  display: flex;
+  gap: 20px;
+
+  align-items: flex-start;
+
+  background: var(--card);
+
+  border: 1px solid var(--border);
+
+  border-radius: 16px;
+
+  padding: 22px;
+
+  box-shadow: var(--shadow);
+
+  transition: 0.35s;
+}
+
+.tos-card:hover {
+  transform: translateY(-4px);
+
+  border-color: var(--primary);
+}
+
+.icon {
+  width: 48px;
+  height: 48px;
+
+  min-width: 48px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #eff6ff;
+
+  color: var(--primary);
+}
+
+body.dark .icon {
+  background: #1d4ed8;
+  color: white;
+}
+
+.content h3 {
+  margin: 0 0 10px;
+
+  color: var(--text);
+
+  font-size: 20px;
+}
+
+.content p {
+  color: var(--sub);
+
+  line-height: 1.8;
+
+  margin: 0;
+}
+
+/* Tablet */
+
+@media (max-width: 768px) {
+  .tos-header h1 {
+    font-size: 34px;
+  }
+
+  .tos-card {
+    padding: 18px;
+
+    gap: 16px;
+  }
+
+  .content h3 {
+    font-size: 18px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 500px) {
+  .tos-page {
+    padding: 35px 12px;
+  }
+
+  .tos-header h1 {
+    font-size: 28px;
+  }
+
+  .updated {
+    font-size: 13px;
+  }
+
+  .intro-box {
+    padding: 16px;
+    font-size: 14px;
+  }
+
+  .tos-card {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    padding: 16px;
+  }
+
+  .icon {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+  }
+
+  .content h3 {
+    font-size: 17px;
+  }
+
+  .content p {
+    font-size: 14px;
+
+    line-height: 1.7;
+  }
+}

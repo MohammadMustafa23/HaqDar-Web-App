@@ -58,8 +58,8 @@
  color: var(--text-secondary);         /* on-surface */
 }
 
-.trust-item .icon {
-  color: #00288e;            /* primary */
+.hero-icon {
+  color: var(--primary);            /* primary */
   font-size: 16px;
 }
 
@@ -118,7 +118,7 @@
   height: auto;
   display: block;
   border-radius: 12px;
-  border: 10px solid var(--card-bg);
+  border: 10px solid var(--text-secondary);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
 }
 

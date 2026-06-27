@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Moon, Sun, Circle } from "lucide-react";
 
-import "../../Admin/Admin_Login/AdminNavbar.css";
+import "./AdminNavbar.css";
 
 export default function Navbar() {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
@@ -39,7 +39,7 @@ export default function Navbar() {
         <div className="status-badge">
           <Circle size={10} fill="#22c55e" color="#22c55e" />
 
-          <span>Un-Lock Digital Power</span>
+          <span>ALL SYSTEMS OPERATIONAL</span>
         </div>
       </div>
     </header>

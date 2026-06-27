@@ -6,7 +6,9 @@ import {
   MdCheckCircle,
   MdArrowForward,
 } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 export default function TopSchemes({schemesRef}) {
+  const navigate = useNavigate();
   return (
     <div className="top-scheme-container" ref={schemesRef}>
       <div className="top-scheme-header">
@@ -41,7 +43,7 @@ export default function TopSchemes({schemesRef}) {
 
           <div className="top-scheme-footer">
             <span className="top-scheme-dot"></span>
-            <button>Check Eligibility</button>
+            <button onClick={() => navigate("/login")} >Check Eligibility</button>
           </div>
         </div>
 
@@ -65,7 +67,7 @@ export default function TopSchemes({schemesRef}) {
 
           <div className="top-scheme-footer">
             <span className="top-scheme-dot"></span>
-            <button>Check Eligibility</button>
+            <button onClick={() => navigate("/login")} >Check Eligibility</button>
           </div>
         </div>
 
@@ -89,7 +91,7 @@ export default function TopSchemes({schemesRef}) {
 
           <div className="top-scheme-footer">
             <span className="top-scheme-dot"></span>
-            <button>Check Eligibility</button>
+            <button onClick={() => navigate("/login")} >Check Eligibility</button>
           </div>
         </div>
       </div>

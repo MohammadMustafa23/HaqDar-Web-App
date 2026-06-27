@@ -131,9 +131,9 @@
 
 .top-scheme-footer button {
   background: transparent;
-  border: 2px solid #0a3299;
+  border: 2px solid var(--text-primary);
 
-  color: #0a3299;
+  color: var(--text-primary);
 
   padding: 10px 18px;
   border-radius: 8px;
@@ -146,8 +146,8 @@
 }
 
 .top-scheme-footer button:hover {
-  background: #0a3299;
-  color: var(--card-bg);
+  background: var(--primary);
+  color: var(--text-primary);
 }
 
 /* ================= RESPONSIVE ================= */

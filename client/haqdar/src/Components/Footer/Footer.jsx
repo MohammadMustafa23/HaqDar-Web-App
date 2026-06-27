@@ -11,10 +11,10 @@ export default function Footer() {
       </div>
 
       <div className="footer-links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-        <a href="#">Contact Us</a>
-        <a href="#">FAQ</a>
+        <a href="/privacy-policy">Privacy Policy</a>
+        <a href="/terms">Terms of Service</a>
+        <a href="/submit-feedBack">Contact Us</a>
+        <a>FAQ</a>
       </div>
 
       <span className="footer-copyright">

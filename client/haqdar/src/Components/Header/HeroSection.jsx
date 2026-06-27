@@ -22,7 +22,7 @@ export default function HeroSection() {
             "Central & State Programs",
           ].map((t) => (
             <span className="trust-item" key={t}>
-              <span className="icon">✓</span> {t}
+              <span className="hero-icon">✓</span> {t}
             </span>
           ))}
         </div>

@@ -12,6 +12,9 @@ import { Toaster } from "sonner";
 import SavedSchemesPage from "./Components/SavedScheme/SavedSchemesPage.jsx";
 import MatchedSchemes from "./Pages/MatchedSchemes.jsx";
 import FeedbackForm from "./Components/FeedBackForm/FeedbackForm.jsx";
+import TermsOfService from "./Components/Footer/TermsOfService.jsx";
+import AdminLogin from "./Pages/AdminLogin.jsx";
+import PrivacyPolicy from "./Components/Footer/PrivacyPolicy.jsx";
 function App() {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const [profileData, setProfileData] = useState(null);
@@ -120,13 +123,21 @@ function App() {
 
         <Route
           path="/saved-schemes"
-          element={<SavedSchemesPage profileData={profileData}  theme={theme} setTheme={setTheme} />}
+          element={
+            <SavedSchemesPage
+              profileData={profileData}
+              theme={theme}
+              setTheme={setTheme}
+            />
+          }
         />
 
-        <Route
-          path="/submit-feedBack"
-          element={<FeedbackForm/>}
-        />
+        <Route path="/submit-feedBack" element={<FeedbackForm />} />
+
+        <Route path="/terms" element={<TermsOfService />} />
+
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/admin-login" element={<AdminLogin />} />
       </Routes>
     </>
   );

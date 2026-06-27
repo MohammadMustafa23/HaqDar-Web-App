@@ -1,0 +1,355 @@
+:root {
+  --primary: #2563eb;
+  --primary-light: #eff6ff;
+
+  --bg: #f4f7fb;
+  --card: #ffffff;
+
+  --text: #111827;
+  --subtext: #64748b;
+
+  --border: #dbe3ef;
+
+  --danger: #ef4444;
+  --danger-bg: #fef2f2;
+
+  --shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* ================= DARK MODE ================= */
+
+body.dark {
+  --bg: #0f172a;
+  --card: #1e293b;
+
+  --text: #f8fafc;
+  --subtext: #cbd5e1;
+
+  --border: #334155;
+
+  --primary-light: rgba(37, 99, 235, 0.15);
+
+  --danger-bg: rgba(239, 68, 68, 0.12);
+
+  --shadow: 0 15px 35px rgba(0, 0, 0, .45);
+}
+
+/* ================= PAGE ================= */
+
+.privacy-page {
+  background: var(--bg);
+  min-height: 100vh;
+  padding: 60px 20px;
+}
+
+.privacy-container {
+  max-width: 1150px;
+  margin: auto;
+}
+
+/* ================= HEADER ================= */
+
+.privacy-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.privacy-header h1 {
+  color: var(--primary);
+  font-size: 46px;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.last-update {
+  color: var(--subtext);
+  font-size: 15px;
+}
+
+/* ================= CARD ================= */
+
+.privacy-card {
+  background: var(--card);
+
+  border: 1px solid var(--border);
+
+  border-radius: 14px;
+
+  padding: 28px;
+
+  margin-bottom: 28px;
+
+  box-shadow: var(--shadow);
+
+  transition: .35s;
+}
+
+.privacy-card:hover {
+  transform: translateY(-5px);
+}
+
+.card-heading {
+  display: flex;
+  gap: 22px;
+  align-items: flex-start;
+}
+
+/* ================= ICON ================= */
+
+.heading-icon {
+  width: 48px;
+  height: 48px;
+
+  min-width: 48px;
+
+  border-radius: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--primary);
+
+  color: white;
+}
+
+.heading-icon.danger {
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+
+/* ================= TEXT ================= */
+
+.card-heading h2 {
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+.card-heading p {
+  color: var(--subtext);
+  line-height: 1.8;
+}
+
+.highlight-text {
+  margin-bottom: 12px;
+}
+
+/* ================= INFO GRID ================= */
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 18px;
+
+  margin-top: 22px;
+}
+
+.info-box {
+  border: 1px solid var(--border);
+
+  border-radius: 10px;
+
+  padding: 18px;
+
+  transition: .3s;
+
+  background: transparent;
+}
+
+.info-box:hover {
+  border-color: var(--primary);
+}
+
+.info-box h4 {
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+.info-box p {
+  margin: 0;
+  font-size: 15px;
+}
+
+/* ================= LIST ================= */
+
+.privacy-list {
+  margin-top: 18px;
+  padding-left: 20px;
+}
+
+.privacy-list li {
+  margin-bottom: 12px;
+  color: var(--subtext);
+  line-height: 1.7;
+}
+
+/* ================= RIGHTS ================= */
+
+.rights-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.rights-list li {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 12px;
+
+  margin-bottom: 18px;
+
+  color: var(--subtext);
+}
+
+.rights-list svg {
+  color: var(--primary);
+  min-width: 18px;
+  margin-top: 3px;
+}
+
+/* ================= SECURITY ================= */
+
+.security-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 22px;
+
+  margin-top: 30px;
+}
+
+.security-item {
+  text-align: center;
+}
+
+.security-item svg {
+  color: var(--primary);
+  margin-bottom: 12px;
+}
+
+.security-item h4 {
+  margin-bottom: 10px;
+  color: var(--text);
+}
+
+.security-item p {
+  font-size: 14px;
+}
+
+/* ================= THIRD PARTY ================= */
+
+.thirdparty-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 18px;
+
+  margin-top: 25px;
+}
+
+.service-box {
+  border: 1px solid var(--border);
+
+  border-radius: 10px;
+
+  padding: 18px;
+
+  transition: .3s;
+}
+
+.service-box:hover {
+  border-color: var(--primary);
+}
+
+.service-box h4 {
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+.service-box p {
+  margin: 0;
+}
+
+/* ================= CONTACT ================= */
+
+.contact-box {
+  margin-top: 20px;
+
+  background: var(--primary-light);
+
+  border-radius: 10px;
+
+  padding: 18px;
+}
+
+.contact-box p {
+  margin: 6px 0;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 992px) {
+
+  .info-grid,
+  .thirdparty-grid,
+  .security-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+@media (max-width:768px) {
+
+  .privacy-header h1 {
+    font-size: 36px;
+  }
+
+  .privacy-card {
+    padding: 22px;
+  }
+
+  .card-heading {
+    gap: 16px;
+  }
+
+}
+
+@media (max-width:576px) {
+
+  .privacy-page {
+    padding: 30px 12px;
+  }
+
+  .privacy-header h1 {
+    font-size: 30px;
+  }
+
+  .card-heading {
+    flex-direction: column;
+  }
+
+  .heading-icon {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+  }
+
+  .privacy-card {
+    padding: 18px;
+  }
+
+  .card-heading h2 {
+    font-size: 22px;
+  }
+
+  .card-heading p,
+  .privacy-list li,
+  .rights-list li,
+  .service-box p,
+  .info-box p {
+    font-size: 14px;
+  }
+
+}

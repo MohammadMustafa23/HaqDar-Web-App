@@ -79,22 +79,24 @@
 .nav-links a:hover {
   color: #0a3299;
 }
+.theme {
+  padding-left: 300px;
+  padding-top: 10px;
+
+}
 
 /* Button */
 
 .sign-up-btn {
   border: none;
-
   padding: 14px 28px;
-
   border-radius: 8px;
-
  background: var(--primary-hover);
   color: var(--card-bg);
 
   font-size: 0.95rem;
   font-weight: 600;
-
+  margin-left: 30px;
   cursor: pointer;
 
   transition: 0.3s;
