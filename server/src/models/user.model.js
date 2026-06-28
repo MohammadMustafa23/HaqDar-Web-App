@@ -8,6 +8,7 @@ const UserSchema = new mongoose.Schema(
       trim: true,
       maxlength: 50,
     },
+
     email: {
       type: String,
       required: [true, "Email is required"],
@@ -15,11 +16,19 @@ const UserSchema = new mongoose.Schema(
       lowercase: true,
       trim: true,
     },
+
     password: {
       type: String,
       required: [true, "Password is required"],
       minlength: 6,
     },
+
+    role: {
+      type: String,
+      enum: ["user", "admin"],
+      default: "user",
+    },
+
     allowProfileEditUntil: {
       type: Date,
       default: null,
