@@ -16,6 +16,9 @@ import TermsOfService from "./Components/Footer/TermsOfService.jsx";
 import AdminLogin from "./Pages/AdminPage/AdminLogin.jsx";
 import PrivacyPolicy from "./Components/Footer/PrivacyPolicy.jsx";
 import AdminDash from './Pages/AdminPage/AdminDashboard.jsx'
+import AdminFeedBack from './Pages/AdminPage/FeedBackDash.jsx'
+import SchemeManagement from "./Pages/AdminPage/SchemeManagement.jsx";
+import RegisterScheme from "./Pages/AdminPage/RegisterScheme.jsx";
 function App() {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const [profileData, setProfileData] = useState(null);
@@ -140,6 +143,9 @@ function App() {
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/admin-login" element={<AdminLogin />} />
         <Route path="/admin-dashboard" element={<AdminDash />} />
+        <Route path="/admin-feedback" element={<AdminFeedBack />} />
+        <Route path="/admin-scheme" element={<SchemeManagement />} />
+        <Route path="/add-scheme" element={<RegisterScheme />} />
       </Routes>
     </>
   );

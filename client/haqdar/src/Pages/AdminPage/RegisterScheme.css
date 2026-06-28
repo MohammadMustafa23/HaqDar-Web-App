@@ -1,0 +1,1108 @@
+/* ==========================================
+   PAGE
+========================================== */
+
+.rs-page {
+  min-height: 100vh;
+  background: var(--bg);
+  padding: 20px 0 50px;
+}
+
+.rs-container {
+  width: 100%;
+  max-width: 1700px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.rs-header {
+  margin-bottom: 30px;
+}
+
+.rs-header h1 {
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.rs-header p {
+  max-width: 760px;
+  color: var(--text-light);
+  line-height: 1.8;
+  font-size: 1rem;
+}
+
+/* spacing */
+
+.rs-container > * {
+  margin-bottom: 28px;
+}
+
+/* ==========================================
+   CARD
+========================================== */
+
+.rs-card {
+  width: 100%;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: var(--shadow);
+}
+
+.rs-card-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 26px;
+}
+
+.rs-card-title svg {
+  color: var(--primary);
+}
+
+.rs-card-title h2 {
+  font-size: 1.35rem;
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* ==========================================
+   GRID
+========================================== */
+
+.rs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.rs-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+/* ==========================================
+   FIELD
+========================================== */
+
+.rs-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rs-field label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.rs-field input,
+.rs-field select,
+.rs-field textarea {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 15px;
+  color: var(--text);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  outline: none;
+  transition: .25s;
+}
+
+.rs-field textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+.rs-field input:focus,
+.rs-field select:focus,
+.rs-field textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(37,99,235,.08);
+}
+
+/* ==========================================
+   LARGE DESKTOP
+========================================== */
+
+@media (min-width: 1600px) {
+
+.rs-container{
+    max-width:1800px;
+    padding:0 40px;
+}
+
+}
+
+/* ==========================================
+   LAPTOP
+========================================== */
+
+@media (max-width:1200px){
+
+.rs-container{
+    padding:0 24px;
+}
+
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width:992px){
+
+.rs-header h1{
+    font-size:2rem;
+}
+
+.rs-card{
+    padding:24px;
+}
+
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width:768px){
+
+.rs-page{
+    padding:15px 0 40px;
+}
+
+.rs-container{
+    padding:0 15px;
+}
+
+.rs-header{
+    margin-bottom:22px;
+}
+
+.rs-header h1{
+    font-size:1.8rem;
+}
+
+.rs-header p{
+    font-size:.95rem;
+}
+
+.rs-grid,
+.rs-grid-3{
+    grid-template-columns:1fr;
+}
+
+.rs-card{
+    padding:18px;
+}
+
+}
+
+/* ==========================================
+   SMALL MOBILE
+========================================== */
+
+@media (max-width:480px){
+
+.rs-header h1{
+    font-size:1.55rem;
+}
+
+.rs-card-title h2{
+    font-size:1.15rem;
+}
+
+.rs-field input,
+.rs-field select,
+.rs-field textarea{
+    padding:12px 14px;
+    font-size:14px;
+}
+
+}
+/* ----------------------Ai Import Card-------------------------- */
+/* ==========================
+AI IMPORT CARD
+========================== */
+
+.rs-ai-card {
+  background: var(--primary-light);
+
+  border: 1px solid rgba(37, 99, 235, 0.15);
+
+  border-radius: 18px;
+
+  padding: 22px 24px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  box-shadow: var(--shadow);
+
+  overflow: hidden;
+
+  position: relative;
+}
+
+/* Decorative Blur */
+
+.rs-ai-card::before {
+  content: "";
+
+  position: absolute;
+
+  width: 180px;
+
+  height: 180px;
+
+  background: rgba(255, 255, 255, 0.35);
+
+  border-radius: 50%;
+
+  right: -80px;
+
+  top: -70px;
+
+  filter: blur(5px);
+}
+
+.rs-ai-left {
+  display: flex;
+
+  align-items: center;
+
+  gap: 18px;
+
+  z-index: 2;
+}
+
+/* Icon */
+
+.rs-ai-icon {
+  width: 54px;
+
+  height: 54px;
+
+  border-radius: 14px;
+
+  background: #22c55e;
+
+  color: white;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  flex-shrink: 0;
+}
+
+/* Heading */
+
+.rs-ai-left h3 {
+  font-size: 20px;
+
+  color: var(--text);
+
+  margin-bottom: 6px;
+}
+
+/* File */
+
+.rs-ai-left p {
+  color: var(--text-light);
+
+  font-size: 15px;
+}
+
+.rs-ai-left span {
+  color: var(--primary);
+
+  font-weight: 600;
+}
+
+/* Button */
+
+.rs-change-btn {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 12px 18px;
+
+  border-radius: 10px;
+
+  border: 1px solid var(--primary);
+
+  background: var(--card);
+
+  color: var(--primary);
+
+  cursor: pointer;
+
+  font-weight: 600;
+
+  transition: 0.3s;
+
+  z-index: 2;
+}
+
+.rs-change-btn:hover {
+  background: var(--primary);
+
+  color: white;
+
+  transform: translateY(-2px);
+}
+
+/* ==========================
+Responsive
+========================== */
+
+@media (max-width: 768px) {
+  .rs-ai-card {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    padding: 20px;
+  }
+
+  .rs-change-btn {
+    width: 100%;
+
+    justify-content: center;
+  }
+
+  .rs-ai-left {
+    align-items: flex-start;
+  }
+
+  .rs-ai-left h3 {
+    font-size: 18px;
+  }
+}
+
+/* ----------------------Basic Info -------------------------- */
+/* ==========================
+BASIC DETAILS
+========================== */
+
+.rs-full {
+  grid-column: 1/-1;
+}
+
+/* Select */
+
+.rs-field select {
+  appearance: none;
+
+  -webkit-appearance: none;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='%23666' viewBox='0 0 16 16'%3E%3Cpath d='M3.2 5.5L8 10.3l4.8-4.8' stroke='%23666' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+
+  background-repeat: no-repeat;
+
+  background-position: right 14px center;
+
+  padding-right: 45px;
+}
+
+/* Hover */
+
+.rs-field input:hover,
+.rs-field select:hover {
+  border-color: var(--primary);
+}
+
+/* Placeholder */
+
+.rs-field input::placeholder,
+.rs-field textarea::placeholder {
+  color: var(--text-light);
+}
+
+/* Label */
+
+.rs-field label {
+  letter-spacing: 0.2px;
+}
+
+/* Animation */
+
+.rs-field input,
+.rs-field select {
+  transition: 0.25s;
+}
+
+.rs-field input:focus,
+.rs-field select:focus {
+  transform: translateY(-1px);
+
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.08);
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .rs-full {
+    grid-column: auto;
+  }
+}
+
+/* ----------------------Eligiblaity Card -------------------------- */
+/* ===========================
+SECTION
+=========================== */
+
+.rs-section {
+  margin-top: 24px;
+}
+
+.rs-section-label {
+  display: block;
+
+  margin-bottom: 12px;
+
+  color: var(--text);
+
+  font-weight: 600;
+
+  font-size: 14px;
+}
+
+/* ===========================
+PILLS
+=========================== */
+
+.rs-pill-group {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 12px;
+}
+
+.rs-pill {
+  border: none;
+
+  padding: 11px 18px;
+
+  border-radius: 12px;
+
+  cursor: pointer;
+
+  font-weight: 600;
+
+  transition: 0.3s;
+
+  background: var(--primary-light);
+
+  color: var(--primary);
+}
+
+.rs-pill:hover {
+  transform: translateY(-2px);
+}
+
+.rs-pill.active {
+  background: var(--primary);
+
+  color: white;
+
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.22);
+}
+
+/* ===========================
+BOTTOM GRID
+=========================== */
+
+.rs-bottom-grid {
+  margin-top: 30px;
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 30px;
+}
+
+/* ===========================
+CHECKBOXES
+=========================== */
+
+.rs-checkbox-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 14px;
+}
+
+.rs-checkbox {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  color: var(--text);
+
+  font-weight: 500;
+
+  cursor: pointer;
+}
+
+.rs-checkbox input {
+  width: 18px;
+
+  height: 18px;
+
+  accent-color: var(--primary);
+}
+
+/* ===========================
+RADIOS
+=========================== */
+
+.rs-radio-group {
+  display: flex;
+
+  gap: 20px;
+
+  flex-wrap: wrap;
+
+  margin-top: 5px;
+}
+
+.rs-radio-group label {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  color: var(--text);
+
+  cursor: pointer;
+}
+
+.rs-radio-group input {
+  accent-color: var(--primary);
+}
+
+/* ===========================
+RESPONSIVE
+=========================== */
+
+@media (max-width: 768px) {
+  .rs-bottom-grid {
+    grid-template-columns: 1fr;
+
+    gap: 22px;
+  }
+
+  .rs-checkbox-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rs-pill {
+    width: 100%;
+
+    justify-content: center;
+  }
+}
+
+/* ----------------------Application Docs -------------------------- */
+/* =========================
+DOCUMENT BOX
+========================= */
+
+.rs-doc-box {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  padding: 12px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 12px;
+
+  background: var(--card);
+
+  min-height: 58px;
+
+  transition: 0.3s;
+}
+
+.rs-doc-box:focus-within {
+  border-color: var(--primary);
+
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.08);
+}
+
+/* =========================
+CHIPS
+========================= */
+
+.rs-doc-chip {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 8px 14px;
+
+  background: var(--primary-light);
+
+  color: var(--primary);
+
+  border-radius: 30px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+.rs-doc-chip button {
+  border: none;
+
+  background: none;
+
+  cursor: pointer;
+
+  color: inherit;
+
+  font-size: 18px;
+
+  line-height: 1;
+}
+
+/* =========================
+INPUT
+========================= */
+
+.rs-doc-box input {
+  flex: 1;
+
+  min-width: 170px;
+
+  border: none;
+
+  background: none;
+
+  color: var(--text);
+
+  outline: none;
+
+  font-size: 15px;
+}
+
+/* =========================
+TEXTAREA
+========================= */
+
+.rs-field textarea {
+  min-height: 150px;
+
+  line-height: 1.7;
+}
+
+/* =========================
+DATE
+========================= */
+
+.rs-field input[type="date"] {
+  cursor: pointer;
+}
+
+/* =========================
+RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+  .rs-doc-box {
+    padding: 10px;
+  }
+
+  .rs-doc-chip {
+    font-size: 13px;
+
+    padding: 8px 12px;
+  }
+}
+
+/* ----------------------Action Card-------------------------- */
+/* =================================
+ACTION CARD
+================================= */
+
+.rs-action-card {
+  background: var(--card);
+
+  border: 1px solid var(--border);
+
+  border-radius: 18px;
+
+  padding: 28px;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 30px;
+
+  box-shadow: var(--shadow);
+}
+
+/* ============================= */
+
+.rs-action-info {
+  flex: 1;
+}
+
+.rs-action-info h3 {
+  font-size: 22px;
+
+  color: var(--text);
+
+  margin-bottom: 8px;
+}
+
+.rs-action-info p {
+  color: var(--text-light);
+
+  line-height: 1.7;
+
+  max-width: 480px;
+}
+
+/* ============================= */
+
+.rs-action-buttons {
+  display: flex;
+
+  gap: 15px;
+
+  flex-wrap: wrap;
+}
+
+/* ============================= */
+
+.rs-action-buttons button {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  padding: 14px 24px;
+
+  border-radius: 12px;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.35s;
+}
+
+/* ============================= */
+
+.rs-reset-btn {
+  background: transparent;
+
+  color: var(--text);
+
+  border: 1px solid var(--border);
+}
+
+.rs-reset-btn:hover {
+  background: #ef4444;
+
+  color: white;
+
+  border-color: #ef4444;
+
+  transform: translateY(-3px);
+}
+
+/* ============================= */
+
+.rs-save-btn {
+  background: transparent;
+
+  border: 1px solid var(--primary);
+
+  color: var(--primary);
+}
+
+.rs-save-btn:hover {
+  background: var(--primary);
+
+  color: white;
+
+  transform: translateY(-3px);
+}
+
+/* ============================= */
+
+.rs-publish-btn {
+  border: none;
+
+  color: white;
+
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+
+  box-shadow: 0 12px 28px rgba(37, 99, 235, 0.28);
+}
+
+.rs-publish-btn:hover {
+  transform: translateY(-4px);
+
+  box-shadow: 0 18px 38px rgba(37, 99, 235, 0.35);
+}
+
+/* ============================= */
+
+.rs-publish-btn:active,
+.rs-save-btn:active,
+.rs-reset-btn:active {
+  transform: scale(0.97);
+}
+
+/* ============================= */
+
+@media (max-width: 900px) {
+  .rs-action-card {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+
+  .rs-action-buttons {
+    width: 100%;
+  }
+
+  .rs-action-buttons button {
+    flex: 1;
+
+    min-width: 170px;
+  }
+}
+
+@media (max-width: 600px) {
+  .rs-action-buttons {
+    flex-direction: column;
+  }
+
+  .rs-action-buttons button {
+    width: 100%;
+  }
+
+  .rs-action-info h3 {
+    font-size: 20px;
+  }
+}
+
+/* ----------------------Registeration Guide Line-------------------------- */
+/* ===============================
+GUIDELINES CARD
+=============================== */
+
+.rs-guide-card {
+  background: var(--card);
+
+  border: 1px solid var(--border);
+
+  border-radius: 20px;
+
+  padding: 28px;
+
+  box-shadow: var(--shadow);
+}
+
+/* =============================== */
+
+.rs-guide-header {
+  display: flex;
+
+  gap: 18px;
+
+  align-items: flex-start;
+
+  margin-bottom: 28px;
+}
+
+.rs-guide-icon {
+  width: 52px;
+
+  height: 52px;
+
+  border-radius: 14px;
+
+  background: var(--primary-light);
+
+  color: var(--primary);
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  flex-shrink: 0;
+}
+
+.rs-guide-header h3 {
+  font-size: 22px;
+
+  color: var(--text);
+
+  margin-bottom: 6px;
+}
+
+.rs-guide-header p {
+  color: var(--text-light);
+
+  line-height: 1.7;
+}
+
+/* ===============================
+LIST
+=============================== */
+
+.rs-guide-list {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 18px;
+}
+
+.rs-guide-item {
+  display: flex;
+
+  gap: 16px;
+
+  align-items: flex-start;
+
+  padding: 18px;
+
+  border-radius: 14px;
+
+  background: var(--bg);
+
+  border: 1px solid var(--border);
+
+  transition: 0.3s;
+}
+
+.rs-guide-item:hover {
+  transform: translateY(-3px);
+
+  border-color: var(--primary);
+}
+
+.rs-guide-item svg {
+  color: var(--primary);
+
+  margin-top: 2px;
+
+  flex-shrink: 0;
+}
+
+.rs-guide-item h4 {
+  color: var(--text);
+
+  margin-bottom: 5px;
+
+  font-size: 16px;
+}
+
+.rs-guide-item p {
+  color: var(--text-light);
+
+  line-height: 1.7;
+}
+
+/* ===============================
+FOOTER
+=============================== */
+
+.rs-guide-footer {
+  margin-top: 28px;
+
+  background: linear-gradient(
+    135deg,
+    rgba(37, 99, 235, 0.08),
+    rgba(59, 130, 246, 0.05)
+  );
+
+  border-left: 4px solid var(--primary);
+
+  padding: 18px;
+
+  border-radius: 12px;
+
+  color: var(--text);
+
+  line-height: 1.8;
+}
+
+.rs-guide-footer strong {
+  color: var(--primary);
+}
+
+/* ===============================
+RESPONSIVE
+=============================== */
+
+@media (max-width: 768px) {
+  .rs-guide-card {
+    padding: 20px;
+  }
+
+  .rs-guide-header {
+    flex-direction: column;
+
+    gap: 15px;
+  }
+
+  .rs-guide-item {
+    flex-direction: column;
+  }
+
+  .rs-guide-header h3 {
+    font-size: 20px;
+  }
+}
