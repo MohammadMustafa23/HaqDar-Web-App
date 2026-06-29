@@ -8,6 +8,7 @@ import Airouter from "./routes/ai.routes.js";
 import GeneratePDF from "./routes/Scheme.Routes.js";
 import FeedbackRoutes from "./routes/Feedback.Routes.js";
 import adminRoutes from "./Admin/Admin_Auth/admin.route.js";
+import feedbackRoutes from "./Admin/AdminFeedBack/feedback.route.js";
 
 const app = express();
 app.use(cookieParser());
@@ -26,7 +27,7 @@ app.use("/api/schemes", matchedSchemeRoutes);
 app.use('/api/bot',Airouter)
 app.use('/api/feedback',FeedbackRoutes)
 app.use("/api/admin", adminRoutes);
-
+app.use("/api/admin", feedbackRoutes);
 
 
 export default app;

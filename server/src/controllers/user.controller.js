@@ -39,14 +39,25 @@ export async function LoginUser(req, res) {
 
   if (!IfUserExist) {
     return res.status(404).json({
+      success: false,
       message: "User Not Found",
     });
   }
 
+  // Don't allow admin to login from user login
+  if (IfUserExist.role === "admin") {
+    return res.status(403).json({
+      success: false,
+      message: "Admins must login from the Admin Portal.",
+    });
+  }
+
   const isMatch = await bcrypt.compare(password, IfUserExist.password);
+
   if (!isMatch) {
     return res.status(400).json({
-      message: "In-valid Password",
+      success: false,
+      message: "Invalid Password",
     });
   }
 
@@ -64,13 +75,15 @@ export async function LoginUser(req, res) {
   res.cookie("token", token, {
     httpOnly: true,
     maxAge: 7 * 24 * 60 * 60 * 1000,
+    sameSite: "lax",
+    secure: process.env.NODE_ENV === "production",
   });
 
   res.status(200).json({
+    success: true,
     message: "Login Successful",
   });
 }
-
 export const GoogleLogin = async (req, res) => {
   try {
     const { accessToken } = req.body;

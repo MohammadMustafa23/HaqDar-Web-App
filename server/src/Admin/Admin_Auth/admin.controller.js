@@ -46,9 +46,10 @@ export async function AdminLogin(req, res) {
       },
     );
 
-    // Cookie
-    res.cookie("token", token, {
+    res.cookie("adminToken", token, {
       httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
@@ -65,3 +66,43 @@ export async function AdminLogin(req, res) {
     });
   }
 }
+
+export const Logout = async (req, res) => {
+  try {
+    if (req.user) {
+      await redisClient.del(`user:${req.user._id}`);
+    }
+
+    res.clearCookie("adminToken", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+    });
+
+    res.status(200).json({
+      success: true,
+      message: "Logout Successfully",
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+export const VerifyAdmin = async (req, res) => {
+  try {
+    return res.status(200).json({
+      success: true,
+      message: "Admin Verified",
+      user: req.user,
+    });
+  } catch (error) {
+    console.error("Verify Admin Error:", error);
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};

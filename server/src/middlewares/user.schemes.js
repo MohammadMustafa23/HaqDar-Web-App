@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import userModel from "../models/user.model.js";
-import {redisClient} from "../config/redis.js";
+import { redisClient } from "../config/redis.js";
 
 export const verifyJWT = async (req, res, next) => {
   try {
@@ -44,6 +44,7 @@ export const verifyJWT = async (req, res, next) => {
       id: user._id,
       email: user.email,
       userName: user.userName,
+      role: user.role,
     };
 
     next();

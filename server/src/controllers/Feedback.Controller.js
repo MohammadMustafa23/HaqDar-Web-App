@@ -10,6 +10,12 @@ export const SubmitFeedback = async (req, res) => {
       subject,
       message,
       rating,
+
+      // Admin fields
+      status: "Unread",
+      readAt: null,
+      resolvedAt: null,
+      adminReply: "",
     });
 
     return res.status(201).json({
@@ -18,6 +24,8 @@ export const SubmitFeedback = async (req, res) => {
       feedback,
     });
   } catch (error) {
+    console.error(error);
+
     return res.status(500).json({
       success: false,
       message: error.message,

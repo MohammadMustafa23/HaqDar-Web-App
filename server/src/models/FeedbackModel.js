@@ -32,15 +32,38 @@ const FeedbackSchema = new mongoose.Schema(
       max: 5,
       required: true,
     },
+
+    // Admin Status
+    status: {
+      type: String,
+      enum: ["Unread", "Read", "Resolved"],
+      default: "Unread",
+    },
+
+    // When admin opens feedback
+    readAt: {
+      type: Date,
+      default: null,
+    },
+
+    // When issue is resolved
+    resolvedAt: {
+      type: Date,
+      default: null,
+    },
+
+    // Optional admin response
+    adminReply: {
+      type: String,
+      trim: true,
+      default: "",
+    },
   },
   {
     timestamps: true,
   }
 );
 
-const FeedbackModel = mongoose.model(
-  "Feedback",
-  FeedbackSchema
-);
+const FeedbackModel = mongoose.model("Feedback", FeedbackSchema);
 
 export default FeedbackModel;

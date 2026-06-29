@@ -2,31 +2,38 @@ const ValidateFeedback = (req, res, next) => {
   try {
     const { category, subject, message, rating } = req.body;
 
-    if (!category?.trim()) {
+    if (!category || !category.trim()) {
       return res.status(400).json({
         success: false,
         message: "Feedback category is required",
       });
     }
 
-    if (!subject?.trim()) {
+    if (!subject || !subject.trim()) {
       return res.status(400).json({
         success: false,
         message: "Subject is required",
       });
     }
 
-    if (!message?.trim()) {
+    if (!message || !message.trim()) {
       return res.status(400).json({
         success: false,
         message: "Message is required",
       });
     }
 
-    if (!rating) {
+    if (rating === undefined || rating === null) {
       return res.status(400).json({
         success: false,
         message: "Rating is required",
+      });
+    }
+
+    if (typeof rating !== "number") {
+      return res.status(400).json({
+        success: false,
+        message: "Rating must be a number",
       });
     }
 
@@ -39,6 +46,8 @@ const ValidateFeedback = (req, res, next) => {
 
     next();
   } catch (error) {
+    console.error(error);
+
     return res.status(500).json({
       success: false,
       message: "Validation failed",
