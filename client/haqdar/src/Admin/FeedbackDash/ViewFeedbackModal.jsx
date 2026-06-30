@@ -8,14 +8,13 @@ import {
   Trash2,
 } from "lucide-react";
 
-export default function ViewFeedbackModal({ open, feedback, onClose }) {
+export default function ViewFeedbackModal({open,feedback,onClose,onMarkAsRead,onDelete}) {
   if (!open || !feedback) return null;
 
   return (
     <div className="fm-modal-overlay">
       <div className="fm-modal">
         {/* Header */}
-
         <div className="fm-modal-header">
           <h2>Feedback Details</h2>
 
@@ -25,15 +24,22 @@ export default function ViewFeedbackModal({ open, feedback, onClose }) {
         </div>
 
         {/* Body */}
-
         <div className="fm-modal-body">
           <div className="fm-info">
             <User size={18} />
 
             <div>
               <span>Citizen</span>
+              <h4>{feedback.userId?.userName}</h4>
+            </div>
+          </div>
 
-              <h4>{feedback.name}</h4>
+          <div className="fm-info">
+            <Mail size={18} />
+
+            <div>
+              <span>Email</span>
+              <h4>{feedback.userId?.email}</h4>
             </div>
           </div>
 
@@ -42,7 +48,6 @@ export default function ViewFeedbackModal({ open, feedback, onClose }) {
 
             <div>
               <span>Subject</span>
-
               <h4>{feedback.subject}</h4>
             </div>
           </div>
@@ -53,7 +58,6 @@ export default function ViewFeedbackModal({ open, feedback, onClose }) {
 
               <div>
                 <span>Category</span>
-
                 <h4>{feedback.category}</h4>
               </div>
             </div>
@@ -63,35 +67,67 @@ export default function ViewFeedbackModal({ open, feedback, onClose }) {
 
               <div>
                 <span>Date</span>
-
                 <h4>
-                  {feedback.date} • {feedback.time}
+                  {new Date(feedback.createdAt).toLocaleDateString()} •{" "}
+                  {new Date(feedback.createdAt).toLocaleTimeString([], {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
                 </h4>
               </div>
             </div>
           </div>
 
+          <div className="fm-grid">
+            <div className="fm-info">
+              <span>⭐ Rating</span>
+              <h4>{feedback.rating}/5</h4>
+            </div>
+
+            <div className="fm-info">
+              <span>Status</span>
+
+              <h4>
+                <span
+                  className={`fm-status ${feedback.status
+                    .toLowerCase()
+                    .replace(/\s+/g, "-")}`}
+                >
+                  {feedback.status}
+                </span>
+              </h4>
+            </div>
+          </div>
+
           <div className="fm-message">
             <span>Message</span>
-
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Voluptates cumque aspernatur nihil quaerat tempora possimus, atque
-              neque officiis distinctio nemo. Provident adipisci officiis quae
-              rerum.
-            </p>
+            <p>{feedback.message}</p>
           </div>
+
+          {feedback.adminReply && (
+            <div className="fm-message">
+              <span>Admin Reply</span>
+              <p>{feedback.adminReply}</p>
+            </div>
+          )}
         </div>
 
         {/* Footer */}
-
         <div className="fm-modal-footer">
-          <button className="fm-read-btn">
-            <CheckCircle size={18} />
-            Mark as Read
-          </button>
+          {feedback.status === "Unread" && (
+            <button
+              className="fm-read-btn"
+              onClick={() => onMarkAsRead(feedback._id)}
+            >
+              <CheckCircle size={18} />
+              Mark as Read
+            </button>
+          )}
 
-          <button className="fm-delete-btn">
+          <button
+            className="fm-delete-btn"
+            onClick={() => onDelete(feedback._id)}
+          >
             <Trash2 size={18} />
             Delete
           </button>

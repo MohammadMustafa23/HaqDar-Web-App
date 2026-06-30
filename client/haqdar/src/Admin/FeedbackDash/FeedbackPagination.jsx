@@ -1,25 +1,53 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
-export default function FeedbackPagination() {
+
+export default function FeedbackPagination({
+  currentPage,
+  totalPages,
+  totalItems,
+  itemsPerPage,
+  onPageChange,
+}) {
+  const start = (currentPage - 1) * itemsPerPage + 1;
+  const end = Math.min(currentPage * itemsPerPage, totalItems);
+
+  const getPages = () => {
+    const pages = [];
+
+    for (let i = 1; i <= totalPages; i++) {
+      pages.push(i);
+    }
+
+    return pages;
+  };
+
   return (
     <div className="fm-pagination">
-      <p>Showing 5 of 1,284 entries</p>
+      <p>
+        Showing {start}-{end} of {totalItems} entries
+      </p>
 
       <div className="fm-pages">
-        <button>
+        <button
+          disabled={currentPage === 1}
+          onClick={() => onPageChange(currentPage - 1)}
+        >
           <ChevronLeft size={18} />
         </button>
 
-        <button className="active">1</button>
+        {getPages().map((page) => (
+          <button
+            key={page}
+            className={currentPage === page ? "active" : ""}
+            onClick={() => onPageChange(page)}
+          >
+            {page}
+          </button>
+        ))}
 
-        <button>2</button>
-
-        <button>3</button>
-
-        <button>...</button>
-
-        <button>257</button>
-
-        <button>
+        <button
+          disabled={currentPage === totalPages}
+          onClick={() => onPageChange(currentPage + 1)}
+        >
           <ChevronRight size={18} />
         </button>
       </div>

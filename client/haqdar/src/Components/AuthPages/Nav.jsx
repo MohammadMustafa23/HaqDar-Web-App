@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
-import { Moon, Sun, Circle } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { Moon, Sun, Circle, Shield } from "lucide-react";
 
 import "../../Admin/Admin_Login/AdminNavbar.css";
 
 export default function Navbar() {
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  const navigate = useNavigate();
+
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") || "light"
+  );
 
   useEffect(() => {
     if (theme === "dark") {
@@ -32,13 +37,27 @@ export default function Navbar() {
       {/* RIGHT */}
 
       <div className="navbar-right">
+
+        {/* Admin Login Button */}
+
+        <button
+          className="switch-btn"
+          onClick={() => navigate("/admin-login")}
+        >
+          <Shield size={18} />
+          <span>Admin Login</span>
+        </button>
+
+        {/* Theme */}
+
         <button className="theme-btn" onClick={toggleTheme}>
           {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
         </button>
 
+        {/* Status */}
+
         <div className="status-badge">
           <Circle size={10} fill="#22c55e" color="#22c55e" />
-
           <span>Un-Lock Digital Power</span>
         </div>
       </div>

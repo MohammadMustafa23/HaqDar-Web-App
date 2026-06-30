@@ -1,203 +1,205 @@
+/* ===========================
+NAVBAR
+=========================== */
+
 .admin-navbar {
   width: 100%;
-
   height: 72px;
-
   padding: 0 32px;
 
   display: flex;
-
   justify-content: space-between;
-
   align-items: center;
 
   background: var(--card);
-
   border-bottom: 1px solid var(--border);
 
   transition: 0.3s;
 }
 
-/* LEFT */
+/* ===========================
+LOGO
+=========================== */
 
-.admin-logo {
+.home-nav-logo-section {
   display: flex;
-
   align-items: center;
-
   gap: 12px;
 }
 
-.logo-circle {
+.home-nav-logo-box {
   width: 42px;
-
   height: 42px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   border-radius: 12px;
 
-  display: flex;
+  background: #2563eb;
+  color: #fff;
 
-  justify-content: center;
-
-  align-items: center;
-
-  background: #eff6ff;
-
-  color: #1749b3;
-
-  transition: 0.3s;
-}
-
-body.dark .logo-circle {
-  background: #1d335e;
-
-  color: #4d8dff;
-}
-
-.admin-logo h2 {
-  font-size: 24px;
-
+  font-size: 22px;
   font-weight: 700;
-
-  color: var(--text);
-
-  letter-spacing: 0.3px;
 }
 
-/* RIGHT */
+.home-nav-logo-text {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* ===========================
+RIGHT
+=========================== */
 
 .navbar-right {
   display: flex;
-
   align-items: center;
-
   gap: 18px;
 }
 
-/* THEME BUTTON */
+/* ===========================
+SWITCH BUTTON
+=========================== */
 
-.theme-btn {
-  width: 44px;
+.switch-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 
-  height: 44px;
+  padding: 10px 16px;
 
-  border: none;
+  border: 1px solid var(--border);
+  border-radius: 12px;
 
-  outline: none;
+  background: var(--card);
+  color: var(--text);
 
   cursor: pointer;
 
-  display: flex;
+  font-size: 14px;
+  font-weight: 600;
 
+  transition: all 0.3s ease;
+}
+
+.switch-btn:hover {
+  background: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+}
+
+/* ===========================
+THEME
+=========================== */
+
+.theme-btn {
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  justify-content: center;
   align-items: center;
 
-  justify-content: center;
+  border: none;
+  outline: none;
 
   border-radius: 12px;
 
   background: transparent;
-
   color: var(--text);
 
-  transition: 0.35s;
-}
-
-.theme-btn:hover {
-  background: #eef3ff;
-
-  transform: rotate(180deg);
-}
-
-body.dark .theme-btn:hover {
-  background: #2a3347;
-}
-
-/* STATUS */
-
-.status-badge {
-  display: flex;
-
-  align-items: center;
-
-  gap: 8px;
-
-  padding: 10px 18px;
-
-  background: #f8fafc;
-
-  border: 1px solid var(--border);
-
-  border-radius: 999px;
-
-  font-size: 12px;
-
-  font-weight: 700;
-
-  letter-spacing: 1px;
-
-  color: #334155;
+  cursor: pointer;
 
   transition: 0.3s;
 }
 
+.theme-btn:hover {
+  background: #eef3ff;
+  transform: rotate(180deg);
+}
+
+body.dark .theme-btn:hover {
+  background: #293246;
+}
+
+/* ===========================
+STATUS
+=========================== */
+
+.status-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 10px 18px;
+
+  border: 1px solid var(--border);
+  border-radius: 999px;
+
+  background: #f8fafc;
+
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+
+  color: #334155;
+}
+
 body.dark .status-badge {
-  background: #202736;
-
-  color: #e5e7eb;
-
-  border-color: #39445d;
+  background: #1f2937;
+  color: #fff;
 }
 
 .status-badge span {
   white-space: nowrap;
 }
 
-/* RESPONSIVE */
+/* ===========================
+RESPONSIVE
+=========================== */
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .admin-navbar {
-    padding: 15px 18px;
-
+    padding: 15px 20px;
     height: auto;
 
     flex-direction: column;
-
-    gap: 16px;
+    gap: 18px;
   }
 
   .navbar-right {
     width: 100%;
-
     justify-content: space-between;
   }
+}
 
-  .admin-logo h2 {
-    font-size: 21px;
+@media (max-width: 600px) {
+  .home-nav-logo-text {
+    font-size: 22px;
   }
 
-  .status-badge {
-    font-size: 10px;
+  .switch-btn span {
+    display: none;
+  }
 
-    padding: 8px 12px;
+  .switch-btn {
+    padding: 10px;
+  }
+
+  .status-badge span {
+    display: none;
   }
 }
 
 @media (max-width: 480px) {
   .navbar-right {
-    flex-direction: column;
-
     gap: 10px;
   }
 
   .status-badge {
-    width: 100%;
-
-    justify-content: center;
-  }
-
-  .theme-btn {
-    width: 40px;
-
-    height: 40px;
+    padding: 10px;
   }
 }

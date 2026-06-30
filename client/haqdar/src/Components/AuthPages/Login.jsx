@@ -48,7 +48,7 @@ export default function Login({ setProfileData }) {
         console.log("API Error");
         console.log(error);
       } finally {
-         setLoading(false);
+        setLoading(false);
       }
     },
 
@@ -128,102 +128,110 @@ export default function Login({ setProfileData }) {
 
   return (
     <>
-    {loading && <PageLoader text="Signing you in..." />}
-    <div className="login-head">
-      <div className="center-part">
-        <div className="left-side">
-          <h1>Your Gateway to Government Benefits.</h1>
+      {loading && <PageLoader text="Signing you in..." />}
+      <div className="login-head">
+        <div className="center-part">
+          <div className="left-side">
+            <h1>Your Gateway to Government Benefits.</h1>
 
-          <p>
-            Empowering citizens through transparent, accessible, and reliable
-            digital services. Sign in to track your applications and discover
-            schemes tailored for you.
-          </p>
-
-          <img src={LoginPage} alt="Government Portal" />
-
-          <span>Trusted by 2M+ Citizens Nationwide</span>
-        </div>
-
-        <div className="right-side">
-          <div className="center-right">
-            <div className="auth-tabs">
-              <NavLink
-                to="/login"
-                className={({ isActive }) => (isActive ? "tab active" : "tab")}
-              >
-                Login
-              </NavLink>
-
-              <NavLink
-                to="/register"
-                className={({ isActive }) => (isActive ? "tab active" : "tab")}
-              >
-                Register
-              </NavLink>
-            </div>
-
-            <p>Welcome Back</p>
-
-            <span>Sign in to your account to continue.</span>
-
-            <div className="input-group">
-              <label>Email Address</label>
-
-              <input
-                className={errors.email ? "input error" : "input"}
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="name@example.com"
-              />
-
-              {errors.email && <p className="error-message">{errors.email}</p>}
-            </div>
-
-            <label>Password</label>
-            <input
-              className={errors.password ? "input error" : "input"}
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              placeholder="••••••••"
-            />
-
-            {errors.password && (
-              <p className="error-message">{errors.password}</p>
-            )}
-
-            <button
-              className="sign-in"
-              onClick={handleSubmit}
-              disabled={loading}
-            >
-              Sign In
-            </button>
-
-            <div className="divider">
-              <span>OR CONTINUE WITH</span>
-            </div>
-
-            <button className="google-btn" onClick={() => googleLogin()}>
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg"
-                alt="Google"
-              />
-              Continue with Google
-            </button>
-
-            <p className="secure-text">
-              Your information is securely protected and used only for
-              eligibility matching.
+            <p>
+              Empowering citizens through transparent, accessible, and reliable
+              digital services. Sign in to track your applications and discover
+              schemes tailored for you.
             </p>
+
+            <img src={LoginPage} alt="Government Portal" />
+
+            <span>Trusted by 2M+ Citizens Nationwide</span>
+          </div>
+
+          <div className="right-side">
+            <div className="center-right">
+              <div className="auth-tabs">
+                <NavLink
+                  to="/login"
+                  replace
+                  className={({ isActive }) =>
+                    isActive ? "tab active" : "tab"
+                  }
+                >
+                  Login
+                </NavLink>
+
+                <NavLink
+                  to="/register"
+                  replace
+                  className={({ isActive }) =>
+                    isActive ? "tab active" : "tab"
+                  }
+                >
+                  Register
+                </NavLink>
+              </div>
+
+              <p>Welcome Back</p>
+
+              <span>Sign in to your account to continue.</span>
+
+              <div className="input-group">
+                <label>Email Address</label>
+
+                <input
+                  className={errors.email ? "input error" : "input"}
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="name@example.com"
+                />
+
+                {errors.email && (
+                  <p className="error-message">{errors.email}</p>
+                )}
+              </div>
+
+              <label>Password</label>
+              <input
+                className={errors.password ? "input error" : "input"}
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                placeholder="••••••••"
+              />
+
+              {errors.password && (
+                <p className="error-message">{errors.password}</p>
+              )}
+
+              <button
+                className="sign-in"
+                onClick={handleSubmit}
+                disabled={loading}
+              >
+                Sign In
+              </button>
+
+              <div className="divider">
+                <span>OR CONTINUE WITH</span>
+              </div>
+
+              <button className="google-btn" onClick={() => googleLogin()}>
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg"
+                  alt="Google"
+                />
+                Continue with Google
+              </button>
+
+              <p className="secure-text">
+                Your information is securely protected and used only for
+                eligibility matching.
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </>
+    </>
   );
 }

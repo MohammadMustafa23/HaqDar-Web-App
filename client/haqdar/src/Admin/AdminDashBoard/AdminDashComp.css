@@ -455,7 +455,6 @@
 
   align-items: center;
 
-  background: var(--primary-light);
 
   color: var(--primary);
 }
@@ -597,7 +596,6 @@ Header
 
 .ast-view-btn:hover {
   transform: translateY(-2px);
-
   opacity: 0.95;
 }
 
@@ -611,9 +609,7 @@ Table
 
 .ast-table {
   width: 100%;
-
   border-collapse: collapse;
-
   min-width: 850px;
 }
 

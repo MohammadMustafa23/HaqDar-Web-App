@@ -20,11 +20,10 @@ export default function ProtectedRoute({ children }) {
         setLoading(false);
       }
     };
-
     verifyUser();
   }, []);
 
-  if (loading) {
+    if (loading) {
     return (
       <PageLoader text="Verifying your account..." />
     );

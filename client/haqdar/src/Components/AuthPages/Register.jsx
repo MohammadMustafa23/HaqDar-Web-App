@@ -128,120 +128,130 @@ export default function Register() {
   }
 
   return (
-    <>   
-    {loading && <PageLoader text="Creating your account..." />}
-    <div className="login-head">
-      <div className="center-part">
-        <div className="left-side">
-          <h1>Your Gateway to Government Benefits.</h1>
+    <>
+      {loading && <PageLoader text="Creating your account..." />}
+      <div className="login-head">
+        <div className="center-part">
+          <div className="left-side">
+            <h1>Your Gateway to Government Benefits.</h1>
 
-          <p>
-            Empowering citizens through transparent, accessible, and reliable
-            digital services. Sign in to track your applications and discover
-            schemes tailored for you.
-          </p>
-
-          <img src={LoginPage} alt="Government Portal" />
-
-          <span>Trusted by 2M+ Citizens Nationwide</span>
-        </div>
-
-        <div className="right-side">
-          <div className="center-right">
-            <div className="auth-tabs">
-              <NavLink
-                to="/login"
-                className={({ isActive }) => (isActive ? "tab active" : "tab")}
-              >
-                Login
-              </NavLink>
-
-              <NavLink
-                to="/register"
-                className={({ isActive }) => (isActive ? "tab active" : "tab")}
-              >
-                Register
-              </NavLink>
-            </div>
-
-            <p>Create Account</p>
-
-            <span>Join HaqDar to access personalized benefits.</span>
-
-            <div className="input-group">
-              <label>Full Name</label>
-
-              <input
-                className={errors.userName ? "input error" : "input"}
-                type="text"
-                name="userName"
-                value={formData.userName}
-                onChange={handleChange}
-                placeholder="Enter Your Full userName"
-              />
-
-              {errors.userName && (
-                <p className="error-message">{errors.userName}</p>
-              )}
-            </div>
-
-            <div className="input-group">
-              <label>Email Address</label>
-
-              <input
-                className={errors.email ? "input error" : "input"}
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="userName@example.com"
-              />
-
-              {errors.email && <p className="error-message">{errors.email}</p>}
-            </div>
-
-            <div className="input-group">
-              <label>Password</label>
-
-              <input
-                className={errors.password ? "input error" : "input"}
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                placeholder="••••••••"
-              />
-
-              {errors.password && (
-                <p className="error-message">{errors.password}</p>
-              )}
-            </div>
-
-            <button
-              className="sign-in"
-              onClick={handleSubmit}
-              disabled={loading}
-            >Create Account</button>
-            <div className="divider">
-              <span>OR CONTINUE WITH</span>
-            </div>
-
-            <button className="google-btn" onClick={() => googleLogin()}>
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg"
-                alt="Google"
-              />
-              Continue with Google
-            </button>
-
-            <p className="secure-text">
-              Your information is securely protected and used only for
-              eligibility matching.
+            <p>
+              Empowering citizens through transparent, accessible, and reliable
+              digital services. Sign in to track your applications and discover
+              schemes tailored for you.
             </p>
+
+            <img src={LoginPage} alt="Government Portal" />
+
+            <span>Trusted by 2M+ Citizens Nationwide</span>
+          </div>
+
+          <div className="right-side">
+            <div className="center-right">
+              <div className="auth-tabs">
+                <NavLink
+                  to="/login"
+                  replace
+                  className={({ isActive }) =>
+                    isActive ? "tab active" : "tab"
+                  }
+                >
+                  Login
+                </NavLink>
+
+                <NavLink
+                  to="/register"
+                  replace
+                  className={({ isActive }) =>
+                    isActive ? "tab active" : "tab"
+                  }
+                >
+                  Register
+                </NavLink>
+              </div>
+
+              <p>Create Account</p>
+
+              <span>Join HaqDar to access personalized benefits.</span>
+
+              <div className="input-group">
+                <label>Full Name</label>
+
+                <input
+                  className={errors.userName ? "input error" : "input"}
+                  type="text"
+                  name="userName"
+                  value={formData.userName}
+                  onChange={handleChange}
+                  placeholder="Enter Your Full userName"
+                />
+
+                {errors.userName && (
+                  <p className="error-message">{errors.userName}</p>
+                )}
+              </div>
+
+              <div className="input-group">
+                <label>Email Address</label>
+
+                <input
+                  className={errors.email ? "input error" : "input"}
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="userName@example.com"
+                />
+
+                {errors.email && (
+                  <p className="error-message">{errors.email}</p>
+                )}
+              </div>
+
+              <div className="input-group">
+                <label>Password</label>
+
+                <input
+                  className={errors.password ? "input error" : "input"}
+                  type="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  placeholder="••••••••"
+                />
+
+                {errors.password && (
+                  <p className="error-message">{errors.password}</p>
+                )}
+              </div>
+
+              <button
+                className="sign-in"
+                onClick={handleSubmit}
+                disabled={loading}
+              >
+                Create Account
+              </button>
+              <div className="divider">
+                <span>OR CONTINUE WITH</span>
+              </div>
+
+              <button className="google-btn" onClick={() => googleLogin()}>
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg"
+                  alt="Google"
+                />
+                Continue with Google
+              </button>
+
+              <p className="secure-text">
+                Your information is securely protected and used only for
+                eligibility matching.
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
     </>
   );
 }

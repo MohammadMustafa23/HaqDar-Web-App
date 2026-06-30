@@ -31,6 +31,10 @@ export const LoginUser = (userData) => {
   return API.post("/auth/login", userData);
 };
 
+export const LoginOutUser = () => {
+  return API.post("/auth/logout");
+};
+
 export const GoogleLoginUser = (accessToken) => {
   return API.post("/auth/google", {
     accessToken,

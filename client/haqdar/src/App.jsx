@@ -15,10 +15,12 @@ import FeedbackForm from "./Components/FeedBackForm/FeedbackForm.jsx";
 import TermsOfService from "./Components/Footer/TermsOfService.jsx";
 import AdminLogin from "./Pages/AdminPage/AdminLogin.jsx";
 import PrivacyPolicy from "./Components/Footer/PrivacyPolicy.jsx";
-import AdminDash from './Pages/AdminPage/AdminDashboard.jsx'
-import AdminFeedBack from './Pages/AdminPage/FeedBackDash.jsx'
+import AdminDash from "./Pages/AdminPage/AdminDashboard.jsx";
+import AdminFeedBack from "./Pages/AdminPage/FeedBackDash.jsx";
 import SchemeManagement from "./Pages/AdminPage/SchemeManagement.jsx";
 import RegisterScheme from "./Pages/AdminPage/RegisterScheme.jsx";
+import AdminProtectedRoute from "./Admin/Security/AdminProtectedRoute.jsx";
+
 function App() {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const [profileData, setProfileData] = useState(null);
@@ -104,7 +106,6 @@ function App() {
             </ProtectedRoute>
           }
         />
-
         <Route
           path="/user-profile"
           element={
@@ -113,7 +114,6 @@ function App() {
             </ProtectedRoute>
           }
         />
-
         <Route
           path="/top-matched-Schemes"
           element={
@@ -124,7 +124,6 @@ function App() {
             />
           }
         />
-
         <Route
           path="/saved-schemes"
           element={
@@ -135,17 +134,42 @@ function App() {
             />
           }
         />
-
         <Route path="/submit-feedBack" element={<FeedbackForm />} />
-
         <Route path="/terms" element={<TermsOfService />} />
-
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/admin-login" element={<AdminLogin />} />
-        <Route path="/admin-dashboard" element={<AdminDash />} />
-        <Route path="/admin-feedback" element={<AdminFeedBack />} />
-        <Route path="/admin-scheme" element={<SchemeManagement />} />
-        <Route path="/add-scheme" element={<RegisterScheme />} />
+        <Route
+          path="/admin-dashboard"
+          element={
+            <AdminProtectedRoute>
+              <AdminDash />
+            </AdminProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin-feedback"
+          element={
+            <AdminProtectedRoute>
+              <AdminFeedBack />
+            </AdminProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin-scheme"
+          element={
+            <AdminProtectedRoute>
+              <SchemeManagement />
+            </AdminProtectedRoute>
+          }
+        />
+        <Route
+          path="/add-scheme"
+          element={
+            <AdminProtectedRoute>
+              <RegisterScheme />
+            </AdminProtectedRoute>
+          }
+        />
       </Routes>
     </>
   );

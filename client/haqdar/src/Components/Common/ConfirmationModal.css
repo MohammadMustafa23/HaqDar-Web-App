@@ -1,0 +1,345 @@
+/* =====================================
+   OVERLAY
+===================================== */
+
+.cm-overlay {
+  position: fixed;
+  inset: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(7px);
+
+  z-index: 99999;
+
+  animation: cmFade 0.25s ease;
+}
+
+/* =====================================
+   MODAL
+===================================== */
+
+.cm-modal {
+  width: 100%;
+  max-width: 470px;
+
+  background: var(--card);
+
+  border: 1px solid var(--border);
+
+  border-radius: 22px;
+
+  padding: 38px 35px 30px;
+
+  position: relative;
+
+  text-align: center;
+
+  box-shadow: var(--shadow);
+
+  animation: cmScale 0.28s ease;
+}
+
+/* =====================================
+   CLOSE BUTTON
+===================================== */
+
+.cm-close-btn {
+  position: absolute;
+
+  right: 18px;
+  top: 18px;
+
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: transparent;
+
+  color: var(--text-light);
+
+  cursor: pointer;
+
+  transition: 0.25s;
+}
+
+.cm-close-btn:hover {
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* =====================================
+   ICON
+===================================== */
+
+.cm-icon {
+  width: 82px;
+  height: 82px;
+
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0 auto 25px;
+}
+
+.cm-danger {
+  background: rgba(239, 68, 68, 0.12);
+  color: #ef4444;
+}
+
+.cm-warning {
+  background: rgba(245, 158, 11, 0.12);
+  color: #f59e0b;
+}
+
+.cm-success {
+  background: rgba(34, 197, 94, 0.12);
+  color: #22c55e;
+}
+
+.cm-info {
+  background: rgba(59, 130, 246, 0.12);
+  color: #3b82f6;
+}
+
+/* =====================================
+   TITLE
+===================================== */
+
+.cm-title {
+  font-size: 28px;
+
+  font-weight: 700;
+
+  color: var(--text);
+
+  margin-bottom: 12px;
+}
+
+/* =====================================
+   MESSAGE
+===================================== */
+
+.cm-message {
+  color: var(--text-light);
+
+  font-size: 15px;
+
+  line-height: 1.8;
+
+  margin-bottom: 34px;
+}
+
+/* =====================================
+   FOOTER
+===================================== */
+
+.cm-footer {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 16px;
+}
+
+/* =====================================
+   BUTTON
+===================================== */
+
+.cm-btn {
+  flex: 1;
+
+  border: none;
+
+  border-radius: 12px;
+
+  padding: 13px 20px;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 10px;
+
+  transition: 0.25s;
+}
+
+.cm-btn:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.65;
+}
+
+/* =====================================
+   CANCEL
+===================================== */
+
+.cm-btn-cancel {
+  background: var(--bg);
+
+  border: 1px solid var(--border);
+
+  color: var(--text);
+}
+
+.cm-btn-cancel:hover {
+  background: var(--hover);
+}
+
+/* =====================================
+   DANGER
+===================================== */
+
+.cm-btn-danger {
+  background: #ef4444;
+
+  color: #fff;
+}
+
+.cm-btn-danger:hover {
+  background: #dc2626;
+}
+
+/* =====================================
+   WARNING
+===================================== */
+
+.cm-btn-warning {
+  background: #f59e0b;
+
+  color: #fff;
+}
+
+.cm-btn-warning:hover {
+  background: #d97706;
+}
+
+/* =====================================
+   SUCCESS
+===================================== */
+
+.cm-btn-success {
+  background: #22c55e;
+
+  color: #fff;
+}
+
+.cm-btn-success:hover {
+  background: #16a34a;
+}
+
+/* =====================================
+   INFO
+===================================== */
+
+.cm-btn-info {
+  background: #2563eb;
+
+  color: #fff;
+}
+
+.cm-btn-info:hover {
+  background: #1d4ed8;
+}
+
+/* =====================================
+   LOADER
+===================================== */
+
+.cm-spin {
+  animation: cmRotate 1s linear infinite;
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media (max-width: 600px) {
+  .cm-modal {
+    padding: 30px 22px;
+
+    border-radius: 18px;
+  }
+
+  .cm-title {
+    font-size: 22px;
+  }
+
+  .cm-footer {
+    flex-direction: column;
+  }
+
+  .cm-btn {
+    width: 100%;
+  }
+
+  .cm-icon {
+    width: 70px;
+    height: 70px;
+  }
+
+  .cm-message {
+    font-size: 14px;
+  }
+}
+
+/* =====================================
+   ANIMATION
+===================================== */
+
+@keyframes cmFade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes cmScale {
+  from {
+    opacity: 0;
+
+    transform: scale(0.92) translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes cmRotate {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

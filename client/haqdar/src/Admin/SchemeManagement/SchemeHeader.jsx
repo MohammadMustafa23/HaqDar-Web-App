@@ -1,6 +1,8 @@
 import { PlusCircle } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function SchemeHeader() {
+  const navigate = useNavigate();
   return (
     <div className="scheme-header">
       <div>
@@ -12,7 +14,7 @@ export default function SchemeHeader() {
         </p>
       </div>
 
-      <button className="add-btn">
+      <button className="add-btn" onClick={()=>{navigate('/add-scheme')}}>
         <PlusCircle size={18} />
         Add New Scheme
       </button>

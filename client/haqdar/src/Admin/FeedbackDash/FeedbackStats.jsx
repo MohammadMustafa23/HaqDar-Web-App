@@ -1,6 +1,19 @@
 import { MessageSquareText, MailOpen, Clock3 } from "lucide-react";
 
-export default function FeedbackStats() {
+export default function FeedbackStats({ feedbacks }) {
+  const totalFeedbacks = feedbacks.length;
+
+  const unreadFeedbacks = feedbacks.filter(
+    (feedback) => feedback.status === "Unread",
+  ).length;
+
+ const recentFeedbacks = feedbacks.filter((feedback) => {
+  const createdTime = new Date(feedback.createdAt).getTime();
+  const diff = Date.now() - createdTime;
+
+  return diff >= 0 && diff <= 24 * 60 * 60 * 1000;
+}).length;
+
   return (
     <div className="fm-stats">
       <div className="fm-stat-card">
@@ -10,8 +23,7 @@ export default function FeedbackStats() {
 
         <div>
           <p className="fm-stat-label">Total Feedbacks</p>
-
-          <h2>1,284</h2>
+          <h2>{totalFeedbacks}</h2>
         </div>
       </div>
 
@@ -22,8 +34,7 @@ export default function FeedbackStats() {
 
         <div>
           <p className="fm-stat-label">Unread</p>
-
-          <h2>42</h2>
+          <h2>{unreadFeedbacks}</h2>
         </div>
       </div>
 
@@ -34,8 +45,7 @@ export default function FeedbackStats() {
 
         <div>
           <p className="fm-stat-label">Recent (Last 24h)</p>
-
-          <h2>18</h2>
+          <h2>{recentFeedbacks}</h2>
         </div>
       </div>
     </div>
