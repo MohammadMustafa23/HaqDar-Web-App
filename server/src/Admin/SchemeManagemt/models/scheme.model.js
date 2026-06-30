@@ -16,7 +16,7 @@ const schemeSchema = new mongoose.Schema(
 
     schemeType: {
       type: String,
-      enum: ["Central", "State"],
+      enum: ["Central", "State", "District"],
       required: true,
     },
 
@@ -35,22 +35,32 @@ const schemeSchema = new mongoose.Schema(
     eligibility: {
       gender: {
         type: String,
+        enum: ["Male", "Female", "All"],
         default: "All",
       },
 
       caste: {
         type: String,
-        default: "",
+        enum: ["General", "OBC", "SC", "ST", "EWS", "Minority", "All"],
+        default: "All",
       },
 
       age: {
-        type: String,
-        default: "",
+        min: {
+          type: Number,
+          default: 0,
+        },
+        max: {
+          type: Number,
+          default: 150,
+        },
       },
 
       income: {
-        type: String,
-        default: "",
+        max: {
+          type: Number,
+          default: 0,
+        },
       },
     },
 
@@ -60,8 +70,8 @@ const schemeSchema = new mongoose.Schema(
     },
 
     documents: {
-      type: String,
-      default: "",
+      type: [String],
+      default: [],
     },
 
     apply: {
@@ -71,8 +81,8 @@ const schemeSchema = new mongoose.Schema(
 
     status: {
       type: String,
-      enum: ["active", "inactive"],
-      default: "active",
+      enum: ["Active", "Inactive"],
+      default: "Active",
     },
 
     pineconeId: {

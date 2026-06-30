@@ -31,13 +31,17 @@ export const uploadSchemeToPinecone = async (scheme) => {
 
             gender: scheme.eligibility.gender,
             caste: scheme.eligibility.caste,
-            age: scheme.eligibility.age,
-            income: scheme.eligibility.income,
+
+            minAge: scheme.eligibility.age.min,
+            maxAge: scheme.eligibility.age.max,
+
+            maxIncome: scheme.eligibility.income.max,
 
             benefit: scheme.benefit,
-            documents: scheme.documents,
-            apply: scheme.apply,
 
+            documents: scheme.documents.join(", "), // or keep only if your Pinecone version supports string arrays
+
+            apply: scheme.apply,
             status: scheme.status,
           },
         },
@@ -66,7 +70,7 @@ export async function updateSchemeVector(id, embedding, metadata) {
 export async function deleteSchemeVector(id) {
   try {
     await index.deleteOne({
-       id
+      id,
     });
 
     console.log("Deleted Successfully");

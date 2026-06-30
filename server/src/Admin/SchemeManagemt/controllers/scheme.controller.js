@@ -3,12 +3,12 @@ import mongoose from "mongoose";
 import {
   uploadSchemeToPinecone,
   updateSchemeVector,
-  deleteSchemeVector
+  deleteSchemeVector,
 } from "../service/schemePinecone.service.js";
 import { index } from "../../../config/pinecone.js";
 import { generateEmbedding } from "../../../services/embedding.service.js";
 import { schemeToDocument } from "../../../utils/schemeToDocument.js";
-
+import { validateBulkSchemes } from "../validator/bulkScheme.validator.js";
 export const addScheme = async (req, res) => {
   try {
     const {
@@ -321,15 +321,12 @@ export const deleteScheme = async (req, res) => {
       });
     }
 
-
-     // Delete from Pinecone
+    // Delete from Pinecone
     await deleteSchemeVector(id);
-
 
     // Delete scheme
     await scheme.deleteOne();
 
-    
     return res.status(200).json({
       success: true,
       message: "Scheme deleted successfully.",
@@ -389,6 +386,105 @@ export const updateSchemeStatus = async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Internal Server Error.",
+    });
+  }
+};
+
+export const bulkUploadSchemes = async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({
+        success: false,
+        message: "Please upload a JSON file.",
+      });
+    }
+
+    const jsonString = req.file.buffer.toString("utf-8");
+    const schemes = JSON.parse(jsonString);
+
+    console.log(schemes);
+
+    // ✅ Validate uploaded JSON
+    const validation = validateBulkSchemes(schemes);
+
+    if (!validation.valid) {
+      return res.status(400).json({
+        success: false,
+        message: "Validation failed.",
+        errors: validation.errors,
+      });
+    }
+
+    // Check duplicate scheme numbers
+    const uploadedNumbers = schemes.map((scheme) => scheme.no);
+
+    const existingNumbers = await Scheme.find({
+      no: { $in: uploadedNumbers },
+    }).select("no");
+
+    if (existingNumbers.length > 0) {
+      return res.status(409).json({
+        success: false,
+        message: "Duplicate scheme numbers found.",
+        duplicates: existingNumbers.map((s) => s.no),
+      });
+    }
+
+    // Check duplicate scheme names
+    const uploadedNames = schemes.map((scheme) => scheme.name);
+
+    const existingNames = await Scheme.find({
+      name: { $in: uploadedNames },
+    }).select("name");
+
+    if (existingNames.length > 0) {
+      return res.status(409).json({
+        success: false,
+        message: "Duplicate scheme names found.",
+        duplicates: existingNames.map((s) => s.name),
+      });
+    }
+
+    const insertedSchemes = await Scheme.insertMany(validation.schemes, {
+      ordered: true,
+    });
+
+   
+    
+    // Upload every inserted scheme to Pinecone
+    for (const scheme of insertedSchemes) {
+      const pineconeId = await uploadSchemeToPinecone(scheme);
+      scheme.pineconeId = pineconeId;
+      await scheme.save();
+    }
+
+    return res.status(201).json({
+      success: true,
+      message: "Schemes uploaded successfully.",
+      totalUploaded: insertedSchemes.length,
+      insertedSchemes
+    });
+  } catch (error) {
+    console.error(error);
+
+    // Mongoose Validation Error
+    if (error instanceof mongoose.Error.ValidationError) {
+      const errors = Object.values(error.errors).map((err) => ({
+        field: err.path,
+        message: err.message,
+        value: err.value,
+      }));
+
+      return res.status(400).json({
+        success: false,
+        message: "Validation failed.",
+        errors,
+      });
+    }
+
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
     });
   }
 };
