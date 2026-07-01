@@ -1,38 +1,30 @@
 export const parseSchemeCasting = (req, res, next) => {
-  const schemes = req.body;
+  try {
+    req.body = {
+      ...req.body,
 
-  if (!Array.isArray(schemes)) {
+      no: Number(req.body.no),
+
+      eligibility: {
+        ...req.body.eligibility,
+
+        age: {
+          ...req.body.eligibility?.age,
+          min: Number(req.body.eligibility?.age?.min),
+          max: Number(req.body.eligibility?.age?.max),
+        },
+
+        income: Number(req.body.eligibility?.income),
+      },
+    };
+
+    console.log("Pass TO Next");
+    next();
+  } catch (error) {
     return res.status(400).json({
       success: false,
-      message: "Schemes must be an array",
+      message: "Failed to cast scheme data.",
+      error: error.message,
     });
   }
-
-  req.body.schemes = schemes.map((scheme) => ({
-    ...scheme,
-
-    no: Number(scheme.no),
-
-    eligibility: {
-      ...scheme.eligibility,
-
-      age: {
-        min: Number(scheme.eligibility?.age?.min ?? 0),
-        max: Number(scheme.eligibility?.age?.max ?? 150),
-      },
-
-      income: {
-        max: Number(scheme.eligibility?.income?.max ?? 0),
-      },
-    },
-
-    documents: Array.isArray(scheme.documents)
-      ? scheme.documents
-      : String(scheme.documents || "")
-          .split(",")
-          .map((doc) => doc.trim())
-          .filter(Boolean),
-  }));
-
-  next();
 };

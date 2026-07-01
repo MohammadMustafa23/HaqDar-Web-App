@@ -1,7 +1,7 @@
 import { index } from "../../../config/pinecone.js";
 import { generateEmbedding } from "../../../services/embedding.service.js";
 import { schemeToDocument } from "../../../utils/schemeToDocument.js";
-
+import { schemeToMetadata } from '../utils/schemeMetadata.js'
 export const uploadSchemeToPinecone = async (scheme) => {
   try {
     // Convert scheme to AI document
@@ -13,37 +13,15 @@ export const uploadSchemeToPinecone = async (scheme) => {
     // Stable vector id
     const vectorId = scheme._id.toString();
 
+    const metadata = schemeToMetadata(scheme);
+
     // Upload to Pinecone
     await index.upsert({
       records: [
         {
           id: vectorId,
           values: embedding,
-
-          metadata: {
-            mongoId: vectorId,
-
-            no: scheme.no,
-            name: scheme.name,
-            schemeType: scheme.schemeType,
-            category: scheme.category,
-            beneficiary: scheme.beneficiary,
-
-            gender: scheme.eligibility.gender,
-            caste: scheme.eligibility.caste,
-
-            minAge: scheme.eligibility.age.min,
-            maxAge: scheme.eligibility.age.max,
-
-            maxIncome: scheme.eligibility.income.max,
-
-            benefit: scheme.benefit,
-
-            documents: scheme.documents.join(", "), // or keep only if your Pinecone version supports string arrays
-
-            apply: scheme.apply,
-            status: scheme.status,
-          },
+          metadata: metadata
         },
       ],
     });
@@ -61,7 +39,7 @@ export async function updateSchemeVector(id, embedding, metadata) {
       {
         id: id.toString(),
         values: embedding,
-        metadata,
+        metadata:metadata
       },
     ],
   });

@@ -9,6 +9,7 @@ import { index } from "../../../config/pinecone.js";
 import { generateEmbedding } from "../../../services/embedding.service.js";
 import { schemeToDocument } from "../../../utils/schemeToDocument.js";
 import { validateBulkSchemes } from "../validator/bulkScheme.validator.js";
+import { schemeToMetadata } from "../utils/schemeMetadata.js";
 export const addScheme = async (req, res) => {
   try {
     const {
@@ -262,33 +263,12 @@ export const updateScheme = async (req, res) => {
     // Generate new embedding
     const embedding = await generateEmbedding(document);
 
+    // Convert to Pinecone metadata
+    const metadata = schemeToMetadata(scheme);
+
+    console.log(metadata); // Debug
     // Update Pinecone
-    await updateSchemeVector(scheme._id, embedding, {
-      mongoId: scheme._id.toString(),
-
-      no: scheme.no,
-      name: scheme.name,
-      schemeType: scheme.schemeType,
-      category: scheme.category,
-      beneficiary: scheme.beneficiary,
-
-      gender: scheme.eligibility.gender,
-      caste: scheme.eligibility.caste,
-      age: scheme.eligibility.age,
-      income: scheme.eligibility.income,
-
-      benefit: scheme.benefit,
-      documents: scheme.documents,
-      apply: scheme.apply,
-
-      status: scheme.status,
-    });
-
-    return res.status(200).json({
-      success: true,
-      message: "Scheme updated successfully.",
-      scheme,
-    });
+    await updateSchemeVector(scheme._id, embedding, metadata);
   } catch (error) {
     console.error("Update Scheme Error:", error);
 
@@ -449,8 +429,6 @@ export const bulkUploadSchemes = async (req, res) => {
       ordered: true,
     });
 
-   
-    
     // Upload every inserted scheme to Pinecone
     for (const scheme of insertedSchemes) {
       const pineconeId = await uploadSchemeToPinecone(scheme);
@@ -462,7 +440,7 @@ export const bulkUploadSchemes = async (req, res) => {
       success: true,
       message: "Schemes uploaded successfully.",
       totalUploaded: insertedSchemes.length,
-      insertedSchemes
+      insertedSchemes,
     });
   } catch (error) {
     console.error(error);

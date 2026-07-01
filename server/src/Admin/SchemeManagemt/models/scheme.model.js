@@ -57,10 +57,8 @@ const schemeSchema = new mongoose.Schema(
       },
 
       income: {
-        max: {
-          type: Number,
-          default: 0,
-        },
+        type: Number,
+        required : true
       },
     },
 

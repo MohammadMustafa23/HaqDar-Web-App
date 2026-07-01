@@ -2,25 +2,39 @@ export function schemeToDocument(scheme) {
   return `
 Scheme Name: ${scheme.name}
 
-This is a ${scheme.scheme_type} government scheme in Rajasthan.
+Scheme Type:
+${scheme.schemeType}
 
-Target Beneficiaries:
+Category:
+${scheme.category}
+
+Beneficiary:
 ${scheme.beneficiary}
 
-Eligibility:
-- Category: ${scheme.category}
-- Gender: ${scheme.gender}
-- Caste: ${scheme.caste}
-- Age: ${scheme.age}
-- Income: ${scheme.income}
+Eligibility
 
-Benefits:
+Gender:
+${scheme.eligibility.gender}
+
+Caste:
+${scheme.eligibility.caste}
+
+Age:
+${scheme.eligibility.age.min} - ${scheme.eligibility.age.max}
+
+Income:
+${scheme.eligibility.income}
+
+Benefits
+
 ${scheme.benefit}
 
-Required Documents:
-${scheme.documents}
+Documents
 
-Application:
+${scheme.documents.join(", ")}
+
+Application
+
 ${scheme.apply}
 `.trim();
 }
