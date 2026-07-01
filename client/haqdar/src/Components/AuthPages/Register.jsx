@@ -130,9 +130,10 @@ export default function Register() {
   return (
     <>
       {loading && <PageLoader text="Creating your account..." />}
-      <div className="login-head">
-        <div className="center-part">
-          <div className="left-side">
+
+      <div className="hd-register-page">
+        <div className="hd-register-container">
+          <div className="hd-register-left">
             <h1>Your Gateway to Government Benefits.</h1>
 
             <p>
@@ -146,14 +147,16 @@ export default function Register() {
             <span>Trusted by 2M+ Citizens Nationwide</span>
           </div>
 
-          <div className="right-side">
-            <div className="center-right">
-              <div className="auth-tabs">
+          <div className="hd-register-right">
+            <div className="hd-register-card">
+              <div className="hd-register-tabs">
                 <NavLink
                   to="/login"
                   replace
                   className={({ isActive }) =>
-                    isActive ? "tab active" : "tab"
+                    isActive
+                      ? "hd-register-tab hd-register-tab-active"
+                      : "hd-register-tab"
                   }
                 >
                   Login
@@ -163,80 +166,92 @@ export default function Register() {
                   to="/register"
                   replace
                   className={({ isActive }) =>
-                    isActive ? "tab active" : "tab"
+                    isActive
+                      ? "hd-register-tab hd-register-tab-active"
+                      : "hd-register-tab"
                   }
                 >
                   Register
                 </NavLink>
               </div>
 
-              <p>Create Account</p>
+              <p className="hd-register-title">Create Account</p>
 
-              <span>Join HaqDar to access personalized benefits.</span>
+              <span className="hd-register-subtitle">
+                Join HaqDar to access personalized benefits.
+              </span>
 
-              <div className="input-group">
-                <label>Full Name</label>
+              {/* Full Name */}
+              <div className="hd-register-field">
+                <label className="hd-register-label">Full Name</label>
 
                 <input
-                  className={errors.userName ? "input error" : "input"}
                   type="text"
                   name="userName"
                   value={formData.userName}
                   onChange={handleChange}
-                  placeholder="Enter Your Full userName"
+                  placeholder="Enter Your Full Name"
+                  className={`hd-register-input ${
+                    errors.userName ? "hd-register-input-error" : ""
+                  }`}
                 />
 
-                {errors.userName && (
-                  <p className="error-message">{errors.userName}</p>
-                )}
+                <p className="hd-register-error">
+                  {errors.userName || "\u00A0"}
+                </p>
               </div>
 
-              <div className="input-group">
-                <label>Email Address</label>
+              {/* Email */}
+              <div className="hd-register-field">
+                <label className="hd-register-label">Email Address</label>
 
                 <input
-                  className={errors.email ? "input error" : "input"}
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="userName@example.com"
+                  placeholder="name@example.com"
+                  className={`hd-register-input ${
+                    errors.email ? "hd-register-input-error" : ""
+                  }`}
                 />
 
-                {errors.email && (
-                  <p className="error-message">{errors.email}</p>
-                )}
+                <p className="hd-register-error">{errors.email || "\u00A0"}</p>
               </div>
 
-              <div className="input-group">
-                <label>Password</label>
+              {/* Password */}
+              <div className="hd-register-field">
+                <label className="hd-register-label">Password</label>
 
                 <input
-                  className={errors.password ? "input error" : "input"}
                   type="password"
                   name="password"
                   value={formData.password}
                   onChange={handleChange}
                   placeholder="••••••••"
+                  className={`hd-register-input ${
+                    errors.password ? "hd-register-input-error" : ""
+                  }`}
                 />
 
-                {errors.password && (
-                  <p className="error-message">{errors.password}</p>
-                )}
+                <p className="hd-register-error">
+                  {errors.password || "\u00A0"}
+                </p>
               </div>
 
               <button
-                className="sign-in"
+                className="hd-register-btn"
                 onClick={handleSubmit}
                 disabled={loading}
               >
                 Create Account
               </button>
-              <div className="divider">
+
+              <div className="hd-register-divider">
                 <span>OR CONTINUE WITH</span>
               </div>
 
-              <button className="google-btn" onClick={() => googleLogin()}>
+              <button className="hd-register-google-btn" onClick={googleLogin}>
                 <img
                   src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg"
                   alt="Google"
@@ -244,7 +259,7 @@ export default function Register() {
                 Continue with Google
               </button>
 
-              <p className="secure-text">
+              <p className="hd-register-secure-text">
                 Your information is securely protected and used only for
                 eligibility matching.
               </p>

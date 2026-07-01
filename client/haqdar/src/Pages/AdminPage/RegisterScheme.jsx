@@ -18,6 +18,7 @@ import {
 } from "../../Services/scheme.service.js";
 import { toast } from "sonner";
 import { useState, useEffect } from "react";
+import { validateScheme } from "../../utils/validationForm.js";
 
 const RegisterScheme = () => {
   const navigate = useNavigate();
@@ -29,6 +30,7 @@ const RegisterScheme = () => {
   const [fileName, setFileName] = useState("");
   const [progress, setProgress] = useState(0);
   const [status, setStatus] = useState("");
+  const [errors, setErrors] = useState({});
   const [schemeData, setSchemeData] = useState({
     no: "",
     name: "",
@@ -128,8 +130,24 @@ const RegisterScheme = () => {
 
   const handleSubmit = async () => {
     if (loading) return;
+
+    // ✅ Validate First
+    const validationErrors = validateScheme(schemeData);
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+
+      toast.error("Please fix the highlighted fields.");
+
+      return;
+    }
+
+    // Clear previous errors
+    setErrors({});
+
     try {
       setLoading(true);
+
       // Show Processing Overlay
       setProcessState({
         open: true,
@@ -137,26 +155,31 @@ const RegisterScheme = () => {
         title: mode === "edit" ? "Updating Scheme" : "Publishing Scheme",
         subtitle: "Saving scheme to database...",
       });
+
       let res;
+
       if (mode === "edit") {
         res = await updateScheme(schemeId, schemeData);
       } else {
         res = await registerScheme(schemeData);
       }
-      // Update Status
+
+      // AI Sync Step
       setProcessState((prev) => ({
         ...prev,
         subtitle: "Syncing AI Search...",
       }));
-      // Small delay so user can see the second step
+
       await new Promise((resolve) => setTimeout(resolve, 700));
-      // Success State
+
+      // Success
       setProcessState({
         open: true,
         success: true,
         title: mode === "edit" ? "Scheme Updated" : "Scheme Published",
         subtitle: "Redirecting...",
       });
+
       toast.success(
         res.message ||
           (mode === "edit"
@@ -164,14 +187,12 @@ const RegisterScheme = () => {
             : "Scheme published successfully."),
       );
 
-      // Show success for 1 second
       setTimeout(() => {
         navigate("/admin-scheme", { replace: true });
       }, 1000);
     } catch (error) {
       console.error(error);
 
-      // Close Overlay on Error
       setProcessState({
         open: false,
         success: false,
@@ -250,19 +271,25 @@ const RegisterScheme = () => {
             onFileUpload={handleFileUpload}
           />
 
-          {/* Basic Details */}
-          <BasicDetails schemeData={schemeData} setSchemeData={setSchemeData} />
+          <BasicDetails
+            schemeData={schemeData}
+            setSchemeData={setSchemeData}
+            errors={errors}
+            setErrors={setErrors}
+          />
 
-          {/* Eligibility */}
           <EligibilityCriteria
             schemeData={schemeData}
             setSchemeData={setSchemeData}
+            errors={errors}
+            setErrors={setErrors}
           />
 
-          {/* Application */}
           <ApplicationDetails
             schemeData={schemeData}
             setSchemeData={setSchemeData}
+            errors={errors}
+            setErrors={setErrors}
           />
 
           {/* Action Buttons */}

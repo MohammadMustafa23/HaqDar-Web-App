@@ -2,10 +2,10 @@ import { Search } from "lucide-react";
 
 export default function SchemeFilters() {
   return (
-    <div className="filter-card">
+    <section className="filter-card">
       <div className="filter-grid">
-        <div>
-          <label>Search Scheme</label>
+        <div className="filter-group">
+          <label className="filter-label">Search Scheme</label>
 
           <div className="search-box">
             <Search size={18} />
@@ -14,8 +14,8 @@ export default function SchemeFilters() {
           </div>
         </div>
 
-        <div>
-          <label>Category</label>
+        <div className="filter-group">
+          <label className="filter-label">Category</label>
 
           <select>
             <option>All Categories</option>
@@ -26,8 +26,8 @@ export default function SchemeFilters() {
           </select>
         </div>
 
-        <div>
-          <label>Status</label>
+        <div className="filter-group">
+          <label className="filter-label">Status</label>
 
           <select>
             <option>All Statuses</option>
@@ -36,6 +36,6 @@ export default function SchemeFilters() {
           </select>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

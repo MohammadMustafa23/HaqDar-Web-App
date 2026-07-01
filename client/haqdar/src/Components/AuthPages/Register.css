@@ -1,93 +1,224 @@
+/* =========================
+   REGISTER PAGE
+========================= */
 
+.hd-register-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #f3f4f6;
+}
 
-.center-right {
+.hd-register-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* =========================
+   LEFT SIDE
+========================= */
+
+.hd-register-left {
+  flex: 1;
+  max-width: 700px;
+  background: var(--primary);
+  color: var(--card-bg);
+
+  padding: 40px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hd-register-left h1 {
+  max-width: 520px;
+  margin-bottom: 30px;
+
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.15;
+
+  color: var(--text-secondary);
+}
+
+.hd-register-left p {
+  max-width: 520px;
+  margin-bottom: 40px;
+
+  font-size: 1.15rem;
+  line-height: 1.8;
+
+  color: var(--text-primary);
+}
+
+.hd-register-left img {
+  width: 100%;
+  max-width: 500px;
+
+  margin-bottom: 35px;
+  border-radius: 15px;
+}
+
+.hd-register-left span {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+/* =========================
+   RIGHT SIDE
+========================= */
+
+.hd-register-right {
+  flex: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: var(--bg-primary);
+
+  padding: 30px;
+}
+
+/* Card */
+
+.hd-register-card {
+  width: 500px;
+  max-width: 100%;
+
+  background: var(--bg-secondary);
+
+  border: 1px solid #d8dde6;
+  border-radius: 12px;
+
+  overflow: hidden;
+
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+}
+/* =========================
+   CARD
+========================= */
+
+.hd-register-card {
   width: 500px;
   background: var(--bg-secondary);
   border: 1px solid #d8dde6;
   border-radius: 10px;
   overflow: hidden;
+  padding-bottom: 25px;
 }
 
-/* Tabs */
-.center-right > div:first-child {
+/* =========================
+   TABS
+========================= */
+
+.hd-register-tabs {
   display: flex;
   border-bottom: 1px solid #d8dde6;
 }
 
-.center-right > div:first-child h4 {
-  width: 50%;
-  text-align: center;
-  padding: 18px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: 600;
-}
-.auth-tabs {
-  display: flex;
-}
-
-.tab {
+.hd-register-tab {
   flex: 1;
   text-align: center;
   padding: 20px;
   text-decoration: none;
-  color: black;
+  color: var(--text-primary);
+  font-size: 16px;
+  font-weight: 600;
   border-bottom: 3px solid transparent;
+  transition: 0.25s;
 }
 
-.tab.active {
+.hd-register-tab:hover {
+  background: #f8f9fb;
+}
+
+.hd-register-tab-active,
+.hd-register-tab.active {
   color: #0a43d6;
-  border-bottom: 3px solid #0a43d6;
+  border-bottom-color: #0a43d6;
 }
 
+/* =========================
+   FORM HEADER
+========================= */
 
-
-/* Form Area */
-.center-right {
-  padding-bottom: 25px;
-}
-
-.center-right p:first-of-type {
+.hd-register-title {
   font-size: 20px;
   font-weight: 700;
   margin: 30px 35px 10px;
 }
 
-.center-right span {
+.hd-register-subtitle {
   display: block;
   margin: 0 35px 25px;
   color: var(--text-secondary);
   font-size: 15px;
 }
 
-/* Labels */
-.center-right label:not(.terms label) {
+/* =========================
+   FORM FIELD
+========================= */
+
+.hd-register-field {
+  width: calc(100% - 70px);
+  margin: 0 auto 12px;
+}
+
+.hd-register-label {
   display: block;
-  margin: 0 35px 8px;
+  margin-bottom: 8px;
   font-size: 14px;
   font-weight: 600;
   color: var(--text-primary);
 }
 
-/* Inputs */
-.center-right input[type="email"],
-.center-right input[type="password"] {
-  width: calc(100% - 70px);
+/* =========================
+   INPUTS
+========================= */
+
+.hd-register-input {
+  width: 100%;
   height: 46px;
-  margin: 0 35px 18px;
   padding: 0 14px;
   border: 1px solid #cfd5df;
   border-radius: 6px;
   outline: none;
   font-size: 15px;
+  transition: 0.25s;
 }
 
-.center-right input:focus {
+.hd-register-input::placeholder {
+  color: #8a919d;
+}
+
+.hd-register-input:focus {
   border-color: #1238b3;
 }
 
-/* Main Button */
-.center-right button:not(.google-btn) {
+.hd-register-input-error {
+  border-color: #ef4444 !important;
+}
+
+/* =========================
+   ERROR MESSAGE
+========================= */
+
+.hd-register-error {
+  display: block;
+  min-height: 18px;
+  margin-top: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #ef4444;
+}
+
+/* =========================
+   REGISTER BUTTON
+========================= */
+
+.hd-register-btn {
   width: calc(100% - 70px);
   height: 46px;
   margin: 0 35px;
@@ -98,56 +229,86 @@
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
+  transition: 0.3s;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Divider */
-.divider {
+.hd-register-btn:hover {
+  background: #0f2f98;
+}
+
+.hd-register-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* =========================
+   DIVIDER
+========================= */
+
+.hd-register-divider {
   display: flex;
   align-items: center;
   margin: 28px 35px;
 }
 
-.divider::before,
-.divider::after {
+.hd-register-divider::before,
+.hd-register-divider::after {
   content: "";
   flex: 1;
   height: 1px;
   background: #d8dde6;
 }
 
-.divider span {
+.hd-register-divider span {
   margin: 0 15px;
   color: var(--text-secondary);
   font-size: 13px;
   font-weight: 600;
 }
 
-/* Google Button */
-.google-btn {
+/* =========================
+   GOOGLE BUTTON
+========================= */
+
+.hd-register-google-btn {
   width: calc(100% - 70px);
   height: 48px;
   margin: 0 35px;
+
   background: var(--card-bg);
   border: 1px solid #cfd5df;
   border-radius: 8px;
+
   cursor: pointer;
+  transition: 0.3s;
 
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   gap: 12px;
 
   font-size: 15px;
   font-weight: 600;
 }
 
-.google-btn img {
+.hd-register-google-btn:hover {
+  background: #f7f8fb;
+}
+
+.hd-register-google-btn img {
   width: 22px;
   height: 22px;
 }
 
-/* Bottom Text */
-.secure-text {
+/* =========================
+   FOOTER TEXT
+========================= */
+
+.hd-register-secure-text {
   text-align: center;
   margin: 18px 35px 0 !important;
   font-size: 13px !important;
@@ -155,7 +316,11 @@
   line-height: 1.6;
 }
 
-.check-terms {
+/* =========================
+   TERMS & CONDITIONS
+========================= */
+
+.hd-register-terms {
   display: flex;
   align-items: flex-start;
   gap: 10px;
@@ -163,14 +328,14 @@
   margin: 18px 35px 20px;
 }
 
-.check-terms input[type="checkbox"] {
+.hd-register-terms input[type="checkbox"] {
   width: 18px;
   height: 18px;
-  margin: 3px 0 0 0;
+  margin: 3px 0 0;
   flex-shrink: 0;
 }
 
-.check-terms label {
+.hd-register-terms label {
   margin: 0;
   font-size: 14px;
   font-weight: 400;
@@ -178,7 +343,108 @@
   color: var(--border-color);
 }
 
-.check-terms a {
+.hd-register-terms a {
   color: #1238b3;
   text-decoration: underline;
+}
+
+.hd-register-terms a:hover {
+  color: #0f2f98;
+}
+
+/* =========================
+   LOADING
+========================= */
+
+.hd-register-loading-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.hd-register-loading-text {
+  margin: 0 !important;
+  color: var(--card-bg) !important;
+  font-size: 16px !important;
+  line-height: 1;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 992px) {
+  /* Hide Left Section */
+  .hd-register-left {
+    display: none;
+  }
+
+  /* Form takes full width */
+  .hd-register-right {
+    flex: 1;
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hd-register-card {
+    width: 100%;
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hd-register-page {
+    background: var(--bg-primary);
+  }
+
+  .hd-register-container {
+    display: block;
+    width: 100%;
+  }
+
+  .hd-register-right {
+    width: 100%;
+    padding: 16px;
+    min-height: 100vh;
+  }
+
+  .hd-register-card {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 10px;
+  }
+
+  .hd-register-field {
+    width: calc(100% - 32px);
+    margin-bottom: 14px;
+  }
+
+  .hd-register-title,
+  .hd-register-subtitle {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .hd-register-btn,
+  .hd-register-google-btn {
+    width: calc(100% - 32px);
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .hd-register-divider,
+  .hd-register-terms,
+  .hd-register-secure-text {
+    margin-left: 16px !important;
+    margin-right: 16px !important;
+  }
+
+  .hd-register-tab {
+    padding: 16px 10px;
+    font-size: 15px;
+  }
 }

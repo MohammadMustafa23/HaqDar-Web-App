@@ -2,24 +2,23 @@
    OVERLAY
 ===================================== */
 
-.cm-overlay {
-  position: fixed;
-  inset: 0;
+.cm-overlay{
+    position:fixed;
+    inset:0;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    width:100vw;
+    height:100vh;
 
-  padding: 20px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 
-  background: rgba(15, 23, 42, 0.55);
-  backdrop-filter: blur(7px);
+    background:rgba(15,23,42,.55);
 
-  z-index: 99999;
+    backdrop-filter:blur(7px);
 
-  animation: cmFade 0.25s ease;
+    z-index:99999;
 }
-
 /* =====================================
    MODAL
 ===================================== */

@@ -148,7 +148,7 @@ body {
   height: 46px;
 
   background: #e0e7ff;
-  color: var(--text-primary);
+  color: var(--primary);
 
   display: flex;
   align-items: center;

@@ -4,7 +4,7 @@ import ProfileHeader from "../Components/ProfileSection/ProfileHeader";
 import PersonalInfo from "../Components/ProfileSection/PersonalInfo";
 import EligibilityDetails from "../Components/ProfileSection/EligibilityDetails";
 import AIHelpCard from "../Components/ProfileSection/AIHelpCard";
-import Navbar from "../Components/Home-DashBoard/NavBar";
+import ProfileNavBar from "../Components/ProfileSection/ProfileNavBar";
 import PageLoader from "../Components/Common/PageLoader";
 import { getCurrentUser } from "../Services/auttantication.service";
 import "../Components/ProfileSection/Profile.css";
@@ -36,7 +36,7 @@ export default function ProfilePage({ theme, setTheme }) {
   return (
     <div className="hd-profile-page">
       <div className="hd-profile-container">
-        <Navbar
+        <ProfileNavBar
           profileData={profileData.user}
           theme={theme}
           setTheme={setTheme}

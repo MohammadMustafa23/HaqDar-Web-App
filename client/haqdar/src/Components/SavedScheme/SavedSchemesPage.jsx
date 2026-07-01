@@ -3,10 +3,9 @@ import { getSavedSchemes } from "../../utils/bookmark.js";
 
 import Rec_SchemesCard from "../Home-DashBoard/Rec_SchemesCard.jsx";
 import OpenSchemes from "../../Pages/OpenSchemes.jsx";
-import NavBar from "../Home-DashBoard/NavBar.jsx";
 import Footer from "../Footer/Footer.jsx";
 import PageLoader from "../Common/PageLoader.jsx";
-
+import ProfileNav from '../ProfileSection/ProfileNavBar.jsx'
 import "./SavedSchemesPage.css";
 
 export default function SavedSchemesPage({ profileData,theme, setTheme }) {
@@ -43,7 +42,7 @@ export default function SavedSchemesPage({ profileData,theme, setTheme }) {
 
   return (
     <>
-      <NavBar profileData={user}  theme={theme} setTheme={setTheme} />
+      <ProfileNav profileData={user}  theme={theme} setTheme={setTheme} />
 
       <main className="saved-page">
         <div className="saved-container">

@@ -1,8 +1,8 @@
 import { ShieldCheck } from "lucide-react";
 
-const genders = ["Male", "Female", "Transgender", "Others", "All"];
+const genders = ["Male", "Female","Others","All"];
 
-const categories = ["General", "OBC", "SC", "ST", "All"];
+const categories = ["General","OBC","SC","ST","All"];
 
 const EligibilityCriteria = ({ schemeData, setSchemeData }) => {
   const eligibility = schemeData.eligibility;

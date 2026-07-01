@@ -28,36 +28,32 @@ export default function AdminNavbar() {
   };
 
   return (
-    <header className="admin-navbar">
-      {/* Left */}
-
-      <div className="home-nav-logo-section">
-        <div className="home-nav-logo-box">H</div>
-
-        <h1 className="home-nav-logo-text">HaqDar</h1>
+    <header className="auth-admin-navbar">
+      {/* Logo */}
+      <div className="auth-admin-logo">
+        <div className="auth-admin-logo-box">H</div>
+        <h1 className="auth-admin-logo-text">HaqDar</h1>
       </div>
 
       {/* Right */}
+      <div className="auth-admin-actions">
+        {/* Switch */}
 
-      <div className="navbar-right">
-        {/* Switch to User */}
-
-        <button className="switch-btn" onClick={handleSwitch}>
+        <button className="auth-admin-switch-btn" onClick={handleSwitch}>
           <ArrowLeftRight size={18} />
           <span>User Login</span>
         </button>
 
         {/* Theme */}
 
-        <button className="theme-btn" onClick={toggleTheme}>
+        <button className="auth-admin-theme-btn" onClick={toggleTheme}>
           {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
         </button>
 
         {/* Status */}
 
-        <div className="status-badge">
+        <div className="auth-admin-status">
           <Circle size={10} fill="#22c55e" color="#22c55e" />
-
           <span>ALL SYSTEMS OPERATIONAL</span>
         </div>
       </div>

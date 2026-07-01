@@ -18,6 +18,18 @@ export default function SchemeManagement() {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
+  const totalItems = schemes.length;
+  const totalPages = Math.ceil(totalItems / pageSize);
+  const paginatedSchemes = schemes.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
+
+
+
+
   const handleEdit = (scheme) => {
     navigate("/add-scheme", {
       state: {
@@ -96,26 +108,35 @@ export default function SchemeManagement() {
     <div className="scheme-page">
       <AdminNavbar />
 
-      <div className="scheme-container">
-        <SchemeHeader />
+      <main className="scheme-main">
+        <div className="scheme-container">
+          <SchemeHeader />
 
-        <SchemeFilters />
+          <SchemeFilters />
 
-        <SchemeTable
-          schemes={schemes}
-          loading={loading}
-          fetchSchemes={fetchSchemes}
-          onView={handleView}
-          onEdit={handleEdit}
-          onDelete={handleDelete}
-        />
+          <SchemeTable
+            schemes={paginatedSchemes}
+            loading={loading}
+            fetchSchemes={fetchSchemes}
+            onView={handleView}
+            onEdit={handleEdit}
+            onDelete={handleDelete}
+          />
 
-        <Pagination />
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            totalItems={totalItems}
+            pageSize={pageSize}
+            onPageChange={setCurrentPage}
+          />
 
-        <ActivityBanner />
-      </div>
+          <ActivityBanner />
+        </div>
+      </main>
 
       <AdminFooter />
+
       <ConfirmationModal
         open={deleteModal.open}
         type="danger"

@@ -1,4 +1,4 @@
-import { Eye, Pencil, Trash2 } from "lucide-react";
+import { Eye, Pencil, Trash2, FileText } from "lucide-react";
 
 export default function SchemeRow({ scheme, onView, onEdit, onDelete }) {
   const formattedDate = new Date(scheme.updatedAt).toLocaleDateString("en-IN", {
@@ -8,46 +8,51 @@ export default function SchemeRow({ scheme, onView, onEdit, onDelete }) {
   });
 
   return (
-    <tr>
+    <tr className="scheme-row">
       <td>
         <div className="scheme-info">
-          <div className="scheme-icon">📄</div>
+          <div className="scheme-icon">
+            <FileText size={18} />
+          </div>
 
-          <div>
+          <div className="scheme-content">
             <h4>{scheme.name}</h4>
 
-            <span>Scheme No: {scheme.no}</span>
+            <span>Scheme No. {scheme.no}</span>
           </div>
         </div>
       </td>
 
       <td>
-        <span className={`badge ${scheme.category.toLowerCase()}`}>
-          {scheme.category}
+        <span className="scheme-category">{scheme.category}</span>
+      </td>
+
+      <td className="scheme-date">{formattedDate}</td>
+
+      <td>
+        <span
+          className={`scheme-status ${
+            scheme.status === "Active" ? "status-active" : "status-draft"
+          }`}
+        >
+          {scheme.status}
         </span>
       </td>
 
-      <td>{formattedDate}</td>
-
       <td>
-        <span className={`status ${scheme.status.toLowerCase()}`}>
-          ● {scheme.status}
-        </span>
-      </td>
-
-      <td>
-        <div className="actions">
+        <div className="scheme-actions">
           <button
             className="action-btn view"
             onClick={() => onView(scheme)}
-            title="View Scheme"
+            title="View"
           >
             <Eye size={18} />
           </button>
+
           <button
             className="action-btn edit"
             onClick={() => onEdit(scheme)}
-            title="Edit Scheme"
+            title="Edit"
           >
             <Pencil size={18} />
           </button>
@@ -55,7 +60,7 @@ export default function SchemeRow({ scheme, onView, onEdit, onDelete }) {
           <button
             className="action-btn delete"
             onClick={() => onDelete(scheme)}
-            title="Delete Scheme"
+            title="Delete"
           >
             <Trash2 size={18} />
           </button>

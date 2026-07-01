@@ -1,41 +1,55 @@
 import SchemeRow from "./SchemeRow";
 
-export default function SchemeTable({ schemes,loading,onView,onEdit,onDelete }) {
+export default function SchemeTable({
+  schemes,
+  loading,
+  onView,
+  onEdit,
+  onDelete,
+}) {
   if (loading) {
     return (
-      <div className="table-card">
+      <section className="table-card">
         <div className="table-loading">Loading schemes...</div>
-      </div>
+      </section>
     );
   }
 
   return (
-    <div className="table-card">
-      <table>
-        <thead>
-          <tr>
-            <th>Scheme Name</th>
-            <th>Category</th>
-            <th>Last Updated</th>
-            <th>Status</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {schemes.length > 0 ? (
-            schemes.map((scheme) => (
-              <SchemeRow key={scheme._id} scheme={scheme} onView={onView} onEdit={onEdit} onDelete={onDelete} />
-            ))
-          ) : (
+    <section className="table-card">
+      <div className="table-wrapper">
+        <table className="scheme-table">
+          <thead>
             <tr>
-              <td colSpan={5} className="no-data">
-                No schemes found.
-              </td>
+              <th>Scheme Name</th>
+              <th>Category</th>
+              <th>Last Updated</th>
+              <th>Status</th>
+              <th>Actions</th>
             </tr>
-          )}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+
+          <tbody>
+            {schemes.length > 0 ? (
+              schemes.map((scheme) => (
+                <SchemeRow
+                  key={scheme._id}
+                  scheme={scheme}
+                  onView={onView}
+                  onEdit={onEdit}
+                  onDelete={onDelete}
+                />
+              ))
+            ) : (
+              <tr>
+                <td className="no-data" colSpan={5}>
+                  No schemes found.
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </section>
   );
 }

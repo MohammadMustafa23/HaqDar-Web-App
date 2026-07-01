@@ -1,53 +1,55 @@
+import { useMemo } from "react";
 import { MessageSquareText, MailOpen, Clock3 } from "lucide-react";
 
-export default function FeedbackStats({ feedbacks }) {
-  const totalFeedbacks = feedbacks.length;
+export default function FeedbackStats({ feedbacks = [] }) {
+  const stats = useMemo(() => {
+    const total = feedbacks.length;
 
-  const unreadFeedbacks = feedbacks.filter(
-    (feedback) => feedback.status === "Unread",
-  ).length;
+    const unread = feedbacks.filter(({ status }) => status === "Unread").length;
 
- const recentFeedbacks = feedbacks.filter((feedback) => {
-  const createdTime = new Date(feedback.createdAt).getTime();
-  const diff = Date.now() - createdTime;
+    const recent = feedbacks.filter(({ createdAt }) => {
+      const diff = Date.now() - new Date(createdAt).getTime();
 
-  return diff >= 0 && diff <= 24 * 60 * 60 * 1000;
-}).length;
+      return diff >= 0 && diff <= 24 * 60 * 60 * 1000;
+    }).length;
+
+    return [
+      {
+        title: "Total Feedbacks",
+        value: total,
+        icon: MessageSquareText,
+        color: "",
+      },
+      {
+        title: "Unread",
+        value: unread,
+        icon: MailOpen,
+        color: "blue",
+      },
+      {
+        title: "Recent (Last 24h)",
+        value: recent,
+        icon: Clock3,
+        color: "purple",
+      },
+    ];
+  }, [feedbacks]);
 
   return (
-    <div className="fm-stats">
-      <div className="fm-stat-card">
-        <div className="fm-stat-icon">
-          <MessageSquareText size={24} />
-        </div>
+    <section className="fm-stats" aria-label="Feedback Statistics">
+      {stats.map(({ title, value, icon: Icon, color }) => (
+        <article key={title} className="fm-stat-card">
+          <div className={`fm-stat-icon ${color}`}>
+            <Icon size={22} strokeWidth={2} />
+          </div>
 
-        <div>
-          <p className="fm-stat-label">Total Feedbacks</p>
-          <h2>{totalFeedbacks}</h2>
-        </div>
-      </div>
+          <div className="fm-stat-content">
+            <p className="fm-stat-label">{title}</p>
 
-      <div className="fm-stat-card">
-        <div className="fm-stat-icon blue">
-          <MailOpen size={24} />
-        </div>
-
-        <div>
-          <p className="fm-stat-label">Unread</p>
-          <h2>{unreadFeedbacks}</h2>
-        </div>
-      </div>
-
-      <div className="fm-stat-card">
-        <div className="fm-stat-icon purple">
-          <Clock3 size={24} />
-        </div>
-
-        <div>
-          <p className="fm-stat-label">Recent (Last 24h)</p>
-          <h2>{recentFeedbacks}</h2>
-        </div>
-      </div>
-    </div>
+            <h2 className="fm-stat-value">{value.toLocaleString()}</h2>
+          </div>
+        </article>
+      ))}
+    </section>
   );
 }

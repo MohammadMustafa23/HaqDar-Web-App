@@ -1,5 +1,4 @@
 import "./AdminDashComp.css";
-import { Building2 } from "lucide-react";
 
 export default function AdminFooter() {
   return (
@@ -9,9 +8,8 @@ export default function AdminFooter() {
 
         <div className="aft-column">
           <div className="aft-logo">
-            <Building2 size={22} />
-
-            <span>HaqDar</span>
+            <div className="home-nav-logo-box">H</div>
+            <h1 className="home-nav-logo-text">HaqDar</h1>
           </div>
 
           <p className="aft-description">

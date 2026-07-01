@@ -1,6 +1,37 @@
 import { Calendar, ShieldCheck, User } from "lucide-react";
-
+import { useNavigate } from "react-router-dom";
+import { requestProfileEdit } from "../../Services/recommendation.service";
+import { toast } from "sonner";
+import { useState } from "react";
+import PageLoader from "../Common/PageLoader";
 export default function ProfileHeader({ user, profile }) {
+  const navigate = useNavigate();
+
+  const [loading, setLoading] = useState(false);
+
+  const handleUpdateProfile = async () => {
+    if (loading) return;
+
+    try {
+      setLoading(true);
+      const response = await requestProfileEdit();
+      if (response.success) {
+        toast.success(response.message);
+        navigate("/complete-profile", {
+          replace: true,
+        });
+      }
+    } catch (err) {
+      toast.error(err?.response?.data?.message || "Something went wrong");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    <PageLoader text="Preparing Profile Editor..." />;
+  }
+
   const memberSince = profile?.createdAt
     ? new Date(profile.createdAt).toLocaleDateString("en-US", {
         month: "long",
@@ -33,7 +64,9 @@ export default function ProfileHeader({ user, profile }) {
         </div>
       </div>
 
-      <button className="hd-profile-edit-btn">Edit Profile</button>
+      <button className="hd-profile-edit-btn" onClick={handleUpdateProfile}>
+        Edit Profile
+      </button>
     </div>
   );
 }

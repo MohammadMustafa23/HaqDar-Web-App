@@ -1,8 +1,8 @@
 import "./Review.css";
-import { FaStar } from "react-icons/fa";
+import { FaStar,} from "react-icons/fa";
 import { FaQuoteRight } from "react-icons/fa";
 import { MdLocationOn } from "react-icons/md";
-import UserImage from "../../assets/UserReview.png";
+import {User} from'lucide-react'
 export default function Review() {
   return (
     <div className="review-head">
@@ -35,7 +35,7 @@ export default function Review() {
 
           <div className="review-card-bottom">
             <div className="review-user-img">
-              <img src={UserImage} alt="user" />
+              <User size={40} />
             </div>
 
             <div className="review-user-about">
@@ -70,7 +70,7 @@ export default function Review() {
 
           <div className="review-card-bottom">
             <div className="review-user-img">
-              <img src={UserImage} alt="user" />
+              <User size={40} />
             </div>
 
             <div className="review-user-about">
@@ -105,12 +105,11 @@ export default function Review() {
 
           <div className="review-card-bottom">
             <div className="review-user-img">
-              <img src={UserImage} alt="user" />
+             <User size={40} />
             </div>
 
             <div className="review-user-about">
               <p>Mohammad Mustafa</p>
-
               <span>
                 <MdLocationOn className="review-location-icon" />
                 Bhopal, MP

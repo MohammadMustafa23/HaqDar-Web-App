@@ -83,10 +83,13 @@
   gap: 15px;
 }
 
-.review-user-img img {
+.review-user-img {
   width: 60px;
   height: 60px;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primary);
   border-radius: 50%;
   object-fit: cover;
 }

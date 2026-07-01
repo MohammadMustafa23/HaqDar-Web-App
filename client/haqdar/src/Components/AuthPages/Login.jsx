@@ -129,9 +129,10 @@ export default function Login({ setProfileData }) {
   return (
     <>
       {loading && <PageLoader text="Signing you in..." />}
-      <div className="login-head">
-        <div className="center-part">
-          <div className="left-side">
+
+      <div className="hd-login-page">
+        <div className="hd-login-container">
+          <div className="hd-login-left">
             <h1>Your Gateway to Government Benefits.</h1>
 
             <p>
@@ -145,14 +146,16 @@ export default function Login({ setProfileData }) {
             <span>Trusted by 2M+ Citizens Nationwide</span>
           </div>
 
-          <div className="right-side">
-            <div className="center-right">
-              <div className="auth-tabs">
+          <div className="hd-login-right">
+            <div className="hd-login-card">
+              <div className="hd-login-tabs">
                 <NavLink
                   to="/login"
                   replace
                   className={({ isActive }) =>
-                    isActive ? "tab active" : "tab"
+                    isActive
+                      ? "hd-login-tab hd-login-tab-active"
+                      : "hd-login-tab"
                   }
                 >
                   Login
@@ -162,61 +165,80 @@ export default function Login({ setProfileData }) {
                   to="/register"
                   replace
                   className={({ isActive }) =>
-                    isActive ? "tab active" : "tab"
+                    isActive
+                      ? "hd-login-tab hd-login-tab-active"
+                      : "hd-login-tab"
                   }
                 >
                   Register
                 </NavLink>
               </div>
 
-              <p>Welcome Back</p>
+              <p className="hd-login-title">Welcome Back</p>
 
-              <span>Sign in to your account to continue.</span>
+              <span className="hd-login-subtitle">
+                Sign in to your account to continue.
+              </span>
 
-              <div className="input-group">
-                <label>Email Address</label>
+              {/* Email */}
+
+              <div className="hd-login-field">
+                <label className="hd-login-label">Email Address</label>
 
                 <input
-                  className={errors.email ? "input error" : "input"}
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="name@example.com"
+                  className={
+                    errors.email
+                      ? "hd-login-input hd-login-input-error"
+                      : "hd-login-input"
+                  }
                 />
 
                 {errors.email && (
-                  <p className="error-message">{errors.email}</p>
+                  <p className="hd-login-error">{errors.email}</p>
                 )}
               </div>
 
-              <label>Password</label>
-              <input
-                className={errors.password ? "input error" : "input"}
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                placeholder="••••••••"
-              />
+              {/* Password */}
 
-              {errors.password && (
-                <p className="error-message">{errors.password}</p>
-              )}
+              <div className="hd-login-field">
+                <label className="hd-login-label">Password</label>
+
+                <input
+                  type="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  placeholder="••••••••"
+                  className={
+                    errors.password
+                      ? "hd-login-input hd-login-input-error"
+                      : "hd-login-input"
+                  }
+                />
+
+                {errors.password && (
+                  <p className="hd-login-error">{errors.password}</p>
+                )}
+              </div>
 
               <button
-                className="sign-in"
+                className="hd-login-btn"
                 onClick={handleSubmit}
                 disabled={loading}
               >
                 Sign In
               </button>
 
-              <div className="divider">
+              <div className="hd-login-divider">
                 <span>OR CONTINUE WITH</span>
               </div>
 
-              <button className="google-btn" onClick={() => googleLogin()}>
+              <button className="hd-login-google-btn" onClick={googleLogin}>
                 <img
                   src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg"
                   alt="Google"
@@ -224,7 +246,7 @@ export default function Login({ setProfileData }) {
                 Continue with Google
               </button>
 
-              <p className="secure-text">
+              <p className="hd-login-secure-text">
                 Your information is securely protected and used only for
                 eligibility matching.
               </p>

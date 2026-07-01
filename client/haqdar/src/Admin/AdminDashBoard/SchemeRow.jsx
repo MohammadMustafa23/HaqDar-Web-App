@@ -7,7 +7,7 @@ export default function SchemeRow({ scheme }) {
       <td>
         <div className="asr-name">
           <div className="asr-icon">
-            <FileText size={18} />
+            <FileText size={20} strokeWidth={2} />
           </div>
 
           <span>{scheme.name}</span>
