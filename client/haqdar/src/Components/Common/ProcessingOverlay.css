@@ -1,0 +1,129 @@
+.processing-overlay {
+  position: fixed;
+  inset: 0;
+
+  z-index: 99999;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(15, 23, 42, 0.45);
+
+  backdrop-filter: blur(8px);
+}
+
+.processing-card {
+  width: 430px;
+
+  background: #fff;
+
+  border-radius: 22px;
+
+  padding: 45px;
+
+  text-align: center;
+
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.18);
+
+  animation: popup 0.25s ease;
+}
+
+.processing-icon {
+  width: 100px;
+  height: 100px;
+
+  margin: auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 50%;
+
+  background: #eff6ff;
+
+  color: #2563eb;
+}
+
+.processing-card h2 {
+  margin-top: 25px;
+
+  font-size: 28px;
+
+  font-weight: 700;
+}
+
+.processing-card p {
+  margin-top: 10px;
+
+  color: #64748b;
+
+  line-height: 1.6;
+}
+
+.processing-bar {
+  margin-top: 28px;
+
+  width: 100%;
+
+  height: 10px;
+
+  border-radius: 999px;
+
+  overflow: hidden;
+
+  background: #e5e7eb;
+}
+
+.processing-bar-fill {
+  width: 35%;
+
+  height: 100%;
+
+  border-radius: 999px;
+
+  background: linear-gradient(90deg, #2563eb, #4f46e5);
+
+  animation: loading 1.2s infinite;
+}
+
+.processing-card small {
+  display: block;
+
+  margin-top: 18px;
+
+  color: #94a3b8;
+}
+
+.processing-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loading {
+  0% {
+    transform: translateX(-120%);
+  }
+
+  100% {
+    transform: translateX(340%);
+  }
+}
+
+@keyframes popup {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

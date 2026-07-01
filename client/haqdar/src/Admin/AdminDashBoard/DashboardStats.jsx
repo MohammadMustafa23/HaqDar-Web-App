@@ -8,27 +8,27 @@ import {
 
 import StatCard from "./StatCard";
 
-export default function DashboardStats() {
+export default function DashboardStats({stats}) {
 
   const adsStats = [
 
     {
       title: "Active Schemes",
-      value: "164",
+      value: stats?.activeSchemes,
       subtitle: "Currently Available",
       icon: <FolderKanban size={30} />,
     },
 
     {
       title: "Total Schemes",
-      value: "238",
+      value: stats?.totalSchemes,
       subtitle: "Stored in Database",
       icon: <FileText size={30} />,
     },
 
     {
       title: "Registered Users",
-      value: "12,480",
+      value: stats?.totalUsers,
       subtitle: "Verified Accounts",
       icon: <Users size={30} />,
     },
@@ -44,6 +44,7 @@ export default function DashboardStats() {
         <StatCard
           key={index}
           {...item}
+          stats={stats}
         />
 
       ))}

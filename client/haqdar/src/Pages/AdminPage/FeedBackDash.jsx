@@ -17,7 +17,6 @@ export default function FeedbackManagement() {
   const fetchFeedbacks = async () => {
     try {
       const res = await getAllFeedbacks();
-
       setFeedbacks(res.feedbacks);
     } catch (error) {
       console.log(error);

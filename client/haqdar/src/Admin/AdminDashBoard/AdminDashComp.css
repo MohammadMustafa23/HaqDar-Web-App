@@ -38,8 +38,6 @@
   gap: 40px;
 }
 
-
-
 .anb-links {
   display: flex;
   align-items: center;
@@ -316,7 +314,6 @@
 =========================== */
 
 @media (max-width: 768px) {
-
   .ahr-wrapper {
     width: 100%;
     display: flex;
@@ -361,7 +358,6 @@
   .ahr-time {
     font-size: 17px;
   }
-
 }
 /*  ------------------------Admin Scheme Card ------------------------------   */
 /* ===========================
@@ -454,7 +450,6 @@
   justify-content: center;
 
   align-items: center;
-
 
   color: var(--primary);
 }
@@ -858,6 +853,36 @@ body.dark .asr-draft {
   background: rgba(245, 158, 11, 0.22);
 
   color: #fbbf24;
+}
+
+.ast-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 60px 20px;
+
+  text-align: center;
+  color: #64748b;
+}
+
+.ast-empty svg {
+  color: #94a3b8;
+  margin-bottom: 14px;
+}
+
+.ast-empty h4 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 8px;
+}
+
+.ast-empty p {
+  max-width: 420px;
+  line-height: 1.6;
+  font-size: 14px;
 }
 
 /*=========================

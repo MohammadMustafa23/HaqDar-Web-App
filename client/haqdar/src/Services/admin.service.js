@@ -20,3 +20,9 @@ export const logoutUser = async () => {
 export const verifyAdmin = () => {
   return API.get("/api/admin/verify");
 };
+
+// dashboard.service.js
+export const getDashboard = async () => {
+  const response = await API.get("/api/admin/dashboard");
+  return response.data;
+};
