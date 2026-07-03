@@ -1,6 +1,7 @@
 export const validateScheme = (schemeData) => {
   const errors = {};
-
+  console.log(schemeData);
+  
   // ==========================
   // Basic Details
   // ==========================
@@ -76,30 +77,30 @@ export const validateScheme = (schemeData) => {
     errors.apply = "Application procedure is required.";
   }
 
-  if (!schemeData.description?.trim()) {
-    errors.description = "Description is required.";
-  }
+  // if (!schemeData.description?.trim()) {
+  //   errors.description = "Description is required.";
+  // }
 
   if (schemeData.documents.length === 0) {
     errors.documents =
       "Add at least one required document.";
   }
 
-  if (
-    schemeData.website &&
-    !/^https?:\/\/.+/i.test(schemeData.website)
-  ) {
-    errors.website = "Enter a valid website URL.";
-  }
+  // if (
+  //   schemeData.website &&
+  //   !/^https?:\/\/.+/i.test(schemeData.website)
+  // ) {
+  //   errors.website = "Enter a valid website URL.";
+  // }
 
-  if (
-    schemeData.deadline &&
-    new Date(schemeData.deadline) <
-      new Date().setHours(0, 0, 0, 0)
-  ) {
-    errors.deadline =
-      "Deadline cannot be in the past.";
-  }
+  // if (
+  //   schemeData.deadline &&
+  //   new Date(schemeData.deadline) <
+  //     new Date().setHours(0, 0, 0, 0)
+  // ) {
+  //   errors.deadline =
+  //     "Deadline cannot be in the past.";
+  // }
 
   return errors;
 };

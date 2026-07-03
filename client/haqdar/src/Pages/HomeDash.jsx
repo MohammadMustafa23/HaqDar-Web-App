@@ -10,6 +10,7 @@ import Review from "../Components/Footer/Review.jsx";
 import FAQ from "../Components/Footer/FAQ.jsx";
 import { useState, useEffect,useRef } from "react";
 import HowWork from "../Components/Header/HowWork.jsx";
+import PageLoader from '../Components/Common/PageLoader.jsx'
 import { getMatchedSchemes } from "../Services/recommendation.service.js";
 
 export default function HomeDash({ profileData, loading, theme, setTheme }) {
@@ -62,10 +63,7 @@ export default function HomeDash({ profileData, loading, theme, setTheme }) {
   }, [profileCompleted]);
   if (loading) {
     return (
-      <div className="auth-loading">
-        <div className="auth-spinner"></div>
-        <p>Loading...</p>
-      </div>
+      <PageLoader text="Dashboard Loading..." />
     );
   }
 

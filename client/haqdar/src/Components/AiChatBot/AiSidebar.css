@@ -226,54 +226,121 @@
 /* =========================
    QUICK ACTIONS
 ========================= */
+/* ==========================
+   AI QUICK ACTIONS
+========================== */
 
-.quick-actions{
-  display:flex;
+.ai-quick-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 
-  gap:10px;
+  overflow-x: auto;
+  overflow-y: hidden;
 
-  overflow-x:auto;
+  padding: 14px 18px;
 
-  padding:12px 15px;
+  background: var(--card-bg);
+  border-top: 1px solid var(--border-color);
 
-  background:var(--card-bg);
-
-  border-top:
-  1px solid var(--border-color);
-
-  scrollbar-width:none;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
 }
 
-.quick-actions::-webkit-scrollbar{
-  display:none;
+.ai-quick-actions::-webkit-scrollbar {
+  display: none;
 }
 
-.quick-actions button{
-  display:flex;
-  align-items:center;
-  gap:8px;
+/* ==========================
+   BUTTON
+========================== */
 
-  border:none;
+.ai-quick-actions-btn {
+  flex-shrink: 0;
 
-  padding:10px 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 
-  border-radius:999px;
-  background:var(--surface-bg);
-  color:var(--text-primary);
+  padding: 10px 16px;
 
-  cursor:pointer;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
 
-  transition:.25s;
+  background: var(--surface-bg);
+  color: var(--text-primary);
+
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition: all 0.25s ease;
 }
 
-.quick-actions button:hover{
-  background:var(--primary);
-  color:var(--card-bg);
+.ai-quick-actions-btn:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
 
-  transform:
-  translateY(-2px);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.18);
 }
 
+/* Active Click */
+
+.ai-quick-actions-btn:active {
+  transform: scale(0.97);
+}
+
+/* ==========================
+   ICON
+========================== */
+
+.ai-quick-actions-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+}
+
+/* ==========================
+   LABEL
+========================== */
+
+.ai-quick-actions-label {
+  white-space: nowrap;
+  line-height: 1;
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media (max-width: 768px) {
+  .ai-quick-actions {
+    padding: 12px 14px;
+    gap: 10px;
+  }
+
+  .ai-quick-actions-btn {
+    padding: 9px 14px;
+    font-size: 13px;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ai-quick-actions {
+    padding: 10px 12px;
+  }
+
+  .ai-quick-actions-btn {
+    padding: 8px 12px;
+    font-size: 12.5px;
+  }
+}
 /* =========================
    INPUT AREA
 ========================= */

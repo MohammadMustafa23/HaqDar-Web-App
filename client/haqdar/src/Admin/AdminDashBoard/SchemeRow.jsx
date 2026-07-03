@@ -1,7 +1,10 @@
 import "./AdminDashComp.css";
 import { Pencil, Trash2, FileText } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function SchemeRow({ scheme }) {
+  const navigate = useNavigate();
+
   return (
     <tr className="asr-row">
       <td>
@@ -30,11 +33,17 @@ export default function SchemeRow({ scheme }) {
 
       <td>
         <div className="asr-actions">
-          <button className="asr-edit">
+          <button
+            className="asr-edit"
+            onClick={() => navigate("/admin-scheme")}
+          >
             <Pencil size={17} />
           </button>
 
-          <button className="asr-delete">
+          <button
+            className="asr-delete"
+            onClick={() => navigate("/admin-scheme")}
+          >
             <Trash2 size={17} />
           </button>
         </div>

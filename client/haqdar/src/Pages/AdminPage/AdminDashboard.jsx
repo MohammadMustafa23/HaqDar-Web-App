@@ -8,18 +8,20 @@ import AdminHero from "../../Admin/AdminDashBoard/AdminHero.jsx";
 import DashboardStats from "../../Admin/AdminDashBoard/DashboardStats.jsx";
 import SchemeTable from "../../Admin/AdminDashBoard/SchemeTable.jsx";
 import DashboardBanner from "../../Admin/AdminDashBoard/DashboardBanner.jsx";
-import AdminFooter from "../../Admin/AdminDashBoard/AdminFooter.jsx";
+import AdminFooter from "../../Components/Footer/Footer.jsx"
 
 import PageLoader from "../../Components/Common/PageLoader.jsx";
-
 export default function AdminDashboard() {
   const [dashboard, setDashboard] = useState(null);
   const [loading, setLoading] = useState(true);
 
+
+  
+
   const fetchDashboard = async () => {
     try {
-      const data = await getDashboard();
-      setDashboard(data);
+      const res = await getDashboard();
+      setDashboard(res.data);
     } catch (error) {
       console.error(error);
     } finally {

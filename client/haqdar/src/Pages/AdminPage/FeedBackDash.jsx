@@ -3,7 +3,7 @@ import "./FeedBackDash.css";
 
 // Layout
 import AdminNav from "../../Admin/AdminDashBoard/AdminNavbar";
-import AdminFooter from "../../Admin/AdminDashBoard/AdminFooter";
+import AdminFooter from "../../Components/Footer/Footer.jsx"
 
 // Components
 import FeedbackHeader from "../../Admin/FeedbackDash/FeedbackHeader";

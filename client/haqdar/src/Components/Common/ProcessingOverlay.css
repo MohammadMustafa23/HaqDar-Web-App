@@ -48,16 +48,15 @@
 
 .processing-card h2 {
   margin-top: 25px;
-
+  color: var(--primary);
   font-size: 28px;
-
   font-weight: 700;
 }
 
 .processing-card p {
   margin-top: 10px;
 
-  color: #64748b;
+  color: var(--text-secondary);
 
   line-height: 1.6;
 }

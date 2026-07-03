@@ -13,6 +13,7 @@ import {
 } from "../../Services/recommendation.service";
 import { getCurrentUser } from "../../Services/auttantication.service";
 import { useNavigate } from "react-router-dom";
+import PageLoader from "../Common/PageLoader";
 
 export default function ProfileWizard({ setProfileData }) {
   const [checkingAccess, setCheckingAccess] = useState(true);
@@ -59,17 +60,7 @@ export default function ProfileWizard({ setProfileData }) {
 
   if (checkingAccess) {
     return (
-      <div className="fixed inset-0 flex flex-col items-center justify-center bg-white z-50">
-        <div className="w-14 h-14 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin"></div>
-
-        <h3 className="mt-6 text-lg font-semibold text-gray-800">
-          Verifying Access
-        </h3>
-
-        <p className="mt-2 text-sm text-gray-500">
-          Preparing your profile editor...
-        </p>
-      </div>
+        <PageLoader  text="Verifying Access..."/>
     );
   }
 

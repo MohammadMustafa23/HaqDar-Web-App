@@ -1,9 +1,9 @@
 import "./SchemeManagement.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { toast } from "sonner";
 
 import AdminNavbar from "../../Admin/AdminDashBoard/AdminNavbar.jsx";
-import AdminFooter from "../../Admin/AdminDashBoard/AdminFooter.jsx";
+import AdminFooter from "../../Components/Footer/Footer.jsx"
 import PageLoader from "../../Components/Common/PageLoader.jsx";
 import SchemeHeader from "../../Admin/SchemeManagement/SchemeHeader.jsx";
 import SchemeFilters from "../../Admin/SchemeManagement/SchemeFilters.jsx";
@@ -15,20 +15,50 @@ import { getAllSchemes, deleteScheme } from "../../Services/scheme.service.js";
 import ConfirmationModal from "../../Components/Common/ConfirmationModal.jsx";
 export default function SchemeManagement() {
   const [schemes, setSchemes] = useState([]);
+  const [filters, setFilters] = useState({
+    search: "",
+    category: "All Categories",
+    status: "All Statuses",
+  });
+
+  const filteredSchemes = useMemo(() => {
+    let filtered = [...schemes];
+    // Search
+    if (filters.search.trim()) {
+      const keyword = filters.search.toLowerCase();
+      filtered = filtered.filter(
+        (scheme) =>
+          scheme.name?.toLowerCase().includes(keyword) ||
+          String(scheme.no).includes(keyword) ||
+          scheme.category?.toLowerCase().includes(keyword),
+      );
+    }
+    // Category
+    if (filters.category !== "All Categories") {
+      filtered = filtered.filter(
+        (scheme) => scheme.category === filters.category,
+      );
+    }
+
+    // Status
+    if (filters.status !== "All Statuses") {
+      filtered = filtered.filter((scheme) => scheme.status === filters.status);
+    }
+
+    return filtered;
+  }, [schemes, filters]);
+
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 10;
-  const totalItems = schemes.length;
+  const totalItems = filteredSchemes.length;
   const totalPages = Math.ceil(totalItems / pageSize);
-  const paginatedSchemes = schemes.slice(
+  const paginatedSchemes = filteredSchemes.slice(
     (currentPage - 1) * pageSize,
-    currentPage * pageSize
+    currentPage * pageSize,
   );
-
-
-
 
   const handleEdit = (scheme) => {
     navigate("/add-scheme", {
@@ -88,7 +118,8 @@ export default function SchemeManagement() {
       setLoading(true);
       const res = await getAllSchemes();
       // Adjust this according to your API response
-      setSchemes(res.schemes || res.data || []);
+      const data = res.schemes || res.data || [];
+      setSchemes(data);
     } catch (error) {
       toast.error(error.response?.data?.message || "Failed to fetch schemes.");
     } finally {
@@ -112,7 +143,11 @@ export default function SchemeManagement() {
         <div className="scheme-container">
           <SchemeHeader />
 
-          <SchemeFilters />
+          <SchemeFilters
+            schemes={schemes}
+            filters={filters}
+            setFilters={setFilters}
+          />
 
           <SchemeTable
             schemes={paginatedSchemes}

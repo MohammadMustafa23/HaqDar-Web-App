@@ -1,7 +1,7 @@
 import "./RegisterScheme.css";
 
 import AdminNav from "../../Admin/AdminDashBoard/AdminNavbar.jsx";
-import AdminFooter from "../../Admin/AdminDashBoard/AdminFooter.jsx";
+import AdminFooter from "../../Components/Footer/Footer.jsx"
 import ProcessingOverlay from "../../Components/Common/ProcessingOverlay.jsx";
 import AIImportCard from "../../Admin/RegisterScheme/AIImportCard";
 import BasicDetails from "../../Admin/RegisterScheme/BasicDetails";

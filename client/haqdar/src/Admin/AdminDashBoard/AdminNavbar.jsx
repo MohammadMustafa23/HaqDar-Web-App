@@ -13,7 +13,7 @@ export default function AdminNavbar() {
   const logoutUser = async () => {
     try {
       const res = await Logout();
-      toast.success(res.message);
+      toast.success(res.data.message);
       navigate("/login");
     } catch (error) {
       console.log(error);
@@ -27,7 +27,6 @@ export default function AdminNavbar() {
     } else {
       document.body.classList.remove("dark");
     }
-
     localStorage.setItem("theme", theme);
   }, [theme]);
 

@@ -22,7 +22,6 @@ export default function LoginForm() {
 
   function handleChange(e) {
     const { name, value, type, checked } = e.target;
-
     setFormData((prev) => ({
       ...prev,
       [name]: type === "checkbox" ? checked : value,
@@ -49,6 +48,11 @@ export default function LoginForm() {
       newErrors.password = "Password must be at least 6 characters";
     }
 
+    // Remember Me validation (only if required)
+    if (!formData.remember) {
+      newErrors.remember = "Please check 'Remember Me'";
+    }
+
     setErrors(newErrors);
 
     return Object.keys(newErrors).length === 0;
@@ -63,6 +67,7 @@ export default function LoginForm() {
 
     try {
       const response = await adminLogin(formData);
+      console.log(response);
 
       setLoading(false);
       await Swal.fire({
@@ -161,10 +166,6 @@ export default function LoginForm() {
                 />
                 Remember Device
               </label>
-
-              <button type="button" className="forgot-btn">
-                Forgot Password?
-              </button>
             </div>
 
             {/* Submit */}

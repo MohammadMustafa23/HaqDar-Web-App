@@ -1,26 +1,23 @@
 import {
-  Search,
   BadgeCheck,
-  FileText,
   GraduationCap,
   Tractor,
   HelpCircle,
+  HeartPulse,
+  PiggyBank,
 } from "lucide-react";
-import './AiSidebar.css'
+
+import "./AiSidebar.css";
 
 export default function QuickActions({ onSelect }) {
   const actions = [
     {
-      icon: <Search size={16} />,
-      label: "Find Schemes",
+      icon: <HelpCircle size={16} />,
+      label: "How To Use HaqDar",
     },
     {
       icon: <BadgeCheck size={16} />,
       label: "Check Eligibility",
-    },
-    {
-      icon: <FileText size={16} />,
-      label: "Required Documents",
     },
     {
       icon: <GraduationCap size={16} />,
@@ -31,20 +28,26 @@ export default function QuickActions({ onSelect }) {
       label: "Farmer Schemes",
     },
     {
-      icon: <HelpCircle size={16} />,
-      label: "How To Use HaqDar",
+      icon: <HeartPulse size={16} />,
+      label: "Health & Medical Schemes",
+    },
+    {
+      icon: <PiggyBank size={16} />,
+      label: "Pension Schemes",
     },
   ];
 
   return (
-    <div className="quick-actions">
+    <div className="ai-quick-actions">
       {actions.map((action) => (
         <button
           key={action.label}
+          className="ai-quick-actions-btn"
           onClick={() => onSelect(action.label)}
         >
-          {action.icon}
-          <span>{action.label}</span>
+          <span className="ai-quick-actions-icon">{action.icon}</span>
+
+          <span className="ai-quick-actions-label">{action.label}</span>
         </button>
       ))}
     </div>

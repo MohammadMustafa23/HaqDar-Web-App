@@ -1,4 +1,4 @@
-import axios from "axios"; // Your axios instance
+import axios from "axios";
 
 const API = axios.create({
   baseURL: "http://localhost:3000",
@@ -6,23 +6,47 @@ const API = axios.create({
   timeout: 10000,
 });
 
-export const adminLogin = (data) => {
-  return API.post("/api/admin/login", data);
-};
+API.interceptors.response.use(
+  (response) => response,
 
-export const logoutUser = async () => {
-  const res = await API.post("/api/admin/logout");
-  return res.data;
-};
+  async (error) => {
+    const originalRequest = error.config;
 
+    // No response (network error)
+    if (!error.response) {
+      return Promise.reject(error);
+    }
 
+    // Don't refresh twice
+    if (originalRequest._retry) {
+      return Promise.reject(error);
+    }
 
-export const verifyAdmin = () => {
-  return API.get("/api/admin/verify");
-};
+    // Only refresh on 401
+    if (error.response.status === 401) {
+      originalRequest._retry = true;
 
-// dashboard.service.js
-export const getDashboard = async () => {
-  const response = await API.get("/api/admin/dashboard");
-  return response.data;
-};
+      try {
+        await API.post("/api/admin/refresh-token");
+
+        // Retry original request
+        return await API(originalRequest);
+      } catch (refreshError) {
+        window.location.replace("/admin-login");
+        return Promise.reject(refreshError);
+      }
+    }
+
+    return Promise.reject(error);
+  },
+);
+export default API;
+
+// Services
+export const adminLogin = (data) => API.post("/api/admin/login", data);
+
+export const logoutUser = () => API.post("/api/admin/logout");
+
+export const verifyAdmin = () => API.get("/api/admin/verify");
+
+export const getDashboard = () => API.get("/api/admin/dashboard");
