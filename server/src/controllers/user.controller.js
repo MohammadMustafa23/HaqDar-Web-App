@@ -34,9 +34,7 @@ export async function RegisterUser(req, res) {
 
 export async function LoginUser(req, res) {
   const { email, password } = req.body;
-
   const IfUserExist = await UserModel.findOne({ email });
-
   if (!IfUserExist) {
     return res.status(404).json({
       success: false,
@@ -66,7 +64,7 @@ export async function LoginUser(req, res) {
       id: IfUserExist._id,
       role: IfUserExist.role,
     },
-    process.env.JWT_SECRET,
+    process.env.ACCESS_TOKEN_SECRET,
     {
       expiresIn: "7d",
     },
@@ -117,7 +115,7 @@ export const GoogleLogin = async (req, res) => {
       {
         id: user._id,
       },
-      process.env.JWT_SECRET,
+      process.env.ACCESS_TOKEN_SECRET,
       {
         expiresIn: "7d",
       },
@@ -187,13 +185,11 @@ export async function VerifyProfile(req, res) {
   }
 }
 
-
 export const userLogout = async (req, res) => {
   try {
     if (req.user) {
       await redisClient.del(`user:${req.user._id}`);
     }
-
     res.clearCookie("token", {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",

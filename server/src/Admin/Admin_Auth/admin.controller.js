@@ -1,6 +1,10 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import UserModel from "../../models/user.model.js";
+import {
+  generateAccessToken,
+  generateRefreshToken,
+} from "../utils/adminToken.js";
 
 export async function AdminLogin(req, res) {
   try {
@@ -35,21 +39,24 @@ export async function AdminLogin(req, res) {
     }
 
     // Generate Token
-    const token = jwt.sign(
-      {
-        userId: admin._id,
-        role: admin.role,
-      },
-      process.env.JWT_SECRET,
-      {
-        expiresIn: "7d",
-      },
-    );
+    const accessToken = generateAccessToken(admin);
+    const refreshToken = generateRefreshToken(admin);
 
-    res.cookie("adminToken", token, {
+    // Save Refresh Token
+    admin.refreshToken = refreshToken;
+    await admin.save();
+
+    res.cookie("adminAccessToken", accessToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
+      sameSite: "strict",
+      maxAge: 15 * 60 * 1000,
+    });
+
+    res.cookie("adminRefreshToken", refreshToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
@@ -69,22 +76,32 @@ export async function AdminLogin(req, res) {
 
 export const Logout = async (req, res) => {
   try {
-    if (req.user) {
-      await redisClient.del(`user:${req.user._id}`);
-    }
+    console.log(req.user);
 
-    res.clearCookie("adminToken", {
+    req.user.refreshToken = null;
+    await req.user.save();
+    console.log("hey ...............");
+
+    // Clear Access Token Cookie
+    res.clearCookie("adminAccessToken", {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "strict",
     });
 
-    res.status(200).json({
+    // Clear Refresh Token Cookie
+    res.clearCookie("adminRefreshToken", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+    });
+
+    return res.status(200).json({
       success: true,
       message: "Logout Successfully",
     });
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: error.message,
     });

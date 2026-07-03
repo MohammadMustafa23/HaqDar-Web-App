@@ -175,7 +175,6 @@ export const getSchemeById = async (req, res) => {
     });
   } catch (error) {
     console.error("Get Scheme Error:", error);
-
     return res.status(500).json({
       success: false,
       message: "Internal Server Error.",
@@ -464,5 +463,42 @@ export const bulkUploadSchemes = async (req, res) => {
       success: false,
       message: "Internal Server Error",
     });
+  }
+};
+
+export const searchSchemeByMessage = async (message) => {
+  try {
+    if (!message?.trim()) {
+      return [];
+    }
+
+    // Generate embedding
+    const embedding = await generateEmbedding(message.trim());
+
+    // Search Pinecone
+    const result = await index.query({
+      vector: embedding,
+      topK: 3,
+      includeMetadata: true,
+    });
+
+    if (!result.matches || result.matches.length === 0) {
+      return [];
+    }
+
+    // Filter by relevance so weak matches don't pollute the response
+    const relevantMatches = result.matches.filter(
+      (m) => m.score >= 0.75
+    );
+
+    // Always return an array of scheme objects
+    return relevantMatches.map((match) => ({
+      id: match.id,
+      score: match.score,
+      ...match.metadata,
+    }));
+  } catch (error) {
+    console.error("Pinecone Search Error:", error);
+    return [];
   }
 };

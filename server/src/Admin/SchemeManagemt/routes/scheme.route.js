@@ -1,6 +1,6 @@
 import express from "express";
 import { verifyAdminJWT } from "../../Admin_Auth/middleware/verifyAdminJWT.js";
-import { addScheme,getAllSchemes,getSchemeById,updateScheme,deleteScheme,updateSchemeStatus,bulkUploadSchemes } from "../controllers/scheme.controller.js";
+import { addScheme,getAllSchemes,getSchemeById,updateScheme,deleteScheme,updateSchemeStatus,bulkUploadSchemes,searchSchemeByMessage } from "../controllers/scheme.controller.js";
 import { validateScheme } from '../middlewares/scheme.validator.js'
 import upload from "../middlewares/upload.middleware.js";
 import {parseSchemeCasting} from '../middlewares/parseSchemeCasting.middleware.js'

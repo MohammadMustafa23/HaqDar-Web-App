@@ -3,49 +3,48 @@ import UserModel from "../../../models/user.model.js";
 
 export const verifyAdminJWT = async (req, res, next) => {
   try {
-    const token = req.cookies.adminToken; // your login cookie name
+    const accessToken = req.cookies.adminAccessToken;
     
-    if (!token) {
+    if (!accessToken) {
       return res.status(401).json({
         success: false,
         message: "Please login first.",
       });
     }
 
-    const decoded = jwt.verify(token,process.env.JWT_SECRET);
+    const decoded = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
+
+
+    const admin = await UserModel.findById(decoded.userId);
 
     
-    const user = await UserModel.findById(decoded.userId);
-    
-    if (!user) {
+    if (!admin) {
       return res.status(401).json({
         success: false,
-        message: "User not found.",
+        message: "Admin not found.",
       });
     }
 
-    if (user.role !== "admin") {
+    if (admin.role !== "admin") {
       return res.status(403).json({
         success: false,
         message: "Access denied. Admin only.",
       });
     }
-
-    req.user = user;
+    req.user = admin;
 
     next();
   } catch (error) {
     return res.status(401).json({
       success: false,
-      message: "Invalid or expired token.",
+      message: "Invalid or expired access token.",
     });
   }
 };
 
-export const VerifyAdmin = async (req, res, next) => {
+
+export const VerifyAdmin = async (req, res) => {
   try {
-    console.log(req.user);
-    
     if (!req.user) {
       return res.status(401).json({
         success: false,
@@ -60,7 +59,16 @@ export const VerifyAdmin = async (req, res, next) => {
       });
     }
 
-    next();
+    return res.status(200).json({
+      success: true,
+      message: "Admin verified successfully.",
+      admin: {
+        id: req.user._id,
+        name: req.user.userName,
+        email: req.user.email,
+        role: req.user.role,
+      },
+    });
   } catch (error) {
     return res.status(500).json({
       success: false,

@@ -1,13 +1,24 @@
 import { FAQs } from "../data/faqs.js";
 
 export const findFAQ = (message) => {
-  const text = message.toLowerCase();
+  if (!message || typeof message !== "string") return null;
 
-  const faq = FAQs.find((item) =>
-    item.keywords.some((keyword) =>
-      text.includes(keyword)
-    )
-  );
+  const text = message.toLowerCase().trim();
+  if (!text) return null;
 
-  return faq?.response || null;
+  let bestMatch = null;
+  let bestScore = 0;
+
+  for (const item of FAQs) {
+    const matchCount = item.keywords.filter((keyword) =>
+      text.includes(keyword.toLowerCase()),
+    ).length;
+
+    if (matchCount > bestScore) {
+      bestScore = matchCount;
+      bestMatch = item;
+    }
+  }
+
+  return bestMatch?.response || null;
 };
