@@ -699,7 +699,7 @@ body {
   width: 100%;
   padding: 20px;
   box-sizing: border-box;
-  margin-top: 150px;
+  margin-top: 120px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -769,7 +769,11 @@ body {
 /* Tablet */
 @media (max-width: 992px) {
   .profile-success-card {
-    padding: 28px;
+    margin :0px;
+  }
+  .profile-success-card {
+    padding: 40px;
+    width: 500px;
   }
 
   .profile-content h1 {

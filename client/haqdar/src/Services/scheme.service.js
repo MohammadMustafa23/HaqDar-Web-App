@@ -15,7 +15,10 @@ export const getAllSchemes = async () => {
 };
 
 export const updateScheme = async (id, data) => {
+  console.log("Request Gone");
+  
   const response = await API.put(`/admin/schemes/${id}`, data);
+  console.log("Respnse Come");
   return response.data;
 };
 

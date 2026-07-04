@@ -12,7 +12,7 @@
 
 .feedback-container {
   max-width: 900px;
-  margin: auto;
+  margin: 60px auto;
   background: var(--card-bg);
   border: 1px solid var(--border);
   border-radius: 18px;

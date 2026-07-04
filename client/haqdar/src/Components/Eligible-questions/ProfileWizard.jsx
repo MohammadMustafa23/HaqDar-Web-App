@@ -6,6 +6,7 @@ import Category from "./Category";
 import Income from "./Income";
 import District from "./District";
 import Occupation from "./Occupation";
+import Appswal from '../Common/AppSwal.js'
 import Pwd from "./Pwd";
 import {
   generateRecommendations,
@@ -69,28 +70,50 @@ export default function ProfileWizard({ setProfileData }) {
   }
   console.log(formData);
   const handleSubmit = async () => {
-    try {
-      setLoading(true);
+  if (loading) return;
 
-      const data = await generateRecommendations(formData);
-      console.log(data);
+  try {
+    setLoading(true);
 
-      const userData = await getCurrentUser();
+    const data = await generateRecommendations(formData);
 
-      if (userData?.success) {
-        setProfileData(userData);
-      }
-
-      navigate("/home-page", {
-        replace: true,
-        recommendations: data.SchemsMatch,
-      });
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
+    // API returned failure
+    if (!data?.success) {
+      throw new Error(
+          "Unable to generate recommendations. Please try again."
+      );
     }
-  };
+
+    const userData = await getCurrentUser();
+
+    if (userData?.success) {
+      setProfileData(userData);
+    }
+
+    navigate("/home-page", {
+      replace: true,
+      state: {
+        recommendations: data.SchemsMatch,
+      },
+    });
+
+  } catch (error) {
+    console.error(error);
+
+      Appswal.fire({
+      icon: "error",
+      title: "Recommendation Failed",
+      text:
+        error?.response?.data?.message ||
+        error?.message ||
+        "Unable to generate recommendations. Please try again later.",
+      confirmButtonText: "Try Again",
+    });
+
+  } finally {
+    setLoading(false);
+  }
+};
 
   const next = () => setStep((prev) => prev + 1);
   const prev = () => setStep((prev) => prev - 1);

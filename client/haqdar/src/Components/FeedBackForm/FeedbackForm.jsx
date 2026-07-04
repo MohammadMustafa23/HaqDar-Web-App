@@ -3,6 +3,7 @@ import "./FeedbackForm.css";
 import { toast } from "sonner";
 import { submitFeedback } from "../../Services/feedback.service.js";
 import PageLoader from '../Common/PageLoader.jsx'
+import ProfileNav from '../../Components/ProfileSection/ProfileNavBar.jsx'
 export default function FeedbackForm() {
   const [formData, setFormData] = useState({
     category: "Scheme Issue",
@@ -42,6 +43,8 @@ export default function FeedbackForm() {
     return <PageLoader text="Submitting your feedback..." />;
   }
   return (
+    <>
+     <ProfileNav/>
     <div className="feedback-page">
       <div className="feedback-container">
         <div className="feedback-header">
@@ -141,5 +144,6 @@ export default function FeedbackForm() {
         </form>
       </div>
     </div>
+  </>
   );
 }

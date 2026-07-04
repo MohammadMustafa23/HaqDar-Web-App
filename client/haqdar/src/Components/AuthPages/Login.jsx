@@ -2,7 +2,7 @@ import LoginPage from "../../assets/Login-Page-Logo.png";
 import "./Login.css";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
-import Swal from "sweetalert2";
+import AppSwal from "../Common/AppSwal";
 import { LoginUser } from "../../Services/auttantication.service";
 import { useNavigate } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
@@ -32,11 +32,13 @@ export default function Login({ setProfileData }) {
       try {
         setLoading(true);
         const response = await GoogleLoginUser(tokenResponse.access_token);
-        Swal.fire({
+        AppSwal.fire({
           icon: "success",
           title: "Login Successful!",
           text: response.data.message,
-          confirmButtonText: "Continue",
+          timer: 1800,
+          showConfirmButton: false,
+          timerProgressBar: true,
         }).then(async () => {
           const userData = await getCurrentUser();
           if (userData?.success) {
@@ -45,8 +47,13 @@ export default function Login({ setProfileData }) {
           navigate("/home-page"); // or home page
         });
       } catch (error) {
-        console.log("API Error");
-        console.log(error);
+        AppSwal.fire({
+          icon: "error",
+          title: "Login Failed",
+          text:
+            error.response?.data?.message ||
+            "Unable to login. Please try again.",
+        });
       } finally {
         setLoading(false);
       }
@@ -78,11 +85,13 @@ export default function Login({ setProfileData }) {
     setLoading(true);
     try {
       const response = await LoginUser(formData);
-      Swal.fire({
+      await AppSwal.fire({
         icon: "success",
-        title: "Login Successful!",
+        title: "Welcome to HaqDar!",
         text: response.data.message,
-        confirmButtonText: "Continue",
+        timer: 1800,
+        timerProgressBar: true,
+        showConfirmButton: false,
       }).then(async () => {
         const userData = await getCurrentUser();
         if (userData?.success) {
@@ -96,7 +105,7 @@ export default function Login({ setProfileData }) {
         password: "",
       });
     } catch (error) {
-      Swal.fire({
+      AppSwal.fire({
         icon: "error",
         title: "Login Failed",
         text: error.response?.data?.message || "Invalid email or password",

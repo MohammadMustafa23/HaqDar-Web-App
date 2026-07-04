@@ -71,6 +71,10 @@ export default function AdminNavbar() {
             >
               Feedback Management
             </button>
+            
+             {/* Mobile Only */}
+            {anbOpen && <button className="anb-link anb-mobile-logout" onClick={() => setLogoutModal(true)} >Logout</button>}
+            
           </div>
         </div>
 

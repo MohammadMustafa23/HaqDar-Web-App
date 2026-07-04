@@ -1,15 +1,35 @@
-import { User, Menu, X, Sun, Moon,} from "lucide-react";
+import { User, Menu, X, Sun, Moon} from "lucide-react";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-export default function ProfileNavBar({ profileData, theme, setTheme}) {
+import { toast } from "sonner";
+
+import ConfirmationModal from "../../Components/Common/ConfirmationModal.jsx";
+import { LoginOutUser } from "../../Services/auttantication.service.js";
+
+export default function ProfileNavBar({ profileData, theme, setTheme }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [logoutModal, setLogoutModal] = useState(false);
+
   const navigate = useNavigate();
-  const location = useLocation(); // <-- Missing
+  const location = useLocation();
+
   const handleProfileClick = () => {
     if (location.pathname !== "/user-profile") {
-      navigate("/user-profile", {});
+      navigate("/user-profile");
     }
   };
+
+  const logoutUser = async () => {
+    try {
+      const res = await LoginOutUser();
+      toast.success(res.data.message);
+      navigate("/login", { replace: true });
+    } catch (error) {
+      console.log(error);
+      toast.error("Logout Failed");
+    }
+  };
+
   return (
     <>
       <nav className="home-nav-navbar">
@@ -21,9 +41,11 @@ export default function ProfileNavBar({ profileData, theme, setTheme}) {
             </div>
 
             <div className="home-nav-links">
-              <a onClick={()=>{navigate('/user-profile')}}>Profile</a>
-              <a onClick={()=>{navigate('/saved-schemes')}}>Saved Scheme</a>
-              <a onClick={()=>{navigate('/submit-feedBack')}}> FeedBack and Problem</a>
+              <a onClick={() => navigate("/user-profile")}>Profile</a>
+              <a onClick={() => navigate("/saved-schemes")}>Saved Scheme</a>
+              <a onClick={() => navigate("/submit-feedBack")}>
+                FeedBack and Problem
+              </a>
             </div>
           </div>
 
@@ -35,7 +57,7 @@ export default function ProfileNavBar({ profileData, theme, setTheme}) {
             <Menu size={28} />
           </button>
 
-          {/* Desktop Right Side */}
+          {/* Desktop Right */}
           <div className="home-nav-right home-nav-profile-fade-in">
             <button
               onClick={() => setTheme(theme === "light" ? "dark" : "light")}
@@ -68,7 +90,7 @@ export default function ProfileNavBar({ profileData, theme, setTheme}) {
           <div
             className="home-nav-overlay"
             onClick={() => setMenuOpen(false)}
-          ></div>
+          />
 
           <div className="home-nav-mobile-menu">
             <div className="home-nav-mobile-header">
@@ -77,7 +99,9 @@ export default function ProfileNavBar({ profileData, theme, setTheme}) {
               >
                 {theme === "light" ? <Sun size={22} /> : <Moon size={22} />}
               </button>
+
               <h3>Menu</h3>
+
               <button
                 className="home-nav-close-btn"
                 onClick={() => setMenuOpen(false)}
@@ -85,13 +109,68 @@ export default function ProfileNavBar({ profileData, theme, setTheme}) {
                 <X size={24} />
               </button>
             </div>
-              <a onClick={()=>{navigate('/home-page')}}>Home</a>
-              <a onClick={()=>{navigate('/user-profile')}}>Profile</a>
-              <a onClick={()=>{navigate('/saved-schemes')}}>Saved Scheme</a>
-              <a onClick={()=>{navigate('/submit-feedBack')}}>FeedBack</a>
+
+            <a
+              onClick={() => {
+                navigate("/home-page");
+                setMenuOpen(false);
+              }}
+            >
+              Home
+            </a>
+
+            <a
+              onClick={() => {
+                navigate("/user-profile");
+                setMenuOpen(false);
+              }}
+            >
+              Profile
+            </a>
+
+            <a
+              onClick={() => {
+                navigate("/saved-schemes");
+                setMenuOpen(false);
+              }}
+            >
+              Saved Scheme
+            </a>
+
+            <a
+              onClick={() => {
+                navigate("/submit-feedBack");
+                setMenuOpen(false);
+              }}
+            >
+              FeedBack
+            </a>
+
+            <a
+              onClick={() => {
+                setMenuOpen(false);
+                setLogoutModal(true);
+              }}
+            >
+              Logout
+            </a>
           </div>
         </>
       )}
+
+      <ConfirmationModal
+        open={logoutModal}
+        type="warning"
+        title="Logout"
+        message="Are you sure you want to logout from your account?"
+        confirmText="Logout"
+        cancelText="Cancel"
+        onCancel={() => setLogoutModal(false)}
+        onConfirm={async () => {
+          setLogoutModal(false);
+          await logoutUser();
+        }}
+      />
     </>
   );
 }

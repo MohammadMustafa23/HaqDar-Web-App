@@ -3,7 +3,7 @@ import "./Register.css";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { RegisterUser } from "../../Services/auttantication.service";
-import Swal from "sweetalert2";
+import AppSwal from "../Common/AppSwal";
 import { useNavigate } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
 import { GoogleLoginUser } from "../../Services/auttantication.service";
@@ -42,11 +42,13 @@ export default function Register() {
       try {
         setLoading(true);
         const response = await GoogleLoginUser(tokenResponse.access_token);
-        Swal.fire({
+        await AppSwal.fire({
           icon: "success",
-          title: "Login Successful!",
+          title: "Welcome Back!",
           text: response.data.message,
-          confirmButtonText: "Continue",
+          timer: 1800,
+          timerProgressBar: true,
+          showConfirmButton: false,
         }).then(() => {
           navigate("/home-page"); // or home page
           setTimeout(() => {
@@ -54,13 +56,17 @@ export default function Register() {
           }, 50);
         });
       } catch (error) {
-        console.log("API Error");
-        console.log(error);
+        AppSwal.fire({
+          icon: "error",
+          title: "Login Failed",
+          text:
+            error.response?.data?.message ||
+            "Unable to login. Please try again.",
+        });
       } finally {
         setLoading(false);
       }
     },
-
     onError: (error) => {
       console.log("Login Failed");
       console.log(error);
@@ -100,21 +106,22 @@ export default function Register() {
     setLoading(true);
     try {
       const Response = await RegisterUser(formData);
-      Swal.fire({
+      await AppSwal.fire({
         icon: "success",
-        title: "Registration Successful!",
+        title: "Registration Sucess!",
         text: Response.data.message,
-        confirmButtonText: "Continue",
+        timer: 1800,
+        timerProgressBar: true,
+        showConfirmButton: false,
       }).then(() => {
         navigate("/login");
       });
     } catch (error) {
-      Swal.fire({
+      AppSwal.fire({
         icon: "error",
         title: "Registration Failed",
-        text:
-          error.response?.data?.message ||
-          "Something went wrong. Please try again.",
+        text: error.response?.data?.message || "Something went wrong.",
+        confirmButtonText: "Try Again",
       });
     } finally {
       setLoading(false);

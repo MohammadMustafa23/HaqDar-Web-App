@@ -1,15 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { LogOut } from "lucide-react";
 import { toast } from "sonner";
 
 import ConfirmationModal from "../../Components/Common/ConfirmationModal.jsx";
-import { LoginOutUser } from "../../Services/auttantication.service.js"; // Update path
+import { LoginOutUser } from "../../Services/auttantication.service.js";
 
 export default function AIHelpCard() {
   const navigate = useNavigate();
 
   const [logoutModal, setLogoutModal] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  if (isMobile) return null;
 
   const logoutUser = async () => {
     try {

@@ -20,6 +20,7 @@ import AdminFeedBack from "./Pages/AdminPage/FeedBackDash.jsx";
 import SchemeManagement from "./Pages/AdminPage/SchemeManagement.jsx";
 import RegisterScheme from "./Pages/AdminPage/RegisterScheme.jsx";
 import AdminProtectedRoute from "./Admin/Security/AdminProtectedRoute.jsx";
+import "./Components/Common/SweetAlert.css";
 
 function App() {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");

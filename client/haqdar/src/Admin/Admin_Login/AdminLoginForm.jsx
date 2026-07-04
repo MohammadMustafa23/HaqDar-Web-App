@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ShieldCheck, User, Lock } from "lucide-react";
 import { adminLogin } from "../../Services/admin.service.js";
-import Swal from "sweetalert2";
+import Appswal from "../../Components/Common/AppSwal.js";
 import { useNavigate } from "react-router-dom";
 import "./AdminLoginForm.css";
 import PageLoader from "../../Components/Common/PageLoader.jsx";
@@ -70,20 +70,23 @@ export default function LoginForm() {
       console.log(response);
 
       setLoading(false);
-      await Swal.fire({
+      await Appswal.fire({
         icon: "success",
-        title: "Login Sucessfull",
+        title: "Welcome Back!",
         text: response.data.message,
+        showConfirmButton: false,
+        timer: 1800,
+        timerProgressBar: true,
       });
 
       navigate("/admin-dashboard", { replace: true });
     } catch (err) {
       console.log("ERROR", err);
 
-      Swal.fire({
+      Appswal.fire({
         icon: "error",
-        title: "Failed",
-        text: err.response?.data?.message,
+        title: "Something Went Wrong",
+        text: err.response?.data?.message || "Please try again later.",
       });
     } finally {
       setLoading(false);
