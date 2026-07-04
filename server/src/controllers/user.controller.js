@@ -6,7 +6,6 @@ import UserProfileModel from "../models/userProfile.model.js";
 import { redisClient } from "../config/redis.js";
 
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
-8;
 
 export async function RegisterUser(req, res) {
   const { userName, email, password } = req.body;
@@ -123,6 +122,8 @@ export const GoogleLogin = async (req, res) => {
     res.cookie("token", token, {
       httpOnly: true,
       maxAge: 7 * 24 * 60 * 60 * 1000,
+      sameSite: "lax",
+      secure: process.env.NODE_ENV === "production",
     });
 
     return res.status(200).json({
@@ -177,7 +178,6 @@ export async function VerifyProfile(req, res) {
     return res.status(200).json(response);
   } catch (error) {
     return res.status(500).json({
-      
       success: false,
     });
   }
@@ -186,7 +186,7 @@ export async function VerifyProfile(req, res) {
 export const userLogout = async (req, res) => {
   try {
     if (req.user) {
-      await redisClient.del(`user:${req.user._id}`);
+      await redisClient.del(`user:${req.user.id}`);
     }
     res.clearCookie("token", {
       httpOnly: true,

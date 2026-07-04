@@ -12,7 +12,7 @@ export default function NavBar({ theme, setTheme, scrollToSection, RefObj }) {
   const navItems = [
     {
       label: "Home",
-      action: () => window.scrollTo({ top: 0, behavior: "smooth" }),
+      action: () => scrollToSection(RefObj.homeRef),
     },
     {
       label: "Schemes",

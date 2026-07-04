@@ -18,15 +18,22 @@ export const verifyJWT = async (req, res, next) => {
 
     const cacheKey = `user:${Id}`;
 
-    // Check Redis first
-    const cachedUser = await redisClient.get(cacheKey);
+    let user = null;
 
-    let user;
+    // ---------- Try Redis ----------
+    try {
+      const cachedUser = await redisClient.get(cacheKey);
 
-    if (cachedUser) {
-      console.log("✅ User from Redis");
-      user = JSON.parse(cachedUser);
-    } else {
+      if (cachedUser) {
+        console.log("✅ User from Redis");
+        user = JSON.parse(cachedUser);
+      }
+    } catch (err) {
+      console.error("Redis GET Error:", err.message);
+    }
+
+    // ---------- Fallback to Mongo ----------
+    if (!user) {
       console.log("📦 User from MongoDB");
       user = await userModel.findById(Id);
       if (!user) {
@@ -36,8 +43,12 @@ export const verifyJWT = async (req, res, next) => {
         });
       }
 
-      // Cache user for 10 min
-      await redisClient.setEx(cacheKey, 60 * 10, JSON.stringify(user));
+      // Cache again (don't fail if Redis is down)
+      try {
+        await redisClient.setEx(cacheKey, 60 * 10, JSON.stringify(user));
+      } catch (err) {
+        console.error("Redis SET Error:", err.message);
+      }
     }
 
     req.user = {
@@ -49,7 +60,7 @@ export const verifyJWT = async (req, res, next) => {
 
     next();
   } catch (error) {
-    console.log(error);
+    console.error("JWT Error:", error.message);
 
     return res.status(401).json({
       success: false,
@@ -57,7 +68,6 @@ export const verifyJWT = async (req, res, next) => {
     });
   }
 };
-
 export const validateProfile = (req, res, next) => {
   try {
     const {

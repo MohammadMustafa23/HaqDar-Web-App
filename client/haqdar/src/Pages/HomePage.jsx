@@ -9,16 +9,17 @@ import Footer from "../Components/Footer/Footer";
 import { useRef } from "react";
 function HomePage({ theme, setTheme }) {
   console.log("Home Page Loaded");
-  
+
   const schemesRef = useRef(null);
   const howWorkRef = useRef(null);
   const faqRef = useRef(null);
+  const homeRef = useRef(null);
   const RefObj = {
+    homeRef,
     schemesRef,
     howWorkRef,
     faqRef,
   };
-
   const scrollToSection = (ref) => {
     ref.current?.scrollIntoView({
       behavior: "smooth",
@@ -27,13 +28,19 @@ function HomePage({ theme, setTheme }) {
   };
   return (
     <>
-      <NavBar theme={theme} setTheme={setTheme} scrollToSection={scrollToSection} RefObj={RefObj} />
+      <div ref={homeRef}></div>
+      <NavBar
+        theme={theme}
+        setTheme={setTheme}
+        scrollToSection={scrollToSection}
+        RefObj={RefObj}
+      />
       <HeroSection />
-      <HowWork howWorkRef={howWorkRef}/>
-      <TopSchemes schemesRef ={schemesRef}/>
-      <Review/>
+      <HowWork howWorkRef={howWorkRef} />
+      <TopSchemes schemesRef={schemesRef} />
+      <Review />
       <FAQ faqRef={faqRef} />
-      <Footer/>
+      <Footer />
     </>
   );
 }

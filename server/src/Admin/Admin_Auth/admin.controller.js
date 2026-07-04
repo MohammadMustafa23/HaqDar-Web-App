@@ -107,19 +107,3 @@ export const Logout = async (req, res) => {
     });
   }
 };
-
-export const VerifyAdmin = async (req, res) => {
-  try {
-    return res.status(200).json({
-      success: true,
-      message: "Admin Verified",
-      user: req.user,
-    });
-  } catch (error) {
-    console.error("Verify Admin Error:", error);
-    return res.status(500).json({
-      success: false,
-      message: error.message,
-    });
-  }
-};

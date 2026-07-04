@@ -37,9 +37,6 @@ function getStageText(progress) {
   return text;
 }
 
-// Local fallback so a broken/missing --border-color token upstream never
-// leaves this component with invisible borders.
-const BORDER = "var(--border-color, rgba(148,163,184,0.25))";
 
 export default function ProfileAnalyzing() {
   const [progress, setProgress] = useState(START);
@@ -77,66 +74,37 @@ export default function ProfileAnalyzing() {
   const stageText = getStageText(progress);
 
   return (
-    <div
-      className="hd-screen relative min-h-screen w-full flex items-center justify-center overflow-hidden p-6"
-      style={{ background: "var(--chat-bg)" }}
-    >
-      {/* ambient brand glow, reuses --primary / --success so it stays subtle in both themes */}
-      <div
-        className="pointer-events-none absolute -top-24 -left-16 w-72 h-72 rounded-full blur-3xl opacity-20"
-        style={{ background: "var(--primary)" }}
-      />
-      <div
-        className="pointer-events-none absolute -bottom-24 -right-16 w-72 h-72 rounded-full blur-3xl opacity-[0.12]"
-        style={{ background: "var(--success)" }}
-      />
+    <>
+      {/* ================= Premium AI Scanner ================= */}
 
-      <div
-        className="relative w-full max-w-md rounded-3xl p-7 sm:p-8 flex flex-col items-center text-center"
-        style={{
-          background: "var(--card-bg)",
-          border: `1px solid ${BORDER}`,
-          boxShadow: "var(--shadow-md)",
-        }}
-      >
-        {/* radar / scan visual */}
-        <div className="relative w-32 h-32 mb-6 flex items-center justify-center">
-          <div
-            className="hd-ring absolute inset-0 rounded-full"
-            style={{ border: "1px solid var(--primary)" }}
-          />
-          <div
-            className="hd-ring hd-ring-delay absolute inset-0 rounded-full"
-            style={{ border: "1px solid var(--primary)" }}
-          />
-          <div className="hd-sweep absolute inset-2 rounded-full" />
-          <div
-            className="relative w-[76px] h-[76px] rounded-[22px] flex items-center justify-center"
-            style={{
-              background:
-                "color-mix(in srgb, var(--primary) 14%, var(--card-bg))",
-              border: `1px solid ${BORDER}`,
-              boxShadow: "var(--shadow-sm)",
-            }}
-          >
-            <svg
-              className="w-9 h-9"
-              style={{ color: "var(--primary)" }}
-              viewBox="0 0 48 48"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-            >
+      <div className="hd-ai-wrapper">
+        {/* Live Badge */}
+        <div className="hd-live-badge">
+          <span className="hd-live-dot"></span>
+          <span>AI Eligibility Engine</span>
+        </div>
+
+        {/* AI Orb */}
+        <div className="hd-orb-container">
+          <div className="hd-orb-ring hd-ring-1"></div>
+          <div className="hd-orb-ring hd-ring-2"></div>
+          <div className="hd-orb-ring hd-ring-3"></div>
+
+          <div className="hd-orb-glow"></div>
+
+          <div className="hd-orb">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
               <path
-                d="M24 4L40 10V22C40 32 33 40 24 44C15 40 8 32 8 22V10L24 4Z"
+                d="M12 2L19 6V11C19 16 15.8 20.2 12 22C8.2 20.2 5 16 5 11V6L12 2Z"
                 stroke="currentColor"
-                strokeWidth="2.5"
+                strokeWidth="1.8"
+                strokeLinecap="round"
                 strokeLinejoin="round"
               />
               <path
-                d="M16.5 23.5L21.5 28.5L32 17.5"
+                d="M9 12L11 14L15.5 9.5"
                 stroke="currentColor"
-                strokeWidth="2.5"
+                strokeWidth="1.8"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
@@ -144,175 +112,125 @@ export default function ProfileAnalyzing() {
           </div>
         </div>
 
-        {/* eyebrow */}
-        <div
-          className="inline-flex items-center gap-2 rounded-full px-3 py-1 mb-4"
-          style={{
-            background: "var(--surface-bg)",
-            border: `1px solid ${BORDER}`,
-          }}
-        >
-          <span
-            className="hd-dot w-1.5 h-1.5 rounded-full"
-            style={{ background: "var(--success)" }}
-          />
-          <span
-            className="text-xs font-medium"
-            style={{ color: "var(--text-secondary)" }}
-          >
-            AI Eligibility Engine · Live
-          </span>
-        </div>
-
-        <h1
-          className="text-2xl sm:text-[26px] font-semibold mb-2"
-          style={{ color: "var(--text-primary)" }}
-        >
-          Finding Your Best Schemes
+        <h1 className="hd-title">
+          Finding Your Best
+          <span> Government Schemes</span>
         </h1>
-        <p
-          className="text-sm leading-relaxed mb-7"
-          style={{ color: "var(--text-secondary)" }}
-        >
-          Matching your profile against{" "}
-          <strong style={{ color: "var(--text-primary)" }}>
-            500+ Central &amp; Rajasthan Government Schemes
-          </strong>
+
+        <p className="hd-subtitle">
+          Our AI is securely analysing your profile and comparing it with
+          <strong>500+ Central & Rajasthan Government Schemes.</strong>
         </p>
+      </div>
 
-        {/* progress */}
-        <div className="w-full mb-6">
-          <div
-            className="relative w-full h-2 rounded-full overflow-hidden"
-            style={{ background: "var(--input-bg)" }}
-            role="progressbar"
-            aria-valuenow={progress}
-            aria-valuemin={0}
-            aria-valuemax={100}
-          >
-            <div
-              className="hd-shine relative h-full rounded-full overflow-hidden transition-[width] duration-300 ease-out"
-              style={{
-                width: `${progress}%`,
-                background:
-                  "linear-gradient(90deg, var(--primary), var(--primary-hover))",
-              }}
-            />
+      {/* ================= Progress ================= */}
+
+      <div className="hd-progress-card">
+        <div className="hd-progress-header">
+          <span>{stageText}</span>
+          <span>{progress}%</span>
+        </div>
+
+        <div className="hd-progress-track">
+          <div className="hd-progress-fill" style={{ width: `${progress}%` }}>
+            <div className="hd-progress-light"></div>
           </div>
-          <div className="flex justify-between items-baseline gap-3 mt-2.5">
-            <span
-              className="text-[13px] text-left"
-              style={{ color: "var(--text-secondary)" }}
-            >
-              {stageText}…
-            </span>
-            <span
-              className="text-[13px] font-semibold flex-shrink-0"
-              style={{
-                color: "var(--primary)",
-                fontVariantNumeric: "tabular-nums",
-              }}
-            >
-              {progress}%
-            </span>
+        </div>
+      </div>
+
+      {/* ================= Quick Stats ================= */}
+
+      <div className="hd-stats">
+        <div className="hd-stat">
+          <h2>500+</h2>
+          <span>Schemes</span>
+        </div>
+
+        <div className="hd-stat">
+          <h2>AI</h2>
+          <span>Eligibility</span>
+        </div>
+
+        <div className="hd-stat">
+          <h2>{matchCount}</h2>
+          <span>Matched</span>
+        </div>
+      </div>
+
+      {/* ================= AI Live Activity ================= */}
+
+      <div className="hd-activity-card">
+        <div className="hd-card-header">
+          <div>
+            <h3>AI Live Analysis</h3>
+            <p>Real-time eligibility evaluation</p>
+          </div>
+
+          <div className="hd-processing">
+            <span className="hd-processing-dot"></span>
+            Processing
           </div>
         </div>
 
-        {/* live ledger — the signature element */}
-        <div
-          className="w-full rounded-2xl p-3.5 mb-6 text-left"
-          style={{
-            background: "var(--surface-bg)",
-            border: `1px solid ${BORDER}`,
-          }}
-          aria-live="polite"
-        >
-          <div
-            className="flex justify-between items-center text-[11px] font-semibold uppercase tracking-wide px-1 pb-2.5"
-            style={{ color: "var(--text-secondary)" }}
-          >
-            <span>Live scheme check</span>
-            <span
-              className="normal-case font-medium tracking-normal"
-              style={{ color: "var(--success)" }}
-            >
-              {matchCount} matched so far
-            </span>
-          </div>
+        <div className="hd-activity-list">
+          {ledger.map((item) => (
+            <div key={item.index} className={`hd-activity-item ${item.status}`}>
+              <div className="hd-activity-icon">
+                {item.status === "checking" && (
+                  <div className="hd-loader"></div>
+                )}
 
-          <div className="flex flex-col gap-0.5 min-h-[148px]">
-            {ledger.map((item) => (
-              <div
-                key={item.index}
-                className="hd-row-in flex items-center gap-2.5 px-1 py-2 rounded-lg"
-                style={{
-                  background:
-                    item.status === "checking"
-                      ? "color-mix(in srgb, var(--warning) 12%, transparent)"
-                      : "transparent",
-                }}
-              >
-                <span
-                  className="text-[11px] w-5 flex-shrink-0"
-                  style={{ color: "var(--text-secondary)" }}
-                >
-                  {String(item.index + 1).padStart(2, "0")}
-                </span>
-                <span
-                  className="flex-1 text-[13.5px] whitespace-nowrap overflow-hidden text-ellipsis"
-                  style={{ color: "var(--text-primary)" }}
-                >
-                  {item.name}
-                </span>
-                <span
-                  className="flex items-center gap-1.5 text-xs font-medium flex-shrink-0"
-                  style={{
-                    color:
-                      item.status === "match"
-                        ? "var(--success)"
-                        : item.status === "checking"
-                          ? "var(--warning)"
-                          : "var(--text-secondary)",
-                  }}
-                >
-                  {item.status === "checking" && (
-                    <>
-                      <span
-                        className="hd-dot w-1.5 h-1.5 rounded-full"
-                        style={{ background: "var(--warning)" }}
-                      />
-                      Checking
-                    </>
-                  )}
-                  {item.status === "match" && "✓ Matched"}
-                  {item.status === "checked" && "Checked"}
-                </span>
+                {item.status === "match" && "✓"}
+
+                {item.status === "checked" && "✓"}
               </div>
-            ))}
-          </div>
-        </div>
 
-        {/* trust tags */}
-        <div className="flex flex-wrap gap-2 justify-center">
-          {[
-            "🔒 Secure Verification",
-            "⚡ AI Eligibility Match",
-            "🎯 Benefit Mapping",
-          ].map((tag) => (
-            <div
-              key={tag}
-              className="text-xs font-medium rounded-full px-3.5 py-1.5"
-              style={{
-                color: "var(--text-secondary)",
-                background: "var(--surface-bg)",
-                border: `1px solid ${BORDER}`,
-              }}
-            >
-              {tag}
+              <div className="hd-activity-content">
+                <h4>{item.name}</h4>
+
+                <p>
+                  {item.status === "checking" &&
+                    "Evaluating eligibility rules..."}
+
+                  {item.status === "match" && "Eligible under your profile"}
+
+                  {item.status === "checked" && "Requirements not satisfied"}
+                </p>
+              </div>
+
+              <div className={`hd-status-pill ${item.status}`}>
+                {item.status === "checking" && "Checking"}
+                {item.status === "match" && "Matched"}
+                {item.status === "checked" && "Skipped"}
+              </div>
             </div>
           ))}
         </div>
       </div>
-    </div>
+
+      {/* ================= AI Summary ================= */}
+
+      <div className="hd-summary">
+        <div className="hd-summary-icon">🤖</div>
+
+        <div>
+          <h4>AI Recommendation Engine</h4>
+
+          <p>
+            Based on your age, income, category, occupation and district, our AI
+            is selecting the schemes with the highest eligibility score.
+          </p>
+        </div>
+      </div>
+
+      {/* ================= Trust Badges ================= */}
+
+      <div className="hd-trust">
+        <div className="hd-badge">🔒 Secure Verification</div>
+        <div className="hd-badge">⚡ AI Powered</div>
+        <div className="hd-badge">🎯 Smart Matching</div>
+        <div className="hd-badge">📄 500+ Schemes</div>
+      </div>
+    </>
   );
 }

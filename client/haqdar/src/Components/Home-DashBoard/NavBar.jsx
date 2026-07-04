@@ -10,6 +10,7 @@ export default function Navbar({
   setTheme,
   scrollToSection,
   RefObj,
+  homeRef
 }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
@@ -33,6 +34,7 @@ export default function Navbar({
 
   return (
     <>
+    <div ref={homeRef} ></div>
       <nav className="home-nav-navbar">
         <div className="home-nav-container">
           <div className="home-nav-left">
@@ -43,7 +45,7 @@ export default function Navbar({
 
             <div className="home-nav-links">
               <a
-                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                onClick={() => scrollToSection(RefObj.homeRef)}
               >
                 Home
               </a>

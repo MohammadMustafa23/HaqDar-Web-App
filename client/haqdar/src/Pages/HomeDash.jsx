@@ -26,10 +26,12 @@ export default function HomeDash({ profileData, loading, theme, setTheme }) {
   const schemesRef = useRef(null);
   const howWorkRef = useRef(null);
   const faqRef = useRef(null);
+  const homeRef = useRef(null);
   const RefObj = {
     schemesRef,
     howWorkRef,
-    faqRef
+    faqRef,
+    homeRef
   }
 
   const scrollToSection = (ref) => {
@@ -69,7 +71,7 @@ export default function HomeDash({ profileData, loading, theme, setTheme }) {
 
   return (
     <>
-      <NavBar profileData={user} theme={theme} setTheme={setTheme}  scrollToSection={scrollToSection}  RefObj={RefObj} />
+      <NavBar homeRef={homeRef} profileData={user} theme={theme} setTheme={setTheme}  scrollToSection={scrollToSection}  RefObj={RefObj} />
 
       <div className="center">
         {profileCompleted ? (
