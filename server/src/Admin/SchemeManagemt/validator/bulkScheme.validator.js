@@ -364,6 +364,8 @@ export const validateBulkSchemes = (schemes) => {
     }
 
     validateScheme(scheme, row, errors, seenNumbers, seenNames);
+    console.log(errors);
+    
   });
 
   return {

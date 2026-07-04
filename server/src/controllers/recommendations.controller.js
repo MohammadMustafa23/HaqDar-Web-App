@@ -3,7 +3,7 @@ import { generateSearchQuery } from "../services/gemini.service.js";
 import { generateEmbedding } from "../services/embedding.service.js";
 import { searchSchemes } from "../services/pinecone.service.js";
 import MatchedSchemeModel from "../models/matchedScheme.model.js";
-import { redisClient } from '../config/redis.js'
+import { redisClient } from "../config/redis.js";
 export async function FindSchemes(req, res) {
   try {
     const userId = req.user.id;
@@ -29,7 +29,6 @@ export async function FindSchemes(req, res) {
     const embedding = await generateEmbedding(searchQuery);
 
     const matches = await searchSchemes(embedding);
-    console.log(matches);
 
     await MatchedSchemeModel.findOneAndUpdate(
       {
@@ -53,9 +52,8 @@ export async function FindSchemes(req, res) {
       },
     );
 
-    console.log("Profile Remove From Redis ❤️");
     
-    // Remove old cache 
+    // Remove old cache
     await redisClient.del(`profile:${userId}`);
 
     return res.status(200).json({

@@ -137,14 +137,16 @@ export const validateScheme = [
     .isIn(["Active", "Inactive"])
     .withMessage("Invalid status"),
 
+    
   // ================= Validation Result =================
-
+  
   (req, res, next) => {
     const errors = validationResult(req);
-
+     console.log("Gone Next")
     if (errors.isEmpty()) {
       return next();
     }
+
 
     return res.status(400).json({
       success: false,

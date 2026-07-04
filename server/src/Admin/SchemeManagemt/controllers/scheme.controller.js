@@ -185,6 +185,7 @@ export const getSchemeById = async (req, res) => {
 export const updateScheme = async (req, res) => {
   try {
     const { id } = req.params;
+    console.log("Id ", id);
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return res.status(400).json({
@@ -194,6 +195,8 @@ export const updateScheme = async (req, res) => {
     }
 
     const scheme = await Scheme.findById(id);
+
+    console.log(scheme);
 
     if (!scheme) {
       return res.status(404).json({
@@ -268,6 +271,12 @@ export const updateScheme = async (req, res) => {
     console.log(metadata); // Debug
     // Update Pinecone
     await updateSchemeVector(scheme._id, embedding, metadata);
+
+    return res.status(201).json({
+      success: true,
+      message: "Scheme Updated successfully.",
+      scheme,
+    });
   } catch (error) {
     console.error("Update Scheme Error:", error);
 
@@ -381,8 +390,6 @@ export const bulkUploadSchemes = async (req, res) => {
     const jsonString = req.file.buffer.toString("utf-8");
     const schemes = JSON.parse(jsonString);
 
-    console.log(schemes);
-
     // ✅ Validate uploaded JSON
     const validation = validateBulkSchemes(schemes);
 
@@ -392,7 +399,7 @@ export const bulkUploadSchemes = async (req, res) => {
         message: "Validation failed.",
         errors: validation.errors,
       });
-    }
+    }    
 
     // Check duplicate scheme numbers
     const uploadedNumbers = schemes.map((scheme) => scheme.no);
@@ -487,9 +494,7 @@ export const searchSchemeByMessage = async (message) => {
     }
 
     // Filter by relevance so weak matches don't pollute the response
-    const relevantMatches = result.matches.filter(
-      (m) => m.score >= 0.75
-    );
+    const relevantMatches = result.matches.filter((m) => m.score >= 0.75);
 
     // Always return an array of scheme objects
     return relevantMatches.map((match) => ({
