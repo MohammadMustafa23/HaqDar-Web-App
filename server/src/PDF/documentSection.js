@@ -1,16 +1,12 @@
 import { COLORS } from "./colors.js";
 
 export const drawDocumentSection = (doc, data, startY) => {
-
+  console.log(data);
+  
   const startX = 40;
   const width = 515;
 
-  const documents = data.documents
-    ? data.documents
-        .split(",")
-        .map(item => item.trim())
-        .filter(Boolean)
-    : ["Documents not available"];
+  const documents = data.documents ? data.documents : ["Documents not available"];
 
   // Calculate Card Height
   let cardHeight = 45;

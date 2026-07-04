@@ -32,3 +32,26 @@ export const SubmitFeedback = async (req, res) => {
     });
   }
 };
+
+export const getFeaturedFeedbacks = async (req, res) => {
+  try {
+    const feedbacks = await FeedbackModel.find({
+      isFeatured: true,
+    })
+      .populate("userId", "userName")
+      .sort({ updatedAt: -1 });
+
+    return res.status(200).json({
+      success: true,
+      count: feedbacks.length,
+      feedbacks,
+    });
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Failed to fetch featured feedbacks.",
+    });
+  }
+};

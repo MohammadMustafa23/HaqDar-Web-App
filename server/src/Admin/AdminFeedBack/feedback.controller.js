@@ -27,7 +27,7 @@ export const getFeedbackById = async (req, res) => {
 
     const feedback = await FeedbackModel.findById(id).populate(
       "userId",
-      "userName email"
+      "userName email",
     );
 
     if (!feedback) {
@@ -57,8 +57,6 @@ export const getFeedbackById = async (req, res) => {
     });
   }
 };
-
-
 
 export const resolveFeedback = async (req, res) => {
   try {
@@ -125,6 +123,52 @@ export const deleteFeedback = async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Failed to delete feedback.",
+    });
+  }
+};
+
+export const toggleFeaturedFeedback = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const feedback = await FeedbackModel.findById(id);
+
+    if (!feedback) {
+      return res.status(404).json({
+        success: false,
+        message: "Feedback not found.",
+      });
+    }
+
+    // Only allow 3 featured feedbacks
+    const featuredCount = await FeedbackModel.countDocuments({
+      isFeatured: true,
+    });
+
+    if (!feedback.isFeatured && featuredCount >= 3) {
+      return res.status(400).json({
+        success: false,
+        message: "Only 3 featured feedbacks are allowed.",
+      });
+    }
+
+    feedback.isFeatured = !feedback.isFeatured;
+
+    await feedback.save();
+
+    return res.status(200).json({
+      success: true,
+      message: feedback.isFeatured
+        ? "Feedback featured successfully."
+        : "Feedback removed from featured.",
+      feedback,
+    });
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Failed to update featured feedback.",
     });
   }
 };

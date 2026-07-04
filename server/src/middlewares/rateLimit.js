@@ -22,7 +22,7 @@ export const aiLimiter = rateLimit({
 
 export const recommendationLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 min
-  max: 5,
+  max: 20,
   message: {
     success: false,
     message: "Too many recommendation requests.",

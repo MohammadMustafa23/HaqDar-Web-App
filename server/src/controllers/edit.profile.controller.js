@@ -18,7 +18,7 @@ export const requestProfileEdit = async (req, res) => {
     const updatedUser = await userModel.findByIdAndUpdate(
       userId,
       {
-        allowProfileEditUntil: new Date(Date.now() + 60 * 1000),
+        allowProfileEditUntil: new Date(Date.now() + 2 * 60 * 1000),
       },
       { new: true }
     );

@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-
 const FeedbackSchema = new mongoose.Schema(
   {
     userId: {
@@ -38,6 +37,12 @@ const FeedbackSchema = new mongoose.Schema(
       type: String,
       enum: ["Unread", "Read", "Resolved"],
       default: "Unread",
+    },
+
+    // ⭐ Featured on Home Page
+    isFeatured: {
+      type: Boolean,
+      default: false,
     },
 
     // When admin opens feedback

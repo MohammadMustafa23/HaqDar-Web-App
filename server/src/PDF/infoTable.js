@@ -20,9 +20,9 @@ export const drawInfoTable = (doc, data) => {
     ["Scheme Type", data.schemeType || "N/A"],
     ["Beneficiary", data.beneficiary || "N/A"],
     ["Gender", data.gender || "N/A"],
-    ["Age", data.age || "N/A"],
-    ["Income", data.income || "N/A"],
-    ["Caste", data.caste || "N/A"],
+    ["Age", data.minAge + " Year Between " + data.minAge + " Year"  || "N/A"],
+    ["Income", "Less Then Or Eqal"  + data.income + "₹" || "N/A"],
+    ["Caste", data.caste + "Categories" || "N/A"],
   ];
 
   let currentY = startY + 45;

@@ -57,37 +57,35 @@ export const verifyJWT = async (req, res, next) => {
     });
   }
 };
+
 export const validateProfile = (req, res, next) => {
   try {
     const {
       age,
-      category,
-      district,
-      education,
       gender,
+      education,
+      category,
       income,
+      district,
       occupation,
       pwd,
     } = req.body;
 
-    // Required fields check
-    if (
-      !age ||
-      !category ||
-      !district ||
-      !education ||
-      !gender ||
-      !income ||
-      !occupation ||
-      pwd === undefined
-    ) {
-      return res.status(400).json({
-        success: false,
-        message: "All profile fields are required",
-      });
-    }
+    /* ============================================================
+       Allowed Fields
+    ============================================================ */
 
-    // Allowed values
+    const allowedFields = [
+      "age",
+      "gender",
+      "education",
+      "category",
+      "income",
+      "district",
+      "occupation",
+      "pwd",
+    ];
+
     const validCategories = ["General", "OBC", "SC", "ST", "EWS", "Minority"];
 
     const validGenders = ["male", "female", "other"];
@@ -103,51 +101,228 @@ export const validateProfile = (req, res, next) => {
       "Unemployed",
     ];
 
-    // Category Validation
-    if (!validCategories.includes(category)) {
+    const validEducation = [
+      "No Schooling",
+      "Below 10th",
+      "10th Pass",
+      "12th Pass",
+      "Diploma",
+      "ITI",
+      "Graduate",
+      "Post Graduate",
+      "Doctorate",
+    ];
+
+    const validDistricts = [
+      "Ajmer",
+      "Alwar",
+      "Anupgarh",
+      "Balotra",
+      "Banswara",
+      "Baran",
+      "Barmer",
+      "Beawar",
+      "Bharatpur",
+      "Bhilwara",
+      "Bikaner",
+      "Bundi",
+      "Chittorgarh",
+      "Churu",
+      "Dausa",
+      "Deeg",
+      "Dholpur",
+      "Didwana-Kuchaman",
+      "Dudu",
+      "Dungarpur",
+      "Gangapur City",
+      "Hanumangarh",
+      "Jaipur",
+      "Jaipur Rural",
+      "Jaisalmer",
+      "Jalore",
+      "Jhalawar",
+      "Jhunjhunu",
+      "Jodhpur",
+      "Jodhpur Rural",
+      "Karauli",
+      "Kekri",
+      "Khairthal-Tijara",
+      "Kota",
+      "Kotputli-Behror",
+      "Nagaur",
+      "Neem Ka Thana",
+      "Pali",
+      "Phalodi",
+      "Pratapgarh",
+      "Rajsamand",
+      "Salumbar",
+      "Sanchore",
+      "Sawai Madhopur",
+      "Shahpura",
+      "Sikar",
+      "Sirohi",
+      "Sri Ganganagar",
+      "Tonk",
+      "Udaipur",
+    ];
+
+    /* ============================================================
+       Reject Extra Fields
+    ============================================================ */
+
+    const extraFields = Object.keys(req.body).filter(
+      (field) => !allowedFields.includes(field),
+    );
+
+    if (extraFields.length > 0) {
+      return res.status(400).json({
+        success: false,
+        message: "Unexpected fields received",
+      });
+    }
+
+    /* ============================================================
+       Required Fields
+    ============================================================ */
+
+    for (const field of allowedFields) {
+      if (
+        req.body[field] === undefined ||
+        req.body[field] === null ||
+        String(req.body[field]).trim() === ""
+      ) {
+        return res.status(400).json({
+          success: false,
+          message: `${field} is required`,
+        });
+      }
+    }
+
+    /* ============================================================
+       Trim Values
+    ============================================================ */
+
+    const cleanAge = age.toString().trim();
+    const cleanGender = gender.trim().toLowerCase();
+    const cleanEducation = education.trim();
+    const cleanCategory = category.trim();
+    const cleanIncome = income.toString().trim();
+    const cleanDistrict = district.trim();
+    const cleanOccupation = occupation.trim();
+    const cleanPwd = pwd.trim();
+
+    /* ============================================================
+       Number Validation
+    ============================================================ */
+
+    const ageNum = Number(cleanAge);
+
+    if (!Number.isInteger(ageNum) || ageNum < 0 || ageNum > 120) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid age",
+      });
+    }
+
+    const incomeNum = Number(cleanIncome);
+
+    if (!Number.isFinite(incomeNum) || incomeNum < 0 || incomeNum > 100000000) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid income",
+      });
+    }
+
+    /* ============================================================
+       Enum Validation
+    ============================================================ */
+
+    if (!validCategories.includes(cleanCategory)) {
       return res.status(400).json({
         success: false,
         message: "Invalid category",
       });
     }
 
-    // Gender Validation
-    if (!validGenders.includes(gender.toLowerCase())) {
+    if (!validGenders.includes(cleanGender)) {
       return res.status(400).json({
         success: false,
         message: "Invalid gender",
       });
     }
 
-    // PWD Validation
-    if (!validPwd.includes(pwd)) {
+    if (!validPwd.includes(cleanPwd)) {
       return res.status(400).json({
         success: false,
         message: "Invalid PWD value",
       });
     }
 
-    // Occupation Validation
-    if (!validOccupations.includes(occupation)) {
+    if (!validOccupations.includes(cleanOccupation)) {
       return res.status(400).json({
         success: false,
         message: "Invalid occupation",
       });
     }
 
-    // Cleaned Profile
+    if (!validEducation.includes(cleanEducation)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid education",
+      });
+    }
+
+    if (!validDistricts.includes(cleanDistrict)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid district",
+      });
+    }
+
+    /* ============================================================
+       Length Validation
+    ============================================================ */
+
+    if (cleanEducation.length > 50) {
+      return res.status(400).json({
+        success: false,
+        message: "Education is too long",
+      });
+    }
+
+    if (cleanDistrict.length > 40) {
+      return res.status(400).json({
+        success: false,
+        message: "District is too long",
+      });
+    }
+
+    if (cleanOccupation.length > 30) {
+      return res.status(400).json({
+        success: false,
+        message: "Occupation is too long",
+      });
+    }
+
+    /* ============================================================
+       Sanitized Profile
+    ============================================================ */
+
     req.profile = {
-      age: age.trim(),
-      category: category.trim(),
-      district: district.trim(),
-      education: education.trim(),
-      gender: gender.trim().toLowerCase(),
-      income: income.trim(),
-      occupation: occupation.trim(),
-      pwd: pwd.trim(),
+      age: ageNum,
+      gender: cleanGender,
+      education: cleanEducation,
+      category: cleanCategory,
+      income: incomeNum,
+      district: cleanDistrict,
+      occupation: cleanOccupation,
+      pwd: cleanPwd,
     };
+
     next();
   } catch (error) {
+    console.error("Profile Validation Error:", error);
+
     return res.status(500).json({
       success: false,
       message: "Profile validation failed",
