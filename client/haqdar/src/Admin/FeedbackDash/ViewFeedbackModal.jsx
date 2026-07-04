@@ -18,6 +18,7 @@ export default function ViewFeedbackModal({
   onClose,
   onMarkAsRead,
   onDelete,
+  onToggleFeature,
   actionLoading,
 }) {
   useEffect(() => {
@@ -174,6 +175,19 @@ export default function ViewFeedbackModal({
               {actionLoading ? "Please wait..." : "Mark as Read"}
             </button>
           )}
+
+          <button
+            className={`fm-feature-btn ${feedback.isFeatured ? "featured" : ""}`}
+            disabled={actionLoading}
+            onClick={() => onToggleFeature(feedback._id, feedback.isFeatured)}
+          >
+            <Star
+              size={18}
+              fill={feedback.isFeatured ? "currentColor" : "none"}
+            />
+
+            {feedback.isFeatured ? "Remove Featured" : "Feature on Home"}
+          </button>
 
           <button
             className="fm-delete-btn"

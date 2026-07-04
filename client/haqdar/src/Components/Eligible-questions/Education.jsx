@@ -4,12 +4,12 @@ import "./Eligible-question.css";
 import "./Eligible-question.css";
 import { useState } from "react";
 
-export default function Education({ next, prev,setFormData}) {
+export default function Education({ next, prev, setFormData }) {
   const [education, setEducation] = useState("");
   const handleNext = () => {
     setFormData((prevData) => ({
       ...prevData,
-      education : education
+      education: education,
     }));
 
     next();
@@ -26,58 +26,120 @@ export default function Education({ next, prev,setFormData}) {
 
           <div className="education-options">
             <label
-              className={`education-option ${education === "below 10" ? "selected" : ""}`}
+              className={`education-option ${
+                education === "No Schooling" ? "selected" : ""
+              }`}
             >
               <input
                 type="radio"
                 name="education"
-                onChange={() => setEducation("below 10")}
+                onChange={() => setEducation("No Schooling")}
+              />
+              <span>No Schooling</span>
+            </label>
+
+            <label
+              className={`education-option ${
+                education === "Below 10th" ? "selected" : ""
+              }`}
+            >
+              <input
+                type="radio"
+                name="education"
+                onChange={() => setEducation("Below 10th")}
               />
               <span>Below 10th</span>
             </label>
 
             <label
-              className={`education-option ${education === "10th/12th pass" ? "selected" : ""}`}
+              className={`education-option ${
+                education === "10th Pass" ? "selected" : ""
+              }`}
             >
               <input
                 type="radio"
                 name="education"
-                onChange={() => setEducation("10th/12th pass")}
+                onChange={() => setEducation("10th Pass")}
               />
-              <span>10th/12th Pass</span>
+              <span>10th Pass</span>
             </label>
 
             <label
-              className={`education-option ${education === "graduate" ? "selected" : ""}`}
+              className={`education-option ${
+                education === "12th Pass" ? "selected" : ""
+              }`}
             >
               <input
                 type="radio"
                 name="education"
-                onChange={() => setEducation("graduate")}
+                onChange={() => setEducation("12th Pass")}
+              />
+              <span>12th Pass</span>
+            </label>
+
+            <label
+              className={`education-option ${
+                education === "Diploma" ? "selected" : ""
+              }`}
+            >
+              <input
+                type="radio"
+                name="education"
+                onChange={() => setEducation("Diploma")}
+              />
+              <span>Diploma</span>
+            </label>
+
+            <label
+              className={`education-option ${
+                education === "ITI" ? "selected" : ""
+              }`}
+            >
+              <input
+                type="radio"
+                name="education"
+                onChange={() => setEducation("ITI")}
+              />
+              <span>ITI</span>
+            </label>
+
+            <label
+              className={`education-option ${
+                education === "Graduate" ? "selected" : ""
+              }`}
+            >
+              <input
+                type="radio"
+                name="education"
+                onChange={() => setEducation("Graduate")}
               />
               <span>Graduate</span>
             </label>
 
             <label
-              className={`education-option ${education === "post-graduate" ? "selected" : ""}`}
+              className={`education-option ${
+                education === "Post Graduate" ? "selected" : ""
+              }`}
             >
               <input
                 type="radio"
                 name="education"
-                onChange={() => setEducation("post-graduate")}
+                onChange={() => setEducation("Post Graduate")}
               />
-              <span>Post-Graduate</span>
+              <span>Post Graduate</span>
             </label>
 
             <label
-              className={`education-option ${education === "Technical/Vocational" ? "selected" : ""}`}
+              className={`education-option ${
+                education === "Doctorate" ? "selected" : ""
+              }`}
             >
               <input
                 type="radio"
                 name="education"
-                onChange={() => setEducation("Technical/Vocational")}
+                onChange={() => setEducation("Doctorate")}
               />
-              <span>Technical/Vocational</span>
+              <span>Doctorate</span>
             </label>
           </div>
 

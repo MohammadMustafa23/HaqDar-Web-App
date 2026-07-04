@@ -380,6 +380,31 @@ body.dark .fm-filter {
   border-color: var(--border-color);
 }
 
+.fm-feature-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f3f4f6;
+  color: #444;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.fm-feature-btn:hover {
+  background: #e5e7eb;
+}
+
+.fm-feature-btn.featured {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.fm-feature-btn.featured:hover {
+  background: #fde68a;
+}
 /* Tablet */
 
 @media (max-width: 992px) {

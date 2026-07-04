@@ -1,5 +1,5 @@
 import "./Eligible-question.css";
-import { Mars, Venus, Transgender, EyeOff } from "lucide-react";
+import { Mars, Venus, Transgender} from "lucide-react";
 import Nav from "./Nav";
 import Progress from "./Progress";
 import { useState } from "react";
@@ -61,18 +61,6 @@ export default function Gender({ next, prev ,setFormData }) {
                 <Transgender size={24} />
               </div>
               <span>Other</span>
-            </label>
-
-             <label className={`gender-option ${gender === "not-say" ? "selected" : ""}`}>
-              <input
-                type="radio"
-                name="gender"
-                onChange={() => setGender("not-say")}
-              />
-              <div className="gender-icon">
-                <EyeOff size={24} />
-              </div>
-              <span>Prefer not to say</span>
             </label>
           </div>
 

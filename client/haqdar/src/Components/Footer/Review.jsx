@@ -1,123 +1,93 @@
+import { useEffect, useState } from "react";
 import "./Review.css";
-import { FaStar,} from "react-icons/fa";
-import { FaQuoteRight } from "react-icons/fa";
-import { MdLocationOn } from "react-icons/md";
-import {User} from'lucide-react'
+import { FaStar, FaQuoteRight } from "react-icons/fa";
+import { User } from "lucide-react";
+import { getingFeatureFeedBack } from "../../Services/feedback.service.js"; // Update the path if needed
+
 export default function Review() {
+  const [testimonials, setTestimonials] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchFeaturedFeedbacks();
+  }, []);
+
+  const fetchFeaturedFeedbacks = async () => {
+    try {
+      setLoading(true);
+      const res = await getingFeatureFeedBack();
+      console.log(res);
+      
+      setTestimonials(res.feedbacks || []);
+    } catch (error) {
+      console.error("Failed to fetch featured feedbacks:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <div className="review-head">
-      <h1 className="review-heading">What Citizens Say</h1>
+    <section className="testimonial-section">
+      <div className="testimonial-header">
+        <h2 className="testimonial-title">What Citizens Say</h2>
 
-      <p className="review-about">
-        Real stories from people who found their empowered relief through our
-        portal.
-      </p>
-
-      <div className="review-cards-row">
-        <div className="review-card">
-          <div className="review-card-top">
-            <div className="review-stars">
-              <FaStar />
-              <FaStar />
-              <FaStar />
-              <FaStar />
-              <FaStar />
-            </div>
-
-            <FaQuoteRight className="review-quote-icon" />
-          </div>
-
-          <p className="review-card-text">
-            "The HaqDar portal made it so easy to understand the eligibility
-            criteria for the Education scholarship. I applied within 10
-            minutes!"
-          </p>
-
-          <div className="review-card-bottom">
-            <div className="review-user-img">
-              <User size={40} />
-            </div>
-
-            <div className="review-user-about">
-              <p>Mohammad Mustafa</p>
-
-              <span>
-                <MdLocationOn className="review-location-icon" />
-                Bhopal, MP
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div className="review-card">
-          <div className="review-card-top">
-            <div className="review-stars">
-              <FaStar />
-              <FaStar />
-              <FaStar />
-              <FaStar />
-              <FaStar />
-            </div>
-
-            <FaQuoteRight className="review-quote-icon" />
-          </div>
-
-          <p className="review-card-text">
-            "The HaqDar portal made it so easy to understand the eligibility
-            criteria for the Education scholarship. I applied within 10
-            minutes!"
-          </p>
-
-          <div className="review-card-bottom">
-            <div className="review-user-img">
-              <User size={40} />
-            </div>
-
-            <div className="review-user-about">
-              <p>Mohammad Mustafa</p>
-
-              <span>
-                <MdLocationOn className="review-location-icon" />
-                Bhopal, MP
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div className="review-card">
-          <div className="review-card-top">
-            <div className="review-stars">
-              <FaStar />
-              <FaStar />
-              <FaStar />
-              <FaStar />
-              <FaStar />
-            </div>
-
-            <FaQuoteRight className="review-quote-icon" />
-          </div>
-
-          <p className="review-card-text">
-            "The HaqDar portal made it so easy to understand the eligibility
-            criteria for the Education scholarship. I applied within 10
-            minutes!"
-          </p>
-
-          <div className="review-card-bottom">
-            <div className="review-user-img">
-             <User size={40} />
-            </div>
-
-            <div className="review-user-about">
-              <p>Mohammad Mustafa</p>
-              <span>
-                <MdLocationOn className="review-location-icon" />
-                Bhopal, MP
-              </span>
-            </div>
-          </div>
-        </div>
+        <p className="testimonial-description">
+          Real stories from people who successfully discovered government
+          schemes through HaqDar.
+        </p>
       </div>
-    </div>
+
+      {loading ? (
+        <div className="testimonial-empty">
+          <h3>Loading Testimonials...</h3>
+        </div>
+      ) : testimonials.length === 0 ? (
+        <div className="testimonial-empty">
+          <h3>No Featured Reviews Yet</h3>
+
+          <p>
+            We're helping more citizens every day. Featured success stories
+            selected by our team will appear here soon.
+          </p>
+        </div>
+      ) : (
+        <div className="testimonial-grid">
+          {testimonials.map((item) => (
+            <article className="testimonial-card" key={item._id}>
+              <div className="testimonial-card-header">
+                <div className="testimonial-stars">
+                  {[...Array(5)].map((_, index) => (
+                    <FaStar
+                      key={index}
+                      className={
+                        index < item.rating
+                          ? "testimonial-star-filled"
+                          : "testimonial-star-empty"
+                      }
+                    />
+                  ))}
+                </div>
+
+                <FaQuoteRight className="testimonial-quote-icon" />
+              </div>
+
+              <span className="testimonial-category">{item.category}</span>
+
+              <p className="testimonial-message">"{item.message}"</p>
+
+              <div className="testimonial-user">
+                <div className="testimonial-avatar">
+                  <User size={34} />
+                </div>
+
+                <div className="testimonial-user-info">
+                  <h4>{item.userId?.userName || "Anonymous Citizen"}</h4>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
+    </section>
   );
 }

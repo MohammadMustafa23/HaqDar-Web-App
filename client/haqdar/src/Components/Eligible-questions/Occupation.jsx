@@ -5,8 +5,8 @@ import {
   BriefcaseBusiness,
   Store,
   Search,
+  Building2,
 } from "lucide-react";
-
 import Nav from "./Nav";
 import Progress from "./Progress";
 import "./Eligible-question.css";
@@ -16,7 +16,7 @@ export default function Occupation({ next, prev, setFormData }) {
   const handleNext = () => {
     setFormData((prevData) => ({
       ...prevData,
-     occupation : selectedOccupation,
+      occupation: selectedOccupation,
     }));
 
     next();
@@ -29,22 +29,27 @@ export default function Occupation({ next, prev, setFormData }) {
     },
     {
       title: "Student",
-      desc: "Currently enrolled in an educational institution or pursuing vocational training.",
+      desc: "Currently enrolled in a school, college, university, or vocational training.",
       icon: <GraduationCap size={24} />,
     },
     {
-      title: "Daily Wage Worker",
-      desc: "Workers engaged in manual labor or temporary daily tasks in various sectors.",
+      title: "Worker",
+      desc: "Daily wage workers, labourers, factory workers, construction workers, and other employees.",
       icon: <BriefcaseBusiness size={24} />,
     },
     {
       title: "Self-Employed",
-      desc: "Small business owners, street vendors, or independent entrepreneurs.",
+      desc: "Freelancers, street vendors, artisans, and individuals working independently.",
       icon: <Store size={24} />,
     },
     {
+      title: "Business",
+      desc: "Owners of shops, companies, startups, or other business enterprises.",
+      icon: <Building2 size={24} />,
+    },
+    {
       title: "Unemployed",
-      desc: "Actively seeking work or currently not engaged in a primary revenue-generating occupation.",
+      desc: "Currently not employed and actively seeking work.",
       icon: <Search size={24} />,
     },
   ];

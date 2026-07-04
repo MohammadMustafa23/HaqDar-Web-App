@@ -1,112 +1,140 @@
-/* ================= NAVBAR ================= */
+/* ===========================
+   NAVBAR
+=========================== */
 
 .home-nav-head {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  z-index: 1000;
-   padding: 0 120px;
+  width: 100%;
+  height: 82px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 90px;
+
+  padding: 0 7%;
+  z-index: 1000;
+
   background: var(--card-bg);
   border-bottom: 1px solid var(--border-color);
+  backdrop-filter: blur(14px);
 }
-/* .home-nav-head {
-  height: 80px;
-  width: 100%;
 
-  padding: 0 120px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  background: var(--card-bg);
-  border-bottom: 1px solid #d9d9d9;
-} */
-
-/* Logo */
+/* ===========================
+   Logo
+=========================== */
 
 .logo-section {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .logo-box {
-  width: 42px;
-  height: 42px;
-
-  border-radius: 10px;
-
-  background: var(--primary-hover);
-  color: var(--card-bg);
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
+  background: var(--primary-hover);
+  color: var(--card-bg);
+
+  font-size: 22px;
   font-weight: 700;
-  font-size: 1.2rem;
 }
 
 .logo-text {
-  font-size: 1.4rem;
+  font-size: 1.45rem;
   font-weight: 700;
   color: var(--primary-hover);
 }
 
-/* Links */
+/* ===========================
+   Desktop Links
+=========================== */
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 40px;
+  gap: 36px;
 }
 
-.nav-links a {
-  text-decoration: none;
-  font-size: 1rem;
-  color: var(--text-primary);
+.nav-link {
+  background: transparent;
+  border: none;
   cursor: pointer;
 
-  transition: 0.2s;
+  color: var(--text-primary);
+
+  font-size: 15px;
+  font-weight: 500;
+
+  transition: 0.25s;
 }
 
-.nav-links a:hover {
-  color: #0a3299;
-}
-.theme {
-  padding-left: 300px;
-  padding-top: 10px;
-
+.nav-link:hover {
+  color: var(--primary-hover);
 }
 
-/* Button */
+/* ===========================
+   Right Side
+=========================== */
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.theme-btn {
+  width: 44px;
+  height: 44px;
+
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+
+  background: var(--card-bg);
+  color: var(--text-primary);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.theme-btn:hover {
+  background: var(--primary-hover);
+  color: white;
+}
 
 .sign-up-btn {
-  border: none;
-  padding: 14px 28px;
-  border-radius: 8px;
- background: var(--primary-hover);
-  color: var(--card-bg);
+  padding: 13px 24px;
 
-  font-size: 0.95rem;
+  border: none;
+  border-radius: 10px;
+
+  background: var(--primary-hover);
+  color: white;
+
   font-weight: 600;
-  margin-left: 30px;
   cursor: pointer;
 
-  transition: 0.3s;
+  transition: 0.25s;
 }
 
 .sign-up-btn:hover {
-  opacity: 0.9;
+  transform: translateY(-2px);
 }
 
-/* Menu Button */
+/* ===========================
+   Menu Button
+=========================== */
 
 .menu-btn {
   display: none;
@@ -115,124 +143,150 @@
   border: none;
 
   cursor: pointer;
-  color: #0a3299;
+  color: var(--text-primary);
 }
 
-/* Mobile Menu */
+/* ===========================
+   Mobile Menu
+=========================== */
 
 .mobile-menu {
-  display: none;
+  position: fixed;
+
+  top: 82px;
+  left: 0;
+
+  width: 100%;
+
+  background: var(--card-bg);
+  border-top: 1px solid var(--border-color);
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 20px;
+
+  gap: 16px;
+
+  transform: translateY(-20px);
+  opacity: 0;
+  visibility: hidden;
+
+  transition: 0.35s ease;
+
+  z-index: 999;
 }
 
-/* ================= RESPONSIVE ================= */
+.mobile-menu.open {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
 
-/* Laptop */
+.mobile-link {
+  background: transparent;
+  border: none;
+
+  text-align: left;
+
+  color: var(--text-primary);
+
+  font-size: 16px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  padding: 8px 0;
+}
+
+.mobile-link:hover {
+  color: var(--primary-hover);
+}
+
+.mobile-signup {
+  margin-top: 10px;
+
+  border: none;
+  border-radius: 10px;
+
+  padding: 13px;
+
+  background: var(--primary-hover);
+  color: white;
+
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ===========================
+   Laptop
+=========================== */
 
 @media (max-width: 1200px) {
   .home-nav-head {
-    padding: 0 60px;
+    padding: 0 5%;
   }
 
   .nav-links {
-    gap: 25px;
+    gap: 28px;
   }
 }
 
-/* Hamburger hidden by default */
-.menu-btn {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #0a3299;
-  padding-right: 20px;
-}
+/* ===========================
+   Tablet
+=========================== */
 
-/* Mobile Menu hidden by default */
-.mobile-menu {
-  display: none;
-}
-
-/* Tablet + Mobile */
 @media (max-width: 900px) {
-
   .home-nav-head {
+    height: 72px;
     padding: 0 20px;
-    height: 60px;
   }
 
-  .logo-text {
-    font-size: 1.6rem;
+  .mobile-menu {
+    top: 72px;
   }
 
-
-  /* Hide desktop nav */
-  .nav-links a {
-    display:  none;
-  }
-  .sign-up-btn{
+  .nav-links,
+  .sign-up-btn {
     display: none;
   }
 
-   .menu-btn {
+  .menu-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    color: #0a3299;
   }
 
-  /* Opened menu */
-  .mobile-menu {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-
-    padding: 20px;
-
-    background: var(--card-bg);
-    border-top: 1px solid var(--border-color);
-
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-  }
-
-  .mobile-menu a {
-    text-decoration: none;
-    color: var(--text-primary);
-    font-size: 16px;
-    font-weight: 500;
-  }
-
-  .mobile-signup {
-    border: none;
-    border-radius: 8px;
-
-    background: var(--primary-hover);
-    color: var(--card-bg);
-
-    padding: 12px;
-    font-weight: 600;
-
-    cursor: pointer;
+  .logo-text {
+    font-size: 1.3rem;
   }
 }
 
-/* Small Mobile */
+/* ===========================
+   Mobile
+=========================== */
 
 @media (max-width: 480px) {
   .home-nav-head {
     padding: 0 16px;
+    height: 68px;
+  }
+
+  .mobile-menu {
+    top: 68px;
   }
 
   .logo-box {
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
   }
 
   .logo-text {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
+  }
+
+  .theme-btn {
+    width: 40px;
+    height: 40px;
   }
 }

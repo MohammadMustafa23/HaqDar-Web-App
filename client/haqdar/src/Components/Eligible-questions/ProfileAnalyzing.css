@@ -1,231 +1,115 @@
-/* ==========================
-   HAQDAR ANALYSIS SCREEN
-========================== */
+/* All colors/surfaces in this component come from your existing tokens
+   (--primary, --card-bg, --success, --warning, --surface-bg, --chat-bg,
+   --input-bg, --shadow-sm/md, --border-color) via inline styles, so it
+   automatically matches light mode and body.dark. This file only holds
+   the animation keyframes and the couple of effects (radial mask, conic
+   sweep) that need real CSS rather than utility classes. */
 
-.hd-analysis-screen {
-  position: fixed;
-  inset: 0;
-  z-index: 99999;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background:
-    radial-gradient(circle at top, #eef4ff 0%, #f8fbff 40%, var(--bg-secondary)fff 100%);
+.hd-screen {
+  font-family: "Poppins", sans-serif;
 }
 
-.hd-analysis-container {
-  width: 100%;
-  max-width: 700px;
-  padding: 40px 24px;
-  text-align: center;
+/* Pulsing radar rings */
+.hd-ring {
+  animation: hd-ring-pulse 2.6s ease-out infinite;
 }
-
-/* ==========================
-   ANIMATION VISUAL
-========================== */
-
-.hd-analysis-visual {
-  position: relative;
-  width: 220px;
-  height: 220px;
-  margin: auto;
+.hd-ring-delay {
+  animation-delay: 1.3s;
 }
-
-.hd-core-card {
-  width: 100px;
-  height: 100px;
-  background: #0f4bd9;
-
-  border-radius: 24px;
-
-  position: absolute;
-  inset: 0;
-  margin: auto;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  box-shadow:
-    0 15px 40px rgba(15, 75, 217, 0.35),
-    0 0 0 10px rgba(15, 75, 217, 0.08);
-
-  animation: hdPulse 2s infinite;
-}
-
-.hd-core-icon {
-  font-size: 42px;
-  color: var(--card-bg);
-}
-
-.hd-orbit {
-  position: absolute;
-  inset: 0;
-  margin: auto;
-
-  border-radius: 50%;
-  border: 2px dashed rgba(15, 75, 217, 0.15);
-}
-
-.hd-orbit-1 {
-  width: 170px;
-  height: 170px;
-  animation: hdRotate 12s linear infinite;
-}
-
-.hd-orbit-2 {
-  width: 220px;
-  height: 220px;
-  animation: hdRotateReverse 18s linear infinite;
-}
-
-/* ==========================
-   CONTENT
-========================== */
-
-.hd-analysis-content h1 {
-  margin-top: 30px;
-  margin-bottom: 14px;
-
-  font-size: 2.2rem;
-  font-weight: 800;
-  color: #082f8a;
-}
-
-.hd-analysis-content p {
-  max-width: 520px;
-  margin: auto;
-
-  color: #566273;
-  line-height: 1.8;
-  font-size: 1rem;
-}
-
-/* ==========================
-   PROGRESS
-========================== */
-
-.hd-progress-wrapper {
-  margin-top: 35px;
-}
-
-.hd-progress-bar {
-  height: 12px;
-  background: #e8edf8;
-  border-radius: 50px;
-  overflow: hidden;
-}
-
-.hd-progress-fill {
-  height: 100%;
-  border-radius: 50px;
-
-  background: linear-gradient(
-    90deg,
-    #0f4bd9,
-    #2968ff
-  );
-
-  transition: width 0.4s ease;
-}
-
-.hd-progress-meta {
-  display: flex;
-  justify-content: space-between;
-
-  margin-top: 12px;
-
-  font-size: 14px;
-  color: #3355a3;
-}
-
-/* ==========================
-   TAGS
-========================== */
-
-.hd-analysis-tags {
-  display: flex;
-  justify-content: center;
-  gap: 14px;
-  flex-wrap: wrap;
-
-  margin-top: 40px;
-}
-
-.hd-analysis-tag {
-  background: var(--card-bg);
-  padding: 12px 18px;
-
-  border-radius: 14px;
-
-  border: 1px solid #e6ecfa;
-
-  box-shadow:
-    0 8px 20px rgba(0,0,0,0.04);
-
-  font-size: 14px;
-  color: #45556a;
-}
-
-/* ==========================
-   ANIMATIONS
-========================== */
-
-@keyframes hdRotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes hdRotateReverse {
-  from {
-    transform: rotate(360deg);
-  }
-  to {
-    transform: rotate(0deg);
-  }
-}
-
-@keyframes hdPulse {
+@keyframes hd-ring-pulse {
   0% {
-    transform: scale(1);
+    transform: scale(0.55);
+    opacity: 0.9;
   }
-
-  50% {
-    transform: scale(1.08);
-  }
-
   100% {
-    transform: scale(1);
+    transform: scale(1.4);
+    opacity: 0;
   }
 }
 
-/* ==========================
-   MOBILE
-========================== */
-
-@media (max-width: 768px) {
-
-  .hd-analysis-content h1 {
-    font-size: 1.7rem;
+/* Rotating scan sweep behind the core icon */
+.hd-sweep {
+  -webkit-mask-image: radial-gradient(circle, #000 68%, transparent 69%);
+  mask-image: radial-gradient(circle, #000 68%, transparent 69%);
+}
+.hd-sweep::before {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 260deg,
+    var(--primary) 320deg,
+    transparent 360deg
+  );
+  opacity: 0.6;
+  animation: hd-sweep-rotate 2.4s linear infinite;
+}
+@keyframes hd-sweep-rotate {
+  to {
+    transform: rotate(360deg);
   }
+}
 
-  .hd-analysis-visual {
-    width: 180px;
-    height: 180px;
+/* Progress bar shine */
+.hd-shine::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.55) 50%,
+    transparent 80%
+  );
+  transform: translateX(-100%);
+  animation: hd-shine-move 1.6s ease-in-out infinite;
+}
+@keyframes hd-shine-move {
+  to {
+    transform: translateX(220%);
   }
+}
 
-  .hd-core-card {
-    width: 85px;
-    height: 85px;
+/* Live/checking status dot */
+.hd-dot {
+  animation: hd-dot-pulse 0.9s ease-in-out infinite;
+  display: inline-block;
+}
+@keyframes hd-dot-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.7);
+  }
+}
 
-  .hd-core-icon {
-    font-size: 34px;
+/* Ledger row entrance */
+.hd-row-in {
+  animation: hd-row-in 0.35s ease both;
+}
+@keyframes hd-row-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hd-ring,
+  .hd-sweep::before,
+  .hd-shine::before,
+  .hd-dot,
+  .hd-row-in {
+    animation: none;
   }
 }

@@ -5,10 +5,10 @@ import FeedbackRow from "./FeedbackRow";
 import FeedbackPagination from "./FeedbackPagination";
 import ViewFeedbackModal from "./ViewFeedbackModal";
 import ConfirmationModal from "../../Components/Common/ConfirmationModal";
-
 import {
   deleteFeedback,
   resolveFeedback,
+  showAllowFeature,
 } from "../../Services/feedback.service";
 
 export default function FeedbackTable({
@@ -134,6 +134,43 @@ export default function FeedbackTable({
     });
   };
 
+  const handleToggleFeature = (id, isFeatured) => {
+    setSelected(null);
+
+    setConfirmModal({
+      open: true,
+      type: "info",
+      title: isFeatured ? "Remove Featured" : "Feature Feedback",
+      message: isFeatured
+        ? "Are you sure you want to remove this feedback from the homepage?"
+        : "Are you sure you want to feature this feedback on the homepage?",
+      confirmText: isFeatured ? "Remove" : "Feature",
+
+      action: async () => {
+        try {
+          setActionLoading(true);
+
+          const res = await showAllowFeature(id);
+
+          toast.success(res.message);
+
+          await fetchFeedbacks();
+        } catch (error) {
+          toast.error(
+            error.response?.data?.message ||
+              "Unable to update featured feedback.",
+          );
+        } finally {
+          setActionLoading(false);
+          setConfirmModal((prev) => ({
+            ...prev,
+            open: false,
+          }));
+        }
+      },
+    });
+  };
+
   return (
     <>
       <div className="fm-table-wrapper">
@@ -187,6 +224,7 @@ export default function FeedbackTable({
         onMarkAsRead={handleMarkAsRead}
         onDelete={handleDelete}
         actionLoading={actionLoading}
+        onToggleFeature={handleToggleFeature}
       />
 
       <ConfirmationModal

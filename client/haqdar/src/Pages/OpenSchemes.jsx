@@ -6,12 +6,28 @@ import SchemeSteps from "../Components/OpenSchems/SchemeSteps";
 import SchemeResources from "../Components/OpenSchems/SchemeResources";
 import SchemeAIHelp from "../Components/OpenSchems/SchemeAIHelp";
 import SchemeAbout from "../Components/OpenSchems/SchemeAbout";
-import { useState } from "react";
-
+import { useState,useEffect } from "react";
+import { saveScheme, removeScheme, isSaved } from "../utils/bookmark.js";
 import AiSidebar from "./AiSidebar";
 
 export default function OpenSchemes({ scheme, onClose }) {
   const [isAiOpen, setIsAiOpen] = useState(false);
+  const [saved, setSaved] = useState(false);
+  useEffect(() => {
+    if (scheme?.id) {
+      setSaved(isSaved(scheme.id));
+    }
+  }, [scheme]);
+
+  const handleBookmark = () => {
+    if (saved) {
+      removeScheme(scheme.id);
+      setSaved(false);
+    } else {
+      saveScheme(scheme);
+      setSaved(true);
+    }
+  };
   if (!scheme) return null;
   return (
     <>
@@ -24,7 +40,7 @@ export default function OpenSchemes({ scheme, onClose }) {
         <div className="os-scroll">
           <div className="os-top">
             <div className="os-left">
-              <SchemeAbout scheme={scheme} />
+              <SchemeAbout scheme={scheme} saved={saved} handleBookmark={handleBookmark}/>
 
               <SchemeEligibility scheme={scheme} />
 

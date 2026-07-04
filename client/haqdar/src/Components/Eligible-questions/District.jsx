@@ -3,60 +3,83 @@ import Nav from "./Nav";
 import Progress from "./Progress";
 import "./Eligible-question.css";
 
-export default function District({ next, prev,setFormData }) {
+export default function District({ next, prev, setFormData }) {
   const [search, setSearch] = useState("");
   const [selectedDistrict, setSelectedDistrict] = useState("");
   const handleNext = () => {
-  setFormData((prevData) => ({
-    ...prevData,
-    district : selectedDistrict,
-  }));
+    setFormData((prevData) => ({
+      ...prevData,
+      district: selectedDistrict,
+    }));
 
-  next();
-};
+    next();
+  };
   const districts = [
-    "Jaipur",
-    "Jodhpur",
-    "Udaipur",
-    "Kota",
     "Ajmer",
     "Alwar",
-    "Bikaner",
-    "Bharatpur",
-    "Sikar",
-    "Pali",
-    "Tonk",
-    "Churu",
+    "Anupgarh",
+    "Balotra",
+    "Banswara",
+    "Baran",
     "Barmer",
-    "Jhalawar",
-    "Dausa",
-    "Nagaur",
+    "Beawar",
+    "Bharatpur",
+    "Bhilwara",
+    "Bikaner",
     "Bundi",
-    "Jhunjhunu",
+    "Chittorgarh",
+    "Churu",
+    "Dausa",
+    "Deeg",
+    "Dholpur",
+    "Didwana-Kuchaman",
+    "Dudu",
+    "Dungarpur",
+    "Gangapur City",
     "Hanumangarh",
+    "Jaipur",
+    "Jaipur Rural",
+    "Jaisalmer",
+    "Jalore",
+    "Jhalawar",
+    "Jhunjhunu",
+    "Jodhpur",
+    "Jodhpur Rural",
+    "Karauli",
+    "Kekri",
+    "Khairthal-Tijara",
+    "Kota",
+    "Kotputli-Behror",
+    "Nagaur",
+    "Neem Ka Thana",
+    "Pali",
+    "Phalodi",
+    "Pratapgarh",
+    "Rajsamand",
+    "Salumbar",
+    "Sanchore",
+    "Sawai Madhopur",
+    "Shahpura",
+    "Sikar",
+    "Sirohi",
     "Sri Ganganagar",
+    "Tonk",
+    "Udaipur",
   ];
-
   const filteredDistricts = districts
-  .filter((district) =>
-    district.toLowerCase().includes(search.toLowerCase())
-  )
-  .slice(0, 5);
+    .filter((district) => district.toLowerCase().includes(search.toLowerCase()))
+    .slice(0, 5);
 
   return (
     <div>
       <Nav />
-      <Progress percent={62}/>
+      <Progress percent={62} />
 
       <div className="district-container form-page">
         <div className="district-card">
-          <h1 className="district-title">
-            Which district do you reside in?
-          </h1>
+          <h1 className="district-title">Which district do you reside in?</h1>
 
-          <label className="district-label">
-            Search District
-          </label>
+          <label className="district-label">Search District</label>
 
           <input
             type="text"
@@ -71,9 +94,7 @@ export default function District({ next, prev,setFormData }) {
               <div
                 key={district}
                 className={`district-item ${
-                  selectedDistrict === district
-                    ? "district-selected"
-                    : ""
+                  selectedDistrict === district ? "district-selected" : ""
                 }`}
                 onClick={() => setSelectedDistrict(district)}
               >

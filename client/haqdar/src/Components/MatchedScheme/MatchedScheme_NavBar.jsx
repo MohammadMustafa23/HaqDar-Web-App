@@ -4,13 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import ConfirmationModal from "../Common/ConfirmationModal.jsx";
 import { LoginOutUser } from "../../Services/auttantication.service.js";
 import { toast } from "sonner";
-export default function Navbar({
-  profileData,
-  theme,
-  setTheme,
-  scrollToSection,
-  RefObj,
-}) {
+export default function MatchedScheme_NavBar({profileData,theme,setTheme}) {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation(); // <-- Missing
@@ -42,16 +36,9 @@ export default function Navbar({
             </div>
 
             <div className="home-nav-links">
-              <a
-                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              >
-                Home
-              </a>
-              <a onClick={() => scrollToSection(RefObj.schemesRef)}>Schemes</a>
-              <a onClick={() => scrollToSection(RefObj.howWorkRef)}>
-                How its Work
-              </a>
-              <a onClick={() => scrollToSection(RefObj.faqRef)}>FAQ</a>
+              <a onClick={() => () => navigate("/home-page")}>Home</a>
+              <a onClick={() => () => navigate("/home-page")}>How its Work</a>
+              <a onClick={() => () => navigate('/home-page')}>FAQ</a>
             </div>
           </div>
 
@@ -114,16 +101,9 @@ export default function Navbar({
                 <X size={24} />
               </button>
             </div>
-            <a onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-              Home
-            </a>
+            <a onClick={() => () => navigate("/home-page")}>Home</a>
             <a href="/user-profile">Profile</a>
             <a href="/saved-schemes">Saved Scheme</a>
-            <a onClick={() => scrollToSection(RefObj.schemesRef)}>Schemes</a>
-            <a onClick={() => scrollToSection(RefObj.howWorkRef)}>
-              How its Work
-            </a>
-            <a onClick={() => scrollToSection(RefObj.faqRef)}>FAQ</a>
             <a onClick={() => setLogoutModal(true)}>LogOut</a>
           </div>
         </>

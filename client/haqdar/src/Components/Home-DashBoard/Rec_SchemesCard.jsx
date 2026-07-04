@@ -1,5 +1,5 @@
 import "./HomeDashBoard.css";
-import { ArrowRight, IndianRupee, Users, Bookmark, PercentSquare, Percent } from "lucide-react";
+import { ArrowRight, IndianRupee, Users, Bookmark,Percent } from "lucide-react";
 import { useState, useEffect } from "react";
 import { saveScheme, removeScheme, isSaved } from "../../utils/bookmark.js";
 

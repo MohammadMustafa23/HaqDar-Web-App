@@ -3,7 +3,7 @@ import { useEffect, useState, useMemo } from "react";
 import { toast } from "sonner";
 
 import AdminNavbar from "../../Admin/AdminDashBoard/AdminNavbar.jsx";
-import AdminFooter from "../../Components/Footer/Footer.jsx"
+import AdminFooter from "../../Components/Footer/Footer.jsx";
 import PageLoader from "../../Components/Common/PageLoader.jsx";
 import SchemeHeader from "../../Admin/SchemeManagement/SchemeHeader.jsx";
 import SchemeFilters from "../../Admin/SchemeManagement/SchemeFilters.jsx";
@@ -12,6 +12,7 @@ import Pagination from "../../Admin/SchemeManagement/Pagination.jsx";
 import ActivityBanner from "../../Admin/SchemeManagement/ActivityBanner.jsx";
 import { useNavigate } from "react-router-dom";
 import { getAllSchemes, deleteScheme } from "../../Services/scheme.service.js";
+import OpenSchemes from "../OpenSchemes.jsx";
 import ConfirmationModal from "../../Components/Common/ConfirmationModal.jsx";
 export default function SchemeManagement() {
   const [schemes, setSchemes] = useState([]);
@@ -19,6 +20,10 @@ export default function SchemeManagement() {
     search: "",
     category: "All Categories",
     status: "All Statuses",
+  });
+  const [viewModal, setViewModal] = useState({
+    open: false,
+    scheme: null,
   });
 
   const filteredSchemes = useMemo(() => {
@@ -70,7 +75,10 @@ export default function SchemeManagement() {
   };
 
   const handleView = (scheme) => {
-    console.log("View:", scheme);
+    setViewModal({
+      open: true,
+      scheme,
+    });
   };
 
   const [deleteModal, setDeleteModal] = useState({
@@ -187,6 +195,17 @@ export default function SchemeManagement() {
         onConfirm={confirmDelete}
         onCancel={cancelDelete}
       />
+      {viewModal.open && (
+        <OpenSchemes
+          scheme={viewModal.scheme}
+          onClose={() =>
+            setViewModal({
+              open: false,
+              scheme: null,
+            })
+          }
+        />
+      )}
     </div>
   );
 }

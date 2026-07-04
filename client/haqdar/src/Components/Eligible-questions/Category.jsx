@@ -6,7 +6,7 @@ export default function Category({ next, prev, setFormData }) {
   const handleNext = () => {
     setFormData((prevData) => ({
       ...prevData,
-      category : category,
+      category: category,
     }));
 
     next();
@@ -90,6 +90,20 @@ export default function Category({ next, prev, setFormData }) {
                 <p>Economically Weaker Section</p>
               </div>
             </label>
+
+            <label
+              className={`category-option ${category === "Minority" ? "selected" : ""}`}
+            >
+              <input
+                type="radio"
+                name="category"
+                onChange={() => setCategory("Minority")}
+              />
+              <div>
+                <span>Minority</span>
+                <p>Muslim, Sikh, Christian, Buddhist, Jain, Parsi</p>
+              </div>
+            </label>
           </div>
 
           <div className="category-buttons">
@@ -97,7 +111,11 @@ export default function Category({ next, prev, setFormData }) {
               ← Back
             </button>
 
-            <button className="next-btn" onClick={handleNext} disabled={!category}>
+            <button
+              className="next-btn"
+              onClick={handleNext}
+              disabled={!category}
+            >
               Next →
             </button>
           </div>

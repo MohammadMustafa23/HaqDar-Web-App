@@ -1,7 +1,7 @@
 import "./Open.css";
 import { Bookmark, Wallet, Users } from "lucide-react";
 
-export default function SchemeAbout({ scheme }) {
+export default function SchemeAbout({ scheme,saved,handleBookmark }) {
   if (!scheme) return null;
 
   return (
@@ -12,20 +12,19 @@ export default function SchemeAbout({ scheme }) {
             {scheme.schemeType?.toUpperCase()}
           </span>
           <span className="scheme-badge">
-             {(scheme.score*100).toPrecision(4) + "%"  || "N/A"}
+            {(scheme.score * 100).toPrecision(4) + "%" || "N/A"}
           </span>
 
-          <h2 className="scheme-title">
-            {scheme.name}
-          </h2>
+          <h2 className="scheme-title">{scheme.name}</h2>
 
-          <p className="scheme-desc">
-            {scheme.apply}
-          </p>
+          <p className="scheme-desc">{scheme.apply}</p>
         </div>
 
-        <button className="bookmark-btn">
-          <Bookmark size={20} />
+        <button
+          className={`save-btn ${saved ? "saved" : ""}`}
+          onClick={handleBookmark}
+        >
+          <Bookmark size={18} fill={saved ? "currentColor" : "none"} />
         </button>
       </div>
 

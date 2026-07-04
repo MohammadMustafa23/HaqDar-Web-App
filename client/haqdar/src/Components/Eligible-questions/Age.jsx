@@ -20,46 +20,28 @@ export default function Age({ next, prev, setFormData }) {
           <h1 className="age-title">What is your age?</h1>
 
           <div className="options">
-            <label
-              className={`age-option ${age === "Below 18" ? "selected" : ""}`}
-            >
-              <input
-                type="radio"
-                name="age"
-                onChange={() => setAge("Below 18")}
-              />
+            <label className={`age-option ${age === "17" ? "selected" : ""}`}>
+              <input type="radio" name="age" onChange={() => setAge("17")} />
               <span>Below 18</span>
             </label>
 
-            <label
-              className={`age-option ${age === "18-35" ? "selected" : ""}`}
-            >
-              <input type="radio" name="age" onChange={() => setAge("18-35")} />
-              <span>18-35</span>
+            <label className={`age-option ${age === "25" ? "selected" : ""}`}>
+              <input type="radio" name="age" onChange={() => setAge("25")} />
+              <span>18–35</span>
             </label>
 
-            <label
-              className={`age-option ${age === "36-50" ? "selected" : ""}`}
-            >
-              <input type="radio" name="age" onChange={() => setAge("36-50")} />
-              <span>36-50</span>
+            <label className={`age-option ${age === "43" ? "selected" : ""}`}>
+              <input type="radio" name="age" onChange={() => setAge("43")} />
+              <span>36–50</span>
             </label>
 
-            <label
-              className={`age-option ${age === "51-60" ? "selected" : ""}`}
-            >
-              <input type="radio" name="age" onChange={() => setAge("51-60")} />
-              <span>51-60</span>
+            <label className={`age-option ${age === "55" ? "selected" : ""}`}>
+              <input type="radio" name="age" onChange={() => setAge("55")} />
+              <span>51–60</span>
             </label>
 
-            <label
-              className={`age-option ${age === "Above 60" ? "selected" : ""}`}
-            >
-              <input
-                type="radio"
-                name="age"
-                onChange={() => setAge("Above 60")}
-              />
+            <label className={`age-option ${age === "61" ? "selected" : ""}`}>
+              <input type="radio" name="age" onChange={() => setAge("61")} />
               <span>Above 60</span>
             </label>
           </div>
