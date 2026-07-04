@@ -1,31 +1,31 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:3000/api/schemes",
+  baseURL: import.meta.env.VITE_API_URL,
   withCredentials: true,
 });
 
 export const generateRecommendations = async (profileData) => {
-  const response = await API.post("/recommendations/generate",profileData);
+  const response = await API.post("/schemes/recommendations/generate",profileData);
   return response.data;
 };
 
 export async function getAllMatchedSchemes() {
-  const response = await API.get("/all/schemes");
+  const response = await API.get("/schemes/all/schemes");
   return response.data;
 }
 
 export async function getMatchedSchemes() {
-  const response = await API.get("/my-schemes");
+  const response = await API.get("/schemes/my-schemes");
   return response.data;
 }
 
 export const requestProfileEdit = async () => {
-  const response = await API.post("/request-profile-edit");
+  const response = await API.post("/schemes/request-profile-edit");
   return response.data;
 };
 
 export const canEditProfile = async () => {
-  const response = await API.get("/can-edit-profile");
+  const response = await API.get("/schemes/can-edit-profile");
   return response.data;
 };

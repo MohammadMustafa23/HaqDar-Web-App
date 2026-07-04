@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: import.meta.env.VITE_API_URL,
   withCredentials: true,
   timeout: 10000,
 });
@@ -27,8 +27,7 @@ API.interceptors.response.use(
       originalRequest._retry = true;
 
       try {
-        await API.post("/api/admin/refresh-token");
-
+        await API.post("/admin/refresh-token");
         // Retry original request
         return await API(originalRequest);
       } catch (refreshError) {
@@ -43,10 +42,10 @@ API.interceptors.response.use(
 export default API;
 
 // Services
-export const adminLogin = (data) => API.post("/api/admin/login", data);
+export const adminLogin = (data) => API.post("/admin/login", data);
 
-export const logoutUser = () => API.post("/api/admin/logout");
+export const logoutUser = () => API.post("/admin/logout");
 
-export const verifyAdmin = () => API.get("/api/admin/verify");
+export const verifyAdmin = () => API.get("/admin/verify");
 
-export const getDashboard = () => API.get("/api/admin/dashboard");
+export const getDashboard = () => API.get("/admin/dashboard");
