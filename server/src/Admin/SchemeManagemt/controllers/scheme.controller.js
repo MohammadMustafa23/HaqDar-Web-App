@@ -63,6 +63,7 @@ export const addScheme = async (req, res) => {
     scheme.pineconeId = pineconeId;
     await scheme.save();
 
+    
     return res.status(201).json({
       success: true,
       message: "Scheme added successfully.",
@@ -272,6 +273,7 @@ export const updateScheme = async (req, res) => {
     // Update Pinecone
     await updateSchemeVector(scheme._id, embedding, metadata);
 
+    
     return res.status(201).json({
       success: true,
       message: "Scheme Updated successfully.",
@@ -399,7 +401,7 @@ export const bulkUploadSchemes = async (req, res) => {
         message: "Validation failed.",
         errors: validation.errors,
       });
-    }    
+    }
 
     // Check duplicate scheme numbers
     const uploadedNumbers = schemes.map((scheme) => scheme.no);

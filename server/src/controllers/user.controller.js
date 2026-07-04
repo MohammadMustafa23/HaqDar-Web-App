@@ -44,18 +44,18 @@ export async function LoginUser(req, res) {
 
   // Don't allow admin to login from user login
   if (IfUserExist.role === "admin") {
-    return res.status(403).json({
+    return res.status(401).json({
       success: false,
-      message: "Admins must login from the Admin Portal.",
+      message: "Authentication failed.",
     });
   }
 
   const isMatch = await bcrypt.compare(password, IfUserExist.password);
 
   if (!isMatch) {
-    return res.status(400).json({
+    return res.status(401).json({
       success: false,
-      message: "Invalid Password",
+      message: "Authentication failed.",
     });
   }
 
@@ -97,17 +97,16 @@ export const GoogleLogin = async (req, res) => {
     const userInfo = await googleResponse.json();
 
     const { name, email, id } = userInfo;
-    console.log(userInfo);
 
-    let user = await UserModel.findOne({
-      email,
-    });
+    let user = await UserModel.findOne({ email });
+
+    const password = await bcrypt.hash(id, 8);
 
     if (!user) {
       user = await UserModel.create({
         userName: name,
         email: email,
-        password: id,
+        password: password,
       });
     }
 
@@ -177,9 +176,8 @@ export async function VerifyProfile(req, res) {
 
     return res.status(200).json(response);
   } catch (error) {
-    console.log(error);
-
     return res.status(500).json({
+      
       success: false,
     });
   }

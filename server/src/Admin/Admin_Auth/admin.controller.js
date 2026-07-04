@@ -14,17 +14,17 @@ export async function AdminLogin(req, res) {
     const admin = await UserModel.findOne({ email });
 
     if (!admin) {
-      return res.status(404).json({
+      return res.status(401).json({
         success: false,
-        message: "Admin not found",
+        message: "Authentication failed.",
       });
     }
 
     // Check Role
     if (admin.role !== "admin") {
-      return res.status(403).json({
+      return res.status(401).json({
         success: false,
-        message: "Access Denied. Only admins can login.",
+        message: "Authentication failed.",
       });
     }
 
@@ -34,7 +34,7 @@ export async function AdminLogin(req, res) {
     if (!isMatch) {
       return res.status(401).json({
         success: false,
-        message: "Invalid Password",
+        message: "Authentication failed.",
       });
     }
 
@@ -69,7 +69,7 @@ export async function AdminLogin(req, res) {
 
     return res.status(500).json({
       success: false,
-      message: "Internal Server Error",
+      "message": "Something went wrong. Please try again later."
     });
   }
 }

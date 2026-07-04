@@ -13,22 +13,20 @@ export const verifyAdminJWT = async (req, res, next) => {
     }
 
     const decoded = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
-
-
     const admin = await UserModel.findById(decoded.userId);
 
     
     if (!admin) {
       return res.status(401).json({
         success: false,
-        message: "Admin not found.",
+        message: "Authentication failed.",
       });
     }
 
     if (admin.role !== "admin") {
-      return res.status(403).json({
+      return res.status(401).json({
         success: false,
-        message: "Access denied. Admin only.",
+        message: "Authentication failed.",
       });
     }
     req.user = admin;
@@ -53,9 +51,9 @@ export const VerifyAdmin = async (req, res) => {
     }
 
     if (req.user.role !== "admin") {
-      return res.status(403).json({
+      return res.status(401).json({
         success: false,
-        message: "Access Denied. Admin Only.",
+        message: "Authentication failed.",
       });
     }
 
