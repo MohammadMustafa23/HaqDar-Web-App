@@ -1,5 +1,5 @@
 import express from "express";
-import { SubmitFeedback,getFeaturedFeedbacks } from "../Controllers/Feedback.Controller.js";
+import { SubmitFeedback,getFeaturedFeedbacks } from "../controllers/Feedback.Controller.js";
 import{ verifyJWT } from '../middlewares/user.schemes.js'
 import ValidateFeedbackData from "../middlewares/ValidateFeedbackData.js";
 import {submitLimiter} from '../Admin/AdminFeedBack/middleware/feedbackLimiter.js'
