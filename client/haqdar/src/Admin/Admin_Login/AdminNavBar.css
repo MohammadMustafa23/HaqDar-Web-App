@@ -79,16 +79,12 @@
 .auth-admin-theme-btn {
   width: 44px;
   height: 44px;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   border: none;
   border-radius: 10px;
-
   background: var(--bg-secondary);
-
   cursor: pointer;
 }
 

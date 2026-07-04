@@ -9,10 +9,6 @@ import {
 export default function SchemeDocuments({ scheme }) {
   if (!scheme) return null;
 
-  const documents = scheme.documents
-    ? scheme.documents.split(",").map((doc) => doc.trim())
-    : [];
-
   const icons = [
     Fingerprint,
     Landmark,
@@ -27,7 +23,7 @@ export default function SchemeDocuments({ scheme }) {
       </div>
 
       <div className="documents-grid">
-        {documents.map((doc, index) => {
+        {scheme.documents.map((doc, index) => {
           const Icon = icons[index % icons.length];
 
           return (

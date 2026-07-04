@@ -8,63 +8,43 @@ import SchemeAIHelp from "../Components/OpenSchems/SchemeAIHelp";
 import SchemeAbout from "../Components/OpenSchems/SchemeAbout";
 import { useState } from "react";
 
-import AiSidebar from './AiSidebar';
+import AiSidebar from "./AiSidebar";
 
-export default function OpenSchemes({scheme,onClose}) {
+export default function OpenSchemes({ scheme, onClose }) {
   const [isAiOpen, setIsAiOpen] = useState(false);
-
-    
   if (!scheme) return null;
-
   return (
     <>
-      <div
-        className="drawer-overlay"
-        onClick={onClose}
-      />
+      <div className="drawer-overlay" onClick={onClose} />
 
       <div className="os-container">
-        <SchemeHeader
-          onClose={onClose}
-        />
+        <SchemeHeader onClose={onClose} />
 
-        <div className="os-top">
-          <div className="os-left">
-            <SchemeAbout scheme={scheme} />
+        {/* Scrollable Area */}
+        <div className="os-scroll">
+          <div className="os-top">
+            <div className="os-left">
+              <SchemeAbout scheme={scheme} />
 
-            <SchemeEligibility
-              scheme={scheme}
-            />
+              <SchemeEligibility scheme={scheme} />
 
-            <div className="os-bottom-grid">
-              <SchemeDocuments
-                scheme={scheme}
-              />
+              <div className="os-bottom-grid">
+                <SchemeDocuments scheme={scheme} />
 
-              <SchemeSteps
-                scheme={scheme}
-              />
+                <SchemeSteps scheme={scheme} />
+              </div>
             </div>
-          </div>
 
-          <div className="os-right">
-            <SchemeAIHelp
-              onOpen={() =>
-                setIsAiOpen(true)
-              }
-            />
+            <div className="os-right">
+              <SchemeAIHelp onOpen={() => setIsAiOpen(true)} />
 
-            <SchemeResources scheme={scheme} />
+              <SchemeResources scheme={scheme} />
+            </div>
           </div>
         </div>
       </div>
 
-      <AiSidebar
-        isOpen={isAiOpen}
-        onClose={() =>
-          setIsAiOpen(false)
-        }
-      />
+      <AiSidebar isOpen={isAiOpen} onClose={() => setIsAiOpen(false)} />
     </>
   );
 }

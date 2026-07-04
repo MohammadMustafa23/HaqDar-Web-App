@@ -1,5 +1,5 @@
 import "./HomeDashBoard.css";
-import { ArrowRight, IndianRupee, Users, Bookmark } from "lucide-react";
+import { ArrowRight, IndianRupee, Users, Bookmark, PercentSquare, Percent } from "lucide-react";
 import { useState, useEffect } from "react";
 import { saveScheme, removeScheme, isSaved } from "../../utils/bookmark.js";
 
@@ -40,8 +40,12 @@ export default function Rec_SchemesCard({ scheme, onViewDetails }) {
 
       <div className="rec-scheme-tags">
         <span className="rec-scheme-tag">
+          <Percent size={18} />
+          {(scheme.score*100).toPrecision(4) + " Matched" || "N/A"}
+        </span>
+        <span className="rec-scheme-tag">
           <IndianRupee size={18} />
-          {scheme.income || "N/A"}
+          {scheme.income + " ₹"  || "N/A"}
         </span>
 
         <span className="rec-scheme-tag">

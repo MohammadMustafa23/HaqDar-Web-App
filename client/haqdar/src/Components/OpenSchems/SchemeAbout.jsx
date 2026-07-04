@@ -11,6 +11,9 @@ export default function SchemeAbout({ scheme }) {
           <span className="scheme-badge">
             {scheme.schemeType?.toUpperCase()}
           </span>
+          <span className="scheme-badge">
+             {(scheme.score*100).toPrecision(4) + "%"  || "N/A"}
+          </span>
 
           <h2 className="scheme-title">
             {scheme.name}

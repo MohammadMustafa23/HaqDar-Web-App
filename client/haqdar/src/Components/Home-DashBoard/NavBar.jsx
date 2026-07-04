@@ -39,6 +39,7 @@ export default function Navbar({ profileData, theme, setTheme,scrollToSection,Re
           {/* Desktop Right Side */}
           <div className="home-nav-right home-nav-profile-fade-in">
             <button
+            className="theme-btn"
               onClick={() => setTheme(theme === "light" ? "dark" : "light")}
             >
               {theme === "light" ? <Sun size={22} /> : <Moon size={22} />}

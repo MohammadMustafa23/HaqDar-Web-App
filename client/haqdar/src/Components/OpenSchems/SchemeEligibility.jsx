@@ -20,7 +20,7 @@ export default function SchemeEligibility({ scheme }) {
           <h3>Age Requirement</h3>
 
           <p>
-            {scheme.age || "Not Specified"}
+            {scheme.minAge + " Year Between " + scheme.minAge + " Year" || "N/A"}
           </p>
         </div>
 
@@ -32,7 +32,7 @@ export default function SchemeEligibility({ scheme }) {
           <h3>Income Requirement</h3>
 
           <p>
-            {scheme.income || "Not Specified"}
+            {scheme.income + "₹" || "Not Specified"}
           </p>
         </div>
 
