@@ -515,7 +515,7 @@ Building HaqDar involved solving real-world problems beyond just CRUD operations
 
 **Mohammad Mustafa**
 
-🔗 LinkedIn: *[add your LinkedIn profile link here]*
+🔗 LinkedIn: [https://www.linkedin.com/in/mohammad-mustafa9602a](https://www.linkedin.com/in/mohammad-mustafa9602a)
 🔗 GitHub: [github.com/MohammadMustafa23](https://github.com/MohammadMustafa23)
 
 ## 📄 License
