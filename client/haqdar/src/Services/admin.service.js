@@ -27,7 +27,7 @@ API.interceptors.response.use(
       originalRequest._retry = true;
 
       try {
-        await API.post("/api/admin/refresh-token");
+        await API.post("/admin/refresh-token");
 
         // Retry original request
         return await API(originalRequest);
@@ -43,10 +43,10 @@ API.interceptors.response.use(
 export default API;
 
 // Services
-export const adminLogin = (data) => API.post("/api/admin/login", data);
+export const adminLogin = (data) => API.post("/admin/login", data);
 
-export const logoutUser = () => API.post("/api/admin/logout");
+export const logoutUser = () => API.post("/admin/logout");
 
-export const verifyAdmin = () => API.get("/api/admin/verify");
+export const verifyAdmin = () => API.get("/admin/verify");
 
-export const getDashboard = () => API.get("/api/admin/dashboard");
+export const getDashboard = () => API.get("/admin/dashboard");
