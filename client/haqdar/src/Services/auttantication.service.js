@@ -2,7 +2,7 @@ import axios from "axios";
 import { toast } from "sonner";
 
 const API = axios.create({
-  baseURL: "http://localhost:3000/api",
+  baseURL: import.meta.env.VITE_API_URL,
   withCredentials: true,
   timeout: 10000,
 });
