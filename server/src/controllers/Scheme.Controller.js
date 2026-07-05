@@ -1,14 +1,14 @@
 import PDFDocument from "pdfkit";
 import MatchedScheme from "../models/matchedScheme.model.js";
 
-import { drawHeader } from "../PDF/header.js";
-import { drawSchemeTitle } from "../PDF/schemeTitle.js";
-import { drawInfoTable } from "../PDF/infoTable.js";
-import { drawBenefitSection } from "../PDF/benefitSection.js";
-import { drawDocumentSection } from "../PDF/documentSection.js";
-import { drawApplySection } from "../PDF/applySection.js";
-import { drawDisclaimer } from "../PDF/disclaimer.js";
-import { drawFooter } from "../PDF/footer.js";
+import { drawHeader } from "../pdf/header.js";
+import { drawSchemeTitle } from "../pdf/schemeTitle.js";
+import { drawInfoTable } from "../pdf/infoTable.js";
+import { drawBenefitSection } from "../pdf/benefitSection.js";
+import { drawDocumentSection } from "../pdf/documentSection.js";
+import { drawApplySection } from "../pdf/applySection.js";
+import { drawDisclaimer } from "../pdf/disclaimer.js";
+import { drawFooter } from "../pdf/footer.js";
 
 export const downloadSchemePdf = async (req, res) => {
   try {
