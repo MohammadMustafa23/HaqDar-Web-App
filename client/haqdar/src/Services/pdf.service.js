@@ -1,13 +1,13 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:3000/api/pdf",
+  baseURL: import.meta.env.VITE_API_URL,
   withCredentials: true,
 });
 
 export const downloadSchemePdf = async (schemeId) => {
     return API.get(
-        `/download/${schemeId}`,
+        `/pdf/download/${schemeId}`,
         {
             responseType: "blob",
             withCredentials: true
