@@ -9,7 +9,6 @@ import ProfilePage from "./Pages/ProfilePage";
 import { getCurrentUser } from "./Services/auttantication.service.js";
 import { useState, useEffect } from "react";
 import { Toaster } from "sonner";
-import { toast } from "sonner";
 import SavedSchemesPage from "./Components/SavedScheme/SavedSchemesPage.jsx";
 import MatchedSchemes from "./Pages/MatchedSchemes.jsx";
 import FeedbackForm from "./Components/FeedBackForm/FeedbackForm.jsx";
@@ -37,25 +36,19 @@ function App() {
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const data = await getCurrentUser();
-        if (data?.success) {
-          setProfileData(data);
-        }
-      } catch (error) {
-        toast.error(
-          error?.response?.data?.message ||
-            error?.message ||
-            "Something went wrong. Please try again.",
-        );
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchUser();
-  }, []);
+ useEffect(() => {
+  const fetchUser = async () => {
+    const data = await getCurrentUser();
+
+    if (data?.success) {
+      setProfileData(data);
+    }
+
+    setLoading(false);
+  };
+
+  fetchUser();
+}, []);
   return (
     <>
       <Toaster

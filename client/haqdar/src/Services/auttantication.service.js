@@ -15,6 +15,13 @@ API.interceptors.response.use(
     } else if (!error.response) {
       toast.error("Server Unavailable");
     } else if (error.response.status === 401) {
+      if (
+        error.config?.url === "/auth/me" ||
+        error.config?.url === "/auth/check-auth"
+      ) {
+        return Promise.reject(error);
+      }
+
       toast.error("Please Login Again");
     } else if (error.response.status === 500) {
       toast.error("Internal Server Error");
@@ -59,12 +66,7 @@ export const getCurrentUser = async () => {
   try {
     const { data } = await API.get("/auth/me");
     return data;
-  } catch (error) {
-    toast.error(
-      error?.response?.data?.message ||
-        error?.message ||
-        "Something went wrong. Please try again.",
-    );
+  } catch {
     return null;
   }
 };
