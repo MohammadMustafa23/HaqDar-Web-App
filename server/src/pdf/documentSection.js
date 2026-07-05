@@ -1,8 +1,6 @@
 import { COLORS } from "./colors.js";
 
 export const drawDocumentSection = (doc, data, startY) => {
-  console.log(data);
-  
   const startX = 40;
   const width = 515;
 

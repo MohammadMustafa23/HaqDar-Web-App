@@ -268,8 +268,6 @@ export const updateScheme = async (req, res) => {
 
     // Convert to Pinecone metadata
     const metadata = schemeToMetadata(scheme);
-
-    console.log(metadata); // Debug
     // Update Pinecone
     await updateSchemeVector(scheme._id, embedding, metadata);
 

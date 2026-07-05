@@ -17,8 +17,6 @@ export const parseSchemeCasting = (req, res, next) => {
         income: Number(req.body.eligibility?.income),
       },
     };
-
-    console.log("Pass TO Next");
     next();
   } catch (error) {
     return res.status(400).json({

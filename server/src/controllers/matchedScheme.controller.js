@@ -10,14 +10,11 @@ export async function getMatchedSchemes(req, res) {
     const cachedSchemes = await redisClient.get(cacheKey);
 
     if (cachedSchemes) {
-      console.log("✅ Matched Schemes from Redis");
       return res.status(200).json({
         success: true,
         schemes: JSON.parse(cachedSchemes),
       });
     }
-
-    console.log("📦 Matched Schemes from MongoDB");
 
     const matchedSchemes = await MatchedSchemeModel.findOne({ userId });
 

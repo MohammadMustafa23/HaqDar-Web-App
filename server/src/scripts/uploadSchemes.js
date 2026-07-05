@@ -32,9 +32,6 @@ for (const scheme of schemes) {
       apply: scheme.apply,
     },
   });
-
-  console.log(`Processed: ${scheme.name}`);
-  console.log("Vectors Count:", vectors.length);
 }
 const BATCH_SIZE = 4;
 

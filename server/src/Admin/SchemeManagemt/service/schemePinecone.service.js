@@ -50,8 +50,6 @@ export async function deleteSchemeVector(id) {
     await index.deleteOne({
       id,
     });
-
-    console.log("Deleted Successfully");
   } catch (error) {
     console.error(error);
     throw error;

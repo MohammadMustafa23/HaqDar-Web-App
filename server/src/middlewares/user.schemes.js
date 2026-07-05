@@ -25,7 +25,6 @@ export const verifyJWT = async (req, res, next) => {
       const cachedUser = await redisClient.get(cacheKey);
 
       if (cachedUser) {
-        console.log("✅ User from Redis");
         user = JSON.parse(cachedUser);
       }
     } catch (err) {
@@ -34,7 +33,6 @@ export const verifyJWT = async (req, res, next) => {
 
     // ---------- Fallback to Mongo ----------
     if (!user) {
-      console.log("📦 User from MongoDB");
       user = await userModel.findById(Id);
       if (!user) {
         return res.status(401).json({

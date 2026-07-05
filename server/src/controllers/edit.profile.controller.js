@@ -32,8 +32,6 @@ export const requestProfileEdit = async (req, res) => {
 
     // ✅ Delete old matched schemes cache
     await redisClient.del(`matchedSchemes:${userId}`);
-    console.log("🗑️ Matched schemes cache removed");
-
     return res.status(200).json({
       success: true,
       message: "Edit access granted",
@@ -58,11 +56,8 @@ export const canEditProfile = async (req, res) => {
     const cachedUser = await redisClient.get(cacheKey);
 
     if (cachedUser) {
-      console.log("✅ User from Redis");
       user = JSON.parse(cachedUser);
     } else {
-      console.log("📦 User from MongoDB");
-
       user = await userModel.findById(userId);
 
       if (!user) {

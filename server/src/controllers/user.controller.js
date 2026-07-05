@@ -154,7 +154,6 @@ export async function VerifyProfile(req, res) {
     const cachedProfile = await redisClient.get(cacheKey);
 
     if (cachedProfile) {
-      console.log("✅ Profile from Redis");
       return res.status(200).json(JSON.parse(cachedProfile));
     }
 
@@ -172,9 +171,6 @@ export async function VerifyProfile(req, res) {
 
     // Save to Redis for 5 minutes
     await redisClient.setEx(cacheKey, 600, JSON.stringify(response));
-
-    console.log("📦 Profile saved to Redis");
-
     return res.status(200).json(response);
   } catch (error) {
     return res.status(500).json({

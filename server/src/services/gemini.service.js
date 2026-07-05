@@ -31,9 +31,6 @@ Example Output:
 `;
 
     const result = await model.generateContent(prompt);
-
-    console.log(result);
-
     const query = result.response.text().trim();
 
     return query;

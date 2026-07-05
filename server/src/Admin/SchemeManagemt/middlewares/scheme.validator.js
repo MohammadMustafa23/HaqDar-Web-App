@@ -142,7 +142,6 @@ export const validateScheme = [
   
   (req, res, next) => {
     const errors = validationResult(req);
-     console.log("Gone Next")
     if (errors.isEmpty()) {
       return next();
     }

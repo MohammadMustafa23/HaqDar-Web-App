@@ -19,7 +19,6 @@ export const refreshToken = async (req, res) => {
     // Find User
     const user = await UserModel.findById(decoded.userId);
 
-    console.log(user);
     
     if (!user) {
       return res.status(404).json({
@@ -49,9 +48,6 @@ export const refreshToken = async (req, res) => {
       sameSite: "strict",
       maxAge: 15 * 60 * 1000,
     });
-
-    console.log("Token Done");
-    
 
     return res.status(200).json({
       success: true,
