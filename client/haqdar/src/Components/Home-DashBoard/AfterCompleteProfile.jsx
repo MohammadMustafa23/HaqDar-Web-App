@@ -2,9 +2,6 @@ import { CheckCircle, BadgeCheck } from "lucide-react";
 import "./HomeDashBoard.css";
 
 export default function AfterCompleteProfile({ total, profileData }) {
-  console.log(profileData);
-  console.log(total);
-  
   return (
     <section className="profile-success-section">
       <div className="profile-success-card">

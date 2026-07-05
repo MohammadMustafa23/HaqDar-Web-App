@@ -1,4 +1,4 @@
-import { User, Menu, X, Sun, Moon} from "lucide-react";
+import { User, Menu, X, Sun, Moon } from "lucide-react";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { toast } from "sonner";
@@ -25,8 +25,11 @@ export default function ProfileNavBar({ profileData, theme, setTheme }) {
       toast.success(res.data.message);
       navigate("/login", { replace: true });
     } catch (error) {
-      console.log(error);
-      toast.error("Logout Failed");
+      toast.error(
+        error?.response?.data?.message ||
+          error?.message ||
+          "Something went wrong. Please try again.",
+      );
     }
   };
 

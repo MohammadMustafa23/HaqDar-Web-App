@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
 import { GoogleLoginUser } from "../../Services/auttantication.service";
 import PageLoader from "../Common/PageLoader";
+import { toast } from "sonner";
 export default function Register() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -36,9 +37,6 @@ export default function Register() {
   }
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
-      console.log("Google Success");
-      console.log(tokenResponse);
-
       try {
         setLoading(true);
         const response = await GoogleLoginUser(tokenResponse.access_token);
@@ -68,8 +66,11 @@ export default function Register() {
       }
     },
     onError: (error) => {
-      console.log("Login Failed");
-      console.log(error);
+      toast.error(
+        error?.response?.data?.message ||
+          error?.message ||
+          "Registration failed. Please try again.",
+      );
     },
   });
   function validate() {

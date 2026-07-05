@@ -8,13 +8,12 @@ import AfterCompleteProfile from "../Components/Home-DashBoard/AfterCompleteProf
 import OpenSchemes from "./OpenSchemes.jsx";
 import Review from "../Components/Footer/Review.jsx";
 import FAQ from "../Components/Footer/FAQ.jsx";
-import { useState, useEffect,useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import HowWork from "../Components/Header/HowWork.jsx";
-import PageLoader from '../Components/Common/PageLoader.jsx'
+import PageLoader from "../Components/Common/PageLoader.jsx";
 import { getMatchedSchemes } from "../Services/recommendation.service.js";
-
+import { toast } from "sonner";
 export default function HomeDash({ profileData, loading, theme, setTheme }) {
-  console.log("Home Dash Loaded");
   const [selectedScheme, setSelectedScheme] = useState(null);
   const [open, setOpen] = useState(false);
 
@@ -31,8 +30,8 @@ export default function HomeDash({ profileData, loading, theme, setTheme }) {
     schemesRef,
     howWorkRef,
     faqRef,
-    homeRef
-  }
+    homeRef,
+  };
 
   const scrollToSection = (ref) => {
     ref.current?.scrollIntoView({
@@ -55,7 +54,11 @@ export default function HomeDash({ profileData, loading, theme, setTheme }) {
           setSchemes(data.schemes);
         }
       } catch (error) {
-        console.log(error);
+        toast.error(
+          error?.response?.data?.message ||
+            error?.message ||
+            "Something went wrong. Please try again.",
+        );
       } finally {
         setSchemeLoading(false);
       }
@@ -64,14 +67,19 @@ export default function HomeDash({ profileData, loading, theme, setTheme }) {
     fetchSchemes();
   }, [profileCompleted]);
   if (loading) {
-    return (
-      <PageLoader text="Dashboard Loading..." />
-    );
+    return <PageLoader text="Dashboard Loading..." />;
   }
 
   return (
     <>
-      <NavBar homeRef={homeRef} profileData={user} theme={theme} setTheme={setTheme}  scrollToSection={scrollToSection}  RefObj={RefObj} />
+      <NavBar
+        homeRef={homeRef}
+        profileData={user}
+        theme={theme}
+        setTheme={setTheme}
+        scrollToSection={scrollToSection}
+        RefObj={RefObj}
+      />
 
       <div className="center">
         {profileCompleted ? (
@@ -93,7 +101,7 @@ export default function HomeDash({ profileData, loading, theme, setTheme }) {
       {open && (
         <OpenSchemes scheme={selectedScheme} onClose={() => setOpen(false)} />
       )}
-      <HowWork howWorkRef={howWorkRef}/>
+      <HowWork howWorkRef={howWorkRef} />
       <Review />
       <FAQ faqRef={faqRef} />
 

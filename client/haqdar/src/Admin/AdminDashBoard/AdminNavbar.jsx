@@ -13,11 +13,14 @@ export default function AdminNavbar() {
   const logoutUser = async () => {
     try {
       const res = await Logout();
-      toast.success(res.data.message);
+      toast.success(res?.data?.message || "Logged out successfully.");
       navigate("/login");
     } catch (error) {
-      console.log(error);
-      toast.error("Logout Failed");
+      toast.error(
+        error?.response?.data?.message ||
+          error?.message ||
+          "Logout failed. Please try again.",
+      );
     }
   };
 
@@ -71,10 +74,16 @@ export default function AdminNavbar() {
             >
               Feedback Management
             </button>
-            
-             {/* Mobile Only */}
-            {anbOpen && <button className="anb-link anb-mobile-logout" onClick={() => setLogoutModal(true)} >Logout</button>}
-            
+
+            {/* Mobile Only */}
+            {anbOpen && (
+              <button
+                className="anb-link anb-mobile-logout"
+                onClick={() => setLogoutModal(true)}
+              >
+                Logout
+              </button>
+            )}
           </div>
         </div>
 

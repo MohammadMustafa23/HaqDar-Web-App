@@ -9,6 +9,7 @@ import ProfilePage from "./Pages/ProfilePage";
 import { getCurrentUser } from "./Services/auttantication.service.js";
 import { useState, useEffect } from "react";
 import { Toaster } from "sonner";
+import { toast } from "sonner";
 import SavedSchemesPage from "./Components/SavedScheme/SavedSchemesPage.jsx";
 import MatchedSchemes from "./Pages/MatchedSchemes.jsx";
 import FeedbackForm from "./Components/FeedBackForm/FeedbackForm.jsx";
@@ -42,14 +43,20 @@ function App() {
         const data = await getCurrentUser();
         if (data?.success) {
           setProfileData(data);
+        } else {
+          toast.error(data?.message || "Failed to load your profile.");
         }
-        console.log(data);
       } catch (error) {
-        console.log(error);
+        toast.error(
+          error?.response?.data?.message ||
+            error?.message ||
+            "Something went wrong. Please try again.",
+        );
       } finally {
         setLoading(false);
       }
     };
+
     fetchUser();
   }, []);
   return (

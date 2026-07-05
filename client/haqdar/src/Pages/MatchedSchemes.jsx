@@ -17,15 +17,12 @@ export default function MatchedSchemes({ theme, setTheme, profileData }) {
   const [selectedScheme, setSelectedScheme] = useState(null);
   const handleOpenScheme = (scheme) => {
     setSelectedScheme(scheme);
-    console.log(scheme);
-
     setOpen(true);
   };
   useEffect(() => {
     const fetchSchemes = async () => {
       try {
         const response = await getAllMatchedSchemes();
-        console.log("Matched Schemes:", response);
         const formattedSchemes = response.schemes.map((scheme) => ({
           id: scheme._id,
           score: scheme.score,

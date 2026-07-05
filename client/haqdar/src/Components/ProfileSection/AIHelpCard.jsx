@@ -27,8 +27,11 @@ export default function AIHelpCard() {
       toast.success(res.data.message);
       navigate("/login");
     } catch (error) {
-      console.log(error);
-      toast.error("Logout Failed");
+      toast.error(
+        error?.response?.data?.message ||
+          error?.message ||
+          "Something went wrong. Please try again.",
+      );
     }
   };
 

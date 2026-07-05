@@ -5,8 +5,6 @@ import { downloadSchemePdf } from "../../Services/pdf.service.js";
 export default function SchemeResources({ scheme }) {
   const handleDownload = async () => {
     try {
-      console.log(scheme);
-      
       const response = await downloadSchemePdf(scheme.id);
 
       const blob = new Blob([response.data], {
@@ -30,8 +28,6 @@ export default function SchemeResources({ scheme }) {
 
       toast.success("PDF downloaded successfully.");
     } catch (error) {
-      console.log(error);
-
       const message =
         error.response?.data?.message ||
         error.message ||

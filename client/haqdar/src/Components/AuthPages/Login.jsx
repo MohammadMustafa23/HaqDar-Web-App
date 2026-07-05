@@ -2,6 +2,7 @@ import LoginPage from "../../assets/Login-Page-Logo.png";
 import "./Login.css";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
+import { toast } from "sonner";
 import AppSwal from "../Common/AppSwal";
 import { LoginUser } from "../../Services/auttantication.service";
 import { useNavigate } from "react-router-dom";
@@ -26,9 +27,6 @@ export default function Login({ setProfileData }) {
 
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
-      console.log("Google Success");
-      console.log(tokenResponse);
-
       try {
         setLoading(true);
         const response = await GoogleLoginUser(tokenResponse.access_token);
@@ -60,8 +58,11 @@ export default function Login({ setProfileData }) {
     },
 
     onError: (error) => {
-      console.log("Login Failed");
-      console.log(error);
+      toast.error(
+        error?.response?.data?.message ||
+          error?.message ||
+          "Login failed. Please try again.",
+      );
     },
   });
 

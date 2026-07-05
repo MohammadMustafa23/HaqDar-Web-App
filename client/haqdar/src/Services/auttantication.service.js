@@ -46,7 +46,11 @@ export const isValidUser = async () => {
     const { data } = await API.get("/auth/check-auth");
     return data.success;
   } catch (error) {
-    console.log(error);
+    toast.error(
+      error?.response?.data?.message ||
+        error?.message ||
+        "Something went wrong. Please try again.",
+    );
     return false;
   }
 };
@@ -56,7 +60,11 @@ export const getCurrentUser = async () => {
     const { data } = await API.get("/auth/me");
     return data;
   } catch (error) {
-    console.log(error);
+    toast.error(
+      error?.response?.data?.message ||
+        error?.message ||
+        "Something went wrong. Please try again.",
+    );
     return null;
   }
 };

@@ -10,7 +10,7 @@ export default function Navbar({
   setTheme,
   scrollToSection,
   RefObj,
-  homeRef
+  homeRef,
 }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
@@ -27,14 +27,17 @@ export default function Navbar({
       toast.success(res.data.message);
       navigate("/login");
     } catch (error) {
-      console.log(error);
-      toast.error("Logout Failed");
+      toast.error(
+        error?.response?.data?.message ||
+          error?.message ||
+          "Something went wrong. Please try again.",
+      );
     }
   };
 
   return (
     <>
-    <div ref={homeRef} ></div>
+      <div ref={homeRef}></div>
       <nav className="home-nav-navbar">
         <div className="home-nav-container">
           <div className="home-nav-left">
@@ -44,11 +47,7 @@ export default function Navbar({
             </div>
 
             <div className="home-nav-links">
-              <a
-                onClick={() => scrollToSection(RefObj.homeRef)}
-              >
-                Home
-              </a>
+              <a onClick={() => scrollToSection(RefObj.homeRef)}>Home</a>
               <a onClick={() => scrollToSection(RefObj.schemesRef)}>Schemes</a>
               <a onClick={() => scrollToSection(RefObj.howWorkRef)}>
                 How its Work

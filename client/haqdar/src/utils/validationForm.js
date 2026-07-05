@@ -1,7 +1,5 @@
 export const validateScheme = (schemeData) => {
   const errors = {};
-  console.log(schemeData);
-  
   // ==========================
   // Basic Details
   // ==========================

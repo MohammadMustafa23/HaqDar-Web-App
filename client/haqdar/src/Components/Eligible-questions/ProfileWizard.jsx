@@ -6,12 +6,13 @@ import Category from "./Category";
 import Income from "./Income";
 import District from "./District";
 import Occupation from "./Occupation";
-import Appswal from '../Common/AppSwal.js'
+import Appswal from "../Common/AppSwal.js";
 import Pwd from "./Pwd";
 import {
   generateRecommendations,
   canEditProfile,
 } from "../../Services/recommendation.service";
+import { toast } from "sonner";
 import { getCurrentUser } from "../../Services/auttantication.service";
 import { useNavigate } from "react-router-dom";
 import PageLoader from "../Common/PageLoader";
@@ -47,10 +48,14 @@ export default function ProfileWizard({ setProfileData }) {
         }
         setCanAccess(true);
       } catch (error) {
+        toast.error(
+          error?.response?.data?.message ||
+            error?.message ||
+            "Something went wrong. Please try again.",
+        );
         navigate("/home-page", {
           replace: true,
         });
-        console.log(error);
       } finally {
         setCheckingAccess(false);
       }
@@ -60,60 +65,55 @@ export default function ProfileWizard({ setProfileData }) {
   }, []);
 
   if (checkingAccess) {
-    return (
-        <PageLoader  text="Verifying Access..."/>
-    );
+    return <PageLoader text="Verifying Access..." />;
   }
 
   if (!canAccess) {
     return null;
   }
-  console.log(formData);
   const handleSubmit = async () => {
-  if (loading) return;
+    if (loading) return;
 
-  try {
-    setLoading(true);
+    try {
+      setLoading(true);
 
-    const data = await generateRecommendations(formData);
+      const data = await generateRecommendations(formData);
 
-    // API returned failure
-    if (!data?.success) {
-      throw new Error(
-          "Unable to generate recommendations. Please try again."
-      );
-    }
+      // API returned failure
+      if (!data?.success) {
+        throw new Error(
+          "Unable to generate recommendations. Please try again.",
+        );
+      }
 
-    const userData = await getCurrentUser();
+      const userData = await getCurrentUser();
 
-    if (userData?.success) {
-      setProfileData(userData);
-    }
+      if (userData?.success) {
+        setProfileData(userData);
+      }
 
-    navigate("/home-page", {
-      replace: true,
-      state: {
-        recommendations: data.SchemsMatch,
-      },
-    });
-
-  } catch (error) {
-    console.error(error);
+      navigate("/home-page", {
+        replace: true,
+        state: {
+          recommendations: data.SchemsMatch,
+        },
+      });
+    } catch (error) {
+      console.error(error);
 
       Appswal.fire({
-      icon: "error",
-      title: "Recommendation Failed",
-      text:
-        error?.response?.data?.message ||
-        error?.message ||
-        "Unable to generate recommendations. Please try again later.",
-      confirmButtonText: "Try Again",
-    });
-
-  } finally {
-    setLoading(false);
-  }
-};
+        icon: "error",
+        title: "Recommendation Failed",
+        text:
+          error?.response?.data?.message ||
+          error?.message ||
+          "Unable to generate recommendations. Please try again later.",
+        confirmButtonText: "Try Again",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const next = () => setStep((prev) => prev + 1);
   const prev = () => setStep((prev) => prev - 1);

@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import ConfirmationModal from "../Common/ConfirmationModal.jsx";
 import { LoginOutUser } from "../../Services/auttantication.service.js";
 import { toast } from "sonner";
-export default function MatchedScheme_NavBar({profileData,theme,setTheme}) {
+export default function MatchedScheme_NavBar({ profileData, theme, setTheme }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation(); // <-- Missing
@@ -20,8 +20,11 @@ export default function MatchedScheme_NavBar({profileData,theme,setTheme}) {
       toast.success(res.data.message);
       navigate("/login");
     } catch (error) {
-      console.log(error);
-      toast.error("Logout Failed");
+      toast.error(
+        error?.response?.data?.message ||
+          error?.message ||
+          "Something went wrong. Please try again.",
+      );
     }
   };
 
@@ -38,7 +41,7 @@ export default function MatchedScheme_NavBar({profileData,theme,setTheme}) {
             <div className="home-nav-links">
               <a onClick={() => () => navigate("/home-page")}>Home</a>
               <a onClick={() => () => navigate("/home-page")}>How its Work</a>
-              <a onClick={() => () => navigate('/home-page')}>FAQ</a>
+              <a onClick={() => () => navigate("/home-page")}>FAQ</a>
             </div>
           </div>
 

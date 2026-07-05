@@ -50,7 +50,7 @@ export default function LoginForm() {
 
     // Remember Me validation (only if required)
     if (!formData.remember) {
-      newErrors.remember = "Please check 'Remember Me'";
+       newErrors.remember = "Please check 'Remember Me'";
     }
 
     setErrors(newErrors);
@@ -60,15 +60,11 @@ export default function LoginForm() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-
     if (!validate()) return;
-
     setLoading(true);
 
     try {
       const response = await adminLogin(formData);
-      console.log(response);
-
       setLoading(false);
       await Appswal.fire({
         icon: "success",
@@ -78,11 +74,8 @@ export default function LoginForm() {
         timer: 1800,
         timerProgressBar: true,
       });
-
       navigate("/admin-dashboard", { replace: true });
     } catch (err) {
-      console.log("ERROR", err);
-
       Appswal.fire({
         icon: "error",
         title: "Something Went Wrong",

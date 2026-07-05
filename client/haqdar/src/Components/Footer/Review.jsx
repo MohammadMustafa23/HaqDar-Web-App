@@ -15,9 +15,7 @@ export default function Review() {
   const fetchFeaturedFeedbacks = async () => {
     try {
       setLoading(true);
-      const res = await getingFeatureFeedBack();
-      console.log(res);
-      
+      const res = await getingFeatureFeedBack(); 
       setTestimonials(res.feedbacks || []);
     } catch (error) {
       console.error("Failed to fetch featured feedbacks:", error);
