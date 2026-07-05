@@ -8,7 +8,7 @@ import ProfileNavBar from "../Components/ProfileSection/ProfileNavBar";
 import PageLoader from "../Components/Common/PageLoader";
 import { getCurrentUser } from "../Services/auttantication.service";
 import "../Components/ProfileSection/Profile.css";
-
+import { toast } from "sonner";
 export default function ProfilePage({ theme, setTheme }) {
   const [profileData, setProfileData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -21,7 +21,11 @@ export default function ProfilePage({ theme, setTheme }) {
           setProfileData(data);
         }
       } catch (error) {
-        console.error(error);
+        toast.error(
+          error?.response?.data?.message ||
+            error?.message ||
+            "Something went wrong. Please try again.",
+        );
       } finally {
         setLoading(false);
       }
@@ -43,10 +47,7 @@ export default function ProfilePage({ theme, setTheme }) {
         />
 
         <div className="hd-profile-left-section">
-          <Sidebar
-            theme={theme}
-            setTheme={setTheme}
-          />
+          <Sidebar theme={theme} setTheme={setTheme} />
           <AIHelpCard />
         </div>
 
@@ -62,9 +63,7 @@ export default function ProfilePage({ theme, setTheme }) {
               profile={profileData.profile}
             />
 
-            <EligibilityDetails
-              profile={profileData.profile}
-            />
+            <EligibilityDetails profile={profileData.profile} />
           </div>
         </div>
       </div>

@@ -43,8 +43,6 @@ function App() {
         const data = await getCurrentUser();
         if (data?.success) {
           setProfileData(data);
-        } else {
-          toast.error(data?.message || "Failed to load your profile.");
         }
       } catch (error) {
         toast.error(
@@ -56,7 +54,6 @@ function App() {
         setLoading(false);
       }
     };
-
     fetchUser();
   }, []);
   return (

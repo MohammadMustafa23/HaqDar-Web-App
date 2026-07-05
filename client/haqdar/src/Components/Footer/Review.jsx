@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./Review.css";
 import { FaStar, FaQuoteRight } from "react-icons/fa";
 import { User } from "lucide-react";
+import {toast} from 'sonner'
 import { getingFeatureFeedBack } from "../../Services/feedback.service.js"; // Update the path if needed
 
 export default function Review() {
@@ -15,10 +16,14 @@ export default function Review() {
   const fetchFeaturedFeedbacks = async () => {
     try {
       setLoading(true);
-      const res = await getingFeatureFeedBack(); 
+      const res = await getingFeatureFeedBack();
       setTestimonials(res.feedbacks || []);
     } catch (error) {
-      console.error("Failed to fetch featured feedbacks:", error);
+      toast.error(
+        error?.response?.data?.message ||
+          error?.message ||
+          "Failed to fetch featured feedbacks",
+      );
     } finally {
       setLoading(false);
     }

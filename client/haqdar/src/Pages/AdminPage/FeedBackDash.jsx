@@ -3,7 +3,7 @@ import "./FeedBackDash.css";
 
 // Layout
 import AdminNav from "../../Admin/AdminDashBoard/AdminNavbar";
-import AdminFooter from "../../Components/Footer/Footer.jsx"
+import AdminFooter from "../../Components/Footer/Footer.jsx";
 
 // Components
 import FeedbackHeader from "../../Admin/FeedbackDash/FeedbackHeader";
@@ -33,8 +33,6 @@ export default function FeedbackManagement() {
       const res = await getAllFeedbacks();
       setFeedbacks(res.feedbacks || []);
     } catch (err) {
-      console.error(err);
-
       setError(err?.response?.data?.message || "Failed to load feedbacks.");
     } finally {
       setLoading(false);

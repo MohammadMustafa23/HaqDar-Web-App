@@ -99,7 +99,11 @@ export default function ProfileWizard({ setProfileData }) {
         },
       });
     } catch (error) {
-      console.error(error);
+      toast.error(
+        error?.response?.data?.message ||
+          error?.message ||
+          "Something went wrong. Please try again.",
+      );
 
       Appswal.fire({
         icon: "error",

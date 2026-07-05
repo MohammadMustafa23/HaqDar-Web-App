@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { getSavedSchemes } from "../../utils/bookmark.js";
-
+import { toast } from "sonner";
 import Rec_SchemesCard from "../Home-DashBoard/Rec_SchemesCard.jsx";
 import OpenSchemes from "../../Pages/OpenSchemes.jsx";
 import Footer from "../Footer/Footer.jsx";
 import PageLoader from "../Common/PageLoader.jsx";
-import ProfileNav from '../ProfileSection/ProfileNavBar.jsx'
+import ProfileNav from "../ProfileSection/ProfileNavBar.jsx";
 import "./SavedSchemesPage.css";
 
-export default function SavedSchemesPage({ profileData,theme, setTheme }) {
+export default function SavedSchemesPage({ profileData, theme, setTheme }) {
   const [selectedScheme, setSelectedScheme] = useState(null);
   const [open, setOpen] = useState(false);
   const [savedSchemes, setSavedSchemes] = useState([]);
@@ -22,7 +22,11 @@ export default function SavedSchemesPage({ profileData,theme, setTheme }) {
         const data = getSavedSchemes();
         setSavedSchemes(data);
       } catch (error) {
-        console.error(error);
+        toast.error(
+          error?.response?.data?.message ||
+            error?.message ||
+            "Something went wrong. Please try again.",
+        );
       } finally {
         setLoading(false);
       }
@@ -42,7 +46,7 @@ export default function SavedSchemesPage({ profileData,theme, setTheme }) {
 
   return (
     <>
-      <ProfileNav profileData={user}  theme={theme} setTheme={setTheme} />
+      <ProfileNav profileData={user} theme={theme} setTheme={setTheme} />
 
       <main className="saved-page">
         <div className="saved-container">
@@ -70,10 +74,7 @@ export default function SavedSchemesPage({ profileData,theme, setTheme }) {
         </div>
 
         {open && (
-          <OpenSchemes
-            scheme={selectedScheme}
-            onClose={() => setOpen(false)}
-          />
+          <OpenSchemes scheme={selectedScheme} onClose={() => setOpen(false)} />
         )}
       </main>
 

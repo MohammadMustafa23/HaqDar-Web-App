@@ -1,12 +1,13 @@
 import "../Components/MatchedScheme/MatchedSchemes.css";
 import { ChevronDown } from "lucide-react";
 import { useState, useEffect } from "react";
-import MatchedScheme_NavBar from '../Components/MatchedScheme/MatchedScheme_NavBar.jsx'
+import MatchedScheme_NavBar from "../Components/MatchedScheme/MatchedScheme_NavBar.jsx";
 import Footer from "../Components/Footer/Footer";
 import SchemeCard from "../Components/MatchedScheme/SchemeCard";
 import UnlockMoreSchemes from "../Components/MatchedScheme/UnlockMoreSchemes";
 import { getAllMatchedSchemes } from "../Services/recommendation.service";
 import SchemeCardSkeleton from "../Components/Home-DashBoard/Effect/SchemeCardSkeleton";
+import { toast } from "sonner";
 import OpenSchemes from "./OpenSchemes";
 export default function MatchedSchemes({ theme, setTheme, profileData }) {
   const [visibleCount, setVisibleCount] = useState(10);
@@ -38,7 +39,11 @@ export default function MatchedSchemes({ theme, setTheme, profileData }) {
         }));
         setSchemes(formattedSchemes || []);
       } catch (error) {
-        console.error("Failed to fetch schemes:", error);
+        toast.error(
+          error?.response?.data?.message ||
+            error?.message ||
+            "Something went wrong. Please try again.",
+        );
       } finally {
         setLoading(false);
       }
@@ -48,7 +53,11 @@ export default function MatchedSchemes({ theme, setTheme, profileData }) {
 
   return (
     <>
-      <MatchedScheme_NavBar theme={theme} setTheme={setTheme} profileData={user} />
+      <MatchedScheme_NavBar
+        theme={theme}
+        setTheme={setTheme}
+        profileData={user}
+      />
 
       <main className="ms-page">
         <div className="ms-container">

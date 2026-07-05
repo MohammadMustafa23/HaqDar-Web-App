@@ -1,6 +1,6 @@
 import "./AdminDashboard.css";
 import { useState, useEffect } from "react";
-
+import { toast } from "sonner";
 import { getDashboard } from "../../Services/admin.service.js";
 
 import AdminNavbar from "../../Admin/AdminDashBoard/AdminNavbar.jsx";
@@ -8,22 +8,23 @@ import AdminHero from "../../Admin/AdminDashBoard/AdminHero.jsx";
 import DashboardStats from "../../Admin/AdminDashBoard/DashboardStats.jsx";
 import SchemeTable from "../../Admin/AdminDashBoard/SchemeTable.jsx";
 import DashboardBanner from "../../Admin/AdminDashBoard/DashboardBanner.jsx";
-import AdminFooter from "../../Components/Footer/Footer.jsx"
+import AdminFooter from "../../Components/Footer/Footer.jsx";
 
 import PageLoader from "../../Components/Common/PageLoader.jsx";
 export default function AdminDashboard() {
   const [dashboard, setDashboard] = useState(null);
   const [loading, setLoading] = useState(true);
 
-
-  
-
   const fetchDashboard = async () => {
     try {
       const res = await getDashboard();
       setDashboard(res.data);
     } catch (error) {
-      console.error(error);
+      toast.error(
+        error?.response?.data?.message ||
+          error?.message ||
+          "Something went wrong. Please try again.",
+      );
     } finally {
       setLoading(false);
     }

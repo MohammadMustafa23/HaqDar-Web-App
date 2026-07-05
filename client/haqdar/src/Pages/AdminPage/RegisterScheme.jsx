@@ -191,8 +191,6 @@ const RegisterScheme = () => {
         navigate("/admin-scheme", { replace: true });
       }, 1000);
     } catch (error) {
-      console.error(error);
-
       setProcessState({
         open: false,
         success: false,
