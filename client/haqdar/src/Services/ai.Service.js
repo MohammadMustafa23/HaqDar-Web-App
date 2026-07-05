@@ -1,12 +1,12 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:3000/api/bot",
+  baseURL: import.meta.env.VITE_API_URL,
   withCredentials: true,
 });
 
 export const askAI = async (data) => {
-  const response = await API.post("/ai-chat", data, {
+  const response = await API.post("/bot/ai-chat", data, {
     withCredentials: true,
   });
   
