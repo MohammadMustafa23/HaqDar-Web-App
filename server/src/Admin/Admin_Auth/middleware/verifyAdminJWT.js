@@ -40,7 +40,6 @@ export const verifyAdminJWT = async (req, res, next) => {
   }
 };
 
-
 export const VerifyAdmin = async (req, res) => {
   try {
     if (!req.user) {
