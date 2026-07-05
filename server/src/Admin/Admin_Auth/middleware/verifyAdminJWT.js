@@ -3,11 +3,8 @@ import UserModel from "../../../models/user.model.js";
 
 export const verifyAdminJWT = async (req, res, next) => {
   try {
-    console.log("Cookies:", req.cookies);
-
     const accessToken = req.cookies.adminAccessToken;
-    console.log("Access Token:", accessToken);
-
+    
     if (!accessToken) {
       return res.status(401).json({
         success: false,
@@ -16,10 +13,9 @@ export const verifyAdminJWT = async (req, res, next) => {
     }
 
     const decoded = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
-    console.log("Decoded:", decoded);
-
     const admin = await UserModel.findById(decoded.userId);
 
+    
     if (!admin) {
       return res.status(401).json({
         success: false,
@@ -27,10 +23,16 @@ export const verifyAdminJWT = async (req, res, next) => {
       });
     }
 
+    if (admin.role !== "admin") {
+      return res.status(401).json({
+        success: false,
+        message: "Authentication failed.",
+      });
+    }
     req.user = admin;
+
     next();
   } catch (error) {
-    console.log(error);
     return res.status(401).json({
       success: false,
       message: "Invalid or expired access token.",
