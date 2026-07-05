@@ -329,8 +329,6 @@ export const validateProfile = (req, res, next) => {
 
     next();
   } catch (error) {
-    console.error("Profile Validation Error:", error);
-
     return res.status(500).json({
       success: false,
       message: "Profile validation failed",

@@ -6,6 +6,6 @@ import {submitLimiter} from '../Admin/AdminFeedBack/middleware/feedbackLimiter.j
 const Feedback = express.Router();
 
 Feedback.post("/submit",submitLimiter,verifyJWT,ValidateFeedbackData,SubmitFeedback);
-Feedback.get('/get-feedbacks',verifyJWT,getFeaturedFeedbacks);
+Feedback.get('/get-feedbacks',getFeaturedFeedbacks);
 
 export default Feedback;

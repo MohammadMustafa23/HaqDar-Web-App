@@ -47,8 +47,6 @@ export const getFeaturedFeedbacks = async (req, res) => {
       feedbacks,
     });
   } catch (error) {
-    console.error(error);
-
     return res.status(500).json({
       success: false,
       message: "Failed to fetch featured feedbacks.",
