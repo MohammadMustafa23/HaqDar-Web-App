@@ -45,20 +45,20 @@ export async function AdminLogin(req, res) {
     // Save Refresh Token
     admin.refreshToken = refreshToken;
     await admin.save();
-
+    
     res.cookie("adminAccessToken", accessToken, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
-      maxAge: 15 * 60 * 1000,
-    });
-
-    res.cookie("adminRefreshToken", refreshToken, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
-      maxAge: 7 * 24 * 60 * 60 * 1000,
-    });
+     httpOnly: true,
+     secure: process.env.NODE_ENV === "production",
+     sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+     maxAge: 15 * 60 * 1000,
+   });
+  
+   res.cookie("adminRefreshToken", refreshToken, {
+     httpOnly: true,
+     secure: process.env.NODE_ENV === "production",
+     sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+     maxAge: 7 * 24 * 60 * 60 * 1000,
+   });
 
     return res.status(200).json({
       success: true,
