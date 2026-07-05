@@ -1,4 +1,4 @@
-import "../Components/AiChatBot/AiSideBar.css";
+import "../Components/AiChatBot/AiSidebar.css";
 import AiHeader from "../Components/AiChatBot/AiHeader";
 import ChatArea from "../Components/AiChatBot/ChatArea";
 import QuickActions from "../Components/AiChatBot/QuickActions";
