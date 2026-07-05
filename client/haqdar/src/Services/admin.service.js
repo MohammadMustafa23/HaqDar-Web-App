@@ -28,6 +28,10 @@ API.interceptors.response.use(
 
       try {
         await API.post("/admin/refresh-token");
+<<<<<<< HEAD
+=======
+
+>>>>>>> ac542f7f2a2dd1d56da6aeeb985cc02456635594
         // Retry original request
         return await API(originalRequest);
       } catch (refreshError) {

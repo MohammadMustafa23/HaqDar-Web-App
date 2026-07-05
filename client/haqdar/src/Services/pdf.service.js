@@ -6,8 +6,12 @@ const API = axios.create({
 });
 
 export const downloadSchemePdf = async (schemeId) => {
-  return API.get(`/pdf/download/${schemeId}`, {
-    responseType: "blob",
-    withCredentials: true,
-  });
+
+    return API.get(
+        `/pdf/download/${schemeId}`,
+        {
+            responseType: "blob",
+            withCredentials: true
+        }
+    );
 };

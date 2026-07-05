@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Moon, Sun, Circle, ArrowLeftRight } from "lucide-react";
 
-import "./AdminNavbar.css";
+import "./AdminNavBar.css";
 
 export default function AdminNavbar() {
   const navigate = useNavigate();
