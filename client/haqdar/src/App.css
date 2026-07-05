@@ -8,7 +8,7 @@
 
 --bg-primary: #f8f9fb;
 --bg-secondary: #f3f4f6;
-
+--border-color:#dbe4ee;
 --card-bg: #ffffff;
 
 --text-primary: #191c1e;
@@ -37,6 +37,7 @@ body.dark {
 --bg-primary: #0b1220;
 --bg-secondary: #111827;
 
+--border-color:#334155;
 --card-bg: #1e293b;
 
 --text-primary: #f8fafc;
