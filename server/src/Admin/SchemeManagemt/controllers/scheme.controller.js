@@ -379,6 +379,7 @@ export const updateSchemeStatus = async (req, res) => {
 };
 
 export const bulkUploadSchemes = async (req, res) => {
+  const uploadedPineconeIds = [];
   try {
     if (!req.file) {
       return res.status(400).json({
@@ -390,7 +391,7 @@ export const bulkUploadSchemes = async (req, res) => {
     const jsonString = req.file.buffer.toString("utf-8");
     const schemes = JSON.parse(jsonString);
 
-    // ✅ Validate uploaded JSON
+    // Validate JSON
     const validation = validateBulkSchemes(schemes);
 
     if (!validation.valid) {
@@ -402,7 +403,7 @@ export const bulkUploadSchemes = async (req, res) => {
     }
 
     // Check duplicate scheme numbers
-    const uploadedNumbers = schemes.map((scheme) => scheme.no);
+    const uploadedNumbers = validation.schemes.map((scheme) => scheme.no);
 
     const existingNumbers = await Scheme.find({
       no: { $in: uploadedNumbers },
@@ -417,7 +418,7 @@ export const bulkUploadSchemes = async (req, res) => {
     }
 
     // Check duplicate scheme names
-    const uploadedNames = schemes.map((scheme) => scheme.name);
+    const uploadedNames = validation.schemes.map((scheme) => scheme.name);
 
     const existingNames = await Scheme.find({
       name: { $in: uploadedNames },
@@ -431,16 +432,24 @@ export const bulkUploadSchemes = async (req, res) => {
       });
     }
 
-    const insertedSchemes = await Scheme.insertMany(validation.schemes, {
+    // Upload to Pinecone first
+    const schemesToInsert = [];
+
+    for (const scheme of validation.schemes) {
+      const pineconeId = await uploadSchemeToPinecone(scheme);
+
+      uploadedPineconeIds.push(pineconeId);
+
+      schemesToInsert.push({
+        ...scheme,
+        pineconeId,
+      });
+    }
+
+    // Insert into MongoDB only after Pinecone succeeds
+    const insertedSchemes = await Scheme.insertMany(schemesToInsert, {
       ordered: true,
     });
-
-    // Upload every inserted scheme to Pinecone
-    for (const scheme of insertedSchemes) {
-      const pineconeId = await uploadSchemeToPinecone(scheme);
-      scheme.pineconeId = pineconeId;
-      await scheme.save();
-    }
 
     return res.status(201).json({
       success: true,
@@ -451,7 +460,13 @@ export const bulkUploadSchemes = async (req, res) => {
   } catch (error) {
     console.error(error);
 
-    // Mongoose Validation Error
+    // Rollback Pinecone uploads
+    if (uploadedPineconeIds.length > 0) {
+      await Promise.allSettled(
+        uploadedPineconeIds.map((id) => deleteSchemeVector(id))
+      );
+    }
+
     if (error instanceof mongoose.Error.ValidationError) {
       const errors = Object.values(error.errors).map((err) => ({
         field: err.path,
@@ -472,7 +487,6 @@ export const bulkUploadSchemes = async (req, res) => {
     });
   }
 };
-
 export const searchSchemeByMessage = async (message) => {
   try {
     if (!message?.trim()) {
