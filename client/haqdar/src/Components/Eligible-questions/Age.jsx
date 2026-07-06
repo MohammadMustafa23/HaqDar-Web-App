@@ -15,10 +15,6 @@ export default function Age({ next, prev, setFormData }) {
     }));
   };
 
-  const handleNext = () => {
-    next();
-  };
-
   return (
     <div>
       <Nav />
@@ -29,60 +25,45 @@ export default function Age({ next, prev, setFormData }) {
           <h1 className="age-title">What is your age?</h1>
 
           <div className="options">
-            <label className={`age-option ${age === "17" ? "selected" : ""}`}>
-              <input
-                type="radio"
-                name="age"
-                value="17"
-                checked={age === "17"}
-                onChange={() => handleAgeChange("17")}
-              />
-              <span>Below 18</span>
-            </label>
+            <button
+              type="button"
+              className={`age-option ${age === "17" ? "selected" : ""}`}
+              onClick={() => handleAgeChange("17")}
+            >
+              Below 18
+            </button>
 
-            <label className={`age-option ${age === "25" ? "selected" : ""}`}>
-              <input
-                type="radio"
-                name="age"
-                value="25"
-                checked={age === "25"}
-                onChange={() => handleAgeChange("25")}
-              />
-              <span>18–35</span>
-            </label>
+            <button
+              type="button"
+              className={`age-option ${age === "25" ? "selected" : ""}`}
+              onClick={() => handleAgeChange("25")}
+            >
+              18–35
+            </button>
 
-            <label className={`age-option ${age === "43" ? "selected" : ""}`}>
-              <input
-                type="radio"
-                name="age"
-                value="43"
-                checked={age === "43"}
-                onChange={() => handleAgeChange("43")}
-              />
-              <span>36–50</span>
-            </label>
+            <button
+              type="button"
+              className={`age-option ${age === "43" ? "selected" : ""}`}
+              onClick={() => handleAgeChange("43")}
+            >
+              36–50
+            </button>
 
-            <label className={`age-option ${age === "55" ? "selected" : ""}`}>
-              <input
-                type="radio"
-                name="age"
-                value="55"
-                checked={age === "55"}
-                onChange={() => handleAgeChange("55")}
-              />
-              <span>51–60</span>
-            </label>
+            <button
+              type="button"
+              className={`age-option ${age === "55" ? "selected" : ""}`}
+              onClick={() => handleAgeChange("55")}
+            >
+              51–60
+            </button>
 
-            <label className={`age-option ${age === "61" ? "selected" : ""}`}>
-              <input
-                type="radio"
-                name="age"
-                value="61"
-                checked={age === "61"}
-                onChange={() => handleAgeChange("61")}
-              />
-              <span>Above 60</span>
-            </label>
+            <button
+              type="button"
+              className={`age-option ${age === "61" ? "selected" : ""}`}
+              onClick={() => handleAgeChange("61")}
+            >
+              Above 60
+            </button>
           </div>
 
           <div className="info-box">
@@ -98,11 +79,16 @@ export default function Age({ next, prev, setFormData }) {
           </div>
 
           <div className="button-group">
-            <button className="back-btn" onClick={prev} disabled>
+            <button type="button" className="back-btn" onClick={prev} disabled>
               ← Back
             </button>
 
-            <button className="next-btn" onClick={handleNext} disabled={!age}>
+            <button
+              type="button"
+              className="next-btn"
+              onClick={next}
+              disabled={!age}
+            >
               Next →
             </button>
           </div>

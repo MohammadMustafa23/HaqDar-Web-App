@@ -263,3 +263,29 @@
     font-size: 0.82rem;
   }
 }
+
+.testimonial-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  padding: 60px 20px;
+
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 18px;
+}
+
+.testimonial-empty h3 {
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+}
+
+.testimonial-empty p {
+  max-width: 500px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
