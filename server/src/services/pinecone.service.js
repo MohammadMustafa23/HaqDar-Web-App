@@ -4,7 +4,7 @@ export async function searchSchemes(embedding) {
   try {
     const response = await index.query({
       vector: embedding,
-      topK: 5,
+      topK: 10,
       includeMetadata: true,
     });
 
