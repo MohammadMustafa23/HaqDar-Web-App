@@ -1033,3 +1033,64 @@ body {
   }
 }
 
+
+/* ========================= */
+/* MOBILE TOUCH FIX */
+/* Disable hover-transform effects on touch devices to prevent
+   tap-position mismatch causing missed clicks (Chrome mobile bug) */
+/* ========================= */
+
+@media (hover: hover) and (pointer: fine) {
+  .age-option:hover,
+  .gender-option:hover,
+  .education-option:hover,
+  .category-option:hover,
+  .income-option:hover,
+  .occupation-option:hover,
+  .pwd-option:hover,
+  .district-item:hover {
+    transform: translateY(-3px);
+  }
+
+  .next-btn:hover,
+  .back-btn:hover {
+    transform: translateY(-2px);
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .age-option,
+  .gender-option,
+  .education-option,
+  .category-option,
+  .income-option,
+  .occupation-option,
+  .pwd-option,
+  .district-item,
+  .next-btn,
+  .back-btn {
+    transform: none !important;
+  }
+
+  .next-btn:active,
+  .back-btn:active {
+    transform: none;
+    opacity: 0.8;
+  }
+
+  .age-option,
+  .gender-option,
+  .education-option,
+  .category-option,
+  .income-option,
+  .occupation-option,
+  .pwd-option,
+  .district-item {
+    touch-action: manipulation;
+  }
+
+  .next-btn,
+  .back-btn {
+    touch-action: manipulation;
+  }
+}
