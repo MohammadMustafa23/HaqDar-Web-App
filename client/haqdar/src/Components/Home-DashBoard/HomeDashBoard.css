@@ -377,7 +377,7 @@ body {
   max-width: 1280px;
   width: calc(100% - 40px);
 
-  margin: 90px auto 40px;
+  margin: 120px auto 40px;
 
   padding: 75px;
 
@@ -939,14 +939,13 @@ color:var(--success);
 @media (max-width: 992px) {
   .complete-profile {
     flex-direction: column;
-
     align-items: flex-start;
 
     padding: 45px;
 
     gap: 35px;
 
-    margin-top: 80px;
+    margin-top: 120px;
   }
 
   .profile-left {
@@ -982,8 +981,7 @@ color:var(--success);
 
 @media (max-width: 768px) {
   .complete-profile {
-    margin: 70px 16px 25px;
-
+    margin: 100px 16px 25px;
     width: auto;
 
     padding: 30px 24px;
@@ -1091,7 +1089,7 @@ color:var(--success);
 
 @media (max-width: 480px) {
   .complete-profile {
-    margin: 80px 12px 20px;
+    margin: 100px 12px 20px;
     padding: 22px 18px;
   }
 
@@ -1158,7 +1156,7 @@ color:var(--success);
 
 @media (max-width: 360px) {
   .complete-profile {
-    margin-top: 40px;
+    margin-top: 70px;
     padding: 18px 15px;
   }
 
