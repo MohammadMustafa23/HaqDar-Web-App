@@ -6,14 +6,20 @@ import "./Eligible-question.css";
 export default function District({ next, prev, setFormData }) {
   const [search, setSearch] = useState("");
   const [selectedDistrict, setSelectedDistrict] = useState("");
-  const handleNext = () => {
+
+  const handleDistrictChange = (district) => {
+    setSelectedDistrict(district);
+
     setFormData((prevData) => ({
       ...prevData,
-      district: selectedDistrict,
+      district,
     }));
+  };
 
+  const handleNext = () => {
     next();
   };
+
   const districts = [
     "Ajmer",
     "Alwar",
@@ -66,6 +72,7 @@ export default function District({ next, prev, setFormData }) {
     "Tonk",
     "Udaipur",
   ];
+
   const filteredDistricts = districts
     .filter((district) => district.toLowerCase().includes(search.toLowerCase()))
     .slice(0, 5);
@@ -96,7 +103,7 @@ export default function District({ next, prev, setFormData }) {
                 className={`district-item ${
                   selectedDistrict === district ? "district-selected" : ""
                 }`}
-                onClick={() => setSelectedDistrict(district)}
+                onClick={() => handleDistrictChange(district)}
               >
                 <span>{district}</span>
                 <span>Rajasthan</span>

@@ -1,23 +1,29 @@
 import Nav from "./Nav";
 import Progress from "./Progress";
 import "./Eligible-question.css";
-import "./Eligible-question.css";
 import { useState } from "react";
 
 export default function Education({ next, prev, setFormData }) {
   const [education, setEducation] = useState("");
-  const handleNext = () => {
+
+  const handleEducationChange = (value) => {
+    setEducation(value);
+
     setFormData((prevData) => ({
       ...prevData,
-      education: education,
+      education: value,
     }));
+  };
 
+  const handleNext = () => {
     next();
   };
+
   return (
     <div>
       <Nav />
       <Progress percent={25} />
+
       <div className="education-container form-page">
         <div className="education-card">
           <h1 className="education-title">
@@ -33,7 +39,9 @@ export default function Education({ next, prev, setFormData }) {
               <input
                 type="radio"
                 name="education"
-                onChange={() => setEducation("No Schooling")}
+                value="No Schooling"
+                checked={education === "No Schooling"}
+                onChange={() => handleEducationChange("No Schooling")}
               />
               <span>No Schooling</span>
             </label>
@@ -46,7 +54,9 @@ export default function Education({ next, prev, setFormData }) {
               <input
                 type="radio"
                 name="education"
-                onChange={() => setEducation("Below 10th")}
+                value="Below 10th"
+                checked={education === "Below 10th"}
+                onChange={() => handleEducationChange("Below 10th")}
               />
               <span>Below 10th</span>
             </label>
@@ -59,7 +69,9 @@ export default function Education({ next, prev, setFormData }) {
               <input
                 type="radio"
                 name="education"
-                onChange={() => setEducation("10th Pass")}
+                value="10th Pass"
+                checked={education === "10th Pass"}
+                onChange={() => handleEducationChange("10th Pass")}
               />
               <span>10th Pass</span>
             </label>
@@ -72,7 +84,9 @@ export default function Education({ next, prev, setFormData }) {
               <input
                 type="radio"
                 name="education"
-                onChange={() => setEducation("12th Pass")}
+                value="12th Pass"
+                checked={education === "12th Pass"}
+                onChange={() => handleEducationChange("12th Pass")}
               />
               <span>12th Pass</span>
             </label>
@@ -85,7 +99,9 @@ export default function Education({ next, prev, setFormData }) {
               <input
                 type="radio"
                 name="education"
-                onChange={() => setEducation("Diploma")}
+                value="Diploma"
+                checked={education === "Diploma"}
+                onChange={() => handleEducationChange("Diploma")}
               />
               <span>Diploma</span>
             </label>
@@ -98,7 +114,9 @@ export default function Education({ next, prev, setFormData }) {
               <input
                 type="radio"
                 name="education"
-                onChange={() => setEducation("ITI")}
+                value="ITI"
+                checked={education === "ITI"}
+                onChange={() => handleEducationChange("ITI")}
               />
               <span>ITI</span>
             </label>
@@ -111,7 +129,9 @@ export default function Education({ next, prev, setFormData }) {
               <input
                 type="radio"
                 name="education"
-                onChange={() => setEducation("Graduate")}
+                value="Graduate"
+                checked={education === "Graduate"}
+                onChange={() => handleEducationChange("Graduate")}
               />
               <span>Graduate</span>
             </label>
@@ -124,7 +144,9 @@ export default function Education({ next, prev, setFormData }) {
               <input
                 type="radio"
                 name="education"
-                onChange={() => setEducation("Post Graduate")}
+                value="Post Graduate"
+                checked={education === "Post Graduate"}
+                onChange={() => handleEducationChange("Post Graduate")}
               />
               <span>Post Graduate</span>
             </label>
@@ -137,7 +159,9 @@ export default function Education({ next, prev, setFormData }) {
               <input
                 type="radio"
                 name="education"
-                onChange={() => setEducation("Doctorate")}
+                value="Doctorate"
+                checked={education === "Doctorate"}
+                onChange={() => handleEducationChange("Doctorate")}
               />
               <span>Doctorate</span>
             </label>

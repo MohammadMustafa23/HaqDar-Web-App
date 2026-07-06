@@ -2,20 +2,28 @@ import Nav from "./Nav";
 import Progress from "./Progress";
 import "./Eligible-question.css";
 import { useState } from "react";
+
 export default function Income({ next, prev, setFormData }) {
   const [income, setIncome] = useState("");
-  const handleNext = () => {
+
+  const handleIncomeChange = (value) => {
+    setIncome(value);
+
     setFormData((prevData) => ({
       ...prevData,
-      income: income,
+      income: value,
     }));
+  };
 
+  const handleNext = () => {
     next();
   };
+
   return (
     <div>
       <Nav />
       <Progress percent={50} />
+
       <div className="income-container form-page">
         <div className="income-card">
           <h1 className="income-title">What is your annual family income?</h1>
@@ -31,7 +39,9 @@ export default function Income({ next, prev, setFormData }) {
             <input
               type="radio"
               name="income"
-              onChange={() => setIncome("100000")}
+              value="100000"
+              checked={income === "100000"}
+              onChange={() => handleIncomeChange("100000")}
             />
             <span>Below ₹1 Lakh</span>
           </label>
@@ -42,7 +52,9 @@ export default function Income({ next, prev, setFormData }) {
             <input
               type="radio"
               name="income"
-              onChange={() => setIncome("250000")}
+              value="250000"
+              checked={income === "250000"}
+              onChange={() => handleIncomeChange("250000")}
             />
             <span>₹1 - 2.5 Lakhs</span>
           </label>
@@ -53,7 +65,9 @@ export default function Income({ next, prev, setFormData }) {
             <input
               type="radio"
               name="income"
-              onChange={() => setIncome("500000")}
+              value="500000"
+              checked={income === "500000"}
+              onChange={() => handleIncomeChange("500000")}
             />
             <span>₹2.5 - 5 Lakhs</span>
           </label>
@@ -64,7 +78,9 @@ export default function Income({ next, prev, setFormData }) {
             <input
               type="radio"
               name="income"
-              onChange={() => setIncome("800000")}
+              value="800000"
+              checked={income === "800000"}
+              onChange={() => handleIncomeChange("800000")}
             />
             <span>₹5 - 8 Lakhs</span>
           </label>
@@ -75,7 +91,9 @@ export default function Income({ next, prev, setFormData }) {
             <input
               type="radio"
               name="income"
-              onChange={() => setIncome("800001")}
+              value="800001"
+              checked={income === "800001"}
+              onChange={() => handleIncomeChange("800001")}
             />
             <span>Above ₹8 Lakhs</span>
           </label>

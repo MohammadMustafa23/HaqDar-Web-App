@@ -13,14 +13,20 @@ import "./Eligible-question.css";
 
 export default function Occupation({ next, prev, setFormData }) {
   const [selectedOccupation, setSelectedOccupation] = useState("");
-  const handleNext = () => {
+
+  const handleOccupationChange = (occupation) => {
+    setSelectedOccupation(occupation);
+
     setFormData((prevData) => ({
       ...prevData,
-      occupation: selectedOccupation,
+      occupation,
     }));
+  };
 
+  const handleNext = () => {
     next();
   };
+
   const occupations = [
     {
       title: "Farmer",
@@ -77,7 +83,7 @@ export default function Occupation({ next, prev, setFormData }) {
                 } ${
                   item.title === "Unemployed" ? "occupation-full-width" : ""
                 }`}
-                onClick={() => setSelectedOccupation(item.title)}
+                onClick={() => handleOccupationChange(item.title)}
               >
                 <div className="occupation-icon">{item.icon}</div>
 

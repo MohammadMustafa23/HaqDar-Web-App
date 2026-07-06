@@ -1,20 +1,28 @@
 import Nav from "./Nav";
 import Progress from "./Progress";
 import { useState } from "react";
+
 export default function Category({ next, prev, setFormData }) {
   const [category, setCategory] = useState("");
-  const handleNext = () => {
+
+  const handleCategoryChange = (value) => {
+    setCategory(value);
+
     setFormData((prevData) => ({
       ...prevData,
-      category: category,
+      category: value,
     }));
+  };
 
+  const handleNext = () => {
     next();
   };
+
   return (
     <div>
       <Nav />
       <Progress percent={37} />
+
       <div className="category-container form-page">
         <div className="category-card">
           <h1 className="category-title">What is your social category?</h1>
@@ -34,56 +42,76 @@ export default function Category({ next, prev, setFormData }) {
 
           <div className="category-grid">
             <label
-              className={`category-option ${category === "General" ? "selected" : ""}`}
+              className={`category-option ${
+                category === "General" ? "selected" : ""
+              }`}
             >
               <input
                 type="radio"
                 name="category"
-                onChange={() => setCategory("General")}
+                value="General"
+                checked={category === "General"}
+                onChange={() => handleCategoryChange("General")}
               />
               <span>General</span>
             </label>
 
             <label
-              className={`category-option ${category === "OBC" ? "selected" : ""}`}
+              className={`category-option ${
+                category === "OBC" ? "selected" : ""
+              }`}
             >
               <input
                 type="radio"
                 name="category"
-                onChange={() => setCategory("OBC")}
+                value="OBC"
+                checked={category === "OBC"}
+                onChange={() => handleCategoryChange("OBC")}
               />
               <span>OBC</span>
             </label>
 
             <label
-              className={`category-option ${category === "SC" ? "selected" : ""}`}
+              className={`category-option ${
+                category === "SC" ? "selected" : ""
+              }`}
             >
               <input
                 type="radio"
                 name="category"
-                onChange={() => setCategory("SC")}
+                value="SC"
+                checked={category === "SC"}
+                onChange={() => handleCategoryChange("SC")}
               />
               <span>SC</span>
             </label>
 
             <label
-              className={`category-option ${category === "ST" ? "selected" : ""}`}
+              className={`category-option ${
+                category === "ST" ? "selected" : ""
+              }`}
             >
               <input
                 type="radio"
                 name="category"
-                onChange={() => setCategory("ST")}
+                value="ST"
+                checked={category === "ST"}
+                onChange={() => handleCategoryChange("ST")}
               />
               <span>ST</span>
             </label>
 
             <label
-              className={`category-option ${category === "EWS" ? "selected" : ""}`}
+              className={`category-option ${
+                category === "EWS" ? "selected" : ""
+              }`}
             >
               <input
                 type="radio"
                 name="category"
-                onChange={() => setCategory("EWS")}
+                value="EWS"
+                checked={category === "EWS"}
+                onChange={() => handleCategoryChange("EWS")}
               />
               <div>
                 <span>EWS</span>
@@ -92,12 +120,16 @@ export default function Category({ next, prev, setFormData }) {
             </label>
 
             <label
-              className={`category-option ${category === "Minority" ? "selected" : ""}`}
+              className={`category-option ${
+                category === "Minority" ? "selected" : ""
+              }`}
             >
               <input
                 type="radio"
                 name="category"
-                onChange={() => setCategory("Minority")}
+                value="Minority"
+                checked={category === "Minority"}
+                onChange={() => handleCategoryChange("Minority")}
               />
               <div>
                 <span>Minority</span>
