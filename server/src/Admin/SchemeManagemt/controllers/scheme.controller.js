@@ -380,6 +380,7 @@ export const updateSchemeStatus = async (req, res) => {
 
 export const bulkUploadSchemes = async (req, res) => {
   const uploadedPineconeIds = [];
+ 
   try {
     if (!req.file) {
       return res.status(400).json({
@@ -387,13 +388,21 @@ export const bulkUploadSchemes = async (req, res) => {
         message: "Please upload a JSON file.",
       });
     }
-
+ 
+    // ---------- Parse JSON safely ----------
     const jsonString = req.file.buffer.toString("utf-8");
-    const schemes = JSON.parse(jsonString);
-
-    // Validate JSON
+    let schemes;
+    try {
+      schemes = JSON.parse(jsonString);
+    } catch (parseErr) {
+      return res.status(400).json({
+        success: false,
+        message: "Uploaded file is not valid JSON.",
+      });
+    }
+ 
+    // ---------- Validate JSON ----------
     const validation = validateBulkSchemes(schemes);
-
     if (!validation.valid) {
       return res.status(400).json({
         success: false,
@@ -401,14 +410,13 @@ export const bulkUploadSchemes = async (req, res) => {
         errors: validation.errors,
       });
     }
-
-    // Check duplicate scheme numbers
+ 
+    // ---------- Check duplicate scheme numbers ----------
     const uploadedNumbers = validation.schemes.map((scheme) => scheme.no);
-
     const existingNumbers = await Scheme.find({
       no: { $in: uploadedNumbers },
     }).select("no");
-
+ 
     if (existingNumbers.length > 0) {
       return res.status(409).json({
         success: false,
@@ -416,14 +424,13 @@ export const bulkUploadSchemes = async (req, res) => {
         duplicates: existingNumbers.map((s) => s.no),
       });
     }
-
-    // Check duplicate scheme names
+ 
+    // ---------- Check duplicate scheme names ----------
     const uploadedNames = validation.schemes.map((scheme) => scheme.name);
-
     const existingNames = await Scheme.find({
       name: { $in: uploadedNames },
     }).select("name");
-
+ 
     if (existingNames.length > 0) {
       return res.status(409).json({
         success: false,
@@ -431,26 +438,47 @@ export const bulkUploadSchemes = async (req, res) => {
         duplicates: existingNames.map((s) => s.name),
       });
     }
-
-    // Upload to Pinecone first
+ 
+    // ---------- Pre-generate _id for every scheme ----------
+    // This is the key fix: uploadSchemeToPinecone() reads scheme._id,
+    // but at this point nothing has been saved to Mongo yet, so _id
+    // must be created up front rather than after insertMany().
+    const schemesWithIds = validation.schemes.map((scheme) => ({
+      ...scheme,
+      _id: new mongoose.Types.ObjectId(),
+    }));
+ 
+    // ---------- Upload to Pinecone first ----------
     const schemesToInsert = [];
-
-    for (const scheme of validation.schemes) {
-      const pineconeId = await uploadSchemeToPinecone(scheme);
-
+ 
+    for (const scheme of schemesWithIds) {
+      const pineconeId = await uploadSchemeToPinecone(scheme); // scheme._id now exists
       uploadedPineconeIds.push(pineconeId);
-
+ 
       schemesToInsert.push({
         ...scheme,
         pineconeId,
       });
     }
-
-    // Insert into MongoDB only after Pinecone succeeds
-    const insertedSchemes = await Scheme.insertMany(schemesToInsert, {
-      ordered: true,
-    });
-
+ 
+    // ---------- Insert into MongoDB only after Pinecone succeeds ----------
+    let insertedSchemes;
+    try {
+      insertedSchemes = await Scheme.insertMany(schemesToInsert, {
+        ordered: true,
+      });
+    } catch (insertErr) {
+      // With ordered:true, Mongoose still commits any docs that succeeded
+      // before the failing one. Roll those back too, not just Pinecone,
+      // so the two stores don't end up out of sync.
+      const partiallyInserted = insertErr?.insertedDocs || [];
+      if (partiallyInserted.length > 0) {
+        const insertedIds = partiallyInserted.map((d) => d._id);
+        await Scheme.deleteMany({ _id: { $in: insertedIds } });
+      }
+      throw insertErr; // re-throw so the outer catch does the Pinecone rollback
+    }
+ 
     return res.status(201).json({
       success: true,
       message: "Schemes uploaded successfully.",
@@ -459,28 +487,38 @@ export const bulkUploadSchemes = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-
-    // Rollback Pinecone uploads
+ 
+    // Rollback Pinecone uploads (covers both the Pinecone-loop failure case
+    // and the insertMany failure case re-thrown above)
     if (uploadedPineconeIds.length > 0) {
       await Promise.allSettled(
         uploadedPineconeIds.map((id) => deleteSchemeVector(id))
       );
     }
-
+ 
     if (error instanceof mongoose.Error.ValidationError) {
       const errors = Object.values(error.errors).map((err) => ({
         field: err.path,
         message: err.message,
         value: err.value,
       }));
-
+ 
       return res.status(400).json({
         success: false,
         message: "Validation failed.",
         errors,
       });
     }
-
+ 
+    // Mongo duplicate key race condition (e.g. two uploads at once)
+    if (error.code === 11000) {
+      return res.status(409).json({
+        success: false,
+        message: "One or more scheme numbers/names already exist.",
+        keyValue: error.keyValue,
+      });
+    }
+ 
     return res.status(500).json({
       success: false,
       message: "Internal Server Error",
