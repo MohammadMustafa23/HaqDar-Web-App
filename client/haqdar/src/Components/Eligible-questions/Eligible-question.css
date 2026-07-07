@@ -156,9 +156,6 @@
   cursor: pointer;
 }
 
-
-
-
 /* <-----------------Gender.jsx ---------------->*/
 .gender-container {
   width: 800px;
@@ -305,6 +302,7 @@
 .education-buttons {
   margin-top: 40px;
   padding-top: 24px;
+  padding-bottom: 32px;
   border-top: 1px solid var(--border-color);
   display: flex;
   justify-content: space-between;
@@ -327,8 +325,6 @@
   border-radius: 8px;
   cursor: pointer;
 }
-
-
 
 /* <-----------------CateGory.jsx ---------------->*/
 .category-container {
@@ -418,6 +414,7 @@
 .category-buttons {
   margin-top: 40px;
   padding-top: 24px;
+  padding-bottom: 32px;
   border-top: 1px solid var(--border-color);
   display: flex;
   justify-content: space-between;
@@ -440,8 +437,6 @@
   border-radius: 8px;
   cursor: pointer;
 }
-
-
 
 /* <-----------------Income.jsx ---------------->*/
 .income-container {
@@ -544,8 +539,6 @@
   border-radius: 8px;
   cursor: pointer;
 }
-
-
 
 /* <-----------------District.jsx ---------------->*/
 .district-container {
@@ -718,6 +711,7 @@
 
 .occupation-buttons {
   margin-top: 24px;
+  padding-bottom: 32px;
   display: flex;
   justify-content: space-between;
 }
@@ -1036,7 +1030,6 @@ body {
     transform: translateY(0);
   }
 }
-
 
 /* ========================= */
 /* MOBILE TOUCH FIX */
