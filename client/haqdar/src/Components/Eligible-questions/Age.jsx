@@ -95,7 +95,7 @@ export default function Age({ next, prev, setFormData }) {
             </div>
           </div>
 
-          <div className="button-group">
+          <div className="button-group-01">
             <button className="back-btn" onClick={prev} disabled={true}>
               ← Back
             </button>

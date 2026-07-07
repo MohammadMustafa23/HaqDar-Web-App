@@ -129,9 +129,10 @@
   line-height: 1.5;
 }
 
-.button-group {
+.button-group-01 {
   margin-top: 24px;
   padding-top: 24px;
+  padding-bottom: 32px;
   border-top: 1px solid var(--border-color);
   display: flex;
   justify-content: space-between;
@@ -878,7 +879,7 @@ body {
     font-size: 22px;
   }
 
-  .button-group,
+  .button-group-01,
   .gender-buttons,
   .education-buttons,
   .category-buttons,
@@ -1019,6 +1020,9 @@ body {
 
 .form-page {
   animation: formFadeIn 0.5s ease;
+  min-height: 100dvh;
+  padding-bottom: env(safe-area-inset-bottom, 24px);
+  box-sizing: border-box;
 }
 
 @keyframes formFadeIn {
