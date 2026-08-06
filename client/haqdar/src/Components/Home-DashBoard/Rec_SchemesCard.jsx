@@ -1,5 +1,11 @@
 import "./HomeDashBoard.css";
-import { ArrowRight, IndianRupee, Users, Bookmark,Percent } from "lucide-react";
+import {
+  ArrowRight,
+  IndianRupee,
+  Users,
+  Bookmark,
+  Percent,
+} from "lucide-react";
 import { useState, useEffect } from "react";
 import { saveScheme, removeScheme, isSaved } from "../../utils/bookmark.js";
 
@@ -21,6 +27,22 @@ export default function Rec_SchemesCard({ scheme, onViewDetails }) {
     }
   };
 
+  function formatIncome(amount) {
+    amount = Number(amount);
+    if (amount >= 10000000) {
+      const crore = amount / 10000000;
+      return `${Number.isInteger(crore) ? crore : crore.toFixed(1)} Crore`;
+    }
+    if (amount >= 100000) {
+      const lakh = amount / 100000;
+      return `${Number.isInteger(lakh) ? lakh : lakh.toFixed(1)} Lakh`;
+    }
+    if (amount >= 1000) {
+      const thousand = amount / 1000;
+      return `${Number.isInteger(thousand) ? thousand : thousand.toFixed(1)} Thousand`;
+    }
+    return amount.toString();
+  }
   if (!scheme) return null;
 
   return (
@@ -41,11 +63,11 @@ export default function Rec_SchemesCard({ scheme, onViewDetails }) {
       <div className="rec-scheme-tags">
         <span className="rec-scheme-tag">
           <Percent size={18} />
-          {(scheme.score*100).toPrecision(4) + " Matched" || "N/A"}
+          {(scheme.score * 100).toPrecision(4) + " Matched" || "N/A"}
         </span>
         <span className="rec-scheme-tag">
           <IndianRupee size={18} />
-          {scheme.income + " ₹"  || "N/A"}
+          {scheme.income != null ? formatIncome(scheme.income) : "N/A"}
         </span>
 
         <span className="rec-scheme-tag">
@@ -54,7 +76,8 @@ export default function Rec_SchemesCard({ scheme, onViewDetails }) {
         </span>
       </div>
 
-      <button className="rec-details-btn" onClick={() => onViewDetails(scheme)}>Check Details
+      <button className="rec-details-btn" onClick={() => onViewDetails(scheme)}>
+        Check Details
         <ArrowRight size={20} />
       </button>
     </div>
