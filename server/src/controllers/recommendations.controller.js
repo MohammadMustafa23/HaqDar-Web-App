@@ -4,6 +4,7 @@ import { generateEmbedding } from "../services/embedding.service.js";
 import { searchSchemes } from "../services/pinecone.service.js";
 import MatchedSchemeModel from "../models/matchedScheme.model.js";
 import { redisClient } from "../config/redis.js";
+import { filterEligibleSchemes } from "../utils/eligibility.util.js";
 
 export async function FindSchemes(req, res) {
   try {
@@ -51,6 +52,9 @@ export async function FindSchemes(req, res) {
       });
     }
 
+    // Filtering all Scheme For Saw Better Result To User
+    const eligibleMatches = filterEligibleSchemes(req.profile, matches);
+
     // ===============================
     // 4. Save Profile
     // ===============================
@@ -79,7 +83,7 @@ export async function FindSchemes(req, res) {
       {
         userId,
         searchQuery,
-        schemes: matches.map((item) => ({
+        schemes: eligibleMatches.map((item) => ({
           schemeId: item.id,
           score: item.score,
           metadata: item.metadata,

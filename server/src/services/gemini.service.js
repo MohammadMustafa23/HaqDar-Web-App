@@ -12,8 +12,8 @@ export async function generateSearchQuery(profile) {
     const prompt = `
 You are a government scheme recommendation assistant.
 
-Convert the following user profile into a concise semantic search query
-for a vector database.
+Convert the following validated user profile into a concise
+semantic search query for a vector database.
 
 Profile:
 ${JSON.stringify(profile, null, 2)}
@@ -22,18 +22,24 @@ Rules:
 - Return ONLY the search query.
 - No explanations.
 - No markdown.
-- Include occupation, category, income, education, district, gender and age.
-- Focus on welfare schemes, financial assistance, subsidies, scholarships, employment support, business support and government benefits.
+- Do not change, infer, estimate, or create any profile values.
+- Preserve the exact age and income.
+- Include occupation, category, income, education, district, gender, age and PWD status.
+- Focus on government schemes, welfare benefits, financial assistance,
+  scholarships, subsidies, employment support, business support,
+  education support and other government benefits.
+- Make the query semantically rich enough for vector similarity search.
 
-Example Output:
-"OBC self-employed male from Jaipur aged 18-35 with income between 2.5 and 5 lakh seeking government welfare schemes, financial assistance, subsidies and business support."
+Example:
+"20-year-old male OBC graduate student from Jaipur with annual income
+of ₹200000, seeking government scholarships, education assistance,
+financial support, welfare schemes and student benefits."
 
 `;
 
     const result = await model.generateContent(prompt);
-    const query = result.response.text().trim();
 
-    return query;
+    return result.response.text().trim();
   } catch (error) {
     console.error("Gemini Query Generation Error:", error);
 
