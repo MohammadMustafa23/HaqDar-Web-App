@@ -23,6 +23,16 @@ app.use(
   })
 );
 
+app.get("/health", (req, res) => {
+  res.status(200).json({
+    success: true,
+    status: "OK",
+    message: "HaqDar API is healthy",
+    uptime: Math.floor(process.uptime()),
+    timestamp: new Date().toISOString(),
+  });
+});
+
 app.use("/api/auth", UserRoute);
 app.use("/api/schemes", GenerateRoute);
 app.use('/api/pdf',GeneratePDF)

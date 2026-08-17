@@ -1,16 +1,174 @@
-# React + Vite
+# HaqDar — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+HaqDar is a web application that helps users **find government schemes based on their eligibility**.
 
-Currently, two official plugins are available:
+This folder contains the **frontend of HaqDar**, built with React and Vite.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## ✨ Features
 
-## React Compiler
+* 🔐 User Authentication
+* 🔑 Google Login
+* 👤 User Profile
+* 📝 Eligibility Profile Wizard
+* 🎯 Personalized Scheme Recommendations
+* 🔎 Browse Government Schemes
+* 📄 Scheme Details
+* 💾 Save Schemes
+* 🤖 AI Scheme Assistant
+* 💬 Feedback System
+* 🌓 Dark / Light Mode
+* 📱 Responsive Design
+* 👨‍💼 Admin Dashboard
+* 🏛️ Scheme Management
+* 💬 Admin Feedback Management
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Tech Stack
 
-## Expanding the ESLint configuration
+* **React 19**
+* **Vite**
+* **JavaScript**
+* **React Router**
+* **Axios**
+* **Tailwind CSS**
+* **Material UI**
+* **Lucide React**
+* **React Icons**
+* **Leaflet / React Leaflet**
+* **Sonner**
+* **SweetAlert2**
+* **Google OAuth**
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📁 Project Structure
+
+```text
+src/
+├── Admin/              # Admin dashboard & management
+├── Components/         # Reusable UI components
+├── Pages/              # Application pages
+├── Services/           # API service functions
+├── security/           # Protected routes
+├── utils/              # Helper functions
+├── assets/             # Images & static assets
+├── App.jsx             # Main routes
+└── main.jsx            # Application entry point
+```
+
+## 🔄 How It Works
+
+```text
+User
+  ↓
+Create Account / Login
+  ↓
+Complete Eligibility Profile
+  ↓
+Get Matched Schemes
+  ↓
+Explore Scheme Details
+  ↓
+Save / Apply / Ask AI
+```
+
+## 🔐 Authentication
+
+The frontend supports:
+
+* Email authentication
+* Google OAuth
+* Protected user routes
+* Protected admin routes
+
+> Authentication and authorization are ultimately handled by the backend.
+
+## 🤖 AI Assistant
+
+HaqDar includes an AI assistant that helps users:
+
+* Understand government schemes
+* Ask questions about eligibility
+* Get simpler explanations
+* Explore scheme-related information
+
+## 🎯 Scheme Matching
+
+Users complete their profile with relevant eligibility information.
+
+The frontend then displays schemes recommended for the user's profile through the backend recommendation system.
+
+## 👨‍💼 Admin Panel
+
+The frontend also includes an admin interface for:
+
+* Managing schemes
+* Adding schemes
+* Viewing feedback
+* Managing application data
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/MohammadMustafa23/HaqDar-Web-App.git
+```
+
+### 2. Go to the frontend
+
+```bash
+cd HaqDar-Web-App/client/haqdar
+```
+
+### 3. Install dependencies
+
+```bash
+npm install
+```
+
+### 4. Configure environment variables
+
+Create a `.env` file and add the required frontend environment variables.
+
+Example:
+
+```env
+VITE_GOOGLE_CLIENT_ID=your_google_client_id
+VITE_API_URL=your_backend_api_url
+```
+
+### 5. Start the development server
+
+```bash
+npm run dev
+```
+
+## 📦 Build for Production
+
+```bash
+npm run build
+```
+
+To preview the production build:
+
+```bash
+npm run preview
+```
+
+## 🌐 Backend
+
+This frontend communicates with the **HaqDar backend** for authentication, schemes, recommendations, AI, feedback, and other application features.
+
+For the complete project, visit:
+
+**[HaqDar Web App](https://github.com/MohammadMustafa23/HaqDar-Web-App)**
+
+## 👨‍💻 Author
+
+**Mohammad Mustafa**
+
+B.Tech CSE Student
+
+---
+
+<p align="center">
+  Built with ❤️ for easier access to government schemes.
+</p>
