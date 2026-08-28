@@ -132,7 +132,7 @@ Example:
 
 ```env
 VITE_GOOGLE_CLIENT_ID=your_google_client_id
-BACKNED_URL=your_backend_api_url
+VITE_BACKEND_URL=your_backend_api_url
 ```
 
 ### 5. Start the development server
